@@ -34,6 +34,9 @@ public abstract class Character extends Entity {
         this.targetManager = new TargetManager();
     }
 
+    public Character(){
+
+    }
     public Equipment getEquipment(){ return this.equipment; }
 
     public Inventory getInventory(){ return this.inventory; }

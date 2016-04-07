@@ -14,6 +14,10 @@ public abstract class Entity {
     private Stats stats;
     private Direction direction;
 
+    public Entity(){
+
+    }
+
     public Entity(String name, Position position){
         this.name = name;
         this.position = position;
