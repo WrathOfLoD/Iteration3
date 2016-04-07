@@ -16,10 +16,6 @@ public class Mount extends Entity {
         super(name, position);
     }
 
-    public Mount(String name, Stats stats, Position position){
-        super(name, position);
-    }
-
     public void mount(Character character) {}
 
 }
