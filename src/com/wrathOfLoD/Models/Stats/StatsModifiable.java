@@ -12,13 +12,10 @@ public class StatsModifiable {
     private int movement;
     private int currentMana;
     private int currentHealth;
+    private int weaponBonus;
+    private int armorBonus;
 
-    public StatsModifiable(){
-
-    }
-
-    //can either use this constructor to pass in interested stats or can use the setters to set specific stats
-    public StatsModifiable(int strength, int agility, int intellect, int hardiness, int movement, int currentMana, int currentHealth){
+    private StatsModifiable(int strength, int agility, int intellect, int hardiness, int movement, int currentMana, int currentHealth, int weaponBonus, int armorBonus){
         this.strength = strength;
         this.agility = agility;
         this.intellect = intellect;
@@ -26,62 +23,99 @@ public class StatsModifiable {
         this.movement = movement;
         this.currentMana = currentMana;
         this.currentHealth = currentHealth;
+        this.weaponBonus = weaponBonus;
+        this.armorBonus = armorBonus;
     }
+
+
+    /************** static methods *****************/
+    public static StatsModifiable createStrengthStatsModifiable(int strength){
+        return new StatsModifiable(strength,0,0,0,0,0,0,0,0);
+    }
+
+    public static StatsModifiable createAgilityStatsModifiable(int agility){
+        return new StatsModifiable(0,agility,0,0,0,0,0,0,0);
+    }
+
+    public static StatsModifiable createIntellectStatsModifiable(int intellect){
+        return new StatsModifiable(0,0,intellect,0,0,0,0,0,0);
+    }
+
+    public static StatsModifiable createHardinessStatsModifiable(int hardiness){
+        return new StatsModifiable(0,0,0,hardiness,0,0,0,0,0);
+    }
+
+    public static StatsModifiable createMovementStatsModifiable(int movement){
+        return new StatsModifiable(0,0,0,0,movement,0,0,0,0);
+    }
+
+    public static StatsModifiable createManaStatsModifiable(int mana){
+        return new StatsModifiable(0,0,0,0,0,mana,0,0,0);
+    }
+
+    public static StatsModifiable createHealthStatsModifiable(int health){
+        return new StatsModifiable(0,0,0,0,0,0,health,0,0);
+    }
+
+    public static StatsModifiable createWeaponBonusStatsModifiable(int weaponBonus){
+        return new StatsModifiable(0,0,0,0,0,0,0,weaponBonus,0);
+    }
+
+    public static StatsModifiable createArmorBonusStatsModifiable(int armorBonus){
+        return new StatsModifiable(0,0,0,0,0,0,0,0,armorBonus);
+    }
+
+    public static StatsModifiable createGenericStatsModifiable(int strength, int agility, int intellect, int hardiness, int movement){
+        return new StatsModifiable(strength, agility, intellect, hardiness, movement,0,0,0,0);
+    }
+
+    public static StatsModifiable createHealthManaStatsModifiable(int mana, int health){
+        return new StatsModifiable(0,0,0,0,0,mana,health,0,0);
+    }
+
+    public static StatsModifiable createWeaponArmorStatsModifiable(int weaponBonus, int armorBonus){
+        return new StatsModifiable(0,0,0,0,0,0,0,weaponBonus,armorBonus);
+    }
+    /************** end static methods *****************/
+
+
 
 
     public int getStrength() {
         return strength;
     }
 
-    public void setStrength(int strength) {
-        this.strength = strength;
-    }
-
     public int getAgility() {
         return agility;
-    }
-
-    public void setAgility(int agility) {
-        this.agility = agility;
     }
 
     public int getIntellect() {
         return intellect;
     }
 
-    public void setIntellect(int intellect) {
-        this.intellect = intellect;
-    }
-
     public int getHardiness() {
         return hardiness;
-    }
-
-    public void setHardiness(int hardiness) {
-        this.hardiness = hardiness;
     }
 
     public int getMovement() {
         return movement;
     }
 
-    public void setMovement(int movement) {
-        this.movement = movement;
-    }
-
     public int getCurrentMana() {
         return currentMana;
-    }
-
-    public void setCurrentMana(int currentMana) {
-        this.currentMana = currentMana;
     }
 
     public int getCurrentHealth() {
         return currentHealth;
     }
 
-    public void setCurrentHealth(int currentHealth) {
-        this.currentHealth = currentHealth;
+    public int getWeaponBonus() {
+        return weaponBonus;
     }
+
+    public int getArmorBonus() {
+        return armorBonus;
+    }
+
+
 }
