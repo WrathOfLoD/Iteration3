@@ -12,5 +12,35 @@ public class NPC extends Character {
 
     public NPC(String name, Position pos){
         super(name, pos);
+        this.aggression = 0;
+        this.greed = 0;
+        this.homePosition = pos;
+    }
+
+    public NPC(String name, Position pos, int aggression, int greed){
+        super(name, pos);
+        this.aggression = aggression;
+        this.greed = greed;
+        this.homePosition = pos;
+    }
+
+    public int getAggression(){
+        return this.aggression;
+    }
+
+    public int getGreed(){
+        return this.greed;
+    }
+
+    public Position getHomePosition(){
+        return this.homePosition;
+    }
+
+    public void setAggression(int newAggression){
+        this.aggression = newAggression;
+    }
+
+    public void setGreed(int newGreed){
+        this.aggression = newGreed;
     }
 }
