@@ -8,6 +8,8 @@ import java.util.ArrayList;
  * Created by luluding on 4/7/16.
  */
 public class Stats {
+    private Entity owner;
+
 
     //Primary Stats
     private int strength;
@@ -39,7 +41,9 @@ public class Stats {
     private ArrayList<StatsModifiable> temporaryStats;
 
 
-    public Stats(){
+    public Stats(Entity owner){
+        this.owner = owner;
+
         //will be modified depending on occupation upon creating
         setStrength(1);
         setAgility(1);
@@ -99,18 +103,6 @@ public class Stats {
     /************** DONE Calculate derived Stats **************/
 
 
-    public void gainExperience(Entity entity, int exp){
-
-        if((this.currentExperience + exp) >= experienceToNextLevel){
-            setCurrentExperience((this.currentExperience + exp) - experienceToNextLevel);
-            setLevel(getLevel()+1);
-            calculateDerivedStats();
-            entity.levelUp();
-        }else{
-            setCurrentExperience(currentExperience + exp);
-        }
-
-    }
 
     public void addTemporaryStats(StatsModifiable statsModifiable){
         modifyStats(statsModifiable);
@@ -131,6 +123,7 @@ public class Stats {
         setCurrentHealth(getCurrentHealth() - statsModifiable.getCurrentHealth());
         setWeaponBonus(getWeaponBonus() - statsModifiable.getWeaponBonus());
         setArmorBonus(getArmorBonus() - statsModifiable.getArmorBonus());
+        setCurrentExperience(getCurrentExperience() - statsModifiable.getCurrentExperience());
 
         calculateDerivedStats();
 
@@ -148,9 +141,11 @@ public class Stats {
         setCurrentHealth(getCurrentHealth() + statsModifiable.getCurrentHealth());
         setWeaponBonus(getWeaponBonus() + statsModifiable.getWeaponBonus());
         setArmorBonus(getArmorBonus() + statsModifiable.getArmorBonus());
+        setCurrentExperience(getCurrentExperience() + statsModifiable.getCurrentExperience());
 
         calculateDerivedStats();
     }
+
 
 
     /****************** Setters and Getters *********************/
@@ -199,8 +194,16 @@ public class Stats {
         return currentExperience;
     }
 
-    private void setCurrentExperience(int currentExperience) {
-        this.currentExperience = currentExperience;
+    private void setCurrentExperience(int exp) {
+
+        if(exp >= experienceToNextLevel){
+            currentExperience = exp - experienceToNextLevel;
+            setLevel(getLevel() + 1);
+            calculateDerivedStats();
+            owner.levelUp();
+        }else{
+            currentExperience = exp;
+        }
     }
 
     public int getMovement() {
@@ -233,18 +236,11 @@ public class Stats {
 
     private void setCurrentHealth(int currentHealth) {
         if(currentHealth <= 0){
-            //Entity die
-            //dec livesLeft
+            this.currentHealth = 0;
+            setLivesLeft(getLivesLeft()-1);
+        }else{
+            this.currentHealth = currentHealth;
         }
-        //TODO: either need to pass entity into this method (and get rid of currentHealth in StatsModifiable), or need to let Stats have entity
-        /* problem with getting rid of currentHealth in StatsModifiable
-            - the only way to modify currentHealth would be stats.modifyCurrentHealth(entity, health)
-            - items like potion that modifies entity health needs to call entity.modifyHealth
-            - but consumableItem has statsAddable...
-         */
-        //TODO: TO BE DISCUSSED
-
-        this.currentHealth = currentHealth;
     }
 
     public int getLivesLeft() {
@@ -252,10 +248,11 @@ public class Stats {
     }
 
     private void setLivesLeft(int livesLeft) {
-        this.livesLeft = livesLeft;
-
         if(livesLeft <= 0){
-            //end the game????
+            this.livesLeft = 0;
+            owner.die();
+        }else {
+            this.livesLeft = livesLeft;
         }
     }
 

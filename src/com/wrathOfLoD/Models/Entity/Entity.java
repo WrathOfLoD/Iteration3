@@ -40,6 +40,8 @@ public abstract class Entity {
 
     public void levelUp() {}
 
+    public void die(){}
+
 
 }
 
