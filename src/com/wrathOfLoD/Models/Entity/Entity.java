@@ -14,15 +14,16 @@ public abstract class Entity {
     private Stats stats;
     private Direction direction;
 
-    public Entity(String name, Stats stats, Position position){
+    public Entity(String name, Position position){
+
         this.name = name;
-        this.stats = stats;
         this.position = position;
     }
 
-    public void move(Direction d) {}
+    //public void move(Direction d) {}
 
     public void doInteraction(Character character) {}
+
 
     public String getName() { return this.name; }
 

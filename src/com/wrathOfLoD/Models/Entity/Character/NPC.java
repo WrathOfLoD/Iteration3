@@ -9,4 +9,8 @@ public class NPC extends Character {
     private int aggression;
     private int greed;
     private Position homePosition;
+
+    public NPC(String name, Position pos){
+        super(name, pos);
+    }
 }
