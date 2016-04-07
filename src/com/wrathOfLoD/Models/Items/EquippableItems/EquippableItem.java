@@ -1,12 +1,14 @@
-package com.wrathOfLoD.Models.Items;
+package com.wrathOfLoD.Models.Items.EquippableItems;
 
+import com.wrathOfLoD.Models.Entity.Entity;
+import com.wrathOfLoD.Models.Items.Item;
 import com.wrathOfLoD.Models.Stats.StatsModifiable;
 import com.wrathOfLoD.Utility.Position;
 
 /**
  * Created by matthewdiaz on 4/7/16.
  */
-public class EquippableItem extends Item{
+public abstract class EquippableItem extends Item {
     private StatsModifiable stats;
 
     public EquippableItem(Position position, String name, StatsModifiable stats){
@@ -14,4 +16,11 @@ public class EquippableItem extends Item{
         this.stats = stats;
     }
 
+    public StatsModifiable getStats(){
+        return stats;
+    }
+
+    public void encounter(Entity entity){
+
+    }
 }
