@@ -1,6 +1,7 @@
 package com.wrathOfLoD.Models.Entity.Character;
 
 import com.wrathOfLoD.Models.Entity.Entity;
+import com.wrathOfLoD.Models.Items.InteractiveItem;
 import com.wrathOfLoD.Models.Occupation.Occupation;
 
 /**
@@ -12,7 +13,7 @@ public abstract class Character extends Entity {
     public Character() {}
 
     public void interact(Entity entity) {}
-//    public void interact(InteractiveItem item) {}
+    public void interact(InteractiveItem item) {}
 
     public void attack() {}
 
