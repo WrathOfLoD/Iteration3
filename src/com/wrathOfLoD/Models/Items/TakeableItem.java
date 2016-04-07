@@ -15,4 +15,9 @@ public class TakeableItem extends Item{
     public void encounter(Entity entity){
 
     }
+
+    public void use(Entity entity){
+
+    }
+
 }

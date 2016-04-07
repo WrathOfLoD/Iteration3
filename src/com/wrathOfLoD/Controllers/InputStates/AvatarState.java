@@ -9,6 +9,7 @@ import com.wrathOfLoD.Utility.Direction;
  */
 public class AvatarState extends InputState{
     public AvatarState(){
-        addNewAction();
+        //adds the moveNorth action to its list of actions
+        addNewAction(ActionVendor.createMoveNorthAction());
     }
 }

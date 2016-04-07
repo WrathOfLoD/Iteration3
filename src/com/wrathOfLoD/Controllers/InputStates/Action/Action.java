@@ -10,28 +10,38 @@ import java.awt.event.KeyListener;
  */
 public abstract class Action implements KeyListener{
     private boolean isActive = false;
-    private KeyEvent currKeyCode;
+    private boolean isListening = false;
+    private int currKeyCode;
     private ActionCommand myAction;
 
     public Action(){
     }
 
-    public Action(KeyEvent currKeyCode, ActionCommand myAction){
+    public Action(int currKeyCode, ActionCommand myAction){
         this.currKeyCode  = currKeyCode;
         this.myAction = myAction;
     }
 
     public void keyPressed(KeyEvent keyEvent){
-        if(keyEvent == currKeyCode && isActive){
+        if(keyEvent.getKeyCode() == currKeyCode && isListening){
             myAction.execute();
         }
     }
 
     public void activate(){
-        isActive = true;
+        isListening = true;
     }
 
     public void deactivate(){
-        isActive = false;
+        isListening = false;
+    }
+
+
+    protected int getCurrCode(){
+        return currKeyCode;
+    }
+
+    protected boolean listenting(){
+        return isListening;
     }
 }

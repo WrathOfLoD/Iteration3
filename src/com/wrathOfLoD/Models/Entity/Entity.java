@@ -1,29 +1,56 @@
 package com.wrathOfLoD.Models.Entity;
 
 import com.wrathOfLoD.Models.Entity.Character.Character;
+import com.wrathOfLoD.Models.Stats.Stats;
+import com.wrathOfLoD.Utility.Direction;
 import com.wrathOfLoD.Utility.Position;
 
 /**
  * Created by zach on 4/7/16.
  */
 public abstract class Entity {
+    private String name;
     private Position position;
-//     private Direction direction;
+    private Stats stats;
+    private Direction direction;
 
-    public Entity() {
+    public Entity(){
 
     }
 
-//    public void move(Direction d) {
-//
-//    }
+    public Entity(String name, Position position){
+        this.name = name;
+        this.position = position;
+        this.stats = new Stats(this);
+        this.direction = Direction.DOWN_SOUTH;
+    }
 
-    public void doInteration(Character character) {}
+    //public void move(Direction d) {}
+
+    public void doInteraction(Character character) {}
+
+    public Direction getDirection(){return this.direction; }
+
+
+    public String getName() { return this.name; }
+
+    public Stats getStats() { return this.stats; }
+
+    public Position getPosition() { return this.position; }
+
+    public void setDirection(Direction newDirection){
+        this.direction = newDirection;
+    }
+
+    public void setPosition(Position newPosition){
+        this.position = newPosition;
+    }
 
     public void gainExp(int exp) {}
 
     public void levelUp() {}
 
-    public Position getPosition() { return this.position; }
+    public void die(){}
+
 }
 

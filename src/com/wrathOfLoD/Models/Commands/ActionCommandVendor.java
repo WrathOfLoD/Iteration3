@@ -13,4 +13,7 @@ public class ActionCommandVendor {
         return new MovementCommand(e,dir);
     }
 
+    public static ActionCommand createChangeDirectionCommand(Entity e, Direction dir){
+        return new MovementCommand(e,dir);
+    }
 }

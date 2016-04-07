@@ -10,18 +10,20 @@ import java.awt.event.KeyEvent;
 public class MoveAction extends Action {
     private ActionCommand changeDirection;
 
-    public MoveAction(KeyEvent currKeyCode, ActionCommand myAction) {
+    public MoveAction(int currKeyCode, ActionCommand myAction) {
         super(currKeyCode, myAction);
     }
 
-    public MoveAction(KeyEvent currKeyCode, ActionCommand myAction, ActionCommand changeDirection){
+    public MoveAction(int currKeyCode, ActionCommand myAction, ActionCommand changeDirection){
         super(currKeyCode, myAction);
         this.changeDirection = changeDirection;
     }
 
     @Override
     public void keyTyped(KeyEvent e) {
-        changeDirection.execute();
+        if(e.getKeyCode() == getCurrCode() && listenting()){
+            changeDirection.execute();
+        }
     }
 
     @Override
