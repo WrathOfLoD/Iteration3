@@ -1,5 +1,6 @@
 package com.wrathOfLoD.Models.Items;
 
+import com.wrathOfLoD.Models.Entity.Entity;
 import com.wrathOfLoD.Utility.Position;
 
 /**
@@ -22,5 +23,7 @@ public abstract class Item {
         return this.position;
     }
 
-    //Needs encounter(Entity entity)
+    public String getName(){return this.name;}
+
+    public abstract void encounter(Entity entity);
 }

@@ -1,5 +1,6 @@
 package com.wrathOfLoD.Models.Items;
 
+import com.wrathOfLoD.Models.Entity.Entity;
 import com.wrathOfLoD.Utility.Position;
 
 /**
@@ -8,5 +9,9 @@ import com.wrathOfLoD.Utility.Position;
 public class ObstacleItem extends Item{
     public ObstacleItem(Position position, String name){
         super(position, name);
+    }
+
+    public void encounter(Entity entity){
+
     }
 }

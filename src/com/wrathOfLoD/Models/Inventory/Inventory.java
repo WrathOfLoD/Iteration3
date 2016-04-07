@@ -12,7 +12,7 @@ public class Inventory {
     private List<Item> itemList;
 
     public Inventory() {
-        this.itemList = new ArrayList<>();
+        this.itemList = new ArrayList();
     }
 
     public void addItem(Item item) {}
