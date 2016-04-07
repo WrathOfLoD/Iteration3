@@ -11,6 +11,7 @@ public class ObstacleItem extends Item{
         super(position, name);
     }
 
+    @Override
     public void encounter(Entity entity){
 
     }

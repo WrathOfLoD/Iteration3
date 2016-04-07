@@ -8,7 +8,6 @@ import java.util.ArrayList;
  * Created by luluding on 4/7/16.
  */
 public class Stats {
-    private String name; //entity's name
 
     //Primary Stats
     private int strength;
@@ -40,9 +39,7 @@ public class Stats {
     private ArrayList<StatsModifiable> temporaryStats;
 
 
-    public Stats(String entityName){
-        name = entityName;
-
+    public Stats(){
         //will be modified depending on occupation upon creating
         setStrength(1);
         setAgility(1);
@@ -60,7 +57,7 @@ public class Stats {
 
         calculateDerivedStats();
 
-        temporaryStats = new ArrayList<>();
+        temporaryStats = new ArrayList();
     }
 
     /************** Calculate derived Stats **************/
@@ -157,10 +154,6 @@ public class Stats {
 
 
     /****************** Setters and Getters *********************/
-    public String getName() {
-        return name;
-    }
-
     public int getStrength() {
         return strength;
     }
