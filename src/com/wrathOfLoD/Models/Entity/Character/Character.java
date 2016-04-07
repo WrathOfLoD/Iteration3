@@ -6,6 +6,7 @@ import com.wrathOfLoD.Models.Inventory.Inventory;
 import com.wrathOfLoD.Models.Items.InteractiveItem;
 import com.wrathOfLoD.Models.Occupation.Occupation;
 import com.wrathOfLoD.Models.Occupation.Smasher;
+import com.wrathOfLoD.Models.Skill.SkillManager;
 import com.wrathOfLoD.Utility.Position;
 
 /**
