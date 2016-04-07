@@ -13,16 +13,11 @@ public abstract class Entity {
     private Stats stats;
 //     private Direction direction;
 
-    public Entity() {
-
-    }
-
-    public Entity(String name, Stats stats, Position position){
+    public Entity(String name, Position position){
         this.name = name;
-        this.stats = stats;
         this.position = position;
+        this.stats = new Stats();
     }
-
 
 //    public void move(Direction d) {
 //
