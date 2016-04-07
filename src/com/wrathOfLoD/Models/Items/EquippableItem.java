@@ -1,14 +1,15 @@
 package com.wrathOfLoD.Models.Items;
 
+import com.wrathOfLoD.Models.Stats.StatsModifiable;
 import com.wrathOfLoD.Utility.Position;
 
 /**
  * Created by matthewdiaz on 4/7/16.
  */
 public class EquippableItem extends Item{
-    private StatsAddable stats;
+    private StatsModifiable stats;
 
-    public EquippableItem(Position position, String name, StatsAddable stats){
+    public EquippableItem(Position position, String name, StatsModifiable stats){
         super(position, name);
         this.stats = stats;
     }
