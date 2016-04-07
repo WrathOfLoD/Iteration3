@@ -27,7 +27,6 @@ public abstract class Entity {
 
     public Direction getDirection(){return this.direction; }
 
-
     public String getName() { return this.name; }
 
     public Stats getStats() { return this.stats; }
