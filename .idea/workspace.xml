@@ -2,14 +2,57 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ac2f70bb-cd23-4ab4-be64-32291757f3ff" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.gitignore" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/description.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/project-template.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/com/wrathOfLoD/Views/PlaceHolder.java" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/compiler.xml" afterPath="$PROJECT_DIR$/.idea/compiler.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/encodings.xml" afterPath="$PROJECT_DIR$/.idea/encodings.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/vcs.xml" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Iteration3.iml" afterPath="$PROJECT_DIR$/Iteration3.iml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/wrathOfLoD/Controllers/InputStates/Action/Action.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/wrathOfLoD/Controllers/InputStates/Action/MoveAction.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/wrathOfLoD/Controllers/InputStates/ActionVendor.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/wrathOfLoD/Controllers/InputStates/AvatarState.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/wrathOfLoD/Controllers/InputStates/InputState.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/wrathOfLoD/Controllers/MainController.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/wrathOfLoD/Models/Commands/ActionCommand.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/wrathOfLoD/Models/Commands/ActionCommandVendor.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/wrathOfLoD/Models/Commands/ChangeDirectionCommand.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/wrathOfLoD/Models/Commands/MovementCommand.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/wrathOfLoD/Models/LocationTracker/LocationTracker.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/wrathOfLoD/Models/LocationTracker/LocationTrackerManager.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/wrathOfLoD/Models/Map/AreaEffect/AreaEffect.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/wrathOfLoD/Models/Map/Map.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/wrathOfLoD/Models/Map/MapArea.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/wrathOfLoD/Models/Map/Terrain/Ground.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/wrathOfLoD/Models/Map/Terrain/Sky.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/wrathOfLoD/Models/Map/Terrain/Terrain.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/wrathOfLoD/Models/Map/Terrain/Water.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/wrathOfLoD/Models/Map/Tile.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/wrathOfLoD/Models/Map/TilePillar.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/wrathOfLoD/Models/Skill/NPCOccupSkillManager.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/wrathOfLoD/Models/Skill/Skill.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/wrathOfLoD/Models/Skill/SkillManager.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/wrathOfLoD/Models/Skill/SmasherSkillManager.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/wrathOfLoD/Models/Skill/SneakSkillManager.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/wrathOfLoD/Models/Skill/SummonerSkillManager.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/wrathOfLoD/Models/Target/EntityTarget.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/wrathOfLoD/Models/Target/ItemTarget.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/wrathOfLoD/Models/Target/Target.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/wrathOfLoD/Models/Target/TargetManager.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/wrathOfLoD/Models/Ability/Abilities/FireballAbility.java" afterPath="$PROJECT_DIR$/src/com/wrathOfLoD/Models/Ability/Abilities/FireballAbility.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/wrathOfLoD/Models/Entity/Character/Avatar.java" afterPath="$PROJECT_DIR$/src/com/wrathOfLoD/Models/Entity/Character/Avatar.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/wrathOfLoD/Models/Entity/Character/Character.java" afterPath="$PROJECT_DIR$/src/com/wrathOfLoD/Models/Entity/Character/Character.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/wrathOfLoD/Models/Entity/Character/NPC.java" afterPath="$PROJECT_DIR$/src/com/wrathOfLoD/Models/Entity/Character/NPC.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/wrathOfLoD/Models/Entity/Character/Pet.java" afterPath="$PROJECT_DIR$/src/com/wrathOfLoD/Models/Entity/Character/Pet.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/wrathOfLoD/Models/Entity/Entity.java" afterPath="$PROJECT_DIR$/src/com/wrathOfLoD/Models/Entity/Entity.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/wrathOfLoD/Models/Entity/Mount.java" afterPath="$PROJECT_DIR$/src/com/wrathOfLoD/Models/Entity/Mount.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/wrathOfLoD/Models/Items/InteractiveItem.java" afterPath="$PROJECT_DIR$/src/com/wrathOfLoD/Models/Items/InteractiveItem.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/wrathOfLoD/Models/Items/ObstacleItem.java" afterPath="$PROJECT_DIR$/src/com/wrathOfLoD/Models/Items/ObstacleItem.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/wrathOfLoD/Models/Items/TakeableItem.java" afterPath="$PROJECT_DIR$/src/com/wrathOfLoD/Models/Items/TakeableItem.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/wrathOfLoD/Models/Occupation/NPCOccupation.java" afterPath="$PROJECT_DIR$/src/com/wrathOfLoD/Models/Occupation/NPCOccupation.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/wrathOfLoD/Models/Occupation/Occupation.java" afterPath="$PROJECT_DIR$/src/com/wrathOfLoD/Models/Occupation/Occupation.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/wrathOfLoD/Models/Occupation/Smasher.java" afterPath="$PROJECT_DIR$/src/com/wrathOfLoD/Models/Occupation/Smasher.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/wrathOfLoD/Models/Occupation/Sneak.java" afterPath="$PROJECT_DIR$/src/com/wrathOfLoD/Models/Occupation/Sneak.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/wrathOfLoD/Models/Occupation/Summoner.java" afterPath="$PROJECT_DIR$/src/com/wrathOfLoD/Models/Occupation/Summoner.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/wrathOfLoD/Models/Stats/Stats.java" afterPath="$PROJECT_DIR$/src/com/wrathOfLoD/Models/Stats/Stats.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/wrathOfLoD/Models/Stats/StatsModifiable.java" afterPath="$PROJECT_DIR$/src/com/wrathOfLoD/Models/Stats/StatsModifiable.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/wrathOfLoD/Utility/Position.java" afterPath="$PROJECT_DIR$/src/com/wrathOfLoD/Utility/Position.java" />
     </list>
     <ignored path="Iteration3.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -61,11 +104,41 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="GridStructure.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="GridStructure.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/wrathOfLoD/Views/ContentDisplayStructure/GridStructure.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.5875139">
-              <caret line="31" column="33" selection-start-line="31" selection-start-column="33" selection-end-line="31" selection-end-column="33" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="20" column="69" selection-start-line="20" selection-start-column="69" selection-end-line="20" selection-end-column="69" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ListStructure.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/wrathOfLoD/Views/ContentDisplayStructure/ListStructure.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/.gitignore">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.03912543">
+              <caret line="2" column="5" selection-start-line="2" selection-start-column="5" selection-end-line="2" selection-end-column="5" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MainController.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/wrathOfLoD/Controllers/MainController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
               <folding />
             </state>
           </provider>
@@ -270,6 +343,72 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Iteration3" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Iteration3" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="wrathOfLoD" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Utility" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Iteration3" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Iteration3" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="wrathOfLoD" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Models" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Iteration3" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Iteration3" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="wrathOfLoD" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Controllers" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
       <pane id="Scratches" />
@@ -374,7 +513,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="7" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
@@ -440,6 +579,14 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/wrathOfLoD/Controllers/MainController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/wrathOfLoD/Views/ContentDisplayStructure/ContentDisplayStructure.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -450,8 +597,24 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/wrathOfLoD/Views/ContentDisplayStructure/GridStructure.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5875139">
-          <caret line="31" column="33" selection-start-line="31" selection-start-column="33" selection-end-line="31" selection-end-column="33" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="20" column="69" selection-start-line="20" selection-start-column="69" selection-end-line="20" selection-end-column="69" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/wrathOfLoD/Views/ContentDisplayStructure/ListStructure.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.03912543">
+          <caret line="2" column="5" selection-start-line="2" selection-start-column="5" selection-end-line="2" selection-end-column="5" />
           <folding />
         </state>
       </provider>

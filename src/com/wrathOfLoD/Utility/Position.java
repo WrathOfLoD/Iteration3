@@ -49,6 +49,10 @@ public class Position{
 		return h;
 	}
 
+	public Position get2DPosition() {
+		return new Position(this.getQ(), this.getS(), 0);
+	}
+
 	@Override
 	public boolean equals(Object obj){
 		Position pos = (Position) obj;
