@@ -1,4 +1,7 @@
 out/
+Iteration3.iml
 **/.idea/
+**/.idea/*
+**/.idea/workspace.xml
 *.iml
 .DS_Store
