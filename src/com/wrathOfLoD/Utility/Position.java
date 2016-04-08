@@ -88,4 +88,6 @@ public class Position{
 		return new Position(this.getQ(), this.getR(), this.getS(), 0);
 	}
 
+
+
 }

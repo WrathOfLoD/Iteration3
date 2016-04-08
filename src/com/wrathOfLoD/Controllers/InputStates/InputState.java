@@ -6,6 +6,7 @@ import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created by icavitt on 4/7/2016.
@@ -13,7 +14,7 @@ import java.util.List;
 public abstract class InputState {
     private MainController mainController = MainController.getInstance();
     private boolean isActive = false;
-    private ArrayList<Action> activeActionSet;
+    private Set<Action> activeActionSet;
 
     public void deactivate(){
         for(Action a : activeActionSet){

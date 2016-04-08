@@ -1,7 +1,5 @@
 package com.wrathOfLoD.Models.Skill;
 
-import com.sun.tools.internal.ws.wsdl.document.schema.SchemaKinds;
-
 /**
  * Created by luluding on 4/7/16.
  */
