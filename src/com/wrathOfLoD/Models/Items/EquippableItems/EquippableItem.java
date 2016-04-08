@@ -21,7 +21,5 @@ public abstract class EquippableItem extends TakeableItem {
         return stats;
     }
 
-    public void encounter(Entity entity){
-
-    }
+//    public abstract void equip(Character c);
 }

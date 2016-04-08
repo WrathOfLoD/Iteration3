@@ -4,6 +4,7 @@ import com.wrathOfLoD.Models.Entity.Entity;
 import com.wrathOfLoD.Models.Inventory.Equipment;
 import com.wrathOfLoD.Models.Inventory.Inventory;
 import com.wrathOfLoD.Models.Items.InteractiveItem;
+import com.wrathOfLoD.Models.Items.TakeableItem;
 import com.wrathOfLoD.Models.Occupation.Occupation;
 import com.wrathOfLoD.Models.Target.TargetManager;
 import com.wrathOfLoD.Utility.Position;
@@ -37,6 +38,18 @@ public abstract class Character extends Entity {
 
     public void interact(Entity entity) {}
     public void interact(InteractiveItem item) {}
+
+    public void pickUpItem(TakeableItem item){
+        //update the position to item to be the entities position
+        item.updatePosition(this.getPosition());
+
+        this.inventory.addItem(item);
+    }
+
+    public void dropItem(TakeableItem item){
+        this.inventory.removeItem(item);
+        //call command that item was dropped
+    }
 
     public void attack() {}
 
