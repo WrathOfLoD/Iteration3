@@ -15,6 +15,10 @@ public class Inventory {
         this.itemList = new ArrayList();
     }
 
+    public List<Item> getItemList() {
+        return itemList;
+    }
+
     public void addItem(Item item) {}
 
     public void removeItem(Item item) {}
