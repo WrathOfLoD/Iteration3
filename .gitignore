@@ -1,8 +1,4 @@
 out/
-**/.idea/*
-*.iml
-Iteration3.iml
-**/.idea/Iteration3.iml
-**/.idea/modules.xml
+**/.idea/tasks.xml
 **/.idea/workspace.xml
 .DS_Store
