@@ -19,7 +19,7 @@ public class Map {
         this.mapAreas = new ArrayList<>();
     }
 
-    public Map getInstance() {
+    public static Map getInstance() {
         if (instance == null) {
             instance = new Map();
         }
