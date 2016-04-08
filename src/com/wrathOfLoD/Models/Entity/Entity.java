@@ -18,7 +18,6 @@ public abstract class Entity {
     private Direction direction;
     private boolean isActive = false;
 
-
     public Entity(String name, Position position){
         this.name = name;
         this.position = position;

@@ -1,9 +1,11 @@
 package com.wrathOfLoD.Utility;
 
+import java.util.List;
+
 /**
  * Created by Mitchell on 4/7/2016.
  */
-public enum Direction{
+public enum Direction {
 
 	DOWN(0, 0, 0, -1),
 	DOWN_NORTH(0, -1, 1, -1),
