@@ -14,9 +14,6 @@ public class Position{
 		if(q + r + s != 0){
 			throw new IllegalArgumentException("Invalid Position property: (q + r + s = 0) required");
 		}
-		if(h > 9 || h < 0){
-			throw new IllegalArgumentException("Invalid Position property: (0 <= h < 10) required");
-		}
 		this.q = q;
 		this.r = r;
 		this.s = s;
@@ -24,9 +21,6 @@ public class Position{
 	}
 
 	public Position(int q, int r, int h){
-		if(h > 9 || h < 0){
-			throw new IllegalArgumentException("Invalid Position property: (0 <= h < 10) required");
-		}
 		this.q = q;
 		this.r = r;
 		this.s = -1 * (q + r);
@@ -72,11 +66,26 @@ public class Position{
 		int prime1 = 199;
 		int prime2 = 157;
 		int hash = prime1;
-		hash *= this.getQ() * prime2;
-		hash *= this.getR() * prime2;
-		hash *= this.getS() * prime2;
-		hash *= this.getH() * prime2;
+		hash = (hash * prime2) + this.getQ();
+		hash = (hash * prime2) + this.getR();
+		hash = (hash * prime2) + this.getS();
+		hash = (hash * prime2) + this.getH();
 		return hash;
+	}
+
+	public int getDistance(Position pos){
+		int distanceHorz = Math.abs((this.getQ() - pos.getQ()) +
+				(this.getR() - pos.getR()) + (this.getS() - pos.getS()));
+		int distanceVert = Math.abs(this.getH() - pos.getH());
+		return distanceHorz + distanceVert;
+	}
+
+	public Position getPosInDir(Direction dir){
+		return dir.getPosInDir(this);
+	}
+
+	public Position get2DProjection(){
+		return new Position(this.getQ(), this.getR(), this.getS(), 0);
 	}
 
 }
