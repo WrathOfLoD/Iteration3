@@ -1,5 +1,8 @@
 package com.wrathOfLoD.Models.Entity;
 
+import com.wrathOfLoD.Commands.ActionCommand.ActionCommand;
+import com.wrathOfLoD.Commands.ActionCommand.MovementCommand;
+import com.wrathOfLoD.Commands.Vendors.ActionCommandVendor;
 import com.wrathOfLoD.Models.Entity.Character.Character;
 import com.wrathOfLoD.Models.Stats.Stats;
 import com.wrathOfLoD.Utility.Direction;
@@ -13,6 +16,7 @@ public abstract class Entity {
     private Position position;
     private Stats stats;
     private Direction direction;
+    private boolean isActive = false;
 
     public Entity(String name, Position position){
         this.name = name;
@@ -21,9 +25,36 @@ public abstract class Entity {
         this.direction = Direction.DOWN_SOUTH;
     }
 
-    //public void move(Direction d) {}
+    public void move(Direction movingDirection){
+        if(!isActive()){
+            ActionCommand acm = ActionCommandVendor.createMovementCommand(this, getPosition(), movingDirection, getStats().getMovement());
+            setActive();
+            acm.execute();
+        }
+    }
 
     public void doInteraction(Character character) {}
+
+
+    public void gainExp(int exp) {}
+
+    public void levelUp() {}
+
+    public void die(){}
+
+
+    /***** Getters and Setters ********/
+    public boolean isActive() {
+        return isActive;
+    }
+
+    public void setActive(){
+        isActive = true;
+    }
+
+    public void setInactive(){
+        isActive = false;
+    }
 
     public Direction getDirection(){return this.direction; }
 
@@ -43,11 +74,7 @@ public abstract class Entity {
 
     protected void setName(String name){ this.name = name; }
 
-    public void gainExp(int exp) {}
-
-    public void levelUp() {}
-
-    public void die(){}
+    /********* END Getters and Setters *********/
 
 }
 
