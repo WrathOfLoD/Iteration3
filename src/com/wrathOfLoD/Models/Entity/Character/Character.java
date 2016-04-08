@@ -3,6 +3,8 @@ package com.wrathOfLoD.Models.Entity.Character;
 import com.wrathOfLoD.Models.Entity.Entity;
 import com.wrathOfLoD.Models.Inventory.Equipment;
 import com.wrathOfLoD.Models.Inventory.Inventory;
+import com.wrathOfLoD.Models.Items.EquippableItems.Armor;
+import com.wrathOfLoD.Models.Items.EquippableItems.Weapons.Weapon;
 import com.wrathOfLoD.Models.Items.InteractiveItem;
 import com.wrathOfLoD.Models.Items.TakeableItem;
 import com.wrathOfLoD.Models.Occupation.Occupation;
@@ -40,7 +42,7 @@ public abstract class Character extends Entity {
     public void interact(InteractiveItem item) {}
 
     public void pickUpItem(TakeableItem item){
-        //update the position to item to be the entities position
+        //update the position to item to be the entities position ?? <= necessary
         item.updatePosition(this.getPosition());
 
         this.inventory.addItem(item);
@@ -49,6 +51,14 @@ public abstract class Character extends Entity {
     public void dropItem(TakeableItem item){
         this.inventory.removeItem(item);
         //call command that item was dropped
+    }
+
+    public void equipWeapon(Weapon weapon){
+        weapon.equip(this);
+    }
+
+    public void equipArmor(Armor armor){
+       this.equipment.equip(armor);
     }
 
     public void attack() {}

@@ -17,8 +17,12 @@ public class Equipment {
 
     }
 
-    public void equip() {
+    public void equip(Weapon weapon) {
+        this.weapon = weapon;
+    }
 
+    public void equip(Armor armor){
+        this.armor = armor;
     }
 
     public void unequip() {

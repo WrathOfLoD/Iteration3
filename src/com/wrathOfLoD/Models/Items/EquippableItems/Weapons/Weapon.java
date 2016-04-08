@@ -1,5 +1,6 @@
 package com.wrathOfLoD.Models.Items.EquippableItems.Weapons;
 
+import com.wrathOfLoD.Models.Entity.Character.Character;
 import com.wrathOfLoD.Models.Items.EquippableItems.EquippableItem;
 import com.wrathOfLoD.Models.Stats.StatsModifiable;
 import com.wrathOfLoD.Utility.Position;
@@ -21,9 +22,8 @@ public abstract class Weapon extends EquippableItem{
         this.windUp = windUp;
     }
 
-    public int getAttackSpeed(){
-        return this.attackSpeed;
-    }
+    /*get methods */
+    public int getAttackSpeed(){ return this.attackSpeed; }
 
     public int getBaseDamage(){
         return this.baseDamage;
@@ -35,5 +35,9 @@ public abstract class Weapon extends EquippableItem{
 
     public int getWindUp(){
         return this.windUp;
+    }
+
+    public void equip(Character character){
+        character.equipWeapon(this);
     }
 }
