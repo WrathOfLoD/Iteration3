@@ -10,7 +10,7 @@ import com.wrathOfLoD.Models.Entity.Character.Avatar;
 /**
  * Created by icavitt on 4/7/2016.
  */
-class ActionVendor {
+public class ActionVendor {
 
     public static Action createMoveNorthAction(){
         Avatar a = Avatar.getInstance();

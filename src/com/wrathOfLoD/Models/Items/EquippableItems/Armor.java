@@ -17,4 +17,6 @@ public class Armor extends EquippableItem{
     public int getArmorBonus(){
         return this.armorBonus;
     }
+
+//    public void equip()
 }

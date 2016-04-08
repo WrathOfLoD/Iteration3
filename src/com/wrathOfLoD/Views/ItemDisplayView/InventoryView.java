@@ -2,6 +2,7 @@ package com.wrathOfLoD.Views.ItemDisplayView;
 
 import com.wrathOfLoD.Models.Inventory.Inventory;
 import com.wrathOfLoD.Models.Items.Item;
+import com.wrathOfLoD.Models.Items.TakeableItem;
 import com.wrathOfLoD.Views.ContentDisplayStructure.ContentDisplayStructure;
 import com.wrathOfLoD.Views.ContentDisplayStructure.GridStructure;
 import com.wrathOfLoD.Views.ViewObjectFactory.ItemViewObjectFactory;
@@ -45,7 +46,7 @@ public class InventoryView extends ItemDisplayView {
     }
 
     private void initializeInventoryView() { //may need to edit...only works if we maintain the idea that an inventory view must be initialized with an inventory
-        for(Item item: getInventory().getItemList()) {
+        for(TakeableItem item: getInventory().getItemList()) {
             //getIvoList().add(ItemViewObjectFactory.createItemViewObject(item));
             getIvoList().add(new ItemViewObject(item)); //don't know which is best
         }

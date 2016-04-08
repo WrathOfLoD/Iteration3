@@ -8,8 +8,11 @@ import com.wrathOfLoD.Utility.Direction;
  * Created by icavitt on 4/7/2016.
  */
 public class AvatarState extends InputState{
-    public AvatarState(){
+
+    public AvatarState() {
         //adds the moveNorth action to its list of actions
-        addNewAction(ActionVendor.createMoveNorthAction());
+        this.setActiveActionSet(Avatar.getInstance().getActionSet());
     }
+
+
 }
