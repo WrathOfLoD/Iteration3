@@ -45,6 +45,8 @@ public abstract class Entity {
         this.position = newPosition;
     }
 
+    protected void setName(String name){ this.name = name; }
+
     public void gainExp(int exp) {}
 
     public void levelUp() {}
