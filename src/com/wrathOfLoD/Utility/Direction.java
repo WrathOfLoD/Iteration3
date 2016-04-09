@@ -43,12 +43,8 @@ public enum Direction {
 		this.hMod = hMod;
 	}
 
-	public Position getPosInDir(Position pos){
-		int newQ = pos.getQ() + this.qMod;
-		int newR = pos.getR() + this.rMod;
-		int newS = pos.getS() + this.sMod;
-		int newH = pos.getH() + this.hMod;
-		return new Position(newQ, newR, newS, newH);
+	public Position getPosVector(){
+		return new Position(this.qMod, this.rMod, this.sMod, this.hMod);
 	}
 
 	public Direction clockwise(){

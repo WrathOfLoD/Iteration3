@@ -10,8 +10,14 @@ public class FireballAbility extends Ability {
     private Entity entity;
     private Direction direction;
 
-    public FireballAbility() {}
+    public FireballAbility() {
+        super();
+    }
+
+    public FireballAbility(int unlockingLevel){
+        super(unlockingLevel);
+    }
 
     @Override
-    public void execute() {}
+    public void doAbility() {}
 }
