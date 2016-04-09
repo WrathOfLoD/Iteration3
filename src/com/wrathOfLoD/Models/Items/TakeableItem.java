@@ -1,5 +1,6 @@
 package com.wrathOfLoD.Models.Items;
 
+import com.wrathOfLoD.Commands.ActionCommand.PickUpItemCommand;
 import com.wrathOfLoD.Models.Entity.Character.Character;
 import com.wrathOfLoD.Models.Entity.Entity;
 import com.wrathOfLoD.Utility.Position;
@@ -15,9 +16,9 @@ public abstract class TakeableItem extends Item{
     }
 
     @Override
-    //need to modify this!!!!!!
     public void encounter(Entity entity){
-        ((Character)(entity)).pickUpItem(this);
+        PickUpItemCommand pickUpItemCommand = new PickUpItemCommand(entity,this);
+        pickUpItemCommand.execute();
     }
 
     public abstract void use(Character character);

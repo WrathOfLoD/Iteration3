@@ -12,7 +12,6 @@ import javafx.geometry.Pos;
  * Created by luluding on 4/8/16.
  */
 public class MovementCommand extends ActionCommand{
-
     private Position currentPosition;
     private Position destinationPosition;
     private Direction movingDirection;

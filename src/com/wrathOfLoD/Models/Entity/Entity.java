@@ -4,6 +4,8 @@ import com.wrathOfLoD.Commands.ActionCommand.ActionCommand;
 import com.wrathOfLoD.Commands.ActionCommand.MovementCommand;
 import com.wrathOfLoD.Commands.Vendors.ActionCommandVendor;
 import com.wrathOfLoD.Models.Entity.Character.Character;
+import com.wrathOfLoD.Models.Inventory.Inventory;
+import com.wrathOfLoD.Models.Items.TakeableItem;
 import com.wrathOfLoD.Models.Stats.Stats;
 import com.wrathOfLoD.Utility.Direction;
 import com.wrathOfLoD.Utility.Position;
@@ -16,6 +18,7 @@ public abstract class Entity {
     private Position position;
     private Stats stats;
     private Direction direction;
+    private Inventory inventory;
     private boolean isActive = false;
 
     public Entity(){
@@ -25,6 +28,7 @@ public abstract class Entity {
     public Entity(String name, Position position){
         this.name = name;
         this.position = position;
+        this.inventory = new Inventory();
         this.stats = new Stats(this);
         this.direction = Direction.DOWN_SOUTH;
     }
@@ -32,6 +36,8 @@ public abstract class Entity {
     /***** getter & setter for Entity *******/
 
     public Direction getDirection(){return this.direction; }
+
+    public Inventory getInventory(){ return this.inventory; }
 
     public String getName() { return this.name; }
 
@@ -67,6 +73,18 @@ public abstract class Entity {
         }
     }
 
+    public void pickUpItem(TakeableItem item){
+        //update the position to item to be the entities position ?? <= necessary
+        item.updatePosition(this.getPosition());
+
+        this.inventory.addItem(item);
+    }
+
+    public void dropItem(TakeableItem item){
+        this.inventory.removeItem(item);
+        //call command that item was dropped
+    }
+
     public void doInteraction(Character character) {}
 
     public void gainExp(int exp) {}
@@ -78,10 +96,6 @@ public abstract class Entity {
     public boolean isActive() {
         return isActive;
     }
-
-
-
-
 
 }
 
