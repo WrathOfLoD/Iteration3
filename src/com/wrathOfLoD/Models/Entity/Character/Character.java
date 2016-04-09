@@ -32,17 +32,19 @@ public abstract class Character extends Entity {
         this.equipment = new Equipment();
         this.targetManager = new TargetManager();
         this.abilityManager = new AbilityManager(getOccupation());
-        abilityManager.unlockAbilities(getStats().getLevel());
+        this.abilityManager.unlockAbilities(getStats().getLevel());
 
     }
 
     public Character(String name, Position position, Occupation occupation){
+
         super(name,position);
+        this.abilityManager = new AbilityManager(getOccupation());
         this.occupation = occupation;
         this.equipment = new Equipment();
         this.targetManager = new TargetManager();
-        this.abilityManager = new AbilityManager(getOccupation());
-        abilityManager.unlockAbilities(getStats().getLevel());
+
+        this.abilityManager.unlockAbilities(getStats().getLevel());
     }
 
     /***** getter & setter for Character *******/

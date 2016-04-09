@@ -29,6 +29,7 @@ public class Avatar extends Character implements ActionsHolder {
 
     public static Avatar getInstance(){
         if(avatar == null) {
+
             avatar = new Avatar();
         }
 
