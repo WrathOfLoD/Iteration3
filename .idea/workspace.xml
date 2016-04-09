@@ -2,9 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ac2f70bb-cd23-4ab4-be64-32291757f3ff" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/wrathOfLoD/Main.java" afterPath="$PROJECT_DIR$/src/com/wrathOfLoD/Main.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/wrathOfLoD/Views/AvatarIESView/AvatarIESView.java" afterPath="$PROJECT_DIR$/src/com/wrathOfLoD/Views/AvatarIESView/AvatarIESView.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/wrathOfLoD/Views/EquipmentView/EquipmentView.java" afterPath="$PROJECT_DIR$/src/com/wrathOfLoD/Views/EquipmentView/EquipmentView.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/wrathOfLoD/Views/ItemDisplayView/InventoryView.java" afterPath="$PROJECT_DIR$/src/com/wrathOfLoD/Views/ItemDisplayView/InventoryView.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/wrathOfLoD/Views/StatsView/StatsView.java" afterPath="$PROJECT_DIR$/src/com/wrathOfLoD/Views/StatsView/StatsView.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/wrathOfLoD/Views/ViewManager/ViewManager.java" afterPath="$PROJECT_DIR$/src/com/wrathOfLoD/Views/ViewManager/ViewManager.java" />
     </list>
     <ignored path="Iteration3.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -40,20 +45,10 @@
         <entry file="file://$PROJECT_DIR$/src/com/wrathOfLoD/Views/AvatarIESView/AvatarIESView.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="50" column="0" selection-start-line="50" selection-start-column="0" selection-end-line="50" selection-end-column="0" />
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="View.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/wrathOfLoD/Views/View.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="17" column="0" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -62,23 +57,37 @@
         <entry file="file://$PROJECT_DIR$/src/com/wrathOfLoD/Views/ItemDisplayView/InventoryView.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="55" column="9" selection-start-line="55" selection-start-column="9" selection-end-line="55" selection-end-column="9" />
+              <caret line="40" column="0" selection-start-line="40" selection-start-column="0" selection-end-line="40" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#1443#1444#0" expanded="true" />
-                <element signature="e#1560#1561#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="StaticView.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/wrathOfLoD/Views/StaticView.java">
+      <file leaf-file-name="StatsView.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/wrathOfLoD/Views/StatsView/StatsView.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="54" column="5" selection-start-line="54" selection-start-column="5" selection-end-line="54" selection-end-column="5" />
+              <caret line="13" column="54" selection-start-line="13" selection-start-column="54" selection-end-line="13" selection-end-column="54" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="e#220#221#0" expanded="true" />
+                <element signature="e#281#282#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="EquipmentView.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/wrathOfLoD/Views/EquipmentView/EquipmentView.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="14" column="0" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#231#232#0" expanded="true" />
+                <element signature="e#292#293#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -96,23 +105,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="AreaView.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/wrathOfLoD/Views/AreaView/AreaView.java">
+      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/.gitignore">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="18" column="55" selection-start-line="18" selection-start-column="55" selection-end-line="18" selection-end-column="55" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="EquipmentView.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/wrathOfLoD/Views/EquipmentView/EquipmentView.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="7" column="47" selection-start-line="7" selection-start-column="47" selection-end-line="7" selection-end-column="47" />
+              <caret line="5" column="0" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -131,11 +128,21 @@
       <file leaf-file-name="Main.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/wrathOfLoD/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.45714286">
-              <caret line="16" column="0" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.6">
+              <caret line="26" column="36" selection-start-line="26" selection-start-column="36" selection-end-line="26" selection-end-column="36" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ViewManager.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/wrathOfLoD/Views/ViewManager/ViewManager.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="2" column="37" selection-start-line="2" selection-start-column="37" selection-end-line="2" selection-end-column="37" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -170,22 +177,22 @@
         <option value="$PROJECT_DIR$/src/com/wrathOfLoD/Views/ViewObjectFactory/ItemViewObjectFactory.java" />
         <option value="$PROJECT_DIR$/src/com/wrathOfLoD/Views/ImageFactory/ImageFactory.java" />
         <option value="$PROJECT_DIR$/src/com/wrathOfLoD/Models/Skill/SkillManager.java" />
-        <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/src/com/wrathOfLoD/Models/Inventory/Inventory.java" />
         <option value="$PROJECT_DIR$/src/com/wrathOfLoD/Views/ViewEngine.java" />
         <option value="$PROJECT_DIR$/src/com/wrathOfLoD/Views/View.java" />
         <option value="$PROJECT_DIR$/src/com/wrathOfLoD/Views/StaticView.java" />
         <option value="$PROJECT_DIR$/src/com/wrathOfLoD/Views/ItemDisplayView/ItemDisplayView.java" />
         <option value="$PROJECT_DIR$/src/com/wrathOfLoD/Views/ContentDisplayStructure/ContentDisplayStructure.java" />
-        <option value="$PROJECT_DIR$/src/com/wrathOfLoD/Views/ViewManager/ViewManager.java" />
         <option value="$PROJECT_DIR$/src/com/wrathOfLoD/Views/HUDView/HUDView.java" />
-        <option value="$PROJECT_DIR$/src/com/wrathOfLoD/Views/EquipmentView/EquipmentView.java" />
-        <option value="$PROJECT_DIR$/src/com/wrathOfLoD/Views/StatsView/StatsView.java" />
         <option value="$PROJECT_DIR$/src/com/wrathOfLoD/Views/AreaView/AreaView.java" />
         <option value="$PROJECT_DIR$/src/com/wrathOfLoD/Utility/Config.java" />
-        <option value="$PROJECT_DIR$/src/com/wrathOfLoD/Views/AvatarIESView/AvatarIESView.java" />
-        <option value="$PROJECT_DIR$/src/com/wrathOfLoD/Views/ItemDisplayView/InventoryView.java" />
+        <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/src/com/wrathOfLoD/Main.java" />
+        <option value="$PROJECT_DIR$/src/com/wrathOfLoD/Views/ViewManager/ViewManager.java" />
+        <option value="$PROJECT_DIR$/src/com/wrathOfLoD/Views/ItemDisplayView/InventoryView.java" />
+        <option value="$PROJECT_DIR$/src/com/wrathOfLoD/Views/StatsView/StatsView.java" />
+        <option value="$PROJECT_DIR$/src/com/wrathOfLoD/Views/EquipmentView/EquipmentView.java" />
+        <option value="$PROJECT_DIR$/src/com/wrathOfLoD/Views/AvatarIESView/AvatarIESView.java" />
       </list>
     </option>
   </component>
@@ -1254,14 +1261,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="3" column="9" selection-start-line="3" selection-start-column="9" selection-end-line="3" selection-end-column="9" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/wrathOfLoD/Models/Inventory/Inventory.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1294,16 +1293,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/wrathOfLoD/Views/ViewManager/ViewManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="13" column="24" selection-start-line="13" selection-start-column="24" selection-end-line="13" selection-end-column="24" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/wrathOfLoD/Views/ItemDisplayView/ItemDisplayView.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1313,22 +1302,6 @@
             <element signature="e#518#519#0" expanded="true" />
             <element signature="e#556#557#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/wrathOfLoD/Views/StatsView/StatsView.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="10" column="24" selection-start-line="10" selection-start-column="24" selection-end-line="10" selection-end-column="24" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/wrathOfLoD/Views/EquipmentView/EquipmentView.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="7" column="47" selection-start-line="7" selection-start-column="47" selection-end-line="7" selection-end-column="47" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1376,6 +1349,14 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="5" column="0" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/wrathOfLoD/Views/ViewEngine.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1386,32 +1367,62 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/wrathOfLoD/Views/AvatarIESView/AvatarIESView.java">
+    <entry file="file://$PROJECT_DIR$/src/com/wrathOfLoD/Views/ItemDisplayView/InventoryView.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="50" column="0" selection-start-line="50" selection-start-column="0" selection-end-line="50" selection-end-column="0" />
+          <caret line="40" column="0" selection-start-line="40" selection-start-column="0" selection-end-line="40" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/wrathOfLoD/Views/ItemDisplayView/InventoryView.java">
+    <entry file="file://$PROJECT_DIR$/src/com/wrathOfLoD/Views/StatsView/StatsView.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="55" column="9" selection-start-line="55" selection-start-column="9" selection-end-line="55" selection-end-column="9" />
+          <caret line="13" column="54" selection-start-line="13" selection-start-column="54" selection-end-line="13" selection-end-column="54" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#1443#1444#0" expanded="true" />
-            <element signature="e#1560#1561#0" expanded="true" />
+            <element signature="e#220#221#0" expanded="true" />
+            <element signature="e#281#282#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/wrathOfLoD/Views/ViewManager/ViewManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="2" column="37" selection-start-line="2" selection-start-column="37" selection-end-line="2" selection-end-column="37" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/wrathOfLoD/Views/EquipmentView/EquipmentView.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="14" column="0" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#231#232#0" expanded="true" />
+            <element signature="e#292#293#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/wrathOfLoD/Views/AvatarIESView/AvatarIESView.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/wrathOfLoD/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.45714286">
-          <caret line="16" column="0" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.6">
+          <caret line="26" column="36" selection-start-line="26" selection-start-column="36" selection-end-line="26" selection-end-column="36" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
