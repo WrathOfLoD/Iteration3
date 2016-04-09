@@ -18,7 +18,7 @@ public class AreaView extends StaticView { //need to change to just extending Vi
     public AreaView() {
         setPreferredSize(new Dimension(WIDTH, HEIGHT));
         //setBackgroundImageFileName("resources/spaceSlothDefault.png");
-        setBackgroundImageFileName("resources/spaceSloth.png");
+        setBackgroundImageFileName("resources/Backgrounds/spaceSloth.png");
 
     }
 }

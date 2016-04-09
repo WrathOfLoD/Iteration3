@@ -10,6 +10,13 @@ import java.awt.*;
  */
 public class ImageFactory {
 
+    public static Image generateImage(String file) {
+        ImageIcon itemImageIcon = new ImageIcon(file);
+        Image itemImage = itemImageIcon.getImage();
+        return itemImage;
+    }
+
+    /*
     public static String generateImageFileName(String name) {
         String imageFileName = "resources/"+name+".png";
         return imageFileName;
@@ -25,6 +32,7 @@ public class ImageFactory {
         Image itemImage = itemImageIcon.getImage();
         return itemImage;
     }
+
 
     public static Image generateImage(String name) {
         String imageFileName = generateImageFileName(name);
@@ -43,5 +51,5 @@ public class ImageFactory {
         JLabel picLabel = new JLabel(new ImageIcon(image));
         return picLabel;
     }
-
+*/
 }
