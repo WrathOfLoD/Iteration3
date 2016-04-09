@@ -42,7 +42,6 @@ public class Main {
 
 
         MainController mainController = MainController.getInstance();
-        mainController.setViewManager(vm);
 
         InputState avatarState = new AvatarState();
         Avatar.getInstance().addToActionSet(ActionVendor.createMoveNorthAction());

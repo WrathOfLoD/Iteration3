@@ -33,6 +33,11 @@ public class LocationTrackerManager {
         return instance;
     }
 
+    /**
+     * @desc Register location trackers on a map area
+     * @param locationTracker - LocationTracker
+     * @param mapArea - MapArea
+     */
     public void registerLocationTracker(LocationTracker locationTracker, MapArea mapArea) {
         this.locTrackerMap.put(mapArea, locationTracker);
     }
@@ -45,7 +50,6 @@ public class LocationTrackerManager {
 
     public void updateLocation(Entity e) {
         this.activeLocationTracker.updateLocation(e);
-
     }
 
     public void updateActiveMapArea(MapArea newActiveMapArea) {
