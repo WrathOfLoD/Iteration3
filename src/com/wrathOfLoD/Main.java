@@ -1,5 +1,6 @@
 package com.wrathOfLoD;
 
+import com.wrathOfLoD.Models.ModelEngine;
 import com.wrathOfLoD.Views.AreaView.AreaView;
 import com.wrathOfLoD.Views.AvatarIESView.AvatarIESView;
 import com.wrathOfLoD.Views.EquipmentView.EquipmentView;
@@ -33,6 +34,9 @@ public class Main {
 
         Thread.sleep(3000);
         vm.removeView(avatarIESView);
+
+
+        ModelEngine.getInstance().start();
 
     }
 }
