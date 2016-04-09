@@ -9,8 +9,8 @@ import com.wrathOfLoD.Utility.Position;
  * Created by matthewdiaz on 4/7/16.
  */
 public class TwoHandWeapon extends Weapon implements SmasherWeapon{
-    public TwoHandWeapon(Position position, String name, StatsModifiable stats, int attackSpeed, int baseDamage, int coolDown, int windUp) {
-        super(position, name, stats, attackSpeed, baseDamage, coolDown, windUp);
+    public TwoHandWeapon(String name, StatsModifiable stats, int attackSpeed, int baseDamage, int coolDown, int windUp) {
+        super(name, stats, attackSpeed, baseDamage, coolDown, windUp);
     }
 
     @Override
