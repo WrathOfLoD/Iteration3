@@ -3,11 +3,14 @@ package com.wrathOfLoD.Models.Entity.Character;
 import com.wrathOfLoD.Models.Entity.Entity;
 import com.wrathOfLoD.Models.Inventory.Equipment;
 import com.wrathOfLoD.Models.Inventory.Inventory;
+import com.wrathOfLoD.Models.Items.ConsumableItems.ConsumableItem;
 import com.wrathOfLoD.Models.Items.EquippableItems.Armor;
+import com.wrathOfLoD.Models.Items.EquippableItems.EquippableItem;
 import com.wrathOfLoD.Models.Items.EquippableItems.Weapons.Weapon;
 import com.wrathOfLoD.Models.Items.InteractiveItem;
 import com.wrathOfLoD.Models.Items.TakeableItem;
 import com.wrathOfLoD.Models.Occupation.Occupation;
+import com.wrathOfLoD.Models.Occupation.Smasher;
 import com.wrathOfLoD.Models.Target.TargetManager;
 import com.wrathOfLoD.Utility.Position;
 
@@ -20,6 +23,14 @@ public abstract class Character extends Entity {
     private Inventory inventory;
     private TargetManager targetManager;
 
+    public Character(){
+        super();
+        this.occupation = new Smasher();
+        this.equipment = new Equipment();
+        this.inventory = new Inventory();
+        this.targetManager = new TargetManager();
+    }
+
     public Character(String name, Position position, Occupation occupation){
         super(name,position);
         this.occupation = occupation;
@@ -27,6 +38,8 @@ public abstract class Character extends Entity {
         this.inventory = new Inventory();
         this.targetManager = new TargetManager();
     }
+
+    /***** getter & setter for Character *******/
 
     public Equipment getEquipment(){ return this.equipment; }
 
@@ -37,6 +50,10 @@ public abstract class Character extends Entity {
     public TargetManager getTargetManager(){ return this.targetManager; }
 
     protected void setOccupation(Occupation newOccupation){ this.occupation = newOccupation; }
+
+    protected void setEquipment(Equipment equipment){ this.equipment = equipment; }
+
+    /********* END Getters and Setters *********/
 
     public void interact(Entity entity) {}
     public void interact(InteractiveItem item) {}
@@ -53,12 +70,16 @@ public abstract class Character extends Entity {
         //call command that item was dropped
     }
 
-    public void equipWeapon(Weapon weapon){
-        weapon.equip(this);
+    public void use(TakeableItem item){
+        item.use(this);
     }
 
-    public void equipArmor(Armor armor){
-       this.equipment.equip(armor);
+    public void equip(Weapon weapon){
+        this.equipment.equip(weapon);
+    }
+
+    public void equip(Armor armor){
+        this.equipment.equip(armor);
     }
 
     public void attack() {}

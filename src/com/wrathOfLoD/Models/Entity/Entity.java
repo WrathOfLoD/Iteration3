@@ -18,6 +18,10 @@ public abstract class Entity {
     private Direction direction;
     private boolean isActive = false;
 
+    public Entity(){
+        this("Master Chief", new Position(0,0,0,0));
+    }
+
     public Entity(String name, Position position){
         this.name = name;
         this.position = position;
@@ -25,28 +29,15 @@ public abstract class Entity {
         this.direction = Direction.DOWN_SOUTH;
     }
 
-    public void move(Direction movingDirection){
-        if(!isActive()){
-            ActionCommand acm = ActionCommandVendor.createMovementCommand(this, getPosition(), movingDirection, getStats().getMovement());
-            setActive();
-            acm.execute();
-        }
-    }
+    /***** getter & setter for Entity *******/
 
-    public void doInteraction(Character character) {}
+    public Direction getDirection(){return this.direction; }
 
+    public String getName() { return this.name; }
 
-    public void gainExp(int exp) {}
+    public Position getPosition() { return this.position; }
 
-    public void levelUp() {}
-
-    public void die(){}
-
-
-    /***** Getters and Setters ********/
-    public boolean isActive() {
-        return isActive;
-    }
+    public Stats getStats() { return this.stats; }
 
     public void setActive(){
         isActive = true;
@@ -55,14 +46,6 @@ public abstract class Entity {
     public void setInactive(){
         isActive = false;
     }
-
-    public Direction getDirection(){return this.direction; }
-
-    public String getName() { return this.name; }
-
-    public Stats getStats() { return this.stats; }
-
-    public Position getPosition() { return this.position; }
 
     public void setDirection(Direction newDirection){
         this.direction = newDirection;
@@ -75,6 +58,30 @@ public abstract class Entity {
     protected void setName(String name){ this.name = name; }
 
     /********* END Getters and Setters *********/
+
+    public void move(Direction movingDirection){
+        if(!isActive()){
+            ActionCommand acm = ActionCommandVendor.createMovementCommand(this, getPosition(), movingDirection, getStats().getMovement());
+            setActive();
+            acm.execute();
+        }
+    }
+
+    public void doInteraction(Character character) {}
+
+    public void gainExp(int exp) {}
+
+    public void levelUp() {}
+
+    public void die(){}
+
+    public boolean isActive() {
+        return isActive;
+    }
+
+
+
+
 
 }
 

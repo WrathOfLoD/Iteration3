@@ -19,7 +19,7 @@ public class Armor extends EquippableItem{
         return this.armorBonus;
     }
 
-    public void equip(Character character){
-        character.equipArmor(this);
+    protected void equip(Character character){
+        character.equip(this);
     }
 }

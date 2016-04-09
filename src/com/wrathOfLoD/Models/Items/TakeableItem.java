@@ -7,7 +7,7 @@ import com.wrathOfLoD.Utility.Position;
 /**
  * Created by matthewdiaz on 4/7/16.
  */
-public class TakeableItem extends Item{
+public abstract class TakeableItem extends Item{
     public TakeableItem(Position position, String name){
         super(position, name);
     }
@@ -17,6 +17,6 @@ public class TakeableItem extends Item{
         ((Character)(entity)).pickUpItem(this);
     }
 
-    public void use(Entity entity){}
+    public abstract void use(Character character);
 
 }
