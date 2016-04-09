@@ -1,6 +1,7 @@
 package com.wrathOfLoD;
 
 
+import com.wrathOfLoD.Models.LocationTracker.LocationTrackerManager;
 import com.wrathOfLoD.Models.ModelEngine;
 import com.wrathOfLoD.Controllers.InputStates.ActionVendor;
 import com.wrathOfLoD.Controllers.InputStates.AvatarState;
@@ -45,6 +46,7 @@ public class Main {
 
         ModelEngine.getInstance().start();
 
+
         Avatar avatar = Avatar.getInstance();
         avatar.configureAvatar("Dave", new Position(0,0,0,0), new Smasher());
 
@@ -52,8 +54,7 @@ public class Main {
 
         InputState avatarState = new AvatarState();
 
-
-
+        //LocationTrackerManager.getInstance().registerEntity(avatar, avatar.getTargetManager());
 
 
         avatar.addToActionSet(ActionVendor.createMoveNorthAction());
