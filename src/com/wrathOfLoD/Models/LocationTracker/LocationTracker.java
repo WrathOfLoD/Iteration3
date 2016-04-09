@@ -42,7 +42,7 @@ public class LocationTracker {
     /**
      * @desc Register an item to track
      * @param item - Item to be tracked
-     * @param position - Current position
+//     * @param position - Current position
      */
     // TODO: 4/9/16 MAY NEED TO ADD A POSITION TO THIS
     public void registerItem(Item item) {
@@ -58,7 +58,7 @@ public class LocationTracker {
     /**
      * @desc Register an entity to track
      * @param entity - Entity to be tracked
-     * @param position - Current position
+//     * @param position - Current position
      */
     // TODO: 4/9/16 MAY NEED TO ADD A POSITION TO THIS
     public void registerEntity(Entity entity) {
@@ -66,25 +66,34 @@ public class LocationTracker {
         this.entityList.add(entity);
     }
 
-    public void deregisterEntity(Entity e) {
-        this.entityList.remove(e);
+    public void deregisterEntity(Entity entity) {
+        this.entityList.remove(entity);
     }
 
+
+    /**
+     * @desc Handle updates to entity locations, update their TargetManager
+     * @param entity - Item to be tracked
+//     * @param position - Current position
+     */
+    public void updateLocation(Entity entity) {
+        TargetManager entityTargetManager = this.entityTargetManagerMap.get(entity);
+
+        // Iterate over Entity list
+        //  make sure you dont look at yourself
+        //  for all entities within your TM's range, add them to your TM
+        for (Entity e : this.entityList) {
+
+        }
+    }
 
     /**
      * @desc Handle updates to entity locations, update their TargetManager
      * @param item - Item to be tracked
      * @param position - Current position
      */
-    public void updateLocation(Entity e) {
-        TargetManager entityTargetManager = this.entityTargetManagerMap.get(e);
-
-        // Iterate over Entity list
-        //  make sure you dont look at yourself
-        //  for all entities within your TM's range, add them to your TM
-        for (Entity entity : this.entityList) {
-
-        }
+    public void updateLocation(Item item, Position position) {
+        this.itemPositionMap.put(item, position);
     }
 }
 

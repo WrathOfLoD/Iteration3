@@ -1,8 +1,7 @@
 package com.wrathOfLoD.Models.Entity;
 
-import com.wrathOfLoD.Commands.ActionCommand.ActionCommand;
-import com.wrathOfLoD.Commands.ActionCommand.MovementCommand;
-import com.wrathOfLoD.Commands.Vendors.ActionCommandVendor;
+import com.wrathOfLoD.Models.Commands.ActionCommand;
+import com.wrathOfLoD.Models.Commands.ActionCommandVendor;
 import com.wrathOfLoD.Models.Entity.Character.Character;
 import com.wrathOfLoD.Models.Inventory.Inventory;
 import com.wrathOfLoD.Models.Items.TakeableItem;

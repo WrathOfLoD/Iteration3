@@ -1,17 +1,18 @@
-package com.wrathOfLoD.Commands.ActionCommand;
+package com.wrathOfLoD.Models.Commands.EntityActionCommands;
 
+import com.wrathOfLoD.Controllers.InputStates.Action.Action;
+import com.wrathOfLoD.Models.Commands.ActionCommand;
 import com.wrathOfLoD.Models.Entity.Entity;
 import com.wrathOfLoD.Models.LocationTracker.LocationTrackerManager;
 import com.wrathOfLoD.Models.Map.Map;
-import com.wrathOfLoD.Models.Map.Tile;
 import com.wrathOfLoD.Utility.Direction;
 import com.wrathOfLoD.Utility.Position;
-import javafx.geometry.Pos;
 
 /**
- * Created by luluding on 4/8/16.
+ * Created by icavitt on 4/7/2016.
  */
-public class MovementCommand extends ActionCommand{
+public class MovementCommand extends ActionCommand {
+    private Entity entity;
     private Position currentPosition;
     private Position destinationPosition;
     private Direction movingDirection;
@@ -19,7 +20,7 @@ public class MovementCommand extends ActionCommand{
 
 
     public MovementCommand(Entity entity, Position currentPosition, Direction movingDirection, int movementSpeed){
-        super(entity);
+        this.entity = entity;
         this.currentPosition = currentPosition;
         this.movingDirection = movingDirection;
         this.movementTicks = 60 - movementSpeed; //TODO: MAX TICKS - movement speed
@@ -29,13 +30,13 @@ public class MovementCommand extends ActionCommand{
     @Override
     public void execute() {
 
-        getEntity().setDirection(movingDirection);
+        entity.setDirection(movingDirection);
 
-        Map.getInstance().removeEntity(getEntity(), currentPosition);
-        Map.getInstance().addEntity(getEntity(), destinationPosition);
+        Map.getInstance().removeEntity(entity, currentPosition);
+        Map.getInstance().addEntity(entity, destinationPosition);
 
         // Update Entity's location in LocationTrackerManager
-        LocationTrackerManager.getInstance().updateLocation(this.getEntity());
+        LocationTrackerManager.getInstance().updateLocation(entity);
 
 
         //TODO: Entity movement speed

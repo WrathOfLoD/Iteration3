@@ -1,6 +1,6 @@
 package com.wrathOfLoD.Models.Items;
 
-import com.wrathOfLoD.Commands.ActionCommand.PickUpItemCommand;
+import com.wrathOfLoD.Models.Commands.EntityActionCommands.PickUpItemCommand;
 import com.wrathOfLoD.Models.Entity.Character.Character;
 import com.wrathOfLoD.Models.Entity.Entity;
 import com.wrathOfLoD.Utility.Position;

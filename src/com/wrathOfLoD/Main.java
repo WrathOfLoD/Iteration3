@@ -1,5 +1,7 @@
 package com.wrathOfLoD;
 
+
+import com.wrathOfLoD.Models.ModelEngine;
 import com.wrathOfLoD.Controllers.InputStates.ActionVendor;
 import com.wrathOfLoD.Controllers.InputStates.AvatarState;
 import com.wrathOfLoD.Controllers.InputStates.InputState;
@@ -41,12 +43,18 @@ public class Main {
         //viewEngine.registerView(avatarIESView);
         vm.addView(avatarIESView);
 
+        ModelEngine.getInstance().start();
+
         Avatar avatar = Avatar.getInstance();
         avatar.configureAvatar("Dave", new Position(0,0,0,0), new Smasher());
 
         MainController mainController = MainController.getInstance();
 
         InputState avatarState = new AvatarState();
+
+
+
+
 
         avatar.addToActionSet(ActionVendor.createMoveNorthAction());
 
@@ -57,5 +65,6 @@ public class Main {
 //        Thread.sleep(3000);
 //        vm.removeView(avatarIESView);
 //
+
     }
 }
