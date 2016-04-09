@@ -15,9 +15,7 @@ public abstract class Item {
         this.name = name;
     }
 
-    public void updatePosition(Position newPosition){
-        this.position = newPosition;
-    }
+    /***** getter & setter for Item *******/
 
     public Position getPositon(){
         return this.position;
@@ -25,5 +23,11 @@ public abstract class Item {
 
     public String getName(){return this.name;}
 
+    /********* END Getters and Setters *********/
+
     public abstract void encounter(Entity entity);
+
+    public void updatePosition(Position newPosition){
+        this.position = newPosition;
+    }
 }

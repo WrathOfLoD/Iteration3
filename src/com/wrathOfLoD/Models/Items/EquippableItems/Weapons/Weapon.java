@@ -27,20 +27,17 @@ public abstract class Weapon extends EquippableItem{
         this.windUp = windUp;
     }
 
-    /*get methods */
+    /***** getter & setter for Weapon *******/
+
     public int getAttackSpeed(){ return this.attackSpeed; }
 
-    public int getBaseDamage(){
-        return this.baseDamage;
-    }
+    public int getBaseDamage(){ return this.baseDamage; }
 
-    public int getCoolDown(){
-        return this.coolDown;
-    }
+    public int getCoolDown(){ return this.coolDown; }
 
-    public int getWindUp(){
-        return this.windUp;
-    }
+    public int getWindUp(){ return this.windUp; }
+
+    /********* END Getters and Setters *********/
 
     protected abstract boolean occupationCheckHook(Occupation o);
 

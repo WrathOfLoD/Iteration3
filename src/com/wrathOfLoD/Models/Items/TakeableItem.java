@@ -13,6 +13,7 @@ public abstract class TakeableItem extends Item{
     }
 
     @Override
+    //need to modify this!!!!!!
     public void encounter(Entity entity){
         ((Character)(entity)).pickUpItem(this);
     }
