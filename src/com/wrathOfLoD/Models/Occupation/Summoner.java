@@ -1,5 +1,6 @@
 package com.wrathOfLoD.Models.Occupation;
 
+import com.wrathOfLoD.Models.Ability.AbilityManager;
 import com.wrathOfLoD.Models.Items.EquippableItems.Weapons.SmasherWeapons.SmasherWeapon;
 import com.wrathOfLoD.Models.Items.EquippableItems.Weapons.SneakWeapons.SneakWeapon;
 import com.wrathOfLoD.Models.Items.EquippableItems.Weapons.SummonerWeapons.SummonerWeapon;
@@ -32,5 +33,9 @@ public class Summoner extends Occupation {
     @Override
     public  boolean canEquip(SummonerWeapon weapon){
         return true;
+    }
+
+    public void addAbilities(AbilityManager abilityManager){
+        //TODO: ADD ABILITIES, CALL SUPER
     }
 }
