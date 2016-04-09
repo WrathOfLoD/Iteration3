@@ -1,5 +1,7 @@
 package com.wrathOfLoD;
 
+import com.wrathOfLoD.Models.Inventory.Inventory;
+import com.wrathOfLoD.Models.Items.EquippableItems.Weapons.Weapon;
 import com.wrathOfLoD.Views.AreaView.AreaView;
 import com.wrathOfLoD.Views.AvatarIESView.AvatarIESView;
 import com.wrathOfLoD.Views.EquipmentView.EquipmentView;
@@ -25,6 +27,10 @@ public class Main {
         ViewManager vm = new ViewManager(areaView, avatarIESView);
 
         viewEngine.registerView(vm);
+
+        Inventory inventory = new Inventory();
+        inventory.addItem();
+
 
         Thread.sleep(2000);
         //viewEngine.registerView(inventoryView);
