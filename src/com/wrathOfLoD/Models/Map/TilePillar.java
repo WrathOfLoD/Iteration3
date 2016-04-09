@@ -21,5 +21,7 @@ public class TilePillar {
         return this.tiles[p.getH()];
     }
 
-    public void addEntity(Entity entity, Position position) {}
+    public void addEntity(Entity entity, Position position) {
+        this.tiles[position.getH()].add(entity);
+    }
 }

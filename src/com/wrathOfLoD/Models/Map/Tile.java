@@ -2,6 +2,7 @@ package com.wrathOfLoD.Models.Map;
 
 import com.wrathOfLoD.Models.Entity.Entity;
 import com.wrathOfLoD.Models.Items.Item;
+import com.wrathOfLoD.Models.LocationTracker.LocationTrackerManager;
 import com.wrathOfLoD.Models.Map.AreaEffect.AreaEffect;
 
 import java.util.ArrayList;
@@ -25,6 +26,7 @@ public class Tile {
     public void add(Entity e) {
         entities.add(e);
     }
+
     public void add(Item i) {
         items.add(i);
     }
