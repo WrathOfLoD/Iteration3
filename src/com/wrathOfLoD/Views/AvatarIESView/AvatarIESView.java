@@ -4,13 +4,14 @@ package com.wrathOfLoD.Views.AvatarIESView;
 import com.wrathOfLoD.Utility.Config;
 import com.wrathOfLoD.Views.EquipmentView.EquipmentView;
 import com.wrathOfLoD.Views.ItemDisplayView.InventoryView;
+import com.wrathOfLoD.Views.StaticView;
 import com.wrathOfLoD.Views.StatsView.StatsView;
 import com.wrathOfLoD.Views.View;
 
 /**
  * Created by echristiansen on 4/8/2016.
  */
-public class AvatarIESView extends View {
+public class AvatarIESView extends StaticView {
 
     private InventoryView iv;
     private StatsView sv;
@@ -42,9 +43,8 @@ public class AvatarIESView extends View {
         setInventoryView(iv);
         setStatsView(sv);
         setEquipmentView(ev);
+        setBackgroundImageFileName("resources/slothSpaceTrade.png");
     }
-
-
 
 
 }
