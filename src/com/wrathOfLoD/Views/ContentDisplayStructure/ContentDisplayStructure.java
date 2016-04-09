@@ -6,7 +6,7 @@ import java.awt.*;
 /**
  * Created by erik on 4/7/2016.
  */
-public abstract class ContentDisplayStructure extends JPanel {
+public abstract class ContentDisplayStructure {
 
     private Dimension dimension;
     public Dimension getDimension() {

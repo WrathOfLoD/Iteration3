@@ -1,7 +1,7 @@
 package com.wrathOfLoD.Models.Items.EquippableItems;
 
+import com.wrathOfLoD.Models.Entity.Character.Character;
 import com.wrathOfLoD.Models.Entity.Entity;
-import com.wrathOfLoD.Models.Items.Item;
 import com.wrathOfLoD.Models.Items.TakeableItem;
 import com.wrathOfLoD.Models.Stats.StatsModifiable;
 import com.wrathOfLoD.Utility.Position;
@@ -21,5 +21,10 @@ public abstract class EquippableItem extends TakeableItem {
         return stats;
     }
 
-//    public abstract void equip(Character c);
+    protected abstract void equip(Character character);
+
+    @Override
+    public void use(Character character){
+        this.equip(character);
+    }
 }

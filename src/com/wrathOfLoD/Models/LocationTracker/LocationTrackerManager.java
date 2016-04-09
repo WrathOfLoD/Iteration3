@@ -34,6 +34,7 @@ public class LocationTrackerManager {
     }
 
     public void registerLocationTracker(LocationTracker locationTracker, MapArea mapArea) {
+        this.locTrackerMap.put(mapArea, locationTracker);
     }
 
     public void registerItem(Item item) {}
@@ -42,5 +43,16 @@ public class LocationTrackerManager {
     public void registerEntity(Entity e, TargetManager tm) {}
     public void deregisterEntity(Entity e) {}
 
-    public void updateLocation(Entity e) {}
+    public void updateLocation(Entity e) {
+        this.activeLocationTracker.updateLocation(e);
+
+    }
+
+    public void updateActiveMapArea(MapArea newActiveMapArea) {
+        this.setActiveLocationTracker(this.locTrackerMap.get(newActiveMapArea));
+    }
+
+    public void setActiveLocationTracker(LocationTracker lt) {
+        this.activeLocationTracker = lt;
+    }
 }

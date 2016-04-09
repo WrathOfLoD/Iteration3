@@ -35,6 +35,12 @@ public class InventoryView extends ItemDisplayView {
         so that the inventoryView is always populated when an inventory is added, no matter constructor is used */
     }
 
+    public InventoryView() { //delete this...just for testing purposes
+        //setBackgroundImageFileName("resources/spaceSlothTrade.png");
+        this.setBackground(new Color(0f, 0f, 0f, 0f));
+
+    }
+
     public InventoryView(Inventory inventory, ContentDisplayStructure cds) {
         setContentDisplayStructure(cds);
         setInventory(inventory);
@@ -60,6 +66,7 @@ public class InventoryView extends ItemDisplayView {
         int y;
         int width = this.getWidth();
         int height = this.getHeight();
+        /* //Commenting this out for now....remove the comments when ivoList is set
         for(int i =0; i<getIvoList().size(); i++) {
             //x = GridStructure.calculateXCoord(width, index, numCols); //if the structure has static methods
             //y = GridStructure.calculateYCoord(height, index, numRows, numCols); //if the structure has static methods
@@ -69,6 +76,8 @@ public class InventoryView extends ItemDisplayView {
             y = cds.calculateYCoord(height,index);
             getIvoList().get(i).paintComponent(g, x, y, width, height);
             index++;
+       */
         }
     }
-}
+
+
