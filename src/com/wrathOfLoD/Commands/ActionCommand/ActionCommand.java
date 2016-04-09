@@ -8,7 +8,11 @@ import com.wrathOfLoD.Models.Entity.Entity;
 public abstract class ActionCommand {
     private Entity entity;
 
-    public abstract void execute();
+    public ActionCommand(Entity entity){
+        this.entity = entity;
+    }
+
+    /***** getter & setter for ActionCommand *******/
 
     public Entity getEntity() {
         return entity;
@@ -18,5 +22,8 @@ public abstract class ActionCommand {
         this.entity = entity;
     }
 
+    /********* END Getters and Setters *********/
+
+    public abstract void execute();
 
 }

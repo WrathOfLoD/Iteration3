@@ -9,10 +9,15 @@ public class BindWoundsAbility extends Ability {
     private Entity entity;
 
     public BindWoundsAbility() {
+        super();
+    }
+
+    public BindWoundsAbility(int unlockingLevel) {
+        super(unlockingLevel);
     }
 
     @Override
-    public void execute() {
+    public void doAbility() {
 
     }
 }

@@ -12,6 +12,11 @@ import com.wrathOfLoD.Utility.Position;
 public abstract class EquippableItem extends TakeableItem {
     private StatsModifiable stats;
 
+    public EquippableItem(String name, StatsModifiable stats){
+        super(name);
+        this.stats = stats;
+    }
+
     public EquippableItem(Position position, String name, StatsModifiable stats){
         super(position, name);
         this.stats = stats;

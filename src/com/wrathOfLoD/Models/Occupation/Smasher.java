@@ -35,6 +35,7 @@ public class Smasher extends Occupation {
     }
 
     public void addAbilities(AbilityManager abilityManager){
+        super.addAbilities(abilityManager);
         //TODO: ADD ABILITIES, CALL SUPER
     }
 }

@@ -1,6 +1,7 @@
 package com.wrathOfLoD.Models.Occupation;
 
 import com.wrathOfLoD.Models.Ability.Abilities.Ability;
+import com.wrathOfLoD.Models.Ability.Abilities.BindWoundsAbility;
 import com.wrathOfLoD.Models.Ability.AbilityManager;
 import com.wrathOfLoD.Models.Items.EquippableItems.Weapons.SmasherWeapons.SmasherWeapon;
 import com.wrathOfLoD.Models.Items.EquippableItems.Weapons.SneakWeapons.SneakWeapon;
@@ -30,5 +31,6 @@ public abstract class Occupation {
 
     public void addAbilities(AbilityManager abilityManager){
         //TODO: ADD ABILITIES
+        abilityManager.addAbilities(new BindWoundsAbility(1));
     }
 }
