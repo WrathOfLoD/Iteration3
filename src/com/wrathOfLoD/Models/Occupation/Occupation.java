@@ -1,5 +1,7 @@
 package com.wrathOfLoD.Models.Occupation;
 
+import com.wrathOfLoD.Models.Ability.Abilities.Ability;
+import com.wrathOfLoD.Models.Ability.AbilityManager;
 import com.wrathOfLoD.Models.Items.EquippableItems.Weapons.SmasherWeapons.SmasherWeapon;
 import com.wrathOfLoD.Models.Items.EquippableItems.Weapons.SneakWeapons.SneakWeapon;
 import com.wrathOfLoD.Models.Items.EquippableItems.Weapons.SummonerWeapons.SummonerWeapon;
@@ -24,5 +26,9 @@ public abstract class Occupation {
 
     protected void setStatsModifiable(StatsModifiable newStatsModifiable){
         this.statsModifiable = newStatsModifiable;
+    }
+
+    public void addAbilities(AbilityManager abilityManager){
+        //TODO: ADD ABILITIES
     }
 }
