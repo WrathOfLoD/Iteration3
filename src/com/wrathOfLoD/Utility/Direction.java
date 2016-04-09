@@ -47,6 +47,9 @@ public enum Direction {
 		return new Position(this.qMod, this.rMod, this.sMod, this.hMod);
 	}
 
+	// for less breakable solution:
+	// http://www.redblobgames.com/grids/hexagons/#rotation
+	// http://stackoverflow.com/a/7888655
 	public Direction clockwise(){
 		if(this.ordinal() % 7 == 0){
 			return this;
@@ -98,5 +101,10 @@ public enum Direction {
 			return this;
 		}
 	}
+
+	//TODO
+	//public Direction inversePlanar()
+
+	//public Direction inverseSpatial()
 
 }
