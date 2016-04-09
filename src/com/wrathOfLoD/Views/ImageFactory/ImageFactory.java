@@ -10,9 +10,6 @@ import java.awt.*;
  */
 public class ImageFactory {
 
-    public ImageFactory() {
-    }
-
     public static String generateImageFileName(String name) {
         String imageFileName = "resources/"+name+".png";
         return imageFileName;

@@ -21,6 +21,7 @@ public class Inventory implements ActionsHolder {
         this.initializeActionSet();
     }
 
+
     public void addItem(TakeableItem item) {
         itemList.add(item);
     }
@@ -29,7 +30,7 @@ public class Inventory implements ActionsHolder {
         itemList.remove(item);
     }
 
-    public List getItemList(){
+    public List<TakeableItem> getItemList(){
         return this.itemList;
     }
 

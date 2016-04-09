@@ -1,6 +1,7 @@
 package com.wrathOfLoD.Models.Map;
 
 import com.wrathOfLoD.Models.Entity.Entity;
+import com.wrathOfLoD.Models.LocationTracker.LocationTrackerManager;
 import com.wrathOfLoD.Utility.Position;
 
 import java.util.ArrayList;
@@ -46,6 +47,7 @@ public class Map {
     public void setActiveMapArea(MapArea mArea){
 		if(mapAreas.contains(mArea)){
 			this.activeMapArea = mArea;
+			LocationTrackerManager.getInstance().updateActiveMapArea(this.activeMapArea);
 		}
 		else{
 			throw new IllegalArgumentException("Selected MapArea is not contained in the collection of MapAreas.");
@@ -55,6 +57,7 @@ public class Map {
     public void addEntity(Entity entity, Position pos){
 		this.activeMapArea.addEntity(entity, pos);
 	}
+
 
 }
 

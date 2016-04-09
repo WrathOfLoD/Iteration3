@@ -42,22 +42,10 @@ public class ItemViewObject extends JPanel{
         isSelected = selected;
     }
 
-    public ItemViewObject() { }
-
     public ItemViewObject(Item item) {
         this.setItem(item);
-        this.setItemImage(ItemImageFactory.generateImage(item));
+        this.setItemImage(ItemImageFactory.generateImage(item.getName()));
         this.setIsDisplayed(false);
-    }
-
-    public ItemViewObject(Item item, int width, int height) {
-        this.setItem(item);
-        this.setItemImage(ItemImageFactory.generateScaledImage(item, width, height));
-        this.setIsDisplayed(false);
-    }
-
-    public void paintComponent(Graphics g) {
-        super.paintComponent(g);
     }
 
     public void paintComponent(Graphics g, int x, int y, int width, int height) {

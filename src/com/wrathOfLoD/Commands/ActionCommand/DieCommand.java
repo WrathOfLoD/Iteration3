@@ -7,5 +7,6 @@ public class DieCommand extends ActionCommand{
     @Override
     public void execute() {
 
+        // TODO: MAKE SURE TO CALL LTM.deregister(entity)
     }
 }

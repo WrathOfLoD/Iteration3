@@ -56,8 +56,10 @@ public class MapArea{
         return tiles;
     }
 
+
     public void addEntity(Entity entity, Position pos){
 		TilePillar pillar = getTilePillar(pos);
 		pillar.addEntity(entity, pos);
 	}
+
 }
