@@ -16,34 +16,36 @@ public class Tile {
     private List<AreaEffect> areaEffects;
 //    private Flow flow;
 
-    public Tile() {
+    public Tile(){
         this.entities = new ArrayList<>();
         this.items = new ArrayList<>();
         this.areaEffects = new ArrayList<>();
     }
 
-    public void add(Entity e) {
+    public void add(Entity e){
         entities.add(e);
     }
-    public void add(Item i) {
+    public void add(Item i){
         items.add(i);
     }
-    public void add(AreaEffect ae) {
+    public void add(AreaEffect ae){
         areaEffects.add(ae);
     }
 
-    public void removeEntity(Entity e) {
+    public void removeEntity(Entity e){
         entities.remove(e);
     }
 
-    public void removeItem(Item i) {
+    public void removeItem(Item i){
         items.remove(i);
     }
 
-    public void removeAE(AreaEffect ae) {
+    public void removeAE(AreaEffect ae){
         areaEffects.remove(ae);
     }
 
-    public void interact(Entity e) {}
+    public void interact(Entity e){
+
+	}
 }
 

@@ -10,17 +10,41 @@ import java.util.List;
 /**
  * Created by zach on 4/7/16.
  */
-public class MapArea {
+public class MapArea{
     private HashMap<Position, TilePillar> tilePillarMap;
 
-    public MapArea() {
+    public MapArea(){
         this.tilePillarMap = new HashMap<Position, TilePillar>();
     }
 
-    public Tile getTile(Position p) {
-        Tile t = this.tilePillarMap.get(p).getTile(p);
+	public boolean hasTilePillarAt(Position pos){
+		TilePillar pillar = getTilePillar(pos);
+		if(pillar != null){
+			return true;
+		}
+		else{
+			return false;
+		}
+	}
 
-        return t;
+	public TilePillar getTilePillar(Position pos){
+		TilePillar pillar = this.tilePillarMap.get(pos.get2DProjection());
+		return pillar;
+	}
+
+	public boolean hasTileAt(Position pos){
+		TilePillar pillar = getTilePillar(pos);
+		if(pillar != null){
+			return pillar.hasTileAt(pos);
+		}
+		else{
+			return false;
+		}
+	}
+
+    public Tile getTile(Position pos) {
+        TilePillar pillar = getTilePillar(pos);
+		return pillar.getTile(pos);
     }
 
     public List<Tile> getTiles(List<Position> pList) {
@@ -32,5 +56,8 @@ public class MapArea {
         return tiles;
     }
 
-    public void addEntity(Entity entity, Position position) {}
+    public void addEntity(Entity entity, Position pos){
+		TilePillar pillar = getTilePillar(pos);
+		pillar.addEntity(entity, pos);
+	}
 }
