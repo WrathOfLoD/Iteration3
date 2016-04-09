@@ -36,7 +36,9 @@ public class InventoryView extends ItemDisplayView {
     }
 
     public InventoryView() { //delete this...just for testing purposes
-        setBackgroundImageFileName("resources/spaceSlothTrade.png");
+        //setBackgroundImageFileName("resources/spaceSlothTrade.png");
+        this.setBackground(new Color(0f, 0f, 0f, 0f));
+
     }
 
     public InventoryView(Inventory inventory, ContentDisplayStructure cds) {
