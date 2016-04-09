@@ -26,8 +26,8 @@ public class Inventory implements ActionsHolder {
         itemList.add(item);
     }
 
-    public void removeItem(TakeableItem item) {
-        itemList.remove(item);
+    public boolean removeItem(TakeableItem item) {
+        return itemList.remove(item);
     }
 
     public List<TakeableItem> getItemList(){

@@ -3,11 +3,9 @@ package com.wrathOfLoD.Models.Entity.Character;
 import com.wrathOfLoD.Models.Ability.AbilityManager;
 import com.wrathOfLoD.Models.Entity.Entity;
 import com.wrathOfLoD.Models.Inventory.Equipment;
-import com.wrathOfLoD.Models.Items.ConsumableItems.ConsumableItem;
 import com.wrathOfLoD.Models.Items.ConsumableItems.PermanentConsumable;
 import com.wrathOfLoD.Models.Items.ConsumableItems.TemporaryConsumable;
 import com.wrathOfLoD.Models.Items.EquippableItems.Armor;
-import com.wrathOfLoD.Models.Items.EquippableItems.EquippableItem;
 import com.wrathOfLoD.Models.Items.EquippableItems.Weapons.Weapon;
 import com.wrathOfLoD.Models.Items.InteractiveItem;
 import com.wrathOfLoD.Models.Items.TakeableItem;
@@ -16,6 +14,8 @@ import com.wrathOfLoD.Models.Occupation.Smasher;
 import com.wrathOfLoD.Models.Stats.Stats;
 import com.wrathOfLoD.Models.Target.TargetManager;
 import com.wrathOfLoD.Utility.Position;
+
+import java.util.List;
 
 /**
  * Created by zach on 4/7/16.
@@ -33,7 +33,6 @@ public abstract class Character extends Entity {
         this.targetManager = new TargetManager();
         this.abilityManager = new AbilityManager(getOccupation());
         abilityManager.unlockAbilities(getStats().getLevel());
-
     }
 
     public Character(String name, Position position, Occupation occupation){
@@ -67,11 +66,25 @@ public abstract class Character extends Entity {
     }
 
     public void equip(Weapon weapon){
-        this.equipment.equip(weapon);
+        List inventoryItems = getInventory().getItemList();
+        if(inventoryItems.remove(weapon)){
+            this.equipment.equip(weapon);
+        }
     }
 
     public void equip(Armor armor){
-        this.equipment.equip(armor);
+        List inventoryItems = getInventory().getItemList();
+        if(inventoryItems.remove(armor)){
+            this.equipment.equip(armor);
+        }
+    }
+
+    public void unequip(Weapon weapon){
+        this.equipment.unequip(weapon);
+    }
+
+    public void unequip(Armor armor){
+        this.equipment.unequip(armor);
     }
 
     public void consume(PermanentConsumable permanentConsumable){
@@ -81,7 +94,7 @@ public abstract class Character extends Entity {
 
     public void consume(TemporaryConsumable temporaryConsumable){
         Stats characterStats = getStats();
-        characterStats.modifyStats(temporaryConsumable.getStatsModifiable());
+        characterStats.addTemporaryStats(temporaryConsumable.getStatsModifiable());
     }
 
     public void attack() {}

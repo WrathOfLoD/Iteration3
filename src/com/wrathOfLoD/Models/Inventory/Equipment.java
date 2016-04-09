@@ -36,8 +36,15 @@ public class Equipment {
         this.armor = armor;
     }
 
-    public void unequip() {
-
+    public void unequip(Weapon weapon) {
+        if(weapon == this.weapon){
+            equip(defaultWeapon);
+        }
     }
 
+    public void unequip(Armor armor){
+        if(armor == this.armor){
+            this.armor = null;
+        }
+    }
 }
