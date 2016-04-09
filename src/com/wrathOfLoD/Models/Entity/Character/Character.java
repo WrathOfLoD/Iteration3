@@ -4,6 +4,8 @@ import com.wrathOfLoD.Models.Entity.Entity;
 import com.wrathOfLoD.Models.Inventory.Equipment;
 import com.wrathOfLoD.Models.Inventory.Inventory;
 import com.wrathOfLoD.Models.Items.ConsumableItems.ConsumableItem;
+import com.wrathOfLoD.Models.Items.ConsumableItems.PermanentConsumable;
+import com.wrathOfLoD.Models.Items.ConsumableItems.TemporaryConsumable;
 import com.wrathOfLoD.Models.Items.EquippableItems.Armor;
 import com.wrathOfLoD.Models.Items.EquippableItems.EquippableItem;
 import com.wrathOfLoD.Models.Items.EquippableItems.Weapons.Weapon;
@@ -11,6 +13,7 @@ import com.wrathOfLoD.Models.Items.InteractiveItem;
 import com.wrathOfLoD.Models.Items.TakeableItem;
 import com.wrathOfLoD.Models.Occupation.Occupation;
 import com.wrathOfLoD.Models.Occupation.Smasher;
+import com.wrathOfLoD.Models.Stats.Stats;
 import com.wrathOfLoD.Models.Target.TargetManager;
 import com.wrathOfLoD.Utility.Position;
 
@@ -80,6 +83,16 @@ public abstract class Character extends Entity {
 
     public void equip(Armor armor){
         this.equipment.equip(armor);
+    }
+
+    public void consume(PermanentConsumable permanentConsumable){
+        Stats characterStats = getStats();
+        characterStats.modifyStats(permanentConsumable.getStatsModifiable());
+    }
+
+    public void consume(TemporaryConsumable temporaryConsumable){
+        Stats characterStats = getStats();
+        characterStats.modifyStats(temporaryConsumable.getStatsModifiable());
     }
 
     public void attack() {}

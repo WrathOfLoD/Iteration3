@@ -10,6 +10,11 @@ import com.wrathOfLoD.Models.Entity.Character.Character;
 public class Armor extends EquippableItem{
     private int armorBonus;
 
+    public Armor(String name, StatsModifiable stats, int armorBonus){
+        super( name, stats);
+        this.armorBonus = armorBonus;
+    }
+
     public Armor(Position position, String name, StatsModifiable stats, int armorBonus){
         super(position, name, stats);
         this.armorBonus = armorBonus;
