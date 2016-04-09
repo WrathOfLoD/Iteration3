@@ -25,6 +25,8 @@ public class NPC extends Character {
         this.homePosition = pos;
     }
 
+    /***** getter & setter for NPC *******/
+
     public int getAggression(){
         return this.aggression;
     }
@@ -44,4 +46,6 @@ public class NPC extends Character {
     public void setGreed(int newGreed){
         this.aggression = newGreed;
     }
+
+    /********* END Getters and Setters *********/
 }

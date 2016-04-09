@@ -10,4 +10,6 @@ public class PermanentConsumable extends ConsumableItem {
     public PermanentConsumable(Position position, String name, StatsModifiable stats){
         super(position, name, stats);
     }
+
+
 }
