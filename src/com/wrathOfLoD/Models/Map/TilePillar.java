@@ -1,6 +1,8 @@
 package com.wrathOfLoD.Models.Map;
 
 import com.wrathOfLoD.Models.Entity.Entity;
+import com.wrathOfLoD.Models.Items.Item;
+import com.wrathOfLoD.Models.Map.AreaEffect.AreaEffect;
 import com.wrathOfLoD.Utility.Position;
 
 /**
@@ -50,7 +52,32 @@ public class TilePillar{
 
     public void addEntity(Entity entity, Position pos){
 		Tile tile = getTile(pos);
-		tile.add(entity);
+		tile.addEntity(entity);
+	}
+
+	public void addItem(Item item, Position pos){
+		Tile tile = getTile(pos);
+		tile.addItem(item);
+	}
+
+	public void addAE(AreaEffect ae, Position pos){
+		Tile tile = getTile(pos);
+		tile.addAE(ae);
+	}
+
+	public void removeEntity(Entity entity, Position pos){
+		Tile tile = getTile(pos);
+		tile.removeEntity(entity);
+	}
+
+	public void removeItem(Item item, Position pos){
+		Tile tile = getTile(pos);
+		tile.removeItem(item);
+	}
+
+	public void removeAE(AreaEffect ae, Position pos){
+		Tile tile = getTile(pos);
+		tile.removeAE(ae);
 	}
 
 }

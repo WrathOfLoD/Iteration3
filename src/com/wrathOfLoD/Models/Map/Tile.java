@@ -23,14 +23,15 @@ public class Tile {
         this.areaEffects = new ArrayList<>();
     }
 
-    public void add(Entity e){
+    public void addEntity(Entity e){
         entities.add(e);
     }
 
-    public void add(Item i){
+    public void addItem(Item i){
         items.add(i);
     }
-    public void add(AreaEffect ae){
+
+    public void addAE(AreaEffect ae){
         areaEffects.add(ae);
     }
 

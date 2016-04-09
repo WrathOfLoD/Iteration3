@@ -31,10 +31,8 @@ public class MovementCommand extends ActionCommand{
 
         getEntity().setDirection(movingDirection);
 
-        Tile currentTile = Map.getInstance().getTile(currentPosition);
-        Tile destTile = Map.getInstance().getTile(destinationPosition);
-        currentTile.removeEntity(getEntity());
-        destTile.add(getEntity());
+        Map.getInstance().removeEntity(getEntity(), currentPosition);
+        Map.getInstance().addEntity(getEntity(), destinationPosition);
 
         // Update Entity's location in LocationTrackerManager
         LocationTrackerManager.getInstance().updateLocation(this.getEntity());

@@ -1,6 +1,8 @@
 package com.wrathOfLoD.Models.Map;
 
 import com.wrathOfLoD.Models.Entity.Entity;
+import com.wrathOfLoD.Models.Items.Item;
+import com.wrathOfLoD.Models.Map.AreaEffect.AreaEffect;
 import com.wrathOfLoD.Utility.Position;
 
 import java.util.ArrayList;
@@ -60,6 +62,31 @@ public class MapArea{
     public void addEntity(Entity entity, Position pos){
 		TilePillar pillar = getTilePillar(pos);
 		pillar.addEntity(entity, pos);
+	}
+
+	public void addItem(Item item, Position pos){
+		TilePillar pillar = getTilePillar(pos);
+		pillar.addItem(item, pos);
+	}
+
+	public void addAE(AreaEffect ae, Position pos){
+		TilePillar pillar = getTilePillar(pos);
+		pillar.addAE(ae, pos);
+	}
+
+	public void removeEntity(Entity entity, Position pos){
+		TilePillar pillar = getTilePillar(pos);
+		pillar.removeEntity(entity, pos);
+	}
+
+	public void removeItem(Item item, Position pos){
+		TilePillar pillar = getTilePillar(pos);
+		pillar.removeItem(item, pos);
+	}
+
+	public void removeAE(AreaEffect ae, Position pos){
+		TilePillar pillar = getTilePillar(pos);
+		pillar.removeAE(ae, pos);
 	}
 
 }
