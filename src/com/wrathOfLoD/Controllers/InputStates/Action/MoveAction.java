@@ -2,6 +2,7 @@ package com.wrathOfLoD.Controllers.InputStates.Action;
 
 import com.wrathOfLoD.Models.Commands.ActionCommand;
 
+import java.awt.*;
 import java.awt.event.KeyEvent;
 
 /**
@@ -20,10 +21,15 @@ public class MoveAction extends Action {
     }
 
     @Override
-    public void keyTyped(KeyEvent e) {
+    public void keyPressed(KeyEvent e) {
         if(e.getKeyCode() == getCurrCode() && listenting()){
             changeDirection.execute();
         }
+    }
+
+    @Override
+    public void keyTyped(KeyEvent e) {
+
     }
 
     @Override

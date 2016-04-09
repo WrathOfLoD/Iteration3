@@ -1,6 +1,7 @@
 package com.wrathOfLoD.Models.Map;
 
 import com.wrathOfLoD.Models.Entity.Entity;
+import com.wrathOfLoD.Models.LocationTracker.LocationTrackerManager;
 import com.wrathOfLoD.Utility.Position;
 
 import java.util.ArrayList;
@@ -34,8 +35,21 @@ public class Map {
         return this.activeMapArea.getTiles(pList);
     }
 
-    public void setActiveMapArea(MapArea mArea) {}
-    public void addEntity(Entity entity, Position position) {}
+    public void setActiveMapArea(MapArea mArea) {
+        this.activeMapArea = mArea;
+
+        // Update the LocationTrackerManager's reference
+        LocationTrackerManager.getInstance().updateActiveMapArea(this.activeMapArea);
+    }
+
+    public void addEntity(Entity entity, Position position) {
+        this.activeMapArea.addEntity(entity, position);
+
+
+    }
+
+    // TODO: 4/8/16 MAKE A REMOVEENTITY
+
 }
 
 

@@ -8,11 +8,18 @@ import java.awt.*;
 /**
  * Created by erik on 4/7/2016.
  */
-public class ItemImageFactory  {
+public class ItemImageFactory extends ImageFactory  {
 
     public ItemImageFactory() {
     }
 
+    public static String generateImageFileName(String itemName) {
+        String imageFileName = "resources/InventoryItems/"+itemName+".png";
+        System.out.println("TESTING THAT GENERATEITEMIMAGEFILENAME IN iTEMiMAGEfACTORY is getting called correctly");
+        return imageFileName;
+    }
+
+    /*
     public static String generateItemImageFileName(Item item) {
         String imageFileName = "resources/InventoryItems/"+item.getName()+".png";
         return imageFileName;
@@ -47,5 +54,7 @@ public class ItemImageFactory  {
         Image itemImage = generateImageFromFile(imageFileName);
         return itemImage;
     }
+    */
+
 
 }
