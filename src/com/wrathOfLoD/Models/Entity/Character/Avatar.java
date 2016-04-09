@@ -2,8 +2,13 @@ package com.wrathOfLoD.Models.Entity.Character;
 
 import com.wrathOfLoD.Controllers.InputStates.Action.Action;
 import com.wrathOfLoD.Models.ActionsHolder;
+import com.wrathOfLoD.Models.Inventory.Equipment;
+import com.wrathOfLoD.Models.Inventory.Inventory;
+import com.wrathOfLoD.Models.Items.EquippableItems.Weapons.SmasherWeapons.FistWeapon;
+import com.wrathOfLoD.Models.Items.EquippableItems.Weapons.SmasherWeapons.SmasherWeapon;
 import com.wrathOfLoD.Models.Occupation.Occupation;
 import com.wrathOfLoD.Models.Occupation.Smasher;
+import com.wrathOfLoD.Models.Stats.StatsModifiable;
 import com.wrathOfLoD.Utility.Position;
 
 import java.util.HashSet;
@@ -18,7 +23,7 @@ public class Avatar extends Character implements ActionsHolder {
     private Set<Action> actionSet;
 
     private Avatar() {
-        super("Master Chief", new Position(0,0,0,0), new Smasher());
+        super();
         this.initializeActionSet();
     }
 
@@ -30,7 +35,7 @@ public class Avatar extends Character implements ActionsHolder {
         return avatar;
     }
 
-    public void avatarInit(String name, Position position, Occupation occupation){
+    public void configureAvatar(String name, Position position, Occupation occupation){
         this.setName(name);
         this.setPosition(position);
         this.setOccupation(occupation);

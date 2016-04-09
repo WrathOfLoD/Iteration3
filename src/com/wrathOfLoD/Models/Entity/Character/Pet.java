@@ -11,7 +11,7 @@ import com.wrathOfLoD.Utility.Position;
 public class Pet extends NPC {
     public Pet(String name, Position position, Occupation occupation) {
         super(name,position, occupation);
-        setAggression(0);
-        setGreed(10);
+        this.setAggression(0);
+        this.setGreed(10);
     }
 }
