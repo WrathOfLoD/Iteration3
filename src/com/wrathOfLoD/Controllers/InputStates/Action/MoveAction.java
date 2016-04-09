@@ -22,8 +22,13 @@ public class MoveAction extends Action {
 
     @Override
     public void keyPressed(KeyEvent e) {
+        System.out.println("Key pressed");
+        System.out.println(e.getKeyCode());
+        System.out.println(getCurrCode());
+        System.out.println(listenting());
         if(e.getKeyCode() == getCurrCode() && listenting()){
             changeDirection.execute();
+            System.out.println("Executing!");
         }
     }
 

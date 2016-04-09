@@ -1,5 +1,6 @@
 package com.wrathOfLoD.Models.Entity.Character;
 
+import com.wrathOfLoD.Models.Ability.AbilityManager;
 import com.wrathOfLoD.Models.Entity.Entity;
 import com.wrathOfLoD.Models.Inventory.Equipment;
 import com.wrathOfLoD.Models.Inventory.Inventory;
@@ -25,6 +26,7 @@ public abstract class Character extends Entity {
     private Equipment equipment;
     private Inventory inventory;
     private TargetManager targetManager;
+    private AbilityManager abilityManager;
 
     public Character(){
         super();
@@ -32,6 +34,9 @@ public abstract class Character extends Entity {
         this.equipment = new Equipment();
         this.inventory = new Inventory();
         this.targetManager = new TargetManager();
+        this.abilityManager = new AbilityManager(getOccupation());
+        abilityManager.unlockAbilities(getStats().getLevel());
+
     }
 
     public Character(String name, Position position, Occupation occupation){
@@ -40,6 +45,8 @@ public abstract class Character extends Entity {
         this.equipment = new Equipment();
         this.inventory = new Inventory();
         this.targetManager = new TargetManager();
+        this.abilityManager = new AbilityManager(getOccupation());
+        abilityManager.unlockAbilities(getStats().getLevel());
     }
 
     /***** getter & setter for Character *******/
@@ -96,6 +103,15 @@ public abstract class Character extends Entity {
     }
 
     public void attack() {}
+
+    public void levelUp(){
+        super.levelUp();
+        abilityManager.unlockAbilities(getStats().getLevel());
+    }
+
+    public void doAbility(int abilityNum){
+        abilityManager.doAbility(abilityNum);
+    }
 
 }
 
