@@ -32,5 +32,8 @@ public class MapArea {
         return tiles;
     }
 
-    public void addEntity(Entity entity, Position position) {}
+    public void addEntity(Entity entity, Position position) {
+        this.tilePillarMap.get(position).addEntity(entity, position);
+
+    }
 }

@@ -1,6 +1,7 @@
 package com.wrathOfLoD.Commands.ActionCommand;
 
 import com.wrathOfLoD.Models.Entity.Entity;
+import com.wrathOfLoD.Models.LocationTracker.LocationTrackerManager;
 import com.wrathOfLoD.Models.Map.Map;
 import com.wrathOfLoD.Models.Map.Tile;
 import com.wrathOfLoD.Utility.Direction;
@@ -36,6 +37,9 @@ public class MovementCommand extends ActionCommand{
         Tile destTile = Map.getInstance().getTile(destinationPosition);
         currentTile.removeEntity(getEntity());
         destTile.add(getEntity());
+
+        // Update Entity's location in LocationTrackerManager
+        LocationTrackerManager.getInstance().updateLocation(this.getEntity());
 
 
         //TODO: Entity movement speed

@@ -2,14 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ac2f70bb-cd23-4ab4-be64-32291757f3ff" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/wrathOfLoD/Models/Map/TeleportTile.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/wrathOfLoD/Main.java" afterPath="$PROJECT_DIR$/src/com/wrathOfLoD/Main.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/wrathOfLoD/Views/AvatarIESView/AvatarIESView.java" afterPath="$PROJECT_DIR$/src/com/wrathOfLoD/Views/AvatarIESView/AvatarIESView.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/wrathOfLoD/Views/EquipmentView/EquipmentView.java" afterPath="$PROJECT_DIR$/src/com/wrathOfLoD/Views/EquipmentView/EquipmentView.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/wrathOfLoD/Views/ItemDisplayView/InventoryView.java" afterPath="$PROJECT_DIR$/src/com/wrathOfLoD/Views/ItemDisplayView/InventoryView.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/wrathOfLoD/Views/StatsView/StatsView.java" afterPath="$PROJECT_DIR$/src/com/wrathOfLoD/Views/StatsView/StatsView.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/wrathOfLoD/Views/ViewManager/ViewManager.java" afterPath="$PROJECT_DIR$/src/com/wrathOfLoD/Views/ViewManager/ViewManager.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/wrathOfLoD/Commands/ActionCommand/DieCommand.java" afterPath="$PROJECT_DIR$/src/com/wrathOfLoD/Commands/ActionCommand/DieCommand.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/wrathOfLoD/Commands/ActionCommand/MovementCommand.java" afterPath="$PROJECT_DIR$/src/com/wrathOfLoD/Commands/ActionCommand/MovementCommand.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/wrathOfLoD/Models/LocationTracker/LocationTracker.java" afterPath="$PROJECT_DIR$/src/com/wrathOfLoD/Models/LocationTracker/LocationTracker.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/wrathOfLoD/Models/LocationTracker/LocationTrackerManager.java" afterPath="$PROJECT_DIR$/src/com/wrathOfLoD/Models/LocationTracker/LocationTrackerManager.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/wrathOfLoD/Models/Map/Map.java" afterPath="$PROJECT_DIR$/src/com/wrathOfLoD/Models/Map/Map.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/wrathOfLoD/Models/Map/MapArea.java" afterPath="$PROJECT_DIR$/src/com/wrathOfLoD/Models/Map/MapArea.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/wrathOfLoD/Models/Map/Tile.java" afterPath="$PROJECT_DIR$/src/com/wrathOfLoD/Models/Map/Tile.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/wrathOfLoD/Models/Map/TilePillar.java" afterPath="$PROJECT_DIR$/src/com/wrathOfLoD/Models/Map/TilePillar.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/wrathOfLoD/Models/Target/TargetManager.java" afterPath="$PROJECT_DIR$/src/com/wrathOfLoD/Models/Target/TargetManager.java" />
     </list>
     <ignored path="Iteration3.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -128,11 +131,9 @@
       <file leaf-file-name="Main.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/wrathOfLoD/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.6">
-              <caret line="26" column="36" selection-start-line="26" selection-start-column="36" selection-end-line="26" selection-end-column="36" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state vertical-scroll-proportion="0.22857143">
+              <caret line="8" column="52" selection-start-line="8" selection-start-column="52" selection-end-line="8" selection-end-column="52" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -959,7 +960,7 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32575756" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32575756" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25106838" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -1421,11 +1422,9 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/wrathOfLoD/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6">
-          <caret line="26" column="36" selection-start-line="26" selection-start-column="36" selection-end-line="26" selection-end-column="36" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state vertical-scroll-proportion="0.22857143">
+          <caret line="8" column="52" selection-start-line="8" selection-start-column="52" selection-end-line="8" selection-end-column="52" />
+          <folding />
         </state>
       </provider>
     </entry>
