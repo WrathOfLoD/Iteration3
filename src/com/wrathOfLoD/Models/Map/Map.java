@@ -56,6 +56,11 @@ public class Map {
 		}
 	}
 
+	//TODO: testing purpose, can remove
+	public void addMapArea(MapArea mapArea){
+		this.mapAreas.add(mapArea);
+	}
+
     public void addEntity(Entity entity, Position pos){
 		this.activeMapArea.addEntity(entity, pos);
 	}

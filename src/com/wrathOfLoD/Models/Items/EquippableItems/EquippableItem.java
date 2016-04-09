@@ -22,6 +22,10 @@ public abstract class EquippableItem extends TakeableItem {
         this.stats = stats;
     }
 
+    public EquippableItem(String name){ //edit: delete this it's only being used for testing purposes
+        super(name);
+    }
+
     public StatsModifiable getStats(){
         return stats;
     }

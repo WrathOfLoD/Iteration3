@@ -50,4 +50,14 @@ public class ListStructure extends ContentDisplayStructure {
     public int calculateSlotHeight(int displayHeight, int numRows) {
         return 0;
     }
+
+    @Override
+    public int calculateSlotWidth(int displayWidth) {
+        return 0;
+    }
+
+    @Override
+    public int calculateSlotHeight(int displayHeight) {
+        return 0;
+    }
 }

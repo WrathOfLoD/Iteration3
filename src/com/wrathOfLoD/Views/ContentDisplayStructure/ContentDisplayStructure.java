@@ -13,7 +13,7 @@ public abstract class ContentDisplayStructure {
         return dimension;
     }
     public void setDimension(Dimension dimension) {
-        setDimension(dimension);
+        this.dimension=dimension;
     }
 
     public ContentDisplayStructure(Dimension dimension) {
@@ -28,6 +28,8 @@ public abstract class ContentDisplayStructure {
     public abstract int determineRow(int index, int numCols);
     public abstract int calculateSlotWidth(int displayWidth, int numCols);
     public abstract int calculateSlotHeight(int displayHeight, int numRows);
+    public abstract int calculateSlotWidth(int displayWidth);
+    public abstract int calculateSlotHeight(int displayHeight);
 
 
     /* Could probably have this abstract class then have the subclasses implement the methods

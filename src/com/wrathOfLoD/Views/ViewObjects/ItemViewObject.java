@@ -1,8 +1,8 @@
 package com.wrathOfLoD.Views.ViewObjects;
 
 import com.wrathOfLoD.Models.Items.Item;
+import com.wrathOfLoD.Utility.Config;
 import com.wrathOfLoD.Views.ImageFactory.ImageFactory;
-import com.wrathOfLoD.Views.ImageFactory.ItemImageFactory;
 
 import javax.swing.*;
 import java.awt.*;
@@ -10,10 +10,9 @@ import java.awt.*;
 /**
  * Created by erik on 4/7/2016.
  */
-public class ItemViewObject extends JPanel{
+public class ItemViewObject extends ViewObject{
 
     private Item item;
-    private Image itemImage;
     private boolean isDisplayed;
     private boolean isSelected;
 
@@ -22,12 +21,6 @@ public class ItemViewObject extends JPanel{
     }
     public void setItem(Item item) {
         this.item = item;
-    }
-    public Image getItemImage() {
-        return itemImage;
-    }
-    public void setItemImage(Image itemImage) {
-        this.itemImage = itemImage;
     }
     public boolean isDisplayed() {
         return isDisplayed;
@@ -43,14 +36,21 @@ public class ItemViewObject extends JPanel{
     }
 
     public ItemViewObject(Item item) {
-        this.setItem(item);
-        this.setItemImage(ItemImageFactory.generateImage(item.getName()));
-        this.setIsDisplayed(false);
+        setItem(item);
+        //initializeImage(item);
+        //setIsDisplayed(false);
     }
+
+    public void initializeImage(Item item) {
+        //setImage(ImageFactory.generateImage(Config.instance().getIVOPath()+item.getName()+Config.instance().getImageExtension()));
+        setImage(ImageFactory.generateImage(Config.instance().getInventoryIVOPath()+item.getName()+Config.instance().getImageExtension())); //edit: testing. shouldn't be using this path
+        System.out.println("initalizeImage is getting called for : " + item.getName() + "!!");
+    }
+
 
     public void paintComponent(Graphics g, int x, int y, int width, int height) {
         super.paintComponent(g);
-        g.drawImage(this.getItemImage(), x, y, width, height, this);
+        g.drawImage(this.getImage(), x, y, width, height, this);
     }
 
 }
