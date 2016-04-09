@@ -32,6 +32,8 @@ public abstract class Item {
 
     public abstract void encounter(Entity entity);
 
+
+    /********* Possibly don't need this *********/
     public void updatePosition(Position newPosition){
         this.position = newPosition;
     }

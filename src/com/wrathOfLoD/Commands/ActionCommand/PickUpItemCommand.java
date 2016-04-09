@@ -3,16 +3,15 @@ package com.wrathOfLoD.Commands.ActionCommand;
 import com.wrathOfLoD.Models.Entity.Entity;
 
 /**
- * Created by luluding on 4/8/16.
+ * Created by matthewdiaz on 4/9/16.
  */
-public abstract class ActionCommand {
+public class PickUpItemCommand extends ActionCommand {
     private Entity entity;
 
-    public ActionCommand(Entity entity){
-        this.entity = entity;
+    public PickUpItemCommand(Entity entity){
+        super(entity);
     }
 
-    /***** getter & setter for ActionCommand *******/
 
     public Entity getEntity() {
         return entity;
@@ -22,8 +21,8 @@ public abstract class ActionCommand {
         this.entity = entity;
     }
 
-    /********* END Getters and Setters *********/
+    public void execute(){
 
-    public abstract void execute();
+    }
 
 }

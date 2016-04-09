@@ -20,13 +20,12 @@ public class MovementCommand extends ActionCommand{
 
 
     public MovementCommand(Entity entity, Position currentPosition, Direction movingDirection, int movementSpeed){
-        setEntity(entity);
+        super(entity);
         this.currentPosition = currentPosition;
         this.movingDirection = movingDirection;
         this.movementTicks = 60 - movementSpeed; //TODO: MAX TICKS - movement speed
         this.destinationPosition = this.currentPosition.getPosInDir(movingDirection);
     }
-
 
     @Override
     public void execute() {
