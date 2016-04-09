@@ -10,6 +10,11 @@ public abstract class Item {
     private Position position;
     private String name;
 
+    public Item(String name){
+        this.name = name;
+    }
+
+    //note we want to get rid of Position from Item
     public Item(Position position, String name){
         this.position = position;
         this.name = name;

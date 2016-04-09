@@ -16,11 +16,11 @@ public abstract class Weapon extends EquippableItem{
     private int windUp;
 
     public Weapon(){
-        this(new Position(0,0,0,0), "space weapon", StatsModifiable.createWeaponBonusStatsModifiable(10), 1, 1, 1, 1);
+        this("space weapon", StatsModifiable.createWeaponBonusStatsModifiable(10), 1, 1, 1, 1);
     }
 
-    public Weapon(Position position, String name, StatsModifiable stats, int attackSpeed, int baseDamage, int coolDown, int windUp){
-        super(position,name,stats);
+    public Weapon( String name, StatsModifiable stats, int attackSpeed, int baseDamage, int coolDown, int windUp){
+        super(name,stats);
         this.attackSpeed = attackSpeed;
         this.baseDamage = baseDamage;
         this.coolDown = coolDown;

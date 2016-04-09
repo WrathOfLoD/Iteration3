@@ -9,11 +9,20 @@ import com.wrathOfLoD.Utility.Position;
  * Created by matthewdiaz on 4/7/16.
  */
 public abstract class ConsumableItem extends TakeableItem {
-    private StatsModifiable stats;
+    private StatsModifiable statsModifiable;
 
-    public ConsumableItem(Position position, String name, StatsModifiable stats){
+    public ConsumableItem(String name, StatsModifiable statsModifiable){
+        super(name);
+        this.statsModifiable = statsModifiable;
+    }
+
+    public ConsumableItem(Position position, String name, StatsModifiable statsModifiable){
         super(position, name);
-        this.stats = stats;
+        this.statsModifiable = statsModifiable;
+    }
+
+    public StatsModifiable getStatsModifiable(){
+        return statsModifiable;
     }
 
     @Override
@@ -21,7 +30,5 @@ public abstract class ConsumableItem extends TakeableItem {
         this.consume(character);
     }
 
-    protected void consume(Character character){
-
-    }
+    protected abstract void consume(Character character);
 }
