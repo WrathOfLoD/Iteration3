@@ -2,6 +2,8 @@ package com.wrathOfLoD.Controllers;
 
 import com.wrathOfLoD.Controllers.InputStates.InputState;
 import com.wrathOfLoD.Models.Entity.Character.Avatar;
+import com.wrathOfLoD.Views.ViewEngine;
+import com.wrathOfLoD.Views.ViewManager.ViewManager;
 
 import javax.swing.*;
 
@@ -14,15 +16,7 @@ public class MainController {
     private InputState avatarState;
     private InputState MenuState;
     private InputState activeState;
-    private InputState previousState;   // May be needed
-
-
-    
-    // TODO: MainController will need a reference to the main view or something, so that it can
-    // TODO: add key listeners to it!
-    //      addActionKeyListeners() {
-    //          activeState.getActiveActionSet().stream()
-    //                  .forEach(s -> f.addKeyListener(s));
+    private InputState previousState;
 
     private MainController() {
     }
@@ -30,28 +24,37 @@ public class MainController {
     public static MainController getInstance(){
         return instance;
     }
-    
+
+    /**
+     * @desc Set the active InputState for the controller, i.e. AvatarState
+     */
     public void setActiveState(InputState newState) {
         this.previousState = this.activeState;
         this.activeState = newState;
 
-        if (this.previousState != null)
+        if (this.previousState != null) {
             this.previousState.deactivate();
+            this.removeActionKeyListeners();
+        }
 
-//        this.removeActionKeyListeners();
         this.activeState.activate();
-//        this.addActionKeyListeners();
+        this.addActionKeyListeners();
     }
 
-    // TODO: 4/8/16 IMPLEMENT once we have the main game window/frame! 
-//    public void addActionKeyListeners() {
-//          activeState.getActiveActionSet().stream()
-//                  .forEach(s -> frame.addKeyListener(s));
-//    }
-//    // TODO: 4/8/16 IMPLEMENT once we have the main game window/frame!
-//    public void removeActionKeyListeners() {
-//          activeState.getActiveActionSet().stream()
-//                  .forEach(s -> frame.removeKeyListener(s));
-//    }
+    /**
+     * @desc Add the activeState's actionSet key listeners to the ViewEngine
+     */
+    public void addActionKeyListeners() {
+          activeState.getActiveActionSet().stream()
+                  .forEach(action -> ViewEngine.getInstance().addKeyListener(action));
+    }
+
+    /**
+     * @desc Remove the activeState's actionSet key listeners from the ViewEngine
+     */
+    public void removeActionKeyListeners() {
+          activeState.getActiveActionSet().stream()
+                  .forEach(action -> ViewEngine.getInstance().removeKeyListener(action));
+    }
 
 }

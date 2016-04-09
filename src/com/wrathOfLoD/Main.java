@@ -1,6 +1,16 @@
 package com.wrathOfLoD;
 
+
 import com.wrathOfLoD.Models.ModelEngine;
+import com.wrathOfLoD.Controllers.InputStates.ActionVendor;
+import com.wrathOfLoD.Controllers.InputStates.AvatarState;
+import com.wrathOfLoD.Controllers.InputStates.InputState;
+import com.wrathOfLoD.Controllers.MainController;
+import com.wrathOfLoD.Models.Commands.ActionCommandVendor;
+import com.wrathOfLoD.Models.Entity.Character.Avatar;
+import com.wrathOfLoD.Models.Occupation.Smasher;
+import com.wrathOfLoD.Utility.Direction;
+import com.wrathOfLoD.Utility.Position;
 import com.wrathOfLoD.Views.AreaView.AreaView;
 import com.wrathOfLoD.Views.AvatarIESView.AvatarIESView;
 import com.wrathOfLoD.Views.EquipmentView.EquipmentView;
@@ -19,6 +29,7 @@ public class Main {
         ViewEngine viewEngine = ViewEngine.getInstance();
         viewEngine.registerView(areaView);
 
+
         StatsView statsView = new StatsView();
         EquipmentView equipmentView = new EquipmentView();
         InventoryView inventoryView = new InventoryView();
@@ -32,11 +43,28 @@ public class Main {
         //viewEngine.registerView(avatarIESView);
         vm.addView(avatarIESView);
 
-        Thread.sleep(3000);
-        vm.removeView(avatarIESView);
-
-
         ModelEngine.getInstance().start();
+
+        Avatar avatar = Avatar.getInstance();
+        avatar.configureAvatar("Dave", new Position(0,0,0,0), new Smasher());
+
+        MainController mainController = MainController.getInstance();
+
+        InputState avatarState = new AvatarState();
+
+
+
+
+
+        avatar.addToActionSet(ActionVendor.createMoveNorthAction());
+
+
+        Thread.sleep(2000);
+        System.out.println("Setting active state");
+        mainController.setActiveState(avatarState);
+//        Thread.sleep(3000);
+//        vm.removeView(avatarIESView);
+//
 
     }
 }
