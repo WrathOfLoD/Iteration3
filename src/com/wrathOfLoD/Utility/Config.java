@@ -5,6 +5,29 @@ package com.wrathOfLoD.Utility;
  */
 public class Config {
 
+    private static final String IVOPath = "resources/Items/";
+    private static final String MapIVOPath = "resources/MapItems/";
+    private static final String InventoryIVOPath = "resources/InventoryItems/";
+    private static final String EquippedIVOPath = "resources/EquippedItems/";
+    private static final String ImageExtension = ".png";
+
+    public static String getIVOPath() {
+        return IVOPath;
+    }
+    public static String getMapIVOPath() {
+        return MapIVOPath;
+    }
+    public static String getInventoryIVOPath() {
+        return InventoryIVOPath;
+    }
+    public static String getEquippedIVOPath() {
+        return EquippedIVOPath;
+    }
+    public static String getImageExtension() {
+        return ImageExtension;
+    }
+
+
     private static final int WINDOW_WIDTH = 1300; //set the overall window width. Was 1400
     private static final int WINDOW_HEIGHT = 900; //was 900
 

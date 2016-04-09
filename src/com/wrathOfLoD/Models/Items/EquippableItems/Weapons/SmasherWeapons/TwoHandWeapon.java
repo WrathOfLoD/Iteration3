@@ -13,6 +13,10 @@ public class TwoHandWeapon extends Weapon implements SmasherWeapon{
         super(name, stats, attackSpeed, baseDamage, coolDown, windUp);
     }
 
+    public TwoHandWeapon(String name) { //edit; delete this it's only for testing purposes
+        super(name);
+    }
+
     @Override
     protected boolean occupationCheckHook(Occupation o) {
         return o.canEquip(this);

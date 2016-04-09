@@ -19,10 +19,6 @@ public abstract class Ability {
 
     public abstract void doAbility();
 
-
-
-
-
     public int getUnlockLevel() {
         return unlockLevel;
     }

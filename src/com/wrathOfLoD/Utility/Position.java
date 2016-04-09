@@ -1,5 +1,8 @@
 package com.wrathOfLoD.Utility;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by Mitchell on 4/7/2016.
  */
@@ -104,6 +107,22 @@ public class Position{
 		return new Position(acQ, acR, acS, acH);
 	}
 
+	public static Position scalarMultiply(Position a, float c){
+		float acQ = a.getQ() * c;
+		float acR = a.getR() * c;
+		float acS = a.getS() * c;
+		float acH = a.getH() * c;
+		return roundPosition(acQ, acR, acS, acH);
+	}
+
+	private static Position roundPosition(float qf, float rf, float sf, float hf){
+		int q = Math.round(qf);
+		int r = Math.round(rf);
+		int s = Math.round(sf);
+		int h = Math.round(hf);
+		return new Position(q, r, s, h);
+	}
+
 	public int getDistance(Position pos){
 		int distanceHorz = Math.abs((this.getQ() - pos.getQ()) +
 				(this.getR() - pos.getR()) + (this.getS() - pos.getS()));
@@ -119,6 +138,35 @@ public class Position{
 		return new Position(this.getQ(), this.getR(), this.getS(), 0);
 	}
 
+	//drawing shapes :D
 
+	//drawing a line in a straight direction
+	public static List<Position> drawLine(Position origin, Direction dir, int range, boolean includeOrigin){
+
+		Position deltaVector = scalarMultiply(dir.getPosVector(), range);
+		Position target = vectorAdd(origin, deltaVector);
+
+		return drawline(origin, target, range, includeOrigin);
+	}
+
+	//drawing a line at a target in 3D space
+	public static List<Position> drawline(Position origin, Position target, int range, boolean includeOrigin){
+		List<Position> line = new ArrayList<Position>();
+
+		if(includeOrigin){
+			line.add(origin);
+		}
+		int totalDist = origin.getDistance(target);
+		for(float f = 1; f <= range; f++){
+			float deltaQ = (target.getQ() - origin.getQ()) * f;
+			float deltaR = (target.getR() - origin.getR()) * f;
+			float deltaS = (target.getS() - origin.getS()) * f;
+			float deltaH = (target.getH() - origin.getH()) * f;
+			Position deltaPos = roundPosition(deltaQ, deltaR, deltaS, deltaH);
+			line.add(vectorAdd(origin, deltaPos));
+		}
+
+		return line;
+	}
 
 }

@@ -61,7 +61,7 @@ public class AvatarIESView extends StaticView {
         this.setLayout(new FlowLayout());
         this.containerPanel = new StaticView();
         //this.containerPanel.setBackground(new Color(0f,0f,0f,0f));
-        this.containerPanel.setBackgroundImageFileName("resources/spaceSlothTrade.png");
+        this.containerPanel.setBackgroundImageFileName("resources/Backgrounds/spaceSlothTrade.png");
         this.containerPanel.setPreferredSize(new Dimension(AVATARIES_VIEW_WIDTH, AVATARIES_VIEW_HEIGHT));
         this.containerPanel.setLayout(new GridLayout(1, 3));
         this.containerPanel.add(this.inventoryView);
