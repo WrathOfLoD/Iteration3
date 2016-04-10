@@ -1,5 +1,6 @@
 package com.wrathOfLoD;
 
+import com.wrathOfLoD.Controllers.InputStates.InventoryState;
 import com.wrathOfLoD.Models.Inventory.Inventory;
 import com.wrathOfLoD.Models.Items.EquippableItems.Weapons.SmasherWeapons.TwoHandWeapon;
 import com.wrathOfLoD.Models.Items.EquippableItems.Weapons.Weapon;
@@ -35,8 +36,13 @@ public class Main {
 
         TwoHandWeapon hammer = new TwoHandWeapon("hammer");
         TwoHandWeapon hammer2 = new TwoHandWeapon("hammer");
+
         inventory.addItem(hammer);
         inventory.addItem(hammer2);
+
+        for (int i = 0; i < 10; i++) {
+            inventory.addItem(new TwoHandWeapon("hammer"));
+        }
 
 
         AreaView areaView = new AreaView();
@@ -44,7 +50,7 @@ public class Main {
         viewEngine.registerView(areaView);
 
         //InventoryView inventoryView = new InventoryView();
-        InventoryView inventoryView = new InventoryView(inventory, new GridStructure(new Dimension(6,4)));
+        InventoryView inventoryView = new InventoryView(inventory, new GridStructure(new Dimension(4,6)));
 
         StatsView statsView = new StatsView();
         EquipmentView equipmentView = new EquipmentView();
@@ -68,6 +74,13 @@ public class Main {
 
         InputState avatarState = new AvatarState();
 
+        inventory.addToActionSet(ActionVendor.createSelectUpAction(inventoryView));
+        inventory.addToActionSet(ActionVendor.createSelectRightAction(inventoryView));
+        inventory.addToActionSet(ActionVendor.createSelectLeftAction(inventoryView));
+        inventory.addToActionSet(ActionVendor.createSelectDownAction(inventoryView));
+
+        InputState inventoryState = new InventoryState(inventory);
+        mainController.setActiveState(inventoryState);
 
         //LocationTrackerManager.getInstance().registerEntity(avatar, avatar.getTargetManager());
 
@@ -77,7 +90,7 @@ public class Main {
 
         Thread.sleep(2000);
         System.out.println("Setting active state");
-        mainController.setActiveState(avatarState);
+//        mainController.setActiveState(avatarState);
 //        Thread.sleep(3000);
 //        vm.removeView(avatarIESView);
 //

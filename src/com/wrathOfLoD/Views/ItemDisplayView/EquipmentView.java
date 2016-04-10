@@ -45,6 +45,8 @@ public class EquipmentView extends ItemDisplayView {
 
         }
 
+
+
     }
 
 

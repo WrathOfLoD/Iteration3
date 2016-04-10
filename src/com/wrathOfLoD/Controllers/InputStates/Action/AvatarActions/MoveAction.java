@@ -1,5 +1,6 @@
-package com.wrathOfLoD.Controllers.InputStates.Action;
+package com.wrathOfLoD.Controllers.InputStates.Action.AvatarActions;
 
+import com.wrathOfLoD.Controllers.InputStates.Action.Action;
 import com.wrathOfLoD.Models.Commands.ActionCommand;
 
 import java.awt.*;
