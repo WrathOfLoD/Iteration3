@@ -12,7 +12,7 @@ import java.util.ArrayList;
  */
 public abstract class ItemDisplayView extends StaticView {
 
-    private ArrayList<ItemViewObject> ivoList;
+    private ArrayList<ItemViewObject> ivoList = new ArrayList<ItemViewObject>(20);
 
     public ArrayList<ItemViewObject> getIvoList() {
         return ivoList;
@@ -21,5 +21,8 @@ public abstract class ItemDisplayView extends StaticView {
         this.ivoList = ivoList;
     }
 
+    public void addItemViewObject(ItemViewObject ivo) {
+        ivoList.add(ivo);
+    }
 
 }

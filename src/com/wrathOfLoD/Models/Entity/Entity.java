@@ -66,7 +66,7 @@ public abstract class Entity {
 
     public void move(Direction movingDirection){
         if(!isActive()){
-            ActionCommand acm = ActionCommandVendor.createMovementCommand(this, getPosition(), movingDirection, getStats().getMovement());
+            ActionCommand acm = ActionCommandVendor.createMovementCommand(this, movingDirection);
             setActive();
             acm.execute();
         }

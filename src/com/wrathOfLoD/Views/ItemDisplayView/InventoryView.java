@@ -1,12 +1,11 @@
 package com.wrathOfLoD.Views.ItemDisplayView;
 
 import com.wrathOfLoD.Models.Inventory.Inventory;
-import com.wrathOfLoD.Models.Items.Item;
 import com.wrathOfLoD.Models.Items.TakeableItem;
 import com.wrathOfLoD.Views.ContentDisplayStructure.ContentDisplayStructure;
 import com.wrathOfLoD.Views.ContentDisplayStructure.GridStructure;
-import com.wrathOfLoD.Views.ViewObjectFactory.ItemViewObjectFactory;
-import com.wrathOfLoD.Views.ViewObjects.ItemViewObject;
+import com.wrathOfLoD.Views.ViewObjectFactory.InventoryIVOFactory;
+import com.wrathOfLoD.Views.ViewObjects.InventoryItemViewObject;
 
 import java.awt.*;
 
@@ -35,26 +34,15 @@ public class InventoryView extends ItemDisplayView {
         so that the inventoryView is always populated when an inventory is added, no matter constructor is used */
     }
 
-    public InventoryView() { //delete this...just for testing purposes
-        //setBackgroundImageFileName("resources/spaceSlothTrade.png");
-        this.setBackground(new Color(0f, 0f, 0f, 0f));
-
-    }
-
     public InventoryView(Inventory inventory, ContentDisplayStructure cds) {
         setContentDisplayStructure(cds);
         setInventory(inventory);
-        //initializeInventoryView(); //edit: don't need this anymore, moved to setInventory?
-    }
-
-    public InventoryView(ContentDisplayStructure cds) { //maybe delete?
-        setContentDisplayStructure(cds);
+        this.setBackground(new Color(0f, 0f, 0f, 0f));
     }
 
     private void initializeInventoryView() { //may need to edit...only works if we maintain the idea that an inventory view must be initialized with an inventory
-        for(TakeableItem item: getInventory().getItemList()) {
-            //getIvoList().add(ItemViewObjectFactory.createItemViewObject(item));
-            getIvoList().add(new ItemViewObject(item)); //don't know which is best
+        for (TakeableItem item : getInventory().getItemList()) { //edit: just access inventory directly?
+            addItemViewObject(InventoryIVOFactory.generateInventoryIVO(item));
         }
     }
 
@@ -64,20 +52,21 @@ public class InventoryView extends ItemDisplayView {
         int index = 0;
         int x;
         int y;
-        int width = this.getWidth();
-        int height = this.getHeight();
-        /* //Commenting this out for now....remove the comments when ivoList is set
-        for(int i =0; i<getIvoList().size(); i++) {
-            //x = GridStructure.calculateXCoord(width, index, numCols); //if the structure has static methods
-            //y = GridStructure.calculateYCoord(height, index, numRows, numCols); //if the structure has static methods
-            //x = cds.calculateXCoord(width, index, numCols);
-            //y = cds.calculateYCoord(height,index,numRows,numCols);
-            x = cds.calculateXCoord(width, index);
-            y = cds.calculateYCoord(height,index);
-            getIvoList().get(i).paintComponent(g, x, y, width, height);
-            index++;
-       */
+        int slotWidth = cds.calculateSlotWidth(this.getWidth());
+        int slotHeight = cds.calculateSlotHeight(this.getHeight());
+
+        if (getIvoList().size() > 0) {
+            for (int i = 0; i < getIvoList().size(); i++) {
+                x = cds.calculateXCoord(this.getWidth(), index);
+                y = cds.calculateYCoord(this.getHeight(), index);
+                getIvoList().get(i).paintComponent(g, x, y, slotWidth, slotHeight);
+                System.out.println("Attempting to paint " + getIvoList().get(i).getItem().getName());
+                index++;
+            }
         }
     }
+
+
+}
 
 

@@ -28,6 +28,10 @@ public abstract class Weapon extends EquippableItem{
         this.windUp = windUp;
     }
 
+    public Weapon(String name){ //edit: delete this it's only for testing purposes
+        super(name);
+    }
+
     /***** getter & setter for Weapon *******/
 
     public int getAttackSpeed(){ return this.attackSpeed; }
