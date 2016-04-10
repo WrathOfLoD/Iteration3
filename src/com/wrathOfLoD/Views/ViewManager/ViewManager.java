@@ -1,12 +1,9 @@
 package com.wrathOfLoD.Views.ViewManager;
 
-import com.wrathOfLoD.Utility.Config;
 import com.wrathOfLoD.Views.AreaView.AreaView;
 import com.wrathOfLoD.Views.AvatarIESView.AvatarIESView;
-import com.wrathOfLoD.Views.EquipmentView.EquipmentView;
 import com.wrathOfLoD.Views.StaticView;
-import com.wrathOfLoD.Views.StatsView.StatsView;
-import com.wrathOfLoD.Views.View;
+
 
 import javax.swing.*;
 import java.awt.*;

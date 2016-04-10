@@ -2,7 +2,7 @@ package com.wrathOfLoD.Views.AvatarIESView;
 
 
 import com.wrathOfLoD.Utility.Config;
-import com.wrathOfLoD.Views.EquipmentView.EquipmentView;
+import com.wrathOfLoD.Views.ItemDisplayView.EquipmentView;
 import com.wrathOfLoD.Views.ItemDisplayView.InventoryView;
 import com.wrathOfLoD.Views.StaticView;
 import com.wrathOfLoD.Views.StatsView.StatsView;
@@ -66,7 +66,7 @@ public class AvatarIESView extends StaticView {
         this.containerPanel.setLayout(new GridLayout(1, 3));
         this.containerPanel.add(this.inventoryView);
         this.containerPanel.add(this.equipmentView);
-        this.containerPanel.add(this.statsView);
+        //this.containerPanel.add(this.statsView);
         this.add(pushPanel);
         this.add(containerPanel);
         this.containerPanel.setBorder(BorderFactory.createStrokeBorder(new BasicStroke(15.0f)));

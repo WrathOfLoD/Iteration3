@@ -48,6 +48,9 @@ public class Equipment {
 
     public void equip(Weapon weapon) {
         this.weapon = weapon;
+
+        // TODO: 4/9/16 do the below for the view
+        // alertWeaponEquipped(weapon);
     }
 
     public void unequip(Armor armor){

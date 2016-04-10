@@ -120,6 +120,18 @@ public class Position{
 		int r = Math.round(rf);
 		int s = Math.round(sf);
 		int h = Math.round(hf);
+
+		//check that the invariant will still hold after rounding
+		if(Math.abs(qf - q) > Math.abs(rf - r) && Math.abs(qf - q) > Math.abs(sf - s)){
+			q = -1 * (r + s);
+		}
+		else if(Math.abs(rf - r) > Math.abs(sf - s)){
+			r = -1 * (q + s);
+		}
+		else{
+			s = -1 * (q + r);
+		}
+
 		return new Position(q, r, s, h);
 	}
 
@@ -196,10 +208,10 @@ public class Position{
 		dir = dir.planar(); //REVIEW, do I need this?
 		Position rightVector;
 		Position leftVector;
-		//TODO fix arc wings from •< to •>
+
 		if(horizontal){
-			rightVector = dir.clockwise().getPosVector();
-			leftVector = dir.counterClockwise().getPosVector();
+			rightVector = dir.counterClockwise().inversePlanar().getPosVector();
+			leftVector = dir.clockwise().inversePlanar().getPosVector();
 		}
 		else{
 			rightVector = dir.above().getPosVector();
