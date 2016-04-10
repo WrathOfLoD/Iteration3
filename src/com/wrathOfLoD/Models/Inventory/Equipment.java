@@ -53,27 +53,35 @@ public class Equipment {
         // alertWeaponEquipped(weapon);
     }
 
-    public void unequip(Armor armor){
+    public boolean unequip(Armor armor){
         if(this.armor == armor){
             this.armor = null;
+            return true;
         }
+        return false;
     }
 
-    public void unequip(Greaves greaves){
+    public boolean unequip(Greaves greaves){
         if(this.greaves == greaves){
             this.armor = null;
+            return true;
         }
+        return false;
     }
 
-    public void unequip(Helm helm){
+    public boolean unequip(Helm helm){
         if(this.helm == helm){
             this.armor = null;
+            return true;
         }
+        return false;
     }
 
-    public void unequip(Weapon weapon) {
+    public boolean unequip(Weapon weapon) {
         if(this.weapon == weapon){
             equip(defaultWeapon);
+            return true;
         }
+        return false;
     }
 }

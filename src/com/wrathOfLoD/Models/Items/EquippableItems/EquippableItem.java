@@ -31,7 +31,7 @@ public abstract class EquippableItem extends TakeableItem {
 
     protected abstract void equip(Character character);
 
-    public void unequip(Character character){}
+    public abstract void unequip(Character character);
 
     @Override
     public void use(Character character){

@@ -1,7 +1,9 @@
 package com.wrathOfLoD.Models.Items.EquippableItems.Weapons;
 
-import com.wrathOfLoD.Models.Commands.EntityActionCommands.EquipItemCommand;
-import com.wrathOfLoD.Models.Commands.EntityActionCommands.EquipWeaponCommand;
+import com.wrathOfLoD.Models.Commands.EntityActionCommands.EquipItemCommands.EquipItemCommand;
+import com.wrathOfLoD.Models.Commands.EntityActionCommands.EquipItemCommands.EquipWeaponCommand;
+import com.wrathOfLoD.Models.Commands.EntityActionCommands.UnequipItemCommands.UnequipItemCommand;
+import com.wrathOfLoD.Models.Commands.EntityActionCommands.UnequipItemCommands.UnequipWeaponCommand;
 import com.wrathOfLoD.Models.Entity.Character.Character;
 import com.wrathOfLoD.Models.Items.EquippableItems.EquippableItem;
 import com.wrathOfLoD.Models.Occupation.Occupation;
@@ -38,11 +40,18 @@ public abstract class Weapon extends EquippableItem{
 
     protected abstract boolean occupationCheckHook(Occupation o);
 
+    @Override
     public void equip(Character character){
         Occupation occupation = character.getOccupation();
         if(occupationCheckHook(occupation) ){
             EquipItemCommand equipWeaponCommand = new EquipWeaponCommand(character, this);
             equipWeaponCommand.execute();
         }
+    }
+
+    @Override
+    public void unequip(Character character){
+        UnequipItemCommand unequipWeaponCommand = new UnequipWeaponCommand(character, this);
+        unequipWeaponCommand.execute();
     }
 }

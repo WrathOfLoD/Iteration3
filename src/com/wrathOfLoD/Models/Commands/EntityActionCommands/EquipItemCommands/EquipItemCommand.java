@@ -1,4 +1,4 @@
-package com.wrathOfLoD.Models.Commands.EntityActionCommands;
+package com.wrathOfLoD.Models.Commands.EntityActionCommands.EquipItemCommands;
 
 import com.wrathOfLoD.Models.Commands.ActionCommand;
 import com.wrathOfLoD.Models.Entity.Character.Character;
@@ -24,8 +24,6 @@ public abstract class EquipItemCommand extends ActionCommand {
 
     protected EquippableItem getItem(){ return this.item; }
 
-    protected Character getCharacter(){ return  this.character; }
-
     /********* END Getters and Setters *********/
 
     protected abstract void equipHook(Equipment equipment);
@@ -33,11 +31,11 @@ public abstract class EquipItemCommand extends ActionCommand {
     @Override
     public void execute(){
         Inventory inventory = character.getInventory();
-        Equipment equipment = character.getEquipment();
         if(inventory.removeItem(item)){
+            Equipment equipment = character.getEquipment();
+            equipHook(equipment);
             Stats characterStats = character.getStats();
             characterStats.addTemporaryStats(item.getStatsModifiable());
-            equipHook(equipment);
         }
     }
 }
