@@ -1,10 +1,11 @@
 package com.wrathOfLoD.Models.Items.EquippableItems.Weapons;
 
+import com.wrathOfLoD.Models.Commands.EntityActionCommands.EquipItemCommand;
+import com.wrathOfLoD.Models.Commands.EntityActionCommands.EquipWeaponCommand;
 import com.wrathOfLoD.Models.Entity.Character.Character;
 import com.wrathOfLoD.Models.Items.EquippableItems.EquippableItem;
 import com.wrathOfLoD.Models.Occupation.Occupation;
 import com.wrathOfLoD.Models.Stats.StatsModifiable;
-import com.wrathOfLoD.Utility.Position;
 
 /**
  * Created by matthewdiaz on 4/7/16.
@@ -44,7 +45,8 @@ public abstract class Weapon extends EquippableItem{
     public void equip(Character character){
         Occupation occupation = character.getOccupation();
         if(occupationCheckHook(occupation) ){
-            character.equip(this);
+            EquipItemCommand equipWeaponCommand = new EquipWeaponCommand(character, this);
+            equipWeaponCommand.execute();
         }
     }
 }

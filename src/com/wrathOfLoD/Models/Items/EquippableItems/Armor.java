@@ -1,5 +1,7 @@
 package com.wrathOfLoD.Models.Items.EquippableItems;
 
+import com.wrathOfLoD.Models.Commands.EntityActionCommands.EquipArmorCommand;
+import com.wrathOfLoD.Models.Commands.EntityActionCommands.EquipItemCommand;
 import com.wrathOfLoD.Models.Stats.StatsModifiable;
 import com.wrathOfLoD.Utility.Position;
 import com.wrathOfLoD.Models.Entity.Character.Character;
@@ -25,6 +27,7 @@ public class Armor extends EquippableItem{
     }
 
     protected void equip(Character character){
-        character.equip(this);
+        EquipItemCommand equipArmorCommand = new EquipArmorCommand(character, this);
+        equipArmorCommand.execute();
     }
 }

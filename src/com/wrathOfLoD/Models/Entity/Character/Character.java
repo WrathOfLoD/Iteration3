@@ -65,20 +65,6 @@ public abstract class Character extends Entity {
         item.use(this);
     }
 
-    public void equip(Weapon weapon){
-        List inventoryItems = getInventory().getItemList();
-        if(inventoryItems.remove(weapon)){
-            this.equipment.equip(weapon);
-        }
-    }
-
-    public void equip(Armor armor){
-        List inventoryItems = getInventory().getItemList();
-        if(inventoryItems.remove(armor)){
-            this.equipment.equip(armor);
-        }
-    }
-
     public void unequip(Weapon weapon){
         this.equipment.unequip(weapon);
     }
