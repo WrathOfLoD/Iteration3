@@ -12,10 +12,6 @@ public class TemporaryConsumable extends ConsumableItem {
         super(name, stats);
     }
 
-    public TemporaryConsumable(Position position, String name, StatsModifiable stats){
-        super(position, name, stats);
-    }
-
     @Override
     protected void consume(Character character){
         character.consume(this);

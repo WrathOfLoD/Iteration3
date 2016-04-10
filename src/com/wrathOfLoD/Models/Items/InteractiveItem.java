@@ -10,10 +10,6 @@ public class InteractiveItem extends Item{
 
     public InteractiveItem(String name ){ super(name); }
 
-    public InteractiveItem(Position position, String name){
-        super(position, name);
-    }
-
     @Override
     public void encounter(Entity entity){
     }

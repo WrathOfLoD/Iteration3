@@ -16,10 +16,6 @@ public class Greaves extends EquippableItem{
         super( name, stats);
     }
 
-    public Greaves(Position position, String name, StatsModifiable stats){
-        super(position, name, stats);
-    }
-
     @Override
     protected void equip(Character character){
         EquipItemCommand equipGreavesCommand = new EquipGreavesCommand(character, this);

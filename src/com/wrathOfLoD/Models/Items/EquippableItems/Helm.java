@@ -16,10 +16,6 @@ public class Helm extends EquippableItem{
         super( name, stats);
     }
 
-    public Helm(Position position, String name, StatsModifiable stats){
-        super(position, name, stats);
-    }
-
     @Override
     protected void equip(Character character){
         EquipItemCommand equipHelmCommand = new EquipHelmCommand(character, this);

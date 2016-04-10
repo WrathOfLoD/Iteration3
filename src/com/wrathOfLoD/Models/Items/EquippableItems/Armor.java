@@ -17,10 +17,6 @@ public class Armor extends EquippableItem{
         super( name, stats);
     }
 
-    public Armor(Position position, String name, StatsModifiable stats){
-        super(position, name, stats);
-    }
-
     @Override
     protected void equip(Character character){
         EquipItemCommand equipArmorCommand = new EquipArmorCommand(character, this);

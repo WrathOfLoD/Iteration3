@@ -16,11 +16,6 @@ public abstract class EquippableItem extends TakeableItem {
         this.statsModifiable = statsModifiable;
     }
 
-    public EquippableItem(Position position, String name, StatsModifiable statsModifiable){
-        super(position, name);
-        this.statsModifiable = statsModifiable;
-    }
-
     public EquippableItem(String name){ //edit: delete this it's only being used for testing purposes
         super(name);
     }

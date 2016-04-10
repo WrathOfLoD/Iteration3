@@ -73,9 +73,6 @@ public abstract class Entity {
     }
 
     public void pickUpItem(TakeableItem item){
-        //update the position to item to be the entities position ?? <= necessary
-        item.updatePosition(this.getPosition());
-
         this.inventory.addItem(item);
     }
 

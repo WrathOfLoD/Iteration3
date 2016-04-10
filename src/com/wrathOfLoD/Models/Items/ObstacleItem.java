@@ -10,10 +10,6 @@ import com.wrathOfLoD.Utility.Position;
 public class ObstacleItem extends Item{
     public ObstacleItem(String name ){ super(name); }
 
-    public ObstacleItem(Position position, String name){
-        super(position, name);
-    }
-
     @Override
     public void encounter(Entity entity){
 
