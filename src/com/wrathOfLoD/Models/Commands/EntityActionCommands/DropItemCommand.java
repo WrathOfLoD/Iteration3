@@ -11,11 +11,12 @@ import com.wrathOfLoD.Utility.Position;
 /**
  * Created by matthewdiaz on 4/9/16.
  */
-public class PickUpItemCommand extends ActionCommand {
+
+public class DropItemCommand extends ActionCommand {
     private TakeableItem item;
     private Entity entity;
 
-    public PickUpItemCommand(Entity entity, TakeableItem item){
+    public DropItemCommand(Entity entity, TakeableItem item){
         this.entity = entity;
         this.item = item;
     }
@@ -26,11 +27,10 @@ public class PickUpItemCommand extends ActionCommand {
         Position position = entity.getPosition();
 
         Tile tile = map.getTile(position);
-        tile.removeItem(item);
+        tile.addItem(item);
 
-        // Remove item from the LTM
-        LocationTrackerManager.getInstance().deregisterItem(item);
-
-        entity.pickUpItem(item);
+        // Add item to LTM
+        LocationTrackerManager.getInstance().registerItem(item);
     }
 }
+

@@ -2,6 +2,7 @@ package com.wrathOfLoD.Models.Entity;
 
 import com.wrathOfLoD.Models.Commands.ActionCommand;
 import com.wrathOfLoD.Models.Commands.ActionCommandVendor;
+import com.wrathOfLoD.Models.Commands.EntityActionCommands.DropItemCommand;
 import com.wrathOfLoD.Models.Entity.Character.Character;
 import com.wrathOfLoD.Models.Inventory.Inventory;
 import com.wrathOfLoD.Models.Items.TakeableItem;
@@ -72,13 +73,20 @@ public abstract class Entity {
         }
     }
 
+    /* NOTE: When an entity walks to a tile with a TakeableItem
+     * that item calls its encounter method that in return
+     * creates a pickUpItemCommand that eventually calls Entities
+     * pickUpItem()
+      */
     public void pickUpItem(TakeableItem item){
         this.inventory.addItem(item);
     }
 
     public void dropItem(TakeableItem item){
-        this.inventory.removeItem(item);
-        //call command that item was dropped
+        if(inventory.removeItem(item)){
+            ActionCommand dropItemCommand = new DropItemCommand(this,item);
+            dropItemCommand.execute();
+        }
     }
 
     public void doInteraction(Character character) {}

@@ -13,7 +13,7 @@ public abstract class TakeableItem extends Item{
 
     @Override
     public void encounter(Entity entity){
-        PickUpItemCommand pickUpItemCommand = new PickUpItemCommand(entity,this);
+        PickUpItemCommand pickUpItemCommand = new PickUpItemCommand(entity, this);
         pickUpItemCommand.execute();
     }
 
