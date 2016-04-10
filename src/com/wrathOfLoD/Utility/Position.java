@@ -115,12 +115,23 @@ public class Position{
 		return roundPosition(acQ, acR, acS, acH);
 	}
 
-	//FIXME check for rounding not maintaining q + r + s = 0 invariant
 	private static Position roundPosition(float qf, float rf, float sf, float hf){
 		int q = Math.round(qf);
 		int r = Math.round(rf);
 		int s = Math.round(sf);
 		int h = Math.round(hf);
+
+		//check that the invariant will still hold after rounding
+		if(Math.abs(qf - q) > Math.abs(rf - r) && Math.abs(qf - q) > Math.abs(sf - s)){
+			q = -1 * (r + s);
+		}
+		else if(Math.abs(rf - r) > Math.abs(sf - s)){
+			r = -1 * (q + s);
+		}
+		else{
+			s = -1 * (q + r);
+		}
+
 		return new Position(q, r, s, h);
 	}
 
