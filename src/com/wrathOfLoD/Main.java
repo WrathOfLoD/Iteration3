@@ -18,7 +18,7 @@ import com.wrathOfLoD.Utility.Position;
 import com.wrathOfLoD.Views.AreaView.AreaView;
 import com.wrathOfLoD.Views.AvatarIESView.AvatarIESView;
 import com.wrathOfLoD.Views.ContentDisplayStructure.GridStructure;
-import com.wrathOfLoD.Views.EquipmentView.EquipmentView;
+import com.wrathOfLoD.Views.ItemDisplayView.EquipmentView;
 import com.wrathOfLoD.Views.ItemDisplayView.InventoryView;
 import com.wrathOfLoD.Views.StatsView.StatsView;
 import com.wrathOfLoD.Views.ViewEngine;

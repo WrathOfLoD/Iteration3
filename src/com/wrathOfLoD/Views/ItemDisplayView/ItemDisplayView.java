@@ -4,6 +4,7 @@ import com.wrathOfLoD.Views.StaticView;
 import com.wrathOfLoD.Views.View;
 import com.wrathOfLoD.Views.ViewObjects.ItemViewObject;
 
+import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 
@@ -12,7 +13,16 @@ import java.util.ArrayList;
  */
 public abstract class ItemDisplayView extends StaticView {
 
+    private JPanel titlePanel;
+
     private ArrayList<ItemViewObject> ivoList = new ArrayList<ItemViewObject>(20);
+
+    public JPanel getTitlePanel() {
+        return titlePanel;
+    }
+    public void setTitlePanel(JPanel titlePanel) {
+        this.titlePanel = titlePanel;
+    }
 
     public ArrayList<ItemViewObject> getIvoList() {
         return ivoList;

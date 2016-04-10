@@ -62,6 +62,16 @@ public class GridStructure extends ContentDisplayStructure {
             return rowSlot;
         }
 
+        public int determineColumn(int index){
+            int columnSlot = index%getDimension().width;
+            return columnSlot;
+        }
+
+        public int determineRow(int index) {
+            int rowSlot = index/getDimension().width;
+            return rowSlot;
+        }
+
         public int calculateSlotWidth(int displayWidth, int numCols) {
             int slotWidth = (int)(displayWidth * (2.0/((3*numCols)+1)));
             return slotWidth;
