@@ -4,6 +4,7 @@ import com.wrathOfLoD.Models.Inventory.Inventory;
 import com.wrathOfLoD.Models.Items.EquippableItems.Weapons.SmasherWeapons.TwoHandWeapon;
 import com.wrathOfLoD.Models.Items.EquippableItems.Weapons.Weapon;
 
+import com.wrathOfLoD.Models.LocationTracker.LocationTrackerManager;
 import com.wrathOfLoD.Models.ModelEngine;
 import com.wrathOfLoD.Controllers.InputStates.ActionVendor;
 import com.wrathOfLoD.Controllers.InputStates.AvatarState;
@@ -59,12 +60,16 @@ public class Main {
 
         ModelEngine.getInstance().start();
 
+
         Avatar avatar = Avatar.getInstance();
         avatar.configureAvatar("Dave", new Position(0,0,0,0), new Smasher());
 
         MainController mainController = MainController.getInstance();
 
         InputState avatarState = new AvatarState();
+
+
+        //LocationTrackerManager.getInstance().registerEntity(avatar, avatar.getTargetManager());
 
 
         avatar.addToActionSet(ActionVendor.createMoveNorthAction());

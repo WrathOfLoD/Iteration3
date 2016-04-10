@@ -31,7 +31,7 @@ public class TimeModel {
         this.tickableList.add(tickable);
     }
 
-    public void removeTickable(Tickable tickable){
+    public void deregisterTickable(Tickable tickable){
         this.tickableList.remove(tickable);
     }
 
