@@ -10,11 +10,18 @@ public class StaticView extends View {
 
     private int viewWidth;
     private int viewHeight;
+    private JPanel contentPanel;
     private String backgroundImageFileName;
 
     public StaticView() {
     }
 
+    public JPanel getContentPanel() {
+        return contentPanel;
+    }
+    public void setContentPanel(JPanel contentPanel) {
+        this.contentPanel = contentPanel;
+    }
     public int getViewWidth() {
         return viewWidth;
     }
