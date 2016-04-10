@@ -115,6 +115,7 @@ public class Position{
 		return roundPosition(acQ, acR, acS, acH);
 	}
 
+	//FIXME check for rounding not maintaining q + r + s = 0 invariant
 	private static Position roundPosition(float qf, float rf, float sf, float hf){
 		int q = Math.round(qf);
 		int r = Math.round(rf);
@@ -196,10 +197,10 @@ public class Position{
 		dir = dir.planar(); //REVIEW, do I need this?
 		Position rightVector;
 		Position leftVector;
-		//TODO fix arc wings from •< to •>
+
 		if(horizontal){
-			rightVector = dir.clockwise().getPosVector();
-			leftVector = dir.counterClockwise().getPosVector();
+			rightVector = dir.counterClockwise().inversePlanar().getPosVector();
+			leftVector = dir.clockwise().inversePlanar().getPosVector();
 		}
 		else{
 			rightVector = dir.above().getPosVector();
