@@ -5,6 +5,8 @@ import com.wrathOfLoD.Models.Entity.Character.Character;
 import com.wrathOfLoD.Models.Inventory.Equipment;
 import com.wrathOfLoD.Models.Inventory.Inventory;
 import com.wrathOfLoD.Models.Items.EquippableItems.EquippableItem;
+import com.wrathOfLoD.Models.Stats.Stats;
+
 
 /**
  * Created by matthewdiaz on 4/9/16.
@@ -18,19 +20,24 @@ public abstract class EquipItemCommand extends ActionCommand {
         this.item = item;
     }
 
-    public abstract void equipHook(Equipment equipment);
+    /***** getter & setter for EquipItemCommand *******/
+
+    protected EquippableItem getItem(){ return this.item; }
+
+    protected Character getCharacter(){ return  this.character; }
+
+    /********* END Getters and Setters *********/
+
+    protected abstract void equipHook(Equipment equipment);
 
     @Override
     public void execute(){
         Inventory inventory = character.getInventory();
         Equipment equipment = character.getEquipment();
         if(inventory.removeItem(item)){
-           equipHook(equipment);
+            Stats characterStats = character.getStats();
+            characterStats.addTemporaryStats(item.getStatsModifiable());
+            equipHook(equipment);
         }
     }
-
-    protected EquippableItem getItem(){
-        return this.item;
-    }
-
 }

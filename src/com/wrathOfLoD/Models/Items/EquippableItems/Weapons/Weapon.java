@@ -11,19 +11,15 @@ import com.wrathOfLoD.Models.Stats.StatsModifiable;
  * Created by matthewdiaz on 4/7/16.
  */
 public abstract class Weapon extends EquippableItem{
-    private int attackSpeed;
-    private int baseDamage;
     private int coolDown;
     private int windUp;
 
     public Weapon(){
-        this("space weapon", StatsModifiable.createWeaponBonusStatsModifiable(10), 1, 1, 1, 1);
+        this("space weapon", StatsModifiable.createWeaponBonusStatsModifiable(10), 1, 1);
     }
 
-    public Weapon( String name, StatsModifiable stats, int attackSpeed, int baseDamage, int coolDown, int windUp){
+    public Weapon( String name, StatsModifiable stats, int coolDown, int windUp){
         super(name,stats);
-        this.attackSpeed = attackSpeed;
-        this.baseDamage = baseDamage;
         this.coolDown = coolDown;
         this.windUp = windUp;
     }
@@ -33,10 +29,6 @@ public abstract class Weapon extends EquippableItem{
     }
 
     /***** getter & setter for Weapon *******/
-
-    public int getAttackSpeed(){ return this.attackSpeed; }
-
-    public int getBaseDamage(){ return this.baseDamage; }
 
     public int getCoolDown(){ return this.coolDown; }
 

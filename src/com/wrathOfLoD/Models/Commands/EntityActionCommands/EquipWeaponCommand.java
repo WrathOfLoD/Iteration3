@@ -13,8 +13,8 @@ public class EquipWeaponCommand extends EquipItemCommand{
         super(character,weapon);
     }
 
-    //Is this cast ok??!!!
-    public void equipHook(Equipment equipment){
+    @Override
+    protected void equipHook(Equipment equipment){
         EquippableItem item = getItem();
         equipment.equip((Weapon)item);
     }

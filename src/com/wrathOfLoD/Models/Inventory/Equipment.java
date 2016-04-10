@@ -34,10 +34,6 @@ public class Equipment {
         this.helm = null;
     }
 
-    public void equip(Weapon weapon) {
-        this.weapon = weapon;
-    }
-
     public void equip(Armor armor){
         this.armor = armor;
     }
@@ -50,15 +46,31 @@ public class Equipment {
         this.helm = helm;
     }
 
-    public void unequip(Weapon weapon) {
-        if(weapon == this.weapon){
-            equip(defaultWeapon);
-        }
+    public void equip(Weapon weapon) {
+        this.weapon = weapon;
     }
 
     public void unequip(Armor armor){
-        if(armor == this.armor){
+        if(this.armor == armor){
             this.armor = null;
+        }
+    }
+
+    public void unequip(Greaves greaves){
+        if(this.greaves == greaves){
+            this.armor = null;
+        }
+    }
+
+    public void unequip(Helm helm){
+        if(this.helm == helm){
+            this.armor = null;
+        }
+    }
+
+    public void unequip(Weapon weapon) {
+        if(this.weapon == weapon){
+            equip(defaultWeapon);
         }
     }
 }
