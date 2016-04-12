@@ -21,9 +21,21 @@ public class MoveAction extends Action {
         this.changeDirection = changeDirection;
     }
 
+//    @Override
+//    public void keyPressed(KeyEvent e) {
+//        System.out.println("Key pressed");
+//        System.out.println(e.getKeyCode());
+//        System.out.println(getCurrCode());
+//        System.out.println(listenting());
+//        if(e.getKeyCode() == getCurrCode() && listenting()){
+//            changeDirection.execute();
+//            System.out.println("Executing!");
+//        }
+//    }
+
     @Override
-    public void keyPressed(KeyEvent e) {
-        System.out.println("Key pressed");
+    public void keyTyped(KeyEvent e) {
+        System.out.println("Key typed");
         System.out.println(e.getKeyCode());
         System.out.println(getCurrCode());
         System.out.println(listenting());
@@ -31,11 +43,6 @@ public class MoveAction extends Action {
             changeDirection.execute();
             System.out.println("Executing!");
         }
-    }
-
-    @Override
-    public void keyTyped(KeyEvent e) {
-
     }
 
     @Override

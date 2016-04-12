@@ -23,6 +23,10 @@ public abstract class Action implements KeyListener{
     }
 
     public void keyPressed(KeyEvent keyEvent){
+        System.out.println("Key typed");
+        System.out.println(keyEvent.getKeyCode());
+        System.out.println(getCurrCode());
+        System.out.println(listenting());
         if(keyEvent.getKeyCode() == currKeyCode && isListening){
             myAction.execute();
         }
