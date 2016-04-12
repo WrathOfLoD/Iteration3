@@ -7,7 +7,7 @@ import com.wrathOfLoD.Models.Items.TakeableItem;
  */
 public interface InventoryObserver {
 
-    public void alertItemAdded(TakeableItem item);
-    public void alertItemDropped(TakeableItem item);
+    void alertItemAdded(TakeableItem item);
+    void alertItemDropped(TakeableItem item);
 
 }

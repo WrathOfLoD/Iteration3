@@ -35,4 +35,8 @@ public abstract class ItemDisplayView extends StaticView {
         ivoList.add(ivo);
     }
 
+    public void paintComponent(Graphics g) {
+        super.paintComponent(g);
+    }
+
 }

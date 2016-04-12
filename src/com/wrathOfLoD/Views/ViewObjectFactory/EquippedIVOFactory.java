@@ -18,6 +18,7 @@ public class EquippedIVOFactory {
         if(item!=null) {
             EquippedItemViewObject ivo = new EquippedItemViewObject(item);
             Image image = ImageFactory.generateImage(Config.instance().getEquippedIVOPath()+item.getName()+Config.instance().getImageExtension());
+            System.out.println("Accessing filepath: " + Config.instance().getEquippedIVOPath()+item.getName()+Config.instance().getImageExtension());
             ivo.setImage(image);
             return ivo;
 

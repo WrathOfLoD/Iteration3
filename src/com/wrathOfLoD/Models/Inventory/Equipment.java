@@ -22,7 +22,8 @@ public class Equipment {
         System.out.println("ATTEMPTING AN Equipment change from equipment");
 
         for (EquipmentObserver o: observers) {
-            o.alertEquipmentChange(this);
+            //o.alertEquipmentChange(this);
+            o.alertEquipmentChange();
         }
     }
 
