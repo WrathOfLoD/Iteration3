@@ -8,8 +8,10 @@ import com.wrathOfLoD.Utility.Position;
  * Created by matthewdiaz on 4/7/16.
  */
 public class TemporaryConsumable extends ConsumableItem {
-    public TemporaryConsumable(String name, StatsModifiable stats){
+    int timeEffect;
+    public TemporaryConsumable(String name, StatsModifiable stats, int timeEffect){
         super(name, stats);
+        this.timeEffect = timeEffect;
     }
 
     @Override
