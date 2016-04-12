@@ -1,0 +1,233 @@
+package com.wrathOfLoD.SaveLoad;
+
+import com.wrathOfLoD.Models.Ability.AbilityManager;
+import com.wrathOfLoD.Models.Entity.Character.Avatar;
+import com.wrathOfLoD.Models.Entity.Character.Character;
+import com.wrathOfLoD.Models.Entity.Character.NPC;
+import com.wrathOfLoD.Models.Entity.Character.Pet;
+import com.wrathOfLoD.Models.Entity.Entity;
+import com.wrathOfLoD.Models.Entity.Mount;
+import com.wrathOfLoD.Models.Inventory.Equipment;
+import com.wrathOfLoD.Models.Inventory.Inventory;
+import com.wrathOfLoD.Models.Items.*;
+import com.wrathOfLoD.Models.Items.ConsumableItems.ConsumableItem;
+import com.wrathOfLoD.Models.Items.EquippableItems.Armor;
+import com.wrathOfLoD.Models.Items.EquippableItems.EquippableItem;
+import com.wrathOfLoD.Models.Items.EquippableItems.Weapons.Weapon;
+import com.wrathOfLoD.Models.Map.Map;
+import com.wrathOfLoD.Models.Map.MapArea;
+import com.wrathOfLoD.Models.Map.Terrain.Terrain;
+import com.wrathOfLoD.Models.Map.Tile;
+import com.wrathOfLoD.Models.Map.TilePillar;
+import com.wrathOfLoD.Models.Occupation.Occupation;
+import com.wrathOfLoD.Models.Skill.SkillManager;
+import com.wrathOfLoD.Models.Stats.Stats;
+import com.wrathOfLoD.Utility.Position;
+import com.wrathOfLoD.VisitorInterfaces.*;
+import javafx.geometry.Pos;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerConfigurationException;
+import javax.xml.transform.TransformerException;
+import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.stream.StreamResult;
+import java.io.File;
+import java.util.*;
+
+/**
+ * Created by icavitt on 4/12/2016.
+ */
+public class XMLSaver implements Saver,EntityPropertyVisitor,EntityVisitor,HeldItemVisitor,ItemVisitor,MapVisitor,TileVisitor {
+    private String fileName;
+    private Document doc;
+    private Position currentPostion = new Position();
+    public XMLSaver(){
+
+    }
+
+    @Override
+    public void save(String fileName) {
+        this.fileName = fileName + ".xml";
+        DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
+        DocumentBuilder docBuilder = null;
+        try {
+            docBuilder = docFactory.newDocumentBuilder();
+        } catch (ParserConfigurationException e) {
+            System.out.println("your save failed to create the doc builder");
+            e.printStackTrace();
+        }
+        doc = docBuilder.newDocument();
+        //want to add an attribute to the root element that says what level(string that correspionds to level factory string) this is
+        Element root = doc.createElement("YourSavedGame");
+        doc.appendChild(root);
+        Map.getInstance().accept(this);
+        completeSave();
+    }
+
+    public void completeSave(){
+        TransformerFactory transformerFactory = TransformerFactory.newInstance();
+        Transformer transformer = null;
+        try {
+            transformer = transformerFactory.newTransformer();
+        } catch (TransformerConfigurationException e) {
+            e.printStackTrace();
+        }
+        DOMSource source = new DOMSource(doc);
+        StreamResult result = new StreamResult(new File(fileName));
+        try {
+            transformer.transform(source, result);
+        } catch (TransformerException e) {
+            e.printStackTrace();
+        }
+
+        System.out.println("File saved!");
+    }
+
+    @Override
+    public void visitStats(Stats stats) {
+
+    }
+
+    @Override
+    public void visitSkillManager(SkillManager skillManager) {
+
+    }
+
+    @Override
+    public void visitAbilityManager(AbilityManager abilityManager) {
+
+    }
+
+    @Override
+    public void visitOccupation(Occupation occupation) {
+
+    }
+
+    @Override
+    public void visitEntity(Entity entity) {
+
+    }
+
+    @Override
+    public void visitCharacter(Character character) {
+
+    }
+
+    @Override
+    public void visitAvatar(Avatar avatar) {
+
+    }
+
+    @Override
+    public void visitNPC(NPC npc) {
+
+    }
+
+    @Override
+    public void visitPet(Pet pet) {
+
+    }
+
+    @Override
+    public void visitMount(Mount mount) {
+
+    }
+
+    @Override
+    public void visitInventory(Inventory inventory) {
+
+    }
+
+    @Override
+    public void visitEquipment(Equipment equipment) {
+
+    }
+
+    @Override
+    public void visitItem(Item item) {
+
+    }
+
+    @Override
+    public void visitTakeable(TakeableItem takeableItem) {
+
+    }
+
+    @Override
+    public void visitOneshotItem(OneShotItem oneShotItem) {
+
+    }
+
+    @Override
+    public void visitObstacle(ObstacleItem obstacleItem) {
+
+    }
+
+    @Override
+    public void visitInteractiveItem(InteractiveItem interactiveItem) {
+
+    }
+
+    @Override
+    public void visitConsumableItem(ConsumableItem consumableItem) {
+
+    }
+
+    @Override
+    public void visitEquippable(EquippableItem equippableItem) {
+
+    }
+
+    @Override
+    public void visitArmor(Armor armor) {
+
+    }
+
+    @Override
+    public void visitWeapon(Weapon weapon) {
+
+    }
+
+    @Override
+    public void visitMap(Map map) {
+        for(MapArea ma : map.getMapAreas()){
+            ma.accept(this);
+        }
+    }
+
+    @Override
+    public void visitMapArea(MapArea mapArea) {
+        /**
+         * write something to the document to identify mapArea
+         */
+        HashMap<Position, TilePillar> tilePillarMap= mapArea.getTilePillarMap();
+        for(Position position : tilePillarMap.keySet()){
+            currentPostion = position;
+            TilePillar currentTilePillar = tilePillarMap.get(currentPostion);
+            currentPostion.setH(0);
+            for(int h = 0; h != 10; ++h){
+                currentTilePillar.getTile(currentPostion).accept(this);
+            }
+        }
+    }
+
+    @Override
+    public void visitTileColumn(TilePillar tilePillar) {
+
+    }
+
+    @Override
+    public void visitTile(Tile tile) {
+
+    }
+
+    @Override
+    public void visitTerrain(Terrain terrain) {
+
+    }
+}
