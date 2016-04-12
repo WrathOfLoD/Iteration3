@@ -31,7 +31,8 @@ public abstract class EquipItemCommand extends ActionCommand {
     @Override
     public void execute(){
         Inventory inventory = character.getInventory();
-        if(inventory.removeItem(item)){
+        if(inventory.hasItem(item)){
+            inventory.removeItem(item);
             Equipment equipment = character.getEquipment();
             equipHook(equipment);
             Stats characterStats = character.getStats();

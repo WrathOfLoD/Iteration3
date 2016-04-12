@@ -3,7 +3,6 @@ package com.wrathOfLoD.Models.Commands.EntityActionCommands.UnequipItemCommands;
 import com.wrathOfLoD.Models.Commands.ActionCommand;
 import com.wrathOfLoD.Models.Entity.Character.Character;
 import com.wrathOfLoD.Models.Inventory.Equipment;
-import com.wrathOfLoD.Models.Inventory.Inventory;
 import com.wrathOfLoD.Models.Items.EquippableItems.EquippableItem;
 import com.wrathOfLoD.Models.Stats.Stats;
 
@@ -32,8 +31,7 @@ public abstract class UnequipItemCommand extends ActionCommand{
     public void execute(){
         Equipment equipment = character.getEquipment();
         if(unequipHook(equipment)){
-            Inventory inventory = character.getInventory();
-            inventory.addItem(item);
+            character.insertItemToInventory(item);
 
             Stats characterStats = character.getStats();
             characterStats.removeTemporaryStats(item.getStatsModifiable());

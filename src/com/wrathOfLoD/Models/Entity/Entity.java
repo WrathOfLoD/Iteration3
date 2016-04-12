@@ -73,17 +73,14 @@ public abstract class Entity {
         }
     }
 
-    /* NOTE: When an entity walks to a tile with a TakeableItem
-     * that item calls its encounter method that in return
-     * creates a pickUpItemCommand that eventually calls Entities
-     * pickUpItem()
-      */
-    public void pickUpItem(TakeableItem item){
+    public void insertItemToInventory(TakeableItem item){
         this.inventory.addItem(item);
     }
 
+    //drops item to map by calling dropItemCommand
     public void dropItem(TakeableItem item){
-        if(inventory.removeItem(item)){
+        if(inventory.hasItem(item)){
+            inventory.removeItem(item);
             ActionCommand dropItemCommand = new DropItemCommand(this,item);
             dropItemCommand.execute();
         }
