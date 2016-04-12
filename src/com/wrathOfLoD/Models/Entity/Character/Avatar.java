@@ -1,6 +1,7 @@
 package com.wrathOfLoD.Models.Entity.Character;
 
 import com.wrathOfLoD.Controllers.InputStates.Action.Action;
+import com.wrathOfLoD.Controllers.InputStates.ActionVendor;
 import com.wrathOfLoD.Models.ActionsHolder;
 import com.wrathOfLoD.Models.Inventory.Equipment;
 import com.wrathOfLoD.Models.Inventory.Inventory;
@@ -24,13 +25,13 @@ public class Avatar extends Character implements ActionsHolder {
 
     private Avatar() {
         super();
-        this.initializeActionSet();
     }
 
     public static Avatar getInstance(){
-        if(avatar == null) {
+        if (avatar == null) {
 
             avatar = new Avatar();
+            avatar.initializeActionSet();
         }
 
         return avatar;
@@ -50,6 +51,15 @@ public class Avatar extends Character implements ActionsHolder {
     @Override
     public void initializeActionSet() {
         this.actionSet = new HashSet<>();
+        // Add default Avatar Movement actions
+        this.addToActionSet(ActionVendor.createMoveNorthAction());
+        this.addToActionSet(ActionVendor.createMoveNorthEastAction());
+        this.addToActionSet(ActionVendor.createMoveNorthWestAction());
+        this.addToActionSet(ActionVendor.createMoveSouthAction());
+        this.addToActionSet(ActionVendor.createMoveSouthEastAction());
+        this.addToActionSet(ActionVendor.createMoveSouthWestAction());
+
+
     }
 
     @Override

@@ -14,22 +14,24 @@ public abstract class Action implements KeyListener{
     private int currKeyCode;
     private ActionCommand myAction;
 
-    public Action(){
-    }
-
     public Action(int currKeyCode, ActionCommand myAction){
         this.currKeyCode  = currKeyCode;
         this.myAction = myAction;
     }
 
+    @Override
     public void keyPressed(KeyEvent keyEvent){
-        System.out.println("Key typed");
-        System.out.println(keyEvent.getKeyCode());
-        System.out.println(getCurrCode());
-        System.out.println(listenting());
         if(keyEvent.getKeyCode() == currKeyCode && isListening){
             myAction.execute();
         }
+    }
+
+    @Override
+    public void keyReleased(KeyEvent ke) {
+    }
+
+    @Override
+    public void keyTyped(KeyEvent e) {
     }
 
     public void activate(){
