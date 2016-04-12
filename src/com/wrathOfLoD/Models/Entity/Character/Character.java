@@ -74,16 +74,6 @@ public abstract class Character extends Entity {
         item.unequip(this);
     }
 
-    public void consume(PermanentConsumable permanentConsumable){
-        Stats characterStats = getStats();
-        characterStats.modifyStats(permanentConsumable.getStatsModifiable());
-    }
-
-    public void consume(TemporaryConsumable temporaryConsumable){
-        Stats characterStats = getStats();
-        characterStats.addTemporaryStats(temporaryConsumable.getStatsModifiable());
-    }
-
     public void attack() {}
 
     public void levelUp(){
