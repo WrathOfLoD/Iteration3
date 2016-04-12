@@ -8,10 +8,11 @@ import java.util.List;
  */
 public class Position{
 
-	private int q;
-	private int r;
-	private int s;
-	private int h;
+	private int q = 0;
+	private int r = 0;
+	private int s = 0;
+	private int h = 0;
+
 
 	public Position(int q, int r, int s, int h){
 		if(q + r + s != 0){
@@ -28,6 +29,9 @@ public class Position{
 		this.r = r;
 		this.s = -1 * (q + r);
 		this.h = h;
+	}
+
+	public Position() {
 	}
 
 	public static Position copyOf(Position pos){
@@ -228,6 +232,11 @@ public class Position{
 		}
 
 		return arc;
+	}
+
+
+	public void setH(int h) {
+		this.h = h;
 	}
 
 }
