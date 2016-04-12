@@ -7,6 +7,7 @@ import com.wrathOfLoD.Models.Entity.Character.Character;
 import com.wrathOfLoD.Models.Inventory.Inventory;
 import com.wrathOfLoD.Models.Items.TakeableItem;
 import com.wrathOfLoD.Models.Stats.Stats;
+import com.wrathOfLoD.Models.Stats.StatsModifiable;
 import com.wrathOfLoD.Utility.Direction;
 import com.wrathOfLoD.Utility.Position;
 
@@ -84,6 +85,14 @@ public abstract class Entity {
             ActionCommand dropItemCommand = new DropItemCommand(this,item);
             dropItemCommand.execute();
         }
+    }
+
+    public void heal(int healAmount){
+        stats.modifyStats(StatsModifiable.createHealthStatsModifiable(healAmount));
+    }
+
+    public void takeDamage(int damageAmount){
+        stats.modifyStats(StatsModifiable.createHealthStatsModifiable(damageAmount));
     }
 
     public void doInteraction(Character character) {}

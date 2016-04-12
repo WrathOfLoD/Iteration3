@@ -4,6 +4,8 @@ import com.wrathOfLoD.Models.Ability.AbilityManager;
 import com.wrathOfLoD.Models.Items.EquippableItems.Weapons.SmasherWeapons.SmasherWeapon;
 import com.wrathOfLoD.Models.Items.EquippableItems.Weapons.SneakWeapons.SneakWeapon;
 import com.wrathOfLoD.Models.Items.EquippableItems.Weapons.SummonerWeapons.SummonerWeapon;
+import com.wrathOfLoD.Models.Skill.SkillManager;
+import com.wrathOfLoD.Models.Skill.SmasherSkillManager;
 import com.wrathOfLoD.Models.Stats.Stats;
 import com.wrathOfLoD.Models.Stats.StatsModifiable;
 
@@ -37,5 +39,10 @@ public class Smasher extends Occupation {
     public void addAbilities(AbilityManager abilityManager){
         super.addAbilities(abilityManager);
         //TODO: ADD ABILITIES, CALL SUPER
+    }
+
+    @Override
+    public SkillManager createSkillManager() {
+        return new SmasherSkillManager();
     }
 }
