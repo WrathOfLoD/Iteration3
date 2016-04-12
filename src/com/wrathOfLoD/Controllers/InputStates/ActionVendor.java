@@ -26,14 +26,17 @@ public class ActionVendor {
         ActionCommand selectUpCommand = ActionCommandVendor.createSelectUpCommand(inventoryView);
         return new ChangeSelectionAction(KeyEvent.VK_W, selectUpCommand);
     }
+
     public static Action createSelectDownAction(InventoryView inventoryView) {
         ActionCommand selectDownCommand = ActionCommandVendor.createSelectDownCommand(inventoryView);
         return new ChangeSelectionAction(KeyEvent.VK_S, selectDownCommand);
     }
+
     public static Action createSelectLeftAction(InventoryView inventoryView) {
         ActionCommand selectLeftCommand = ActionCommandVendor.createSelectLeftCommand(inventoryView);
         return new ChangeSelectionAction(KeyEvent.VK_A, selectLeftCommand);
     }
+
     public static Action createSelectRightAction(InventoryView inventoryView) {
         ActionCommand selectRightCommand = ActionCommandVendor.createSelectRightCommand(inventoryView);
         return new ChangeSelectionAction(KeyEvent.VK_D, selectRightCommand);
