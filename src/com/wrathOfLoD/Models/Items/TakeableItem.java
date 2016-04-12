@@ -11,13 +11,9 @@ import com.wrathOfLoD.Utility.Position;
 public abstract class TakeableItem extends Item{
     public TakeableItem(String name ){super(name);}
 
-    public TakeableItem(Position position, String name){
-        super(position, name);
-    }
-
     @Override
     public void encounter(Entity entity){
-        PickUpItemCommand pickUpItemCommand = new PickUpItemCommand(entity,this);
+        PickUpItemCommand pickUpItemCommand = new PickUpItemCommand(entity, this);
         pickUpItemCommand.execute();
     }
 

@@ -9,8 +9,8 @@ import com.wrathOfLoD.Utility.Position;
  * Created by matthewdiaz on 4/7/16.
  */
 public class RangedWeapon extends Weapon implements SneakWeapon {
-    public RangedWeapon(String name, StatsModifiable stats, int attackSpeed, int baseDamage, int coolDown, int windUp) {
-        super(name, stats, attackSpeed, baseDamage, coolDown, windUp);
+    public RangedWeapon(String name, StatsModifiable stats, int coolDown, int windUp) {
+        super(name, stats, coolDown, windUp);
     }
     @Override
     protected boolean occupationCheckHook(Occupation o) {

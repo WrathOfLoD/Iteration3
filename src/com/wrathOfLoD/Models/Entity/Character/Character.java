@@ -6,6 +6,7 @@ import com.wrathOfLoD.Models.Inventory.Equipment;
 import com.wrathOfLoD.Models.Items.ConsumableItems.PermanentConsumable;
 import com.wrathOfLoD.Models.Items.ConsumableItems.TemporaryConsumable;
 import com.wrathOfLoD.Models.Items.EquippableItems.Armor;
+import com.wrathOfLoD.Models.Items.EquippableItems.EquippableItem;
 import com.wrathOfLoD.Models.Items.EquippableItems.Weapons.Weapon;
 import com.wrathOfLoD.Models.Items.InteractiveItem;
 import com.wrathOfLoD.Models.Items.TakeableItem;
@@ -65,26 +66,8 @@ public abstract class Character extends Entity {
         item.use(this);
     }
 
-    public void equip(Weapon weapon){
-        List inventoryItems = getInventory().getItemList();
-        if(inventoryItems.remove(weapon)){
-            this.equipment.equip(weapon);
-        }
-    }
-
-    public void equip(Armor armor){
-        List inventoryItems = getInventory().getItemList();
-        if(inventoryItems.remove(armor)){
-            this.equipment.equip(armor);
-        }
-    }
-
-    public void unequip(Weapon weapon){
-        this.equipment.unequip(weapon);
-    }
-
-    public void unequip(Armor armor){
-        this.equipment.unequip(armor);
+    public void unequip(EquippableItem item){
+        item.unequip(this);
     }
 
     public void consume(PermanentConsumable permanentConsumable){

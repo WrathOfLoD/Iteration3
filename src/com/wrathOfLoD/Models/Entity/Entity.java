@@ -2,6 +2,7 @@ package com.wrathOfLoD.Models.Entity;
 
 import com.wrathOfLoD.Models.Commands.ActionCommand;
 import com.wrathOfLoD.Models.Commands.ActionCommandVendor;
+import com.wrathOfLoD.Models.Commands.EntityActionCommands.DropItemCommand;
 import com.wrathOfLoD.Models.Entity.Character.Character;
 import com.wrathOfLoD.Models.Inventory.Inventory;
 import com.wrathOfLoD.Models.Items.TakeableItem;
@@ -72,16 +73,17 @@ public abstract class Entity {
         }
     }
 
-    public void pickUpItem(TakeableItem item){
-        //update the position to item to be the entities position ?? <= necessary
-        item.updatePosition(this.getPosition());
-
+    public void insertItemToInventory(TakeableItem item){
         this.inventory.addItem(item);
     }
 
+    //drops item to map by calling dropItemCommand
     public void dropItem(TakeableItem item){
-        this.inventory.removeItem(item);
-        //call command that item was dropped
+        if(inventory.hasItem(item)){
+            inventory.removeItem(item);
+            ActionCommand dropItemCommand = new DropItemCommand(this,item);
+            dropItemCommand.execute();
+        }
     }
 
     public void doInteraction(Character character) {}

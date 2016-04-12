@@ -120,6 +120,18 @@ public class Position{
 		int r = Math.round(rf);
 		int s = Math.round(sf);
 		int h = Math.round(hf);
+
+		//check that the invariant will still hold after rounding
+		if(Math.abs(qf - q) > Math.abs(rf - r) && Math.abs(qf - q) > Math.abs(sf - s)){
+			q = -1 * (r + s);
+		}
+		else if(Math.abs(rf - r) > Math.abs(sf - s)){
+			r = -1 * (q + s);
+		}
+		else{
+			s = -1 * (q + r);
+		}
+
 		return new Position(q, r, s, h);
 	}
 
@@ -141,6 +153,7 @@ public class Position{
 	//drawing shapes :D
 
 	//drawing a line in a straight direction
+	//spatial
 	public static List<Position> drawLine(Position origin, Direction dir, int range, boolean includeOrigin){
 
 		Position deltaVector = scalarMultiply(dir.getPosVector(), range);
@@ -149,7 +162,8 @@ public class Position{
 		return drawline(origin, target, range, includeOrigin);
 	}
 
-	//drawing a line at a target in 3D space
+	//drawing a line to a target
+	//spatial
 	public static List<Position> drawline(Position origin, Position target, int range, boolean includeOrigin){
 		List<Position> line = new ArrayList<Position>();
 
@@ -167,6 +181,53 @@ public class Position{
 		}
 
 		return line;
+	}
+
+	//drawing a fan (can be horizontal or vertical)
+	//planar (horizontal or vertical)
+	public static List<Position> drawFan(Position origin, Direction dir, boolean horizontal, int range, boolean includeOrigin){
+		List<Position> fan = new ArrayList<Position>();
+
+		if(includeOrigin){
+			fan.add(origin);
+		}
+
+		for(int i = 1; i < range; i++){
+			List<Position> wave  = drawArc(origin, dir, horizontal, i);
+			fan.addAll(wave);
+		}
+
+		return fan;
+	}
+
+	//drawing an arc (slice of a fan )
+	//planar (horizontal or vertical)
+	public static List<Position> drawArc(Position origin, Direction dir, boolean horizontal, int range){
+		List<Position> arc = new ArrayList<Position>();
+
+		dir = dir.planar(); //REVIEW, do I need this?
+		Position rightVector;
+		Position leftVector;
+
+		if(horizontal){
+			rightVector = dir.counterClockwise().inversePlanar().getPosVector();
+			leftVector = dir.clockwise().inversePlanar().getPosVector();
+		}
+		else{
+			rightVector = dir.above().getPosVector();
+			leftVector = dir.below().getPosVector();
+		}
+
+		Position arcCenter = vectorAdd(origin, scalarMultiply(dir.getPosVector(), range));
+		arc.add(arcCenter);
+		for(int i = 1; i < range/2; i++){
+			Position arcRight = vectorAdd(arcCenter, scalarMultiply(rightVector, i));
+			arc.add(arcRight);
+			Position arcLeft = vectorAdd(arcCenter, scalarMultiply(leftVector, i));
+			arc.add(arcLeft);
+		}
+
+		return arc;
 	}
 
 }

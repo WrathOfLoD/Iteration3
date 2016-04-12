@@ -16,11 +16,6 @@ public abstract class ConsumableItem extends TakeableItem {
         this.statsModifiable = statsModifiable;
     }
 
-    public ConsumableItem(Position position, String name, StatsModifiable statsModifiable){
-        super(position, name);
-        this.statsModifiable = statsModifiable;
-    }
-
     public StatsModifiable getStatsModifiable(){
         return statsModifiable;
     }

@@ -26,11 +26,20 @@ public abstract class ContentDisplayStructure {
     public abstract int calculateYCoord(int displayHeight, int index, int numRows, int numCols); //may be deprecated
     public abstract int determineColumn(int index, int numCols);
     public abstract int determineRow(int index, int numCols);
+    public abstract int determineColumn(int index);
+    public abstract int determineRow(int index);
     public abstract int calculateSlotWidth(int displayWidth, int numCols);
     public abstract int calculateSlotHeight(int displayHeight, int numRows);
     public abstract int calculateSlotWidth(int displayWidth);
     public abstract int calculateSlotHeight(int displayHeight);
 
+    public int getNumCols() {
+        return (int)this.getDimension().getWidth();
+    }
+
+    public int getNumRows() {
+        return (int)this.getDimension().getHeight();
+    }
 
     /* Could probably have this abstract class then have the subclasses implement the methods
         but no need to make static. Will just have an instance in whatever class uses?
