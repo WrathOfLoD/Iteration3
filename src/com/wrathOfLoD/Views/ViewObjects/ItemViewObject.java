@@ -35,6 +35,11 @@ public class ItemViewObject extends ViewObject{
         isSelected = selected;
     }
 
+
+    public ItemViewObject(){
+
+    }
+
     public ItemViewObject(Item item) {
         setItem(item);
         //initializeImage(item);

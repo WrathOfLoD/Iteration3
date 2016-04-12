@@ -1,7 +1,9 @@
 package com.wrathOfLoD;
 
 import com.wrathOfLoD.Controllers.InputStates.InventoryState;
+import com.wrathOfLoD.Models.Inventory.Equipment;
 import com.wrathOfLoD.Models.Inventory.Inventory;
+import com.wrathOfLoD.Models.Items.EquippableItems.Helm;
 import com.wrathOfLoD.Models.Items.EquippableItems.Weapons.SmasherWeapons.TwoHandWeapon;
 import com.wrathOfLoD.Models.Items.EquippableItems.Weapons.Weapon;
 
@@ -14,6 +16,7 @@ import com.wrathOfLoD.Controllers.MainController;
 import com.wrathOfLoD.Models.Commands.ActionCommandVendor;
 import com.wrathOfLoD.Models.Entity.Character.Avatar;
 import com.wrathOfLoD.Models.Occupation.Smasher;
+import com.wrathOfLoD.Models.Stats.StatsModifiable;
 import com.wrathOfLoD.Utility.Direction;
 import com.wrathOfLoD.Utility.Position;
 import com.wrathOfLoD.Views.AreaView.AreaView;
@@ -36,6 +39,11 @@ public class Main {
 
         TwoHandWeapon hammer = new TwoHandWeapon("hammer");
         TwoHandWeapon hammer2 = new TwoHandWeapon("hammer");
+        Helm helm = new Helm("helm");
+
+        Equipment equipment = new Equipment();
+        equipment.equip(helm);
+        equipment.equip(hammer);
 
         inventory.addItem(hammer);
         inventory.addItem(hammer2);
@@ -53,7 +61,8 @@ public class Main {
         InventoryView inventoryView = new InventoryView(inventory, new GridStructure(new Dimension(4,6)));
 
         StatsView statsView = new StatsView();
-        EquipmentView equipmentView = new EquipmentView();
+        //EquipmentView equipmentView = new EquipmentView();
+        EquipmentView equipmentView = new EquipmentView(equipment);
         AvatarIESView avatarIESView = new AvatarIESView(inventoryView, statsView, equipmentView);
         ViewManager vm = new ViewManager(areaView, avatarIESView);
 
@@ -94,6 +103,9 @@ public class Main {
 //        Thread.sleep(3000);
 //        vm.removeView(avatarIESView);
 //
+        Thread.sleep(3000);
+        Helm helm2 = new Helm("helm2");
+        equipment.equip(helm2);
 
     }
 }

@@ -1,6 +1,7 @@
 package com.wrathOfLoD.Views.ViewObjects;
 
 import com.wrathOfLoD.Models.Items.EquippableItems.EquippableItem;
+import com.wrathOfLoD.Models.Items.Item;
 import com.wrathOfLoD.Utility.Config;
 import com.wrathOfLoD.Views.ImageFactory.ImageFactory;
 
@@ -11,6 +12,10 @@ public class EquippedItemViewObject extends ItemViewObject {
 
     public EquippedItemViewObject(EquippableItem item) {
         super(item);
+    }
+
+    public EquippedItemViewObject() {
+
     }
 
     public void initializeImage() {

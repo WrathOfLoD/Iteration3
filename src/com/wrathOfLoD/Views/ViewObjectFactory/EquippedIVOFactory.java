@@ -15,10 +15,16 @@ import java.awt.*;
 public class EquippedIVOFactory {
 
     public static EquippedItemViewObject generateEquippedIVO(EquippableItem item) {
-        EquippedItemViewObject ivo = new EquippedItemViewObject(item);
-        Image image = ImageFactory.generateImage(Config.instance().getEquippedIVOPath()+item.getName()+Config.instance().getImageExtension());
-        ivo.setImage(image);
-        return ivo;
+        if(item!=null) {
+            EquippedItemViewObject ivo = new EquippedItemViewObject(item);
+            Image image = ImageFactory.generateImage(Config.instance().getEquippedIVOPath()+item.getName()+Config.instance().getImageExtension());
+            ivo.setImage(image);
+            return ivo;
+
+        } else {
+            return new EquippedItemViewObject(); // TODO: 4/12/2016 is doing this ok? relying on an empty constructor to create null EquippedIVO into Slots
+        }
+
     }
 
 }

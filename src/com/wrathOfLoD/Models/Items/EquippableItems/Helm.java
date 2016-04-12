@@ -16,6 +16,10 @@ public class Helm extends EquippableItem{
         super( name, stats);
     }
 
+    public Helm(String name) { // TODO: 4/12/2016 edit this? here for lsp conformance and testing  
+        super(name);
+    }
+
     @Override
     protected void equip(Character character){
         EquipItemCommand equipHelmCommand = new EquipHelmCommand(character, this);
