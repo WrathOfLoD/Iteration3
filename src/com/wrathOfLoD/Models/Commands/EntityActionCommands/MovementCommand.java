@@ -1,6 +1,7 @@
 package com.wrathOfLoD.Models.Commands.EntityActionCommands;
 
 import com.wrathOfLoD.Controllers.InputStates.Action.Action;
+import com.wrathOfLoD.GameClock.Fuseable;
 import com.wrathOfLoD.GameClock.Tickable;
 import com.wrathOfLoD.GameClock.TimeModel;
 import com.wrathOfLoD.Models.Commands.ActionCommand;
@@ -13,7 +14,7 @@ import com.wrathOfLoD.Utility.Position;
 /**
  * Created by icavitt on 4/7/2016.
  */
-public class MovementCommand extends ActionCommand implements Tickable{
+public class MovementCommand extends ActionCommand implements Fuseable{
     private Entity entity;
     private Position currentPosition;
     private Position destinationPosition;
@@ -30,7 +31,7 @@ public class MovementCommand extends ActionCommand implements Tickable{
     public void execute() {
         currentPosition = entity.getPosition();
         destinationPosition = currentPosition.getPosInDir(movingDirection);
-        movementTicks = 60 - entity.getStats().getMovement(); //TODO: MAX TICKS - movement speed
+        movementTicks = 60 - entity.getStats().getMovement(); //TODO: MAX SPEED - movement speed??
         System.out.println("DIR: " + movingDirection);
 
         //TODO: Check entity can move on a tile
@@ -49,20 +50,14 @@ public class MovementCommand extends ActionCommand implements Tickable{
 //        LocationTrackerManager.getInstance().updateLocation(entity);
         */
 
-        TimeModel.getInstance().registerTickable(this);
-
-
+        TimeModel.getInstance().registerFuseable(this, movementTicks);
     }
 
     @Override
-    public void tick() {
-        movementTicks --;
-        System.out.println("TICK TICK: " + movementTicks);
-        if(movementTicks <= 0){
-            entity.setActive();
-            TimeModel.getInstance().deregisterTickable(this);
-            System.out.println("Entity dest pos: " + entity.getPosition().getQ() + ", " + entity.getPosition().getR() + ", " + entity.getPosition().getH());
-            System.out.println("======= END OF MOVEMENT CMD =========");
-        }
+    public void explode() {
+        entity.setActive();
+        System.out.println("Entity dest pos: " + entity.getPosition().getQ() + ", " + entity.getPosition().getR() + ", " + entity.getPosition().getH());
+        System.out.println("======= END OF MOVEMENT CMD =========");
     }
+
 }

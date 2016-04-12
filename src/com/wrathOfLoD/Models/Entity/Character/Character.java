@@ -12,6 +12,7 @@ import com.wrathOfLoD.Models.Items.InteractiveItem;
 import com.wrathOfLoD.Models.Items.TakeableItem;
 import com.wrathOfLoD.Models.Occupation.Occupation;
 import com.wrathOfLoD.Models.Occupation.Smasher;
+import com.wrathOfLoD.Models.Skill.SkillManager;
 import com.wrathOfLoD.Models.Stats.Stats;
 import com.wrathOfLoD.Models.Target.TargetManager;
 import com.wrathOfLoD.Utility.Position;
@@ -26,6 +27,7 @@ public abstract class Character extends Entity {
     private Equipment equipment;
     private TargetManager targetManager;
     private AbilityManager abilityManager;
+    private SkillManager skillManager;
 
     public Character(){
         super();
@@ -33,6 +35,7 @@ public abstract class Character extends Entity {
         this.equipment = new Equipment();
         this.targetManager = new TargetManager();
         this.abilityManager = new AbilityManager(getOccupation());
+        this.skillManager = this.occupation.createSkillManager();
         this.abilityManager.unlockAbilities(getStats().getLevel());
     }
 
@@ -43,6 +46,7 @@ public abstract class Character extends Entity {
         this.equipment = new Equipment();
         this.targetManager = new TargetManager();
         this.abilityManager.unlockAbilities(getStats().getLevel());
+        this.skillManager = this.occupation.createSkillManager();
     }
 
     /***** getter & setter for Character *******/
@@ -52,6 +56,10 @@ public abstract class Character extends Entity {
     public Occupation getOccupation(){ return this.occupation; }
 
     public TargetManager getTargetManager(){ return this.targetManager; }
+
+    public AbilityManager getAbilityManager(){ return this.abilityManager; }
+
+    public SkillManager getSkillManager(){ return this.skillManager; }
 
     protected void setOccupation(Occupation newOccupation){ this.occupation = newOccupation; }
 

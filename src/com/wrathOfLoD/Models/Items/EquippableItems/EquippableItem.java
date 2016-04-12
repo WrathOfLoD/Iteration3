@@ -18,6 +18,7 @@ public abstract class EquippableItem extends TakeableItem {
 
     public EquippableItem(String name){ //edit: delete this it's only being used for testing purposes
         super(name);
+        this.statsModifiable = StatsModifiable.createWeaponArmorStatsModifiable(10,10);
     }
 
     public StatsModifiable getStatsModifiable(){

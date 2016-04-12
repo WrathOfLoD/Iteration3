@@ -31,6 +31,6 @@ public class PickUpItemCommand extends ActionCommand {
         // Remove item from the LTM
         LocationTrackerManager.getInstance().deregisterItem(item);
 
-        entity.pickUpItem(item);
+        entity.insertItemToInventory(item);
     }
 }
