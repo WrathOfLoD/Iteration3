@@ -1,6 +1,11 @@
 package com.wrathOfLoD.Models.Entity;
 
+import com.wrathOfLoD.Models.Commands.ActionCommand;
+import com.wrathOfLoD.Models.Commands.ActionCommandVendor;
+import com.wrathOfLoD.Models.Commands.EntityActionCommands.DropItemCommand;
 import com.wrathOfLoD.Models.Entity.Character.Character;
+import com.wrathOfLoD.Models.Inventory.Inventory;
+import com.wrathOfLoD.Models.Items.TakeableItem;
 import com.wrathOfLoD.Models.Stats.Stats;
 import com.wrathOfLoD.Utility.Direction;
 import com.wrathOfLoD.Utility.Position;
@@ -13,30 +18,40 @@ public abstract class Entity {
     private Position position;
     private Stats stats;
     private Direction direction;
+    private Inventory inventory;
+    private boolean isActive = false;
 
     public Entity(){
-
+        this("Master Chief", new Position(0,0,0,0));
     }
 
     public Entity(String name, Position position){
         this.name = name;
         this.position = position;
+        this.inventory = new Inventory();
         this.stats = new Stats(this);
         this.direction = Direction.DOWN_SOUTH;
     }
 
-    //public void move(Direction d) {}
-
-    public void doInteraction(Character character) {}
+    /***** getter & setter for Entity *******/
 
     public Direction getDirection(){return this.direction; }
 
+    public Inventory getInventory(){ return this.inventory; }
 
     public String getName() { return this.name; }
 
+    public Position getPosition() { return this.position; }
+
     public Stats getStats() { return this.stats; }
 
-    public Position getPosition() { return this.position; }
+    public void setActive(){
+        isActive = true;
+    }
+
+    public void setInactive(){
+        isActive = false;
+    }
 
     public void setDirection(Direction newDirection){
         this.direction = newDirection;
@@ -46,11 +61,42 @@ public abstract class Entity {
         this.position = newPosition;
     }
 
+    protected void setName(String name){ this.name = name; }
+
+    /********* END Getters and Setters *********/
+
+    public void move(Direction movingDirection){
+        if(!isActive()){
+            ActionCommand acm = ActionCommandVendor.createMovementCommand(this, movingDirection);
+            setActive();
+            acm.execute();
+        }
+    }
+
+    public void insertItemToInventory(TakeableItem item){
+        this.inventory.addItem(item);
+    }
+
+    //drops item to map by calling dropItemCommand
+    public void dropItem(TakeableItem item){
+        if(inventory.hasItem(item)){
+            inventory.removeItem(item);
+            ActionCommand dropItemCommand = new DropItemCommand(this,item);
+            dropItemCommand.execute();
+        }
+    }
+
+    public void doInteraction(Character character) {}
+
     public void gainExp(int exp) {}
 
     public void levelUp() {}
 
     public void die(){}
+
+    public boolean isActive() {
+        return isActive;
+    }
 
 }
 

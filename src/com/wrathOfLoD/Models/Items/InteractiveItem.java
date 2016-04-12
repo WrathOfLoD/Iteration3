@@ -8,9 +8,7 @@ import com.wrathOfLoD.Utility.Position;
  */
 public class InteractiveItem extends Item{
 
-    public InteractiveItem(Position position, String name){
-        super(position, name);
-    }
+    public InteractiveItem(String name ){ super(name); }
 
     @Override
     public void encounter(Entity entity){

@@ -7,23 +7,17 @@ import com.wrathOfLoD.Utility.Position;
  * Created by matthewdiaz on 4/7/16.
  */
 public abstract class Item {
-    private Position position;
     private String name;
 
-    public Item(Position position, String name){
-        this.position = position;
+    public Item(String name){
         this.name = name;
     }
 
-    public void updatePosition(Position newPosition){
-        this.position = newPosition;
-    }
-
-    public Position getPositon(){
-        return this.position;
-    }
+    /***** getter & setter for Item *******/
 
     public String getName(){return this.name;}
+
+    /********* END Getters and Setters *********/
 
     public abstract void encounter(Entity entity);
 }

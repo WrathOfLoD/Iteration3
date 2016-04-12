@@ -1,5 +1,7 @@
 package com.wrathOfLoD.Models.Target;
 
+import com.wrathOfLoD.Models.Items.Item;
+
 import java.util.ArrayList;
 import java.util.LinkedHashSet;
 import java.util.List;
@@ -27,14 +29,13 @@ public class TargetManager {
 
     }
 
-    // TODO: 4/7/16 Add MapItem here when implemented
     /**
-     * @desc Add new lists of Targets/MapItems to our list
+     * @desc Add new lists of Targets/Items to our list
      * @param tList - List of targets
-     * @param mList - List of MapItems
+     * @param mList - List of Items
      */
-//    public void updateMyList(List<Target> tList, List<MapItem> mList) {
-//    }
+    public void updateMyList(List<Target> tList, List<Item> mList) {
+    }
 
 
 }

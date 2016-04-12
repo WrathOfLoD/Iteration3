@@ -49,7 +49,7 @@ public class Stats {
         setAgility(1);
         setIntellect(1);
         setHardiness(1);
-        setCurrentExperience(0);
+
         setMovement(20);
         setCurrentMana(maxMana);
         setCurrentHealth(maxHealth);
@@ -60,6 +60,8 @@ public class Stats {
         setLevel(1);
 
         calculateDerivedStats();
+
+        setCurrentExperience(0);
 
         temporaryStats = new ArrayList();
     }
@@ -195,7 +197,6 @@ public class Stats {
     }
 
     private void setCurrentExperience(int exp) {
-
         if(exp >= experienceToNextLevel){
             currentExperience = exp - experienceToNextLevel;
             setLevel(getLevel() + 1);

@@ -5,7 +5,26 @@ package com.wrathOfLoD.Models.Ability.Abilities;
  */
 public abstract class Ability {
 
-    public Ability() {}
+    private int unlockLevel;
 
-    public abstract  void execute();
+
+    public Ability() {
+        setUnlockLevel(0);
+    }
+
+    public Ability(int unlockLevel){
+        setUnlockLevel(unlockLevel);
+    }
+
+
+    public abstract void doAbility();
+
+    public int getUnlockLevel() {
+        return unlockLevel;
+    }
+
+    private void setUnlockLevel(int level){
+        this.unlockLevel = level;
+    }
+
 }

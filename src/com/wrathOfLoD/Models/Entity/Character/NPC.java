@@ -1,5 +1,6 @@
 package com.wrathOfLoD.Models.Entity.Character;
 
+import com.wrathOfLoD.Models.Occupation.Occupation;
 import com.wrathOfLoD.Utility.Position;
 
 /**
@@ -10,19 +11,21 @@ public class NPC extends Character {
     private int greed;
     private Position homePosition;
 
-    public NPC(String name, Position pos){
-        super(name, pos);
+    public NPC(String name, Position pos, Occupation occupation){
+        super(name, pos, occupation);
         this.aggression = 0;
         this.greed = 0;
         this.homePosition = pos;
     }
 
-    public NPC(String name, Position pos, int aggression, int greed){
-        super(name, pos);
+    public NPC(String name, Position pos, Occupation occupation, int aggression, int greed){
+        super(name, pos, occupation);
         this.aggression = aggression;
         this.greed = greed;
         this.homePosition = pos;
     }
+
+    /***** getter & setter for NPC *******/
 
     public int getAggression(){
         return this.aggression;
@@ -43,4 +46,6 @@ public class NPC extends Character {
     public void setGreed(int newGreed){
         this.aggression = newGreed;
     }
+
+    /********* END Getters and Setters *********/
 }
