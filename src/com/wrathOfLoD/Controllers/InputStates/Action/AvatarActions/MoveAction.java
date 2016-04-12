@@ -1,6 +1,7 @@
 package com.wrathOfLoD.Controllers.InputStates.Action.AvatarActions;
 
 import com.wrathOfLoD.Controllers.InputStates.Action.Action;
+import com.wrathOfLoD.Controllers.InputStates.Action.ModifiableAction;
 import com.wrathOfLoD.Models.Commands.ActionCommand;
 
 import java.awt.*;
@@ -9,7 +10,7 @@ import java.awt.event.KeyEvent;
 /**
  * Created by icavitt on 4/7/2016.
  */
-public class MoveAction extends Action {
+public class MoveAction extends ModifiableAction {
     private ActionCommand changeDirection;
 
     public MoveAction(int currKeyCode, ActionCommand myAction) {
@@ -20,26 +21,14 @@ public class MoveAction extends Action {
         super(currKeyCode, myAction);
         this.changeDirection = changeDirection;
     }
-
-    @Override
-    public void keyPressed(KeyEvent e) {
-        System.out.println("Key pressed");
-        System.out.println(e.getKeyCode());
-        System.out.println(getCurrCode());
-        System.out.println(listenting());
-        if(e.getKeyCode() == getCurrCode() && listenting()){
-            changeDirection.execute();
-            System.out.println("Executing!");
-        }
-    }
-
-    @Override
-    public void keyTyped(KeyEvent e) {
-
-    }
-
-    @Override
-    public void keyReleased(KeyEvent e) {
-
-    }
+//
+//    @Override
+//    public void executeUp() {
+//        System.out.println("Changing UP!");
+//    }
+//
+//    @Override
+//    public void executeDown() {
+//        System.out.println("Changing DOWN!");
+//    }
 }

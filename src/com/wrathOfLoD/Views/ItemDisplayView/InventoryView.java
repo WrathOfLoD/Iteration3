@@ -24,6 +24,13 @@ public class InventoryView extends ItemDisplayView {
     private Inventory inventory;
     private ContentDisplayStructure cds;
 
+    public InventoryView(Inventory inventory, ContentDisplayStructure cds) {
+        currentIndex = 0;
+        setContentDisplayStructure(cds);
+        setInventory(inventory);
+        this.setBackground(new Color(0f, 0f, 0f, 0f));
+    }
+
     public ContentDisplayStructure getContentDisplayStructure() {
         return cds;
     }
@@ -31,6 +38,7 @@ public class InventoryView extends ItemDisplayView {
     public void setContentDisplayStructure(ContentDisplayStructure cds) {
         this.cds = cds;
     }
+
     public Inventory getInventory() {
         return inventory;
     }
@@ -39,13 +47,6 @@ public class InventoryView extends ItemDisplayView {
         this.inventory = inventory;
         initializeInventoryView(); /* edit: good idea to have this here? Like it this way because it sets everything right when we set the inventory, no matter when we do that.
         so that the inventoryView is always populated when an inventory is added, no matter constructor is used */
-    }
-
-    public InventoryView(Inventory inventory, ContentDisplayStructure cds) {
-        currentIndex = 0;
-        setContentDisplayStructure(cds);
-        setInventory(inventory);
-        this.setBackground(new Color(0f, 0f, 0f, 0f));
     }
 
     private void initializeInventoryView() { //may need to edit...only works if we maintain the idea that an inventory view must be initialized with an inventory
@@ -62,7 +63,6 @@ public class InventoryView extends ItemDisplayView {
             itemViewObject = InventoryIVOFactory.generateInventoryIVO(itemIterator.next());
             this.addItemViewObject(itemViewObject);
         }
-
     }
 
     @Override
@@ -100,6 +100,15 @@ public class InventoryView extends ItemDisplayView {
     }
 
     /**
+     * desc: Paint view with next item in row selected
+     */
+    public void selectNextItem() {
+        this.safeIncrementRight();
+
+//        this.paintComponent(this.getGraphics());
+    }
+
+    /**
      * desc: Increment to next index in row, makes sure not to wrap around
      */
     public void safeIncrementRight() {
@@ -109,6 +118,15 @@ public class InventoryView extends ItemDisplayView {
         if (prevRow != currRow || this.currentIndex == this.getIvoList().size()) {
             this.currentIndex--;
         }
+    }
+
+    /**
+     * desc: Paint view with previous item in row selected
+     */
+    public void selectPrevItem() {
+        this.safeDecrementLeft();
+
+//        this.paintComponent(this.getGraphics());
     }
 
     /**
@@ -124,6 +142,15 @@ public class InventoryView extends ItemDisplayView {
     }
 
     /**
+     * desc: Paint view with prev item in col selected
+     */
+    public void selectUpItem() {
+        this.safeDecrementUp();
+
+//        this.paintComponent(this.getGraphics());
+    }
+
+    /**
      * desc: Decrement to previous column, makes sure not to wrap around
      */
     public void safeDecrementUp() {
@@ -134,52 +161,23 @@ public class InventoryView extends ItemDisplayView {
     }
 
     /**
-     * desc: Increment to next column, makes sure not to wrap around
-     */
-    public void safeIncrementDown() {
-        int prevIndex = this.currentIndex;
-        this.currentIndex += this.cds.getNumCols();
-        System.out.println("Adding " + this.cds.getNumCols() + " to index");
-        System.out.println("Index is: " + this.currentIndex);
-        if (this.currentIndex >= this.getIvoList().size())
-            this.currentIndex = prevIndex;
-        System.out.println("Index is: " + this.currentIndex);
-    }
-
-    /**
-     * desc: Paint view with next item in row selected
-     */
-    public void selectNextItem() {
-        this.safeIncrementRight();
-
-        this.paintComponent(this.getGraphics());
-    }
-
-    /**
-     * desc: Paint view with previous item in row selected
-     */
-    public void selectPrevItem() {
-        this.safeDecrementLeft();
-
-        this.paintComponent(this.getGraphics());
-    }
-
-    /**
-     * desc: Paint view with prev item in col selected
-     */
-    public void selectUpItem() {
-        this.safeDecrementUp();
-
-        this.paintComponent(this.getGraphics());
-    }
-
-    /**
      * desc: Paint view with next item in col selected
      */
     public void selectDownItem() {
         this.safeIncrementDown();
 
-        this.paintComponent(this.getGraphics());
+//        this.paintComponent(this.getGraphics());
+    }
+
+    /**
+     * desc: Increment to next column, makes sure not to wrap around
+     */
+    public void safeIncrementDown() {
+        int prevIndex = this.currentIndex;
+        this.currentIndex += this.cds.getNumCols();
+
+        if (this.currentIndex >= this.getIvoList().size())
+            this.currentIndex = prevIndex;
     }
 
 }

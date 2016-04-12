@@ -77,6 +77,7 @@ public class Main {
 
 
         Avatar avatar = Avatar.getInstance();
+
         avatar.configureAvatar("Dave", new Position(0,0,0,0), new Smasher());
 
         MainController mainController = MainController.getInstance();
@@ -89,12 +90,12 @@ public class Main {
         inventory.addToActionSet(ActionVendor.createSelectDownAction(inventoryView));
 
         InputState inventoryState = new InventoryState(inventory);
+        mainController.setActiveState(avatarState);
         mainController.setActiveState(inventoryState);
 
         //LocationTrackerManager.getInstance().registerEntity(avatar, avatar.getTargetManager());
 
 
-        avatar.addToActionSet(ActionVendor.createMoveNorthAction());
 
 
         Thread.sleep(2000);

@@ -8,7 +8,7 @@ import java.awt.*;
 /**
  * Created by echristiansen on 4/8/2016.
  */
-public class ViewEngine extends JFrame {
+public class ViewEngine extends JFrame implements Runnable {
 
     private static ViewEngine instance = new ViewEngine();
     public static ViewEngine getInstance(){return instance;}
@@ -21,7 +21,6 @@ public class ViewEngine extends JFrame {
         add(target);
         setTitle("Wrath of LoD");
         setResizable(false);
-        pack();
         this.setPreferredSize(new Dimension(Config.instance().getWindowWidth(), Config.instance().getWindowHeight())); //edit
         this.setSize(Config.instance().getWindowWidth(), Config.instance().getWindowHeight()); //edit
         this.pack();
@@ -30,6 +29,10 @@ public class ViewEngine extends JFrame {
         this.setVisible(true);
     }
 
+    @Override
+    public void run() {
+
+    }
 
     public void registerView(JComponent view){
         if(target != null) {

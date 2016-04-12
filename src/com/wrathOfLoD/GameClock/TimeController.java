@@ -1,5 +1,7 @@
 package com.wrathOfLoD.GameClock;
 
+import com.wrathOfLoD.Views.ViewEngine;
+
 /**
  * Created by luluding on 4/9/16.
  */
@@ -16,6 +18,8 @@ public class TimeController {
         timeModel.tick();
 
         //System.out.println("TICK TICK!");
+
+        ViewEngine.getInstance().repaint();
 
         long deltaTime = System.currentTimeMillis() - lastTime;
         //System.out.println("DELTA TIME: " + deltaTime);
