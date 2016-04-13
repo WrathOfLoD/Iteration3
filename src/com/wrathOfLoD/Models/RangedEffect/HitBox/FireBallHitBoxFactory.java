@@ -1,6 +1,6 @@
 package com.wrathOfLoD.Models.RangedEffect.HitBox;
 
-import apple.laf.JRSUIConstants;
+//import apple.laf.JRSUIConstants;
 import com.wrathOfLoD.Utility.Position;
 
 /**

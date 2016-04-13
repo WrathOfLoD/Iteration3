@@ -2,6 +2,7 @@ package com.wrathOfLoD.Models.Entity.Character;
 
 import com.wrathOfLoD.Models.Occupation.Occupation;
 import com.wrathOfLoD.Utility.Position;
+import com.wrathOfLoD.VisitorInterfaces.EntityVisitor;
 
 /**
  * Created by zach on 4/7/16.
@@ -48,4 +49,9 @@ public class NPC extends Character {
     }
 
     /********* END Getters and Setters *********/
+
+    public void accept(EntityVisitor ev){
+        ev.visitNPC(this);
+    }
+
 }

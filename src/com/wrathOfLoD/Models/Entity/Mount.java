@@ -6,6 +6,7 @@ import com.wrathOfLoD.Models.Entity.Character.Character;
 import com.wrathOfLoD.Models.Entity.Entity;
 import com.wrathOfLoD.Models.Stats.Stats;
 import com.wrathOfLoD.Utility.Position;
+import com.wrathOfLoD.VisitorInterfaces.EntityVisitor;
 
 /**
  * Created by zach on 4/7/16.
@@ -18,5 +19,9 @@ public class Mount extends Entity {
     }
 
     public void mount(Character character) {}
+
+    public void accept(EntityVisitor ev){
+        ev.visitMount(this);
+    }
 
 }

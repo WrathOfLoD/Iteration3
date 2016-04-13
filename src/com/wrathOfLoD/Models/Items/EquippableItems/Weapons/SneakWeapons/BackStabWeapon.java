@@ -1,4 +1,4 @@
-package com.wrathOfLoD.Models.Items.EquippableItems.Weapons.SummonerWeapons;
+package com.wrathOfLoD.Models.Items.EquippableItems.Weapons.SneakWeapons;
 
 import com.wrathOfLoD.Models.Items.EquippableItems.Weapons.SneakWeapons.SneakWeapon;
 import com.wrathOfLoD.Models.Items.EquippableItems.Weapons.Weapon;

@@ -6,6 +6,7 @@ import com.wrathOfLoD.Models.Commands.EntityActionCommands.ConsumeItemCommands.C
 import com.wrathOfLoD.Models.Entity.Character.Character;
 import com.wrathOfLoD.Models.Stats.StatsModifiable;
 import com.wrathOfLoD.Utility.Position;
+import com.wrathOfLoD.VisitorInterfaces.ItemVisitor;
 
 /**
  * Created by matthewdiaz on 4/7/16.
@@ -25,5 +26,9 @@ public class TemporaryConsumable extends ConsumableItem {
     protected void consume(Character character){
         ActionCommand consumeTemporaryItemCommand = new ConsumeTemporaryItemCommand(character, this);
         consumeTemporaryItemCommand.execute();
+    }
+
+    public void accept(ItemVisitor iv){
+        iv.visitTemporaryConsumableItem(this);
     }
 }
