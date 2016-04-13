@@ -81,29 +81,23 @@ public class Equipment{
         observers.add(observer);
     }
 
+    //might have errors :(
     public void equip(Armor armor){
-        unequip(this.armor);
         this.armor = armor;
         alertUpdate();
     }
 
     public void equip(Greaves greaves) {
-        unequip(this.greaves);
         this.greaves = greaves;
         alertUpdate();
     }
 
     public void equip(Helm helm){
-        unequip(this.helm);
         this.helm = helm;
         alertUpdate();
     }
 
     public void equip(Weapon weapon) {
-        if(this.weapon != defaultWeapon){
-            unequip(this.weapon);
-        }
-
         this.weapon = weapon;
         alertUpdate();
     }
