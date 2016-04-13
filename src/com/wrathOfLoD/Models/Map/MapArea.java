@@ -15,6 +15,7 @@ import java.util.List;
  */
 public class MapArea{
     private HashMap<Position, TilePillar> tilePillarMap;
+	private String mapAreaName;
 
     public MapArea(){
         this.tilePillarMap = new HashMap<Position, TilePillar>();
@@ -96,5 +97,17 @@ public class MapArea{
 
 	public HashMap<Position, TilePillar> getTilePillarMap() {
 		return tilePillarMap;
+	}
+
+	public void setTilePillarMap(HashMap<Position, TilePillar> tilePillarMap) {
+		this.tilePillarMap = tilePillarMap;
+	}
+
+	public String getMapAreaName() {
+		return mapAreaName;
+	}
+
+	public void setMapAreaName(String mapAreaName) {
+		this.mapAreaName = mapAreaName;
 	}
 }

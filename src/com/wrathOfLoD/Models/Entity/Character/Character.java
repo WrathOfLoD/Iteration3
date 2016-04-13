@@ -14,6 +14,7 @@ import com.wrathOfLoD.Models.Skill.SkillManager;
 import com.wrathOfLoD.Models.Stats.Stats;
 import com.wrathOfLoD.Models.Target.TargetManager;
 import com.wrathOfLoD.Utility.Position;
+import com.wrathOfLoD.VisitorInterfaces.EntityVisitor;
 
 /**
  * Created by zach on 4/7/16.
@@ -83,6 +84,10 @@ public abstract class Character extends Entity {
 
     public void doAbility(int abilityNum){
         abilityManager.doAbility(abilityNum);
+    }
+
+    public void accept(EntityVisitor ev){
+        ev.visitCharacter(this);
     }
 
 }

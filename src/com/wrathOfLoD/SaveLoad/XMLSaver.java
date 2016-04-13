@@ -11,12 +11,23 @@ import com.wrathOfLoD.Models.Inventory.Equipment;
 import com.wrathOfLoD.Models.Inventory.Inventory;
 import com.wrathOfLoD.Models.Items.*;
 import com.wrathOfLoD.Models.Items.ConsumableItems.ConsumableItem;
+import com.wrathOfLoD.Models.Items.ConsumableItems.PermanentConsumable;
+import com.wrathOfLoD.Models.Items.ConsumableItems.TemporaryConsumable;
 import com.wrathOfLoD.Models.Items.EquippableItems.Armor;
 import com.wrathOfLoD.Models.Items.EquippableItems.EquippableItem;
+import com.wrathOfLoD.Models.Items.EquippableItems.Weapons.SmasherWeapons.FistWeapon;
+import com.wrathOfLoD.Models.Items.EquippableItems.Weapons.SmasherWeapons.OneHandWeapon;
+import com.wrathOfLoD.Models.Items.EquippableItems.Weapons.SmasherWeapons.TwoHandWeapon;
+import com.wrathOfLoD.Models.Items.EquippableItems.Weapons.SneakWeapons.RangedWeapon;
+import com.wrathOfLoD.Models.Items.EquippableItems.Weapons.SummonerWeapons.StaffWeapon;
 import com.wrathOfLoD.Models.Items.EquippableItems.Weapons.Weapon;
+import com.wrathOfLoD.Models.Map.AreaEffect.AreaEffect;
 import com.wrathOfLoD.Models.Map.Map;
 import com.wrathOfLoD.Models.Map.MapArea;
+import com.wrathOfLoD.Models.Map.Terrain.Ground;
+import com.wrathOfLoD.Models.Map.Terrain.Sky;
 import com.wrathOfLoD.Models.Map.Terrain.Terrain;
+import com.wrathOfLoD.Models.Map.Terrain.Water;
 import com.wrathOfLoD.Models.Map.Tile;
 import com.wrathOfLoD.Models.Map.TilePillar;
 import com.wrathOfLoD.Models.Occupation.Occupation;
@@ -42,6 +53,7 @@ import java.util.*;
 /**
  * Created by icavitt on 4/12/2016.
  */
+
 public class XMLSaver implements Saver,EntityPropertyVisitor,EntityVisitor,HeldItemVisitor,ItemVisitor,MapVisitor,TileVisitor {
     private String fileName;
     private Document doc;
@@ -179,6 +191,16 @@ public class XMLSaver implements Saver,EntityPropertyVisitor,EntityVisitor,HeldI
     }
 
     @Override
+    public void visitTemporaryConsumableItem(TemporaryConsumable temporaryConsumable) {
+
+    }
+
+    @Override
+    public void visitPermanentConsumable(PermanentConsumable permanentConsumable) {
+
+    }
+
+    @Override
     public void visitEquippable(EquippableItem equippableItem) {
 
     }
@@ -194,6 +216,31 @@ public class XMLSaver implements Saver,EntityPropertyVisitor,EntityVisitor,HeldI
     }
 
     @Override
+    public void visitOneHandWeapon(OneHandWeapon oneHandWeapon) {
+
+    }
+
+    @Override
+    public void visitFistWeapon(FistWeapon fistWeapon) {
+
+    }
+
+    @Override
+    public void visitTwoHandWeapon(TwoHandWeapon twoHandWeapon) {
+
+    }
+
+    @Override
+    public void visitRangedWeapon(RangedWeapon rangedWeapon) {
+
+    }
+
+    @Override
+    public void visitStaffWeapon(StaffWeapon staffWeapon) {
+
+    }
+
+    @Override
     public void visitMap(Map map) {
         for(MapArea ma : map.getMapAreas()){
             ma.accept(this);
@@ -204,30 +251,75 @@ public class XMLSaver implements Saver,EntityPropertyVisitor,EntityVisitor,HeldI
     public void visitMapArea(MapArea mapArea) {
         /**
          * write something to the document to identify mapArea
+         * probably going to be its name
          */
         HashMap<Position, TilePillar> tilePillarMap= mapArea.getTilePillarMap();
         for(Position position : tilePillarMap.keySet()){
             currentPostion = position;
             TilePillar currentTilePillar = tilePillarMap.get(currentPostion);
-            currentPostion.setH(0);
-            for(int h = 0; h != 10; ++h){
-                currentTilePillar.getTile(currentPostion).accept(this);
-            }
+            currentTilePillar.accept(this);
         }
     }
 
     @Override
     public void visitTileColumn(TilePillar tilePillar) {
-
+        /**
+         * write something to the doc to identify tile pillar
+         * probably just gonna be its position
+         */
+        currentPostion.setH(0);
+        for(int h = 0; h != 10; ++h){
+            tilePillar.getTile(currentPostion).accept(this);
+        }
     }
 
     @Override
     public void visitTile(Tile tile) {
+        /**
+         * may not have anything to identify tiles unqiuely
+         * will just know that they are recorded bottom to top in tile pillar
+         * minor connascence of algorithm if i do that but its within a single class so a very minor violation
+         */
+        Entity[] entities = tile.getEntities();
+        Item[] items = tile.getItems();
+        AreaEffect[] areaEffect = tile.getAreaEffects();
 
+        for(Entity e : entities){
+            e.accept(this);
+        }
+
+        for(Item i : items){
+            i.accept(this);
+        }
+
+        for(AreaEffect ae : areaEffect){
+            ae.accept(this);
+        }
+
+        tile.getTerrain().accept(this);
     }
 
     @Override
     public void visitTerrain(Terrain terrain) {
+        System.out.println("In Visit Terrain: huh shouldnt be visiting super classes in save");
+    }
+
+    @Override
+    public void visitAreaEffect(AreaEffect areaEffect) {
+    }
+
+    @Override
+    public void visitSkyTerrain(Sky sky) {
+
+    }
+
+    @Override
+    public void visitGroundTerrain(Ground ground) {
+
+    }
+
+    @Override
+    public void visitWaterTerrain(Water water) {
 
     }
 }
