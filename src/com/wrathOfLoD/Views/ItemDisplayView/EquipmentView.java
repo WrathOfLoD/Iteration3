@@ -74,21 +74,21 @@ public class EquipmentView extends ItemDisplayView implements EquipmentObserver 
         getEquipment().addObserver(this); // TODO: 4/12/2016 might need to delete this...but I think it's good spot
     }
 
-        public EquipmentView() { // TODO: 4/12/2016 delete this constructor it's for testing purposes? 
-            setEquipment(new Equipment()); // TODO: 4/12/2016 delete this it's for testing purposes?
-            //getEquipment().addObserver(this);
-            this.setBackground(new Color(0f, 0f, 0f, 0f));
-            this.setBorder(new LineBorder(Color.WHITE));
-        }
-    
-        public EquipmentView(Equipment equipment) {
-            setEquipment(equipment);
-            //getEquipment().addObserver(this);
-            fillSlots();
-            this.setBackground(new Color(0f, 0f, 0f, 0f));
-            this.setBorder(new LineBorder(Color.WHITE));
+    public EquipmentView() { // TODO: 4/12/2016 delete this constructor it's for testing purposes?
+        setEquipment(new Equipment()); // TODO: 4/12/2016 delete this it's for testing purposes?
+        //getEquipment().addObserver(this);
+        this.setBackground(new Color(0f, 0f, 0f, 0f));
+        this.setBorder(new LineBorder(Color.WHITE));
+    }
 
-        }
+    public EquipmentView(Equipment equipment) {
+        setEquipment(equipment);
+        //getEquipment().addObserver(this);
+        fillSlots();
+        this.setBackground(new Color(0f, 0f, 0f, 0f));
+        this.setBorder(new LineBorder(Color.WHITE));
+
+    }
 
     public void initializeSlots(){ // TODO: 4/12/2016 might not need this. Could do this or a variant of this or just use the null constructors above
         setHelmetSlot(new EquipmentSlot(EquippedIVOFactory.generateEquippedIVO(getEquipment().getHelm())));
