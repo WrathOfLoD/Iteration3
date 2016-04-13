@@ -38,15 +38,7 @@ public class Map {
 		this.setActiveMapArea(activeMapArea);
 	}
 
-    public Tile getTile(Position p) {
-        return this.activeMapArea.getTile(p.get2DProjection());
-    }
-
-    public List<Tile> getTiles(List<Position> pList) {
-        return this.activeMapArea.getTiles(pList);
-    }
-
-    public void setActiveMapArea(MapArea mArea){
+	public void setActiveMapArea(MapArea mArea){
 		if(mapAreas.contains(mArea)){
 			this.activeMapArea = mArea;
 			LocationTrackerManager.getInstance().updateActiveMapArea(this.activeMapArea);
@@ -60,6 +52,20 @@ public class Map {
 	public void addMapArea(MapArea mapArea){
 		this.mapAreas.add(mapArea);
 	}
+
+	public TilePillar getTilePillar(Position pos){
+		TilePillar pillar = this.activeMapArea.getTilePillar(pos);
+		return pillar;
+	}
+
+    public Tile getTile(Position pos) {
+        Tile tile = this.activeMapArea.getTile(pos);
+		return tile;
+    }
+
+    public List<Tile> getTiles(List<Position> pList) {
+        return this.activeMapArea.getTiles(pList);
+    }
 
     public void addEntity(Entity entity, Position pos){
 		this.activeMapArea.addEntity(entity, pos);
