@@ -7,19 +7,33 @@ import java.util.List;
 /**
  * Created by Mitchell on 4/12/2016.
  */
-public abstract class ImageAnimation{
+public class ImageAnimation{
 
-	protected int currentFrame = 0;
+	private int currentFrame = 0;
+	private List<Image> frames;
+
+	public ImageAnimation(List<Image> frames){
+		this.frames = frames;
+	}
 
 	public final Image getFrame(){
 		nextFrame();
 		return getFrame(currentFrame);
 	}
 
-	protected abstract Image getFrame(int currentFrame);
+	protected Image getFrame(int currentFrame){
+		Image current = this.frames.get(currentFrame);
+		nextFrame();
+		return current;
+	}
 
-	protected abstract void nextFrame();
+	private void nextFrame(){
+		currentFrame++;
+		currentFrame %= frames.size();
+	}
 
-	public abstract boolean isFinished();
+	public boolean isFinished(){
+		return (this.currentFrame == this.frames.size()-1);
+	}
 
 }

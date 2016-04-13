@@ -3,8 +3,9 @@ package com.wrathOfLoD.Models.Items.EquippableItems.Weapons.SmasherWeapons;
 import com.wrathOfLoD.Models.Entity.Character.Character;
 import com.wrathOfLoD.Models.Items.EquippableItems.Weapons.Weapon;
 import com.wrathOfLoD.Models.Occupation.Occupation;
+import com.wrathOfLoD.Models.Skill.SkillManager;
+import com.wrathOfLoD.Models.Skill.SmasherSkillManager;
 import com.wrathOfLoD.Models.Stats.StatsModifiable;
-import com.wrathOfLoD.Utility.Position;
 
 /**
  * Created by matthewdiaz on 4/7/16.

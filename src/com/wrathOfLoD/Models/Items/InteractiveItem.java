@@ -2,6 +2,7 @@ package com.wrathOfLoD.Models.Items;
 
 import com.wrathOfLoD.Models.Entity.Entity;
 import com.wrathOfLoD.Utility.Position;
+import com.wrathOfLoD.VisitorInterfaces.ItemVisitor;
 
 /**
  * Created by matthewdiaz on 4/7/16.
@@ -16,5 +17,9 @@ public class InteractiveItem extends Item{
 
     public void doInteraction(Character c){
 
+    }
+
+    public void accept(ItemVisitor iv){
+        iv.visitInteractiveItem(this);
     }
 }

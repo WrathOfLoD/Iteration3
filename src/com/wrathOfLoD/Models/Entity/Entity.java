@@ -10,6 +10,7 @@ import com.wrathOfLoD.Models.Stats.Stats;
 import com.wrathOfLoD.Models.Stats.StatsModifiable;
 import com.wrathOfLoD.Utility.Direction;
 import com.wrathOfLoD.Utility.Position;
+import com.wrathOfLoD.VisitorInterfaces.EntityVisitor;
 
 /**
  * Created by zach on 4/7/16.
@@ -110,6 +111,10 @@ public abstract class Entity {
 
     public boolean isActive() {
         return isActive;
+    }
+
+    public void accept(EntityVisitor ev){
+        ev.visitEntity(this);
     }
 
 }

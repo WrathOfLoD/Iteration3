@@ -7,6 +7,10 @@ import com.wrathOfLoD.Models.Commands.EntityActionCommands.UnequipItemCommands.U
 import com.wrathOfLoD.Models.Entity.Character.Character;
 import com.wrathOfLoD.Models.Items.EquippableItems.EquippableItem;
 import com.wrathOfLoD.Models.Occupation.Occupation;
+import com.wrathOfLoD.Models.Skill.SkillManager;
+import com.wrathOfLoD.Models.Skill.SmasherSkillManager;
+import com.wrathOfLoD.Models.Skill.SneakSkillManager;
+import com.wrathOfLoD.Models.Skill.SummonerSkillManager;
 import com.wrathOfLoD.Models.Stats.StatsModifiable;
 
 /**
@@ -53,5 +57,9 @@ public abstract class Weapon extends EquippableItem{
     public void unequip(Character character){
         UnequipItemCommand unequipWeaponCommand = new UnequipWeaponCommand(character, this);
         unequipWeaponCommand.execute();
+    }
+
+    public void attack(Character character){
+
     }
 }

@@ -4,6 +4,7 @@ import com.wrathOfLoD.Models.Ability.AbilityManager;
 import com.wrathOfLoD.Models.Entity.Entity;
 import com.wrathOfLoD.Models.Inventory.Equipment;
 import com.wrathOfLoD.Models.Items.EquippableItems.EquippableItem;
+import com.wrathOfLoD.Models.Items.EquippableItems.Weapons.Weapon;
 import com.wrathOfLoD.Models.Items.InteractiveItem;
 import com.wrathOfLoD.Models.Items.TakeableItem;
 import com.wrathOfLoD.Models.Occupation.Occupation;
@@ -11,6 +12,7 @@ import com.wrathOfLoD.Models.Occupation.Smasher;
 import com.wrathOfLoD.Models.Skill.SkillManager;
 import com.wrathOfLoD.Models.Target.TargetManager;
 import com.wrathOfLoD.Utility.Position;
+import com.wrathOfLoD.VisitorInterfaces.EntityVisitor;
 
 /**
  * Created by zach on 4/7/16.
@@ -71,7 +73,10 @@ public abstract class Character extends Entity {
         item.unequip(this);
     }
 
-    public void attack() {}
+    public void attack() {
+        Weapon currentWeaponEquip = this.equipment.getWeapon();
+        currentWeaponEquip.attack(this);
+    }
 
     public void levelUp(){
         super.levelUp();
@@ -83,6 +88,10 @@ public abstract class Character extends Entity {
             setActive();
             abilityManager.doAbility(abilityNum);
         }
+    }
+
+    public void accept(EntityVisitor ev){
+        ev.visitCharacter(this);
     }
 
 }

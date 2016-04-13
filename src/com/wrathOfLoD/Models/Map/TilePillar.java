@@ -4,6 +4,7 @@ import com.wrathOfLoD.Models.Entity.Entity;
 import com.wrathOfLoD.Models.Items.Item;
 import com.wrathOfLoD.Models.Map.AreaEffect.AreaEffect;
 import com.wrathOfLoD.Utility.Position;
+import com.wrathOfLoD.VisitorInterfaces.MapVisitor;
 
 /**
  * Created by zach on 4/7/16.
@@ -82,5 +83,9 @@ public class TilePillar{
 
 	public Tile[] getTiles() {
 		return tiles;
+	}
+
+	public void accept(MapVisitor mv){
+		mv.visitTileColumn(this);
 	}
 }
