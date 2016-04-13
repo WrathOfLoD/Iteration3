@@ -9,7 +9,6 @@ import com.wrathOfLoD.Models.Items.TakeableItem;
  */
 public interface EquipmentObserver {
 
-    //void alertEquipmentChange(Equipment equipment);
     void alertEquipmentChange();
 
 

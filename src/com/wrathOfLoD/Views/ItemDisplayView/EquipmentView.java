@@ -116,8 +116,8 @@ public class EquipmentView extends ItemDisplayView implements EquipmentObserver 
            // int width = this.getWidth();
            // int height = this.getHeight();
             g.setColor(Color.WHITE);
-            //g.drawLine(width/2, 0, width/2, height);
-           // g.drawLine(0, height/2, width, height/2);
+            g.drawLine(this.getWidth()/2, 0, this.getWidth()/2, this.getHeight());
+            g.drawLine(0, this.getHeight()/2, this.getWidth(), this.getHeight()/2);
             g.drawRect(eds.getHelmetX(), eds.getHelmetY(), eds.getSlotWidth(), eds.getslotHeight());
             g.drawRect(eds.getWeaponX(), eds.getWeaponY(), eds.getSlotWidth(), eds.getslotHeight());
             g.drawRect(eds.getChestX(), eds.getChestY(), eds.getSlotWidth(), eds.getslotHeight());

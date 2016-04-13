@@ -13,8 +13,8 @@ public class EquipmentDisplayStructure {
     private int structureHeight; //this is reallly the height of the view in which the structure is found
     private int slotWidth;
     private int slotHeight;
-    private int widthDivisor = 10; //used to determine how wide a slot should be relative to the overall width of the structure
-    private int heightDivisor = 10;//used to determine how tall a slot shoudl be relative to the overall width of the structure
+    private int widthDivisor = 7; //used to determine how wide a slot should be relative to the overall width of the structure
+    private int heightDivisor = 7;//used to determine how tall a slot shoudl be relative to the overall width of the structure
     private int helmetX;
     private int helmetY;
     private int weaponX;
@@ -127,16 +127,16 @@ public class EquipmentDisplayStructure {
         int horlineLength = getStructureWidth()/4;
         int vertLineLength = getStructureHeight()/4;
         setHelmetX(2*horlineLength-getSlotWidth()/2);
-        setWeaponX(horlineLength-getSlotWidth()/2);
+        setWeaponX(horlineLength-getSlotWidth()/2 - getSlotWidth()/2);
         setChestX(2*horlineLength-getSlotWidth()/2);
-        setShieldX(3*horlineLength-getSlotWidth()/2);
+        setShieldX(3*horlineLength-getSlotWidth()/2 + getSlotWidth()/2);
         setLegsX(2*horlineLength-getSlotWidth()/2);
 
-        setHelmetY(vertLineLength-getslotHeight()/2);
+        setHelmetY(vertLineLength-getslotHeight()/2 - vertLineLength/4);
         setWeaponY(2*vertLineLength-getslotHeight()/2);
         setChestY(2*vertLineLength-getslotHeight()/2);
         setShieldY(2*vertLineLength-getslotHeight()/2);
-        setLegsY(3*vertLineLength-getslotHeight()/2);
+        setLegsY(3*vertLineLength-getslotHeight()/2 + vertLineLength/4);
     }
 
 

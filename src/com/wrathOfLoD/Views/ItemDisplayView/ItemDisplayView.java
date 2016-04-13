@@ -15,7 +15,7 @@ public abstract class ItemDisplayView extends StaticView {
 
     private JPanel titlePanel;
 
-    private ArrayList<ItemViewObject> ivoList = new ArrayList<ItemViewObject>(20);
+    private ArrayList<ItemViewObject> ivoList = new ArrayList<ItemViewObject>(20); // TODO: 4/12/2016 remove this from here and put in inventory? add slots to inventory? 
 
     public JPanel getTitlePanel() {
         return titlePanel;
