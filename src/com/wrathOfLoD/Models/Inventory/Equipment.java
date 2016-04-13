@@ -1,69 +1,24 @@
 package com.wrathOfLoD.Models.Inventory;
 
+import com.wrathOfLoD.Models.Entity.Character.Character;
 import com.wrathOfLoD.Models.Items.EquippableItems.Armor;
 import com.wrathOfLoD.Models.Items.EquippableItems.Greaves;
 import com.wrathOfLoD.Models.Items.EquippableItems.Helm;
 import com.wrathOfLoD.Models.Items.EquippableItems.Weapons.Weapon;
 import com.wrathOfLoD.Models.Occupation.Occupation;
 import com.wrathOfLoD.Observers.EquipmentObserver;
-import com.wrathOfLoD.Observers.Observable;
-import com.wrathOfLoD.Observers.Observer;
-
 import java.util.ArrayList;
 
 /**
  * Created by zach on 4/7/16.
  */
-public class Equipment {
-
-    private ArrayList<EquipmentObserver> observers = new ArrayList<EquipmentObserver>();
-
-    public void alertUpdate(){
-        System.out.println("ATTEMPTING AN Equipment change from equipment");
-
-        for (EquipmentObserver o: observers) {
-            o.alertEquipmentChange(this);
-        }
-    }
-
-    public void addObserver(EquipmentObserver observer) {
-        observers.add(observer);
-    }
-
+public class Equipment{
     private final Weapon defaultWeapon = new DefaultWeapon();
     private Armor armor;
     private Weapon weapon;
     private Greaves greaves;
     private Helm helm;
-
-
-    public Weapon getDefaultWeapon() {
-        return defaultWeapon;
-    }
-    public Armor getArmor() {
-        return armor;
-    }
-    public void setArmor(Armor armor) {
-        this.armor = armor;
-    }
-    public Weapon getWeapon() {
-        return weapon;
-    }
-    public void setWeapon(Weapon weapon) {
-        this.weapon = weapon;
-    }
-    public Greaves getGreaves() {
-        return greaves;
-    }
-    public void setGreaves(Greaves greaves) {
-        this.greaves = greaves;
-    }
-    public Helm getHelm() {
-        return helm;
-    }
-    public void setHelm(Helm helm) {
-        this.helm = helm;
-    }
+    private ArrayList<EquipmentObserver> observers = new ArrayList<EquipmentObserver>();
 
     private class DefaultWeapon extends Weapon{
         public DefaultWeapon(){
@@ -71,16 +26,61 @@ public class Equipment {
         }
 
         @Override
-        protected  boolean occupationCheckHook(Occupation o){
+        protected boolean occupationCheckHook(Occupation o){
             return true;
         }
+
+        //can't unequip defaultWeapon
+        @Override
+        public void unequip(Character character){}
     }
 
     public Equipment() {
-        this.equip(defaultWeapon);
+        this.weapon = defaultWeapon;
         this.armor = null;
         this.greaves = null;
         this.helm = null;
+    }
+
+    /***** getter & setter for Equipment *******/
+    public Weapon getDefaultWeapon() {
+        return defaultWeapon;
+    }
+    public Armor getArmor() {
+        return armor;
+    }
+    public Weapon getWeapon() {
+        return weapon;
+    }
+    public Greaves getGreaves() {
+        return greaves;
+    }
+    public Helm getHelm() {return helm;}
+
+    public void setArmor(Armor armor) {
+        this.armor = armor;
+    }
+    public void setWeapon(Weapon weapon) {
+        this.weapon = weapon;
+    }
+    public void setGreaves(Greaves greaves) {
+        this.greaves = greaves;
+    }
+    public void setHelm(Helm helm) {
+        this.helm = helm;
+    }
+
+    /***** END of getter & setter *******/
+
+    public void alertUpdate(){
+        System.out.println("ATTEMPTING AN Equipment change from equipment");
+        for (EquipmentObserver o: observers) {
+            o.alertEquipmentChange();
+        }
+    }
+
+    public void addObserver(EquipmentObserver observer) {
+        observers.add(observer);
     }
 
     public void equip(Armor armor){
@@ -90,10 +90,10 @@ public class Equipment {
 
     public void equip(Greaves greaves) {
         this.greaves = greaves;
+        alertUpdate();
     }
 
     public void equip(Helm helm){
-//        unequip(this.getHelm()); // TODO: 4/12/2016 is this needed?
         this.helm = helm;
         alertUpdate();
     }
@@ -101,8 +101,6 @@ public class Equipment {
     public void equip(Weapon weapon) {
         this.weapon = weapon;
         alertUpdate();
-        // TODO: 4/9/16 do the below for the view
-        // alertWeaponEquipped(weapon);
     }
 
     public boolean unequip(Armor armor){

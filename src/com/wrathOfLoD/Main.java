@@ -96,15 +96,13 @@ public class Main {
         //LocationTrackerManager.getInstance().registerEntity(avatar, avatar.getTargetManager());
 
 
-
-
         Thread.sleep(2000);
         System.out.println("Setting active state");
 //        mainController.setActiveState(avatarState);
 //        Thread.sleep(3000);
 //        vm.removeView(avatarIESView);
 //
-        Thread.sleep(3000);
+        Thread.sleep(1000);
         Helm helm2 = new Helm("helm2");
         equipment.equip(helm2);
 

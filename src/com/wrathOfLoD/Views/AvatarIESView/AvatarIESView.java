@@ -73,5 +73,8 @@ public class AvatarIESView extends StaticView {
 
     }
 
+    public void paintComponent(Graphics g) {
+        super.paintComponent(g);
+    }
 
 }

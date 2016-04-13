@@ -20,9 +20,8 @@ public class EquipmentView extends ItemDisplayView implements EquipmentObserver 
 
 
     @Override
-    public void alertEquipmentChange(Equipment equipment) {
-        //setEquipment(equipment);
-        updateEquipment(equipment);
+    public void alertEquipmentChange() {
+        //updateEquipment(equipment); // TODO: 4/12/2016 we call update rather than
         fillSlots();
         System.out.println("ATTEMPTING AN Equipment change from equipment VIEW");
 
@@ -72,13 +71,8 @@ public class EquipmentView extends ItemDisplayView implements EquipmentObserver 
     }
     public void setEquipment(Equipment equipment) {
         this.equipment = equipment;
-        getEquipment().addObserver(this);
+        getEquipment().addObserver(this); // TODO: 4/12/2016 might need to delete this...but I think it's good spot
     }
-
-    public void updateEquipment(Equipment equipment) {
-        this.equipment=equipment;
-    }
-
 
         public EquipmentView() { // TODO: 4/12/2016 delete this constructor it's for testing purposes? 
             setEquipment(new Equipment()); // TODO: 4/12/2016 delete this it's for testing purposes?
@@ -112,24 +106,18 @@ public class EquipmentView extends ItemDisplayView implements EquipmentObserver 
         getGreavesSlot().addToSlot(EquippedIVOFactory.generateEquippedIVO(getEquipment().getGreaves()));
     }
 
-    // TODO: 4/12/2016
-    /*
-    alertHelmetEquipped(Helm helm);
-    alertArmorEquipped(Armor armor);
-    alerWeaponEquipped(Weapon weapon);
-    alertHelmetUnequipped(Helm helm); //????
-    */
 
         public void paintComponent(Graphics g) {
+            super.paintComponent(g);
 
             eds = new EquipmentDisplayStructure(this.getWidth(), this.getHeight());
             //getEquipment().addObserver(this);
 
-            int width = this.getWidth();
-            int height = this.getHeight();
+           // int width = this.getWidth();
+           // int height = this.getHeight();
             g.setColor(Color.WHITE);
-            g.drawLine(width/2, 0, width/2, height);
-            g.drawLine(0, height/2, width, height/2);
+            g.drawLine(this.getWidth()/2, 0, this.getWidth()/2, this.getHeight());
+            g.drawLine(0, this.getHeight()/2, this.getWidth(), this.getHeight()/2);
             g.drawRect(eds.getHelmetX(), eds.getHelmetY(), eds.getSlotWidth(), eds.getslotHeight());
             g.drawRect(eds.getWeaponX(), eds.getWeaponY(), eds.getSlotWidth(), eds.getslotHeight());
             g.drawRect(eds.getChestX(), eds.getChestY(), eds.getSlotWidth(), eds.getslotHeight());
@@ -142,11 +130,11 @@ public class EquipmentView extends ItemDisplayView implements EquipmentObserver 
             //getShieldSlot().paintComponent(g,eds.getHelmetX(),eds.getHelmetY(),eds.getSlotWidth(),eds.getslotHeight());
             getGreavesSlot().paintComponent(g,eds.getLegsX(),eds.getLegsY(),eds.getSlotWidth(),eds.getslotHeight());
 
+            System.out.println("Calling paintComponent: " + getHelmetSlot().getItem().getName());
+            System.out.println("Testing testing 123");
+
 
             // TODO: 4/9/2016 Create a Slot class, where each Slot has an x and a y and then we call slot.paintComponent and the check for whether or not something is null happens in the slot
-            for (ItemViewObject evo: getIvoList()) {
-
-            }
 
 
 

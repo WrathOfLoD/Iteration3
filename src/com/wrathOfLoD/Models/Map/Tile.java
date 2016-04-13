@@ -10,6 +10,7 @@ import com.wrathOfLoD.Models.Map.Terrain.Terrain;
 import com.wrathOfLoD.Models.Map.Terrain.Water;
 import com.wrathOfLoD.VisitorInterfaces.TileVisitor;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -76,8 +77,14 @@ public class Tile {
 
 	}
 
+
+    public Iterator<Entity> getEntities() {
+        return entities.iterator();
+    }
+
     public void accept(TileVisitor tileVisitor){
         tileVisitor.visitTile(this);
+
     }
 
     public Entity[] getEntities(){

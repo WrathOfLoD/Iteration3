@@ -3,6 +3,8 @@ package com.wrathOfLoD.Views.ItemDisplayView.Slot;
 import com.wrathOfLoD.Views.ViewObjects.EquippedItemViewObject;
 import com.wrathOfLoD.Views.ViewObjects.ItemViewObject;
 
+import java.awt.*;
+
 /**
  * Created by echristiansen on 4/11/2016.
  */
@@ -17,6 +19,12 @@ public class EquipmentSlot extends Slot{
         super(item);
     }
 
-
+    /*
+    public void paintComponent(Graphics g, int x, int y, int width, int height) {
+        if(getItem()!=null) {
+            getItem().paintComponent(g,x,y,width,height);
+        }
+    }
+*/
 
 }

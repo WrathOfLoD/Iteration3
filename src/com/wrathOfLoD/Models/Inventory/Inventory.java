@@ -5,6 +5,8 @@ import com.wrathOfLoD.Controllers.InputStates.Action.Action;
 import com.wrathOfLoD.Controllers.InputStates.ActionVendor;
 import com.wrathOfLoD.Models.ActionsHolder;
 import com.wrathOfLoD.Models.Items.TakeableItem;
+import com.wrathOfLoD.Observers.InventoryObserver;
+
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -14,8 +16,17 @@ import java.util.Set;
  * Created by zach on 4/7/16.
  */
 public class Inventory implements ActionsHolder {
+
+
     private List<TakeableItem> itemList;
     private Set<Action> actionSet;
+    private ArrayList<InventoryObserver> observers = new ArrayList<InventoryObserver>();
+
+    public void alertItemAdded() {
+        for (InventoryObserver obs: observers) {
+            obs.alertInventoryChange();
+        }
+    }
 
     public Inventory() {
         this.itemList = new ArrayList();

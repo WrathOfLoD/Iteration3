@@ -54,4 +54,8 @@ public abstract class Weapon extends EquippableItem{
         UnequipItemCommand unequipWeaponCommand = new UnequipWeaponCommand(character, this);
         unequipWeaponCommand.execute();
     }
+
+    public void attack(Character character){
+
+    }
 }

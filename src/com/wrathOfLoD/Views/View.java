@@ -12,6 +12,9 @@ public abstract class View extends JPanel {
     public View() {
     }
 
+    public void paintComponent(Graphics g) {
+        super.paintComponent(g);
+    }
 
 
 }

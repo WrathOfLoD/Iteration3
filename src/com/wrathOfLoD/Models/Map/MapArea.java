@@ -37,8 +37,8 @@ public class MapArea{
 	}
 
 	public boolean hasTileAt(Position pos){
-		TilePillar pillar = getTilePillar(pos);
-		if(pillar != null){
+		if(this.hasTilePillarAt(pos)){
+			TilePillar pillar = getTilePillar(pos);
 			return pillar.hasTileAt(pos);
 		}
 		else{
@@ -59,7 +59,6 @@ public class MapArea{
 
         return tiles;
     }
-
 
     public void addEntity(Entity entity, Position pos){
 		TilePillar pillar = getTilePillar(pos);

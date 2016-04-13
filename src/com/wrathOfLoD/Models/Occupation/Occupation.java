@@ -35,6 +35,6 @@ public abstract class Occupation {
 
     public void addAbilities(AbilityManager abilityManager){
         //TODO: ADD ABILITIES
-        abilityManager.addAbilities(new BindWoundsAbility(1));
+        //abilityManager.addAbilities(new BindWoundsAbility(1));
     }
 }
