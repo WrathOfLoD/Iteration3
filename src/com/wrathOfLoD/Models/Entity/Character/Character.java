@@ -4,6 +4,7 @@ import com.wrathOfLoD.Models.Ability.AbilityManager;
 import com.wrathOfLoD.Models.Entity.Entity;
 import com.wrathOfLoD.Models.Inventory.Equipment;
 import com.wrathOfLoD.Models.Items.EquippableItems.EquippableItem;
+import com.wrathOfLoD.Models.Items.EquippableItems.Weapons.Weapon;
 import com.wrathOfLoD.Models.Items.InteractiveItem;
 import com.wrathOfLoD.Models.Items.TakeableItem;
 import com.wrathOfLoD.Models.Occupation.Occupation;
@@ -71,7 +72,10 @@ public abstract class Character extends Entity {
         item.unequip(this);
     }
 
-    public void attack() {}
+    public void attack() {
+        Weapon currentWeaponEquip = this.equipment.getWeapon();
+        currentWeaponEquip.attack(this);
+    }
 
     public void levelUp(){
         super.levelUp();
