@@ -14,55 +14,13 @@ import java.util.ArrayList;
 /**
  * Created by zach on 4/7/16.
  */
-public class Equipment {
-
-    private ArrayList<EquipmentObserver> observers = new ArrayList<EquipmentObserver>();
-
-    public void alertUpdate(){
-        System.out.println("ATTEMPTING AN Equipment change from equipment");
-        for (EquipmentObserver o: observers) {
-            o.alertEquipmentChange();
-        }
-    }
-
-    public void addObserver(EquipmentObserver observer) {
-        observers.add(observer);
-    }
-
+public class Equipment implements Observable{
     private final Weapon defaultWeapon = new DefaultWeapon();
     private Armor armor;
     private Weapon weapon;
     private Greaves greaves;
     private Helm helm;
-
-
-    public Weapon getDefaultWeapon() {
-        return defaultWeapon;
-    }
-    public Armor getArmor() {
-        return armor;
-    }
-    public void setArmor(Armor armor) {
-        this.armor = armor;
-    }
-    public Weapon getWeapon() {
-        return weapon;
-    }
-    public void setWeapon(Weapon weapon) {
-        this.weapon = weapon;
-    }
-    public Greaves getGreaves() {
-        return greaves;
-    }
-    public void setGreaves(Greaves greaves) {
-        this.greaves = greaves;
-    }
-    public Helm getHelm() {
-        return helm;
-    }
-    public void setHelm(Helm helm) {
-        this.helm = helm;
-    }
+    private ArrayList<EquipmentObserver> observers = new ArrayList<EquipmentObserver>();
 
     private class DefaultWeapon extends Weapon{
         public DefaultWeapon(){
@@ -81,6 +39,49 @@ public class Equipment {
         this.greaves = null;
         this.helm = null;
     }
+
+
+    public void alertUpdate(){
+        System.out.println("ATTEMPTING AN Equipment change from equipment");
+        for (EquipmentObserver o: observers) {
+            o.alertEquipmentChange();
+        }
+    }
+
+    public void addObserver(EquipmentObserver observer) {
+        observers.add(observer);
+    }
+
+
+    /***** getter & setter for Equipment *******/
+    public Weapon getDefaultWeapon() {
+        return defaultWeapon;
+    }
+    public Armor getArmor() {
+        return armor;
+    }
+    public Weapon getWeapon() {
+        return weapon;
+    }
+    public Greaves getGreaves() {
+        return greaves;
+    }
+    public Helm getHelm() {return helm;}
+
+    public void setArmor(Armor armor) {
+        this.armor = armor;
+    }
+    public void setWeapon(Weapon weapon) {
+        this.weapon = weapon;
+    }
+    public void setGreaves(Greaves greaves) {
+        this.greaves = greaves;
+    }
+    public void setHelm(Helm helm) {
+        this.helm = helm;
+    }
+
+    /***** END of getter & setter *******/
 
     public void equip(Armor armor){
         this.armor = armor;
@@ -138,5 +139,20 @@ public class Equipment {
             return true;
         }
         return false;
+    }
+
+    @Override
+    public void registerObserver(Observer o) {
+
+    }
+
+    @Override
+    public void removeObserver(Observer o) {
+
+    }
+
+    @Override
+    public void notifyObservers() {
+
     }
 }
