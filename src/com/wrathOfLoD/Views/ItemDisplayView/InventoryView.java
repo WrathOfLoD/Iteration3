@@ -104,8 +104,6 @@ public class InventoryView extends ItemDisplayView {
      */
     public void selectNextItem() {
         this.safeIncrementRight();
-
-//        this.paintComponent(this.getGraphics());
     }
 
     /**
@@ -125,8 +123,6 @@ public class InventoryView extends ItemDisplayView {
      */
     public void selectPrevItem() {
         this.safeDecrementLeft();
-
-//        this.paintComponent(this.getGraphics());
     }
 
     /**
@@ -146,8 +142,6 @@ public class InventoryView extends ItemDisplayView {
      */
     public void selectUpItem() {
         this.safeDecrementUp();
-
-//        this.paintComponent(this.getGraphics());
     }
 
     /**
@@ -165,8 +159,6 @@ public class InventoryView extends ItemDisplayView {
      */
     public void selectDownItem() {
         this.safeIncrementDown();
-
-//        this.paintComponent(this.getGraphics());
     }
 
     /**
