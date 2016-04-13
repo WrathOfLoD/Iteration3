@@ -10,7 +10,7 @@ import java.awt.*;
 /**
  * Created by erik on 4/7/2016.
  */
-public class ItemViewObject extends ViewObject{
+public class ItemViewObject extends ViewObject {
 
     private Item item;
     private boolean isDisplayed;
@@ -33,6 +33,11 @@ public class ItemViewObject extends ViewObject{
     }
     public void setSelected(boolean selected) {
         isSelected = selected;
+    }
+
+
+    public ItemViewObject(){
+
     }
 
     public ItemViewObject(Item item) {

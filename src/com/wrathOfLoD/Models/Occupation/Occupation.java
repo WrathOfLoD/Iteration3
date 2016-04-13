@@ -6,6 +6,8 @@ import com.wrathOfLoD.Models.Ability.AbilityManager;
 import com.wrathOfLoD.Models.Items.EquippableItems.Weapons.SmasherWeapons.SmasherWeapon;
 import com.wrathOfLoD.Models.Items.EquippableItems.Weapons.SneakWeapons.SneakWeapon;
 import com.wrathOfLoD.Models.Items.EquippableItems.Weapons.SummonerWeapons.SummonerWeapon;
+import com.wrathOfLoD.Models.Skill.Skill;
+import com.wrathOfLoD.Models.Skill.SkillManager;
 import com.wrathOfLoD.Models.Stats.Stats;
 import com.wrathOfLoD.Models.Stats.StatsModifiable;
 
@@ -22,6 +24,8 @@ public abstract class Occupation {
     public abstract boolean canEquip(SneakWeapon weapon);
 
     public abstract boolean canEquip(SummonerWeapon weapon);
+
+    public abstract SkillManager createSkillManager();
 
     public void levelUp(Stats stats) {}
 

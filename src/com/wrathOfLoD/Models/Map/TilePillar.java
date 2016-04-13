@@ -80,4 +80,7 @@ public class TilePillar{
 		tile.removeAE(ae);
 	}
 
+	public Tile[] getTiles() {
+		return tiles;
+	}
 }

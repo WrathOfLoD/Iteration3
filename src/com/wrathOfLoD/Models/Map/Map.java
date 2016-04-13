@@ -5,6 +5,7 @@ import com.wrathOfLoD.Models.Items.Item;
 import com.wrathOfLoD.Models.LocationTracker.LocationTrackerManager;
 import com.wrathOfLoD.Models.Map.AreaEffect.AreaEffect;
 import com.wrathOfLoD.Utility.Position;
+import com.wrathOfLoD.VisitorInterfaces.MapVisitor;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -91,6 +92,13 @@ public class Map {
 		this.activeMapArea.removeAE(ae, pos);
 	}
 
+	public MapArea[] getMapAreas(){
+		return mapAreas.toArray(new MapArea[mapAreas.size()]);
+	}
+
+	public void accept(MapVisitor mapVisitor){
+		mapVisitor.visitMap(this);
+	}
 
 }
 
