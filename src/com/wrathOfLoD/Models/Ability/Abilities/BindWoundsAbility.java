@@ -5,9 +5,10 @@ import com.wrathOfLoD.Models.Entity.Entity;
 /**
  * Created by zach on 4/7/16.
  */
-public class BindWoundsAbility extends Ability {
+public class BindWoundsAbility {
     private Entity entity;
 
+    /*
     public BindWoundsAbility() {
         super();
     }
@@ -19,5 +20,5 @@ public class BindWoundsAbility extends Ability {
     @Override
     public void doAbility() {
 
-    }
+    }*/
 }
