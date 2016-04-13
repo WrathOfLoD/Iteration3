@@ -86,7 +86,10 @@ public abstract class Character extends Entity {
     }
 
     public void doAbility(int abilityNum){
-        abilityManager.doAbility(abilityNum);
+        if(!isActive()){
+            setActive();
+            abilityManager.doAbility(abilityNum);
+        }
     }
 
     public void accept(EntityVisitor ev){

@@ -96,6 +96,11 @@ public abstract class Entity {
         stats.modifyStats(StatsModifiable.createHealthStatsModifiable(damageAmount));
     }
 
+    public void loseMana(int mana){
+        stats.modifyStats(StatsModifiable.createManaStatsModifiable(-mana));
+    }
+
+
     public void doInteraction(Character character) {}
 
     public void gainExp(int exp) {}
