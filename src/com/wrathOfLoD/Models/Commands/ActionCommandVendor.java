@@ -2,10 +2,7 @@ package com.wrathOfLoD.Models.Commands;
 
 import com.wrathOfLoD.Models.Commands.EntityActionCommands.ChangeDirectionCommand;
 import com.wrathOfLoD.Models.Commands.EntityActionCommands.MovementCommand;
-import com.wrathOfLoD.Models.Commands.InventoryActionCommands.SelectDownCommand;
-import com.wrathOfLoD.Models.Commands.InventoryActionCommands.SelectLeftCommand;
-import com.wrathOfLoD.Models.Commands.InventoryActionCommands.SelectRightCommand;
-import com.wrathOfLoD.Models.Commands.InventoryActionCommands.SelectUpCommand;
+import com.wrathOfLoD.Models.Commands.InventoryActionCommands.*;
 import com.wrathOfLoD.Models.Entity.Entity;
 import com.wrathOfLoD.Models.Inventory.Inventory;
 import com.wrathOfLoD.Utility.Direction;
@@ -37,5 +34,8 @@ public class ActionCommandVendor {
     }
     public static ActionCommand createSelectRightCommand(InventoryView inventoryView) {
         return new SelectRightCommand(inventoryView);
+    }
+    public static ActionCommand createSelectItemCommand(InventoryView inventoryView) {
+        return new SelectItemCommand(inventoryView);
     }
 }

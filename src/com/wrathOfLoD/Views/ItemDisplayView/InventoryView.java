@@ -1,6 +1,7 @@
 package com.wrathOfLoD.Views.ItemDisplayView;
 
 import com.wrathOfLoD.Models.Inventory.Inventory;
+import com.wrathOfLoD.Models.Items.Item;
 import com.wrathOfLoD.Models.Items.TakeableItem;
 import com.wrathOfLoD.Views.ContentDisplayStructure.ContentDisplayStructure;
 import com.wrathOfLoD.Views.ContentDisplayStructure.GridStructure;
@@ -172,6 +173,13 @@ public class InventoryView extends ItemDisplayView {
             this.currentIndex = prevIndex;
     }
 
+    /**
+     * desc: Return the currently selected item
+     */
+    public Item useSelectedItem() {
+        System.out.println(this.getItemViewObject(currentIndex).getItem().getName());
+        return this.getItemViewObject(currentIndex).getItem();
+    }
 }
 
 

@@ -87,6 +87,7 @@ public class Main {
         inventory.addToActionSet(ActionVendor.createSelectRightAction(inventoryView));
         inventory.addToActionSet(ActionVendor.createSelectLeftAction(inventoryView));
         inventory.addToActionSet(ActionVendor.createSelectDownAction(inventoryView));
+        inventory.addToActionSet(ActionVendor.createSelectItemAction(inventoryView));
 
         InputState inventoryState = new InventoryState(inventory);
         mainController.setActiveState(avatarState);
