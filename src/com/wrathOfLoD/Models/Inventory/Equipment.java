@@ -1,14 +1,12 @@
 package com.wrathOfLoD.Models.Inventory;
 
+import com.wrathOfLoD.Models.Entity.Character.Character;
 import com.wrathOfLoD.Models.Items.EquippableItems.Armor;
 import com.wrathOfLoD.Models.Items.EquippableItems.Greaves;
 import com.wrathOfLoD.Models.Items.EquippableItems.Helm;
 import com.wrathOfLoD.Models.Items.EquippableItems.Weapons.Weapon;
 import com.wrathOfLoD.Models.Occupation.Occupation;
 import com.wrathOfLoD.Observers.EquipmentObserver;
-import com.wrathOfLoD.Observers.Observable;
-import com.wrathOfLoD.Observers.Observer;
-
 import java.util.ArrayList;
 
 /**
@@ -31,6 +29,10 @@ public class Equipment{
         protected boolean occupationCheckHook(Occupation o){
             return true;
         }
+
+        //can't unequip defaultWeapon
+        @Override
+        public void unequip(Character character){}
     }
 
     public Equipment() {
@@ -81,7 +83,6 @@ public class Equipment{
         observers.add(observer);
     }
 
-    //might have errors :(
     public void equip(Armor armor){
         this.armor = armor;
         alertUpdate();
