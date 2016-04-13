@@ -4,6 +4,7 @@ import com.wrathOfLoD.Models.Entity.Entity;
 import com.wrathOfLoD.Models.Items.Item;
 import com.wrathOfLoD.Models.Map.AreaEffect.AreaEffect;
 import com.wrathOfLoD.Utility.Position;
+import com.wrathOfLoD.VisitorInterfaces.MapVisitor;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -35,8 +36,8 @@ public class MapArea{
 	}
 
 	public boolean hasTileAt(Position pos){
-		TilePillar pillar = getTilePillar(pos);
-		if(pillar != null){
+		if(this.hasTilePillarAt(pos)){
+			TilePillar pillar = getTilePillar(pos);
 			return pillar.hasTileAt(pos);
 		}
 		else{
@@ -57,7 +58,6 @@ public class MapArea{
 
         return tiles;
     }
-
 
     public void addEntity(Entity entity, Position pos){
 		TilePillar pillar = getTilePillar(pos);
@@ -89,4 +89,11 @@ public class MapArea{
 		pillar.removeAE(ae, pos);
 	}
 
+	public void accept(MapVisitor mapVisitor){
+		mapVisitor.visitMapArea(this);
+	}
+
+	public HashMap<Position, TilePillar> getTilePillarMap() {
+		return tilePillarMap;
+	}
 }

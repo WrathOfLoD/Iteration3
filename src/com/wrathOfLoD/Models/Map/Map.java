@@ -5,6 +5,7 @@ import com.wrathOfLoD.Models.Items.Item;
 import com.wrathOfLoD.Models.LocationTracker.LocationTrackerManager;
 import com.wrathOfLoD.Models.Map.AreaEffect.AreaEffect;
 import com.wrathOfLoD.Utility.Position;
+import com.wrathOfLoD.VisitorInterfaces.MapVisitor;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -38,15 +39,7 @@ public class Map {
 		this.setActiveMapArea(activeMapArea);
 	}
 
-    public Tile getTile(Position p) {
-        return this.activeMapArea.getTile(p.get2DProjection());
-    }
-
-    public List<Tile> getTiles(List<Position> pList) {
-        return this.activeMapArea.getTiles(pList);
-    }
-
-    public void setActiveMapArea(MapArea mArea){
+	public void setActiveMapArea(MapArea mArea){
 		if(mapAreas.contains(mArea)){
 			this.activeMapArea = mArea;
 			LocationTrackerManager.getInstance().updateActiveMapArea(this.activeMapArea);
@@ -60,6 +53,20 @@ public class Map {
 	public void addMapArea(MapArea mapArea){
 		this.mapAreas.add(mapArea);
 	}
+
+	public TilePillar getTilePillar(Position pos){
+		TilePillar pillar = this.activeMapArea.getTilePillar(pos);
+		return pillar;
+	}
+
+    public Tile getTile(Position pos) {
+        Tile tile = this.activeMapArea.getTile(pos);
+		return tile;
+    }
+
+    public List<Tile> getTiles(List<Position> pList) {
+        return this.activeMapArea.getTiles(pList);
+    }
 
     public void addEntity(Entity entity, Position pos){
 		this.activeMapArea.addEntity(entity, pos);
@@ -85,6 +92,13 @@ public class Map {
 		this.activeMapArea.removeAE(ae, pos);
 	}
 
+	public MapArea[] getMapAreas(){
+		return mapAreas.toArray(new MapArea[mapAreas.size()]);
+	}
+
+	public void accept(MapVisitor mapVisitor){
+		mapVisitor.visitMap(this);
+	}
 
 }
 

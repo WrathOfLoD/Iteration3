@@ -4,6 +4,7 @@ import com.wrathOfLoD.Models.Entity.Entity;
 import com.wrathOfLoD.Models.Items.Item;
 import com.wrathOfLoD.Models.LocationTracker.LocationTrackerManager;
 import com.wrathOfLoD.Models.Map.AreaEffect.AreaEffect;
+import com.wrathOfLoD.VisitorInterfaces.TileVisitor;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -52,8 +53,14 @@ public class Tile {
 
 	}
 
-    public Iterator<Entity> getEntities(){
+
+    public Iterator<Entity> getEntities() {
         return entities.iterator();
+    }
+
+    public void accept(TileVisitor tileVisitor){
+        tileVisitor.visitTile(this);
+
     }
 }
 

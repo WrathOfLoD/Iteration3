@@ -1,5 +1,7 @@
 package com.wrathOfLoD.Models.Items.ConsumableItems;
 
+import com.wrathOfLoD.Models.Commands.ActionCommand;
+import com.wrathOfLoD.Models.Commands.EntityActionCommands.ConsumeItemCommands.ConsumePermanentItemCommand;
 import com.wrathOfLoD.Models.Entity.Character.Character;
 import com.wrathOfLoD.Models.Stats.StatsModifiable;
 import com.wrathOfLoD.Utility.Position;
@@ -14,6 +16,7 @@ public class PermanentConsumable extends ConsumableItem {
 
     @Override
     protected void consume(Character character){
-        character.consume(this);
+        ActionCommand consumePermanentItemCommand = new ConsumePermanentItemCommand(character, this);
+        consumePermanentItemCommand.execute();
     }
 }
