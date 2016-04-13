@@ -74,20 +74,19 @@ public class EquipmentView extends ItemDisplayView implements EquipmentObserver 
         getEquipment().addObserver(this); // TODO: 4/12/2016 might need to delete this...but I think it's good spot
     }
 
-        public EquipmentView() { // TODO: 4/12/2016 delete this constructor it's for testing purposes? 
-            setEquipment(new Equipment()); // TODO: 4/12/2016 delete this it's for testing purposes?
+        public EquipmentView() { // TODO: 4/12/2016 delete this constructor it's for testing purposes?
+            //setEquipment(new Equipment()); // TODO: 4/12/2016 delete this it's for testing purposes?
             //getEquipment().addObserver(this);
             this.setBackground(new Color(0f, 0f, 0f, 0f));
             this.setBorder(new LineBorder(Color.WHITE));
         }
-    
+
         public EquipmentView(Equipment equipment) {
             setEquipment(equipment);
             //getEquipment().addObserver(this);
             fillSlots();
             this.setBackground(new Color(0f, 0f, 0f, 0f));
             this.setBorder(new LineBorder(Color.WHITE));
-
         }
 
     public void initializeSlots(){ // TODO: 4/12/2016 might not need this. Could do this or a variant of this or just use the null constructors above
@@ -129,10 +128,6 @@ public class EquipmentView extends ItemDisplayView implements EquipmentObserver 
             getChestSlot().paintComponent(g,eds.getChestX(),eds.getChestY(),eds.getSlotWidth(),eds.getslotHeight());
             //getShieldSlot().paintComponent(g,eds.getHelmetX(),eds.getHelmetY(),eds.getSlotWidth(),eds.getslotHeight());
             getGreavesSlot().paintComponent(g,eds.getLegsX(),eds.getLegsY(),eds.getSlotWidth(),eds.getslotHeight());
-
-            System.out.println("Calling paintComponent: " + getHelmetSlot().getItem().getName());
-            System.out.println("Testing testing 123");
-
 
             // TODO: 4/9/2016 Create a Slot class, where each Slot has an x and a y and then we call slot.paintComponent and the check for whether or not something is null happens in the slot
 

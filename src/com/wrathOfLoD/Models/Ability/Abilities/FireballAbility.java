@@ -1,8 +1,12 @@
 package com.wrathOfLoD.Models.Ability.Abilities;
 
+import com.wrathOfLoD.Models.Entity.Character.Character;
 import com.wrathOfLoD.Models.Entity.Entity;
+import com.wrathOfLoD.Models.Occupation.Summoner;
+import com.wrathOfLoD.Models.RangedEffect.HitBox.FireBallHitBoxFactory;
 import com.wrathOfLoD.Models.RangedEffect.REG.LineREG;
 import com.wrathOfLoD.Models.RangedEffect.REG.RangedEffectGenerator;
+import com.wrathOfLoD.Models.Skill.SummonerSkillManager;
 import com.wrathOfLoD.Models.Stats.Stats;
 import com.wrathOfLoD.Models.Stats.StatsModifiable;
 import com.wrathOfLoD.Utility.Direction;
@@ -11,32 +15,53 @@ import com.wrathOfLoD.Utility.ModelConfig;
 /**
  * Created by zach on 4/7/16.
  */
-public class FireballAbility extends Ability {
+public class FireballAbility extends TimedAbility {
     private Direction direction;
-    private Stats stats;
+    private int totalDistance;
+    private int travelTime;
+    private SummonerSkillManager ssm;
 
-    public FireballAbility(Entity entity, int windup,int coolDown, Direction dir, Stats stats) {
-        super(entity, windup, coolDown, ModelConfig.getMidManaCost());
+    public FireballAbility(Character character, int windup, int coolDown, Direction dir, int totalDistance, int travelTime) {
+        super(character, windup, coolDown, ModelConfig.getMidManaCost());
         this.direction = dir;
-        this.stats = stats;
+        this.totalDistance = totalDistance;
+        this.travelTime = travelTime;
+        ssm = (SummonerSkillManager) getCharacter().getSkillManager();
     }
 
-    public FireballAbility(int unlockingLevel, Entity entity, int windup,int coolDown, Direction dir, Stats stats){
-        super(unlockingLevel, entity, windup, coolDown, ModelConfig.getMidManaCost());
+    public FireballAbility(int unlockingLevel, Character character, int windup,int coolDown, Direction dir, int totalDistance){
+        super(unlockingLevel, character, windup, coolDown, ModelConfig.getMidManaCost());
         this.direction = dir;
-        this.stats = stats;
+        this.totalDistance = totalDistance;
+        this.travelTime = travelTime;
+        ssm = (SummonerSkillManager) getCharacter().getSkillManager();
+    }
+
+
+    @Override
+    public void windUpHook(){
+        //TODO: CHECK WHETHER THERE IS TARGET. Char.getActiveTarget?
+
+        RangedEffectGenerator reg = new LineREG(
+                totalDistance,
+                getCharacter().getPosition(),
+                calcualteDmg(),
+                travelTime,
+                new FireBallHitBoxFactory(),
+                getCharacter().getDirection());
+
+        reg.doRangedEffect();
     }
 
     @Override
-    public void doAbility() {
-        //TODO: check if can cast ability (using skill level)
-
-        //TODO: if get target, set avatar's dir to target's dir
-
-        StatsModifiable manaModifiable = StatsModifiable.createManaStatsModifiable(getManaCost());
-        stats.modifyStats(manaModifiable);
-
-        //RangedEffectGenerator reg = new LineREG()
-
+    public boolean shouldDoAbility() {
+        return checkCanCastAbility(ssm.getBaneLevel());
     }
+
+    private int calcualteDmg(){
+        //TODO: need to balance formula
+        return getCharacter().getStats().getOffensiveRating() + (2 * ssm.getBaneLevel());
+    }
+
+
 }

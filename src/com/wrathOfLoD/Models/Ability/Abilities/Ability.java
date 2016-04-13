@@ -1,5 +1,6 @@
 package com.wrathOfLoD.Models.Ability.Abilities;
 
+import com.wrathOfLoD.Models.Entity.Character.Character;
 import com.wrathOfLoD.Models.Entity.Entity;
 
 /**
@@ -8,31 +9,46 @@ import com.wrathOfLoD.Models.Entity.Entity;
 public abstract class Ability {
 
     private int unlockLevel;
-    private int windup;
-    private int coolDown; //total time it takes to do the ability
     private int manaCost;
-    private Entity entity;
+    private Character character;
 
-
-    public Ability(Entity entity, int windup,int coolDown, int manaCost) {
+    public Ability(Character character, int manaCost) {
         setUnlockLevel(0);
-        this.entity = entity;
-        this.windup = windup;
-        this.coolDown = coolDown;
+        this.character = character;
         this.manaCost = manaCost;
     }
 
-    public Ability(int unlockLevel, Entity entity, int windup,int coolDown, int manaCost){
+    public Ability(int unlockLevel, Character character, int manaCost){
         setUnlockLevel(unlockLevel);
-        this.entity = entity;
-        this.windup = windup;
-        this.coolDown = coolDown;
+        this.character = character;
         this.manaCost = manaCost;
     }
 
 
-    public abstract void doAbility();
+    public void doAbility(){ //TM
+        if(shouldDoAbility()){
+            character.loseMana(manaCost);
+            doAbilityHook();
+        }
+    }
 
+
+    public abstract boolean shouldDoAbility();
+    public abstract void doAbilityHook();
+
+
+    public boolean checkCanCastAbility(int skillLevel){
+        int accuIncFactor = 10;
+        int accuracy = skillLevel * accuIncFactor; //max = 100
+        if(accuracy > 100)
+            accuracy = 100;
+
+        int randomNum = (int)(Math.random() * 102) + 1; //generate a randomNum from 1 to 102 -> even at high level, still small chance of failing
+        if(randomNum <= accuracy)
+            return true;
+
+        return false;
+    }
 
 
     /********** GETTER & SETTERS ******************/
@@ -44,22 +60,6 @@ public abstract class Ability {
         this.unlockLevel = level;
     }
 
-    public int getWindup() {
-        return windup;
-    }
-
-    public void setWindup(int windup) {
-        this.windup = windup;
-    }
-
-    public int getCoolDown() {
-        return coolDown;
-    }
-
-    public void setCoolDown(int coolDown) {
-        this.coolDown = coolDown;
-    }
-
     public int getManaCost() {
         return manaCost;
     }
@@ -68,12 +68,12 @@ public abstract class Ability {
         this.manaCost = manaCost;
     }
 
-    public Entity getEntity() {
-        return entity;
+    public Character getCharacter() {
+        return character;
     }
 
-    public void setEntity(Entity entity) {
-        this.entity = entity;
+    public void setCharacter(Character character) {
+        this.character = character;
     }
 
 }

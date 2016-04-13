@@ -30,8 +30,14 @@ public class LineREG extends RangedEffectGenerator{
 
     @Override
     public List<Position> getEffectiveLocations(int radius, Position orignalPos) {
+        //extract the position one by one
+        //TODO: is this safe? (List returned by drawline(not including original pos) always has the length of total distance traveled?)
 
-        //TODO: extract position one by one
+        if(!targetPositions.isEmpty() && radius <= targetPositions.size()){
+            List<Position> pos = new ArrayList<>();
+            pos.add(targetPositions.get(radius-1));
+            return pos;
+        }
 
         return null;
     }

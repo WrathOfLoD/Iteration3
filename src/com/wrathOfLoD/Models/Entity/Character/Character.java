@@ -27,7 +27,8 @@ public abstract class Character extends Entity {
     public Character(){
         super();
         this.occupation = new Smasher();
-        this.equipment = new Equipment();
+        Weapon defaultWeapon = this.occupation.createWeapon();
+        this.equipment = new Equipment(defaultWeapon);
         this.targetManager = new TargetManager();
         this.abilityManager = new AbilityManager(getOccupation());
         this.skillManager = this.occupation.createSkillManager();
@@ -38,7 +39,8 @@ public abstract class Character extends Entity {
         super(name,position);
         this.abilityManager = new AbilityManager(getOccupation());
         this.occupation = occupation;
-        this.equipment = new Equipment();
+        Weapon defaultWeapon = this.occupation.createWeapon();
+        this.equipment = new Equipment(defaultWeapon);
         this.targetManager = new TargetManager();
         this.abilityManager.unlockAbilities(getStats().getLevel());
         this.skillManager = this.occupation.createSkillManager();
@@ -75,7 +77,7 @@ public abstract class Character extends Entity {
 
     public void attack() {
         Weapon currentWeaponEquip = this.equipment.getWeapon();
-        currentWeaponEquip.attack(this);
+        currentWeaponEquip.attack(this, this.getSkillManager());
     }
 
     public void levelUp(){
@@ -84,7 +86,10 @@ public abstract class Character extends Entity {
     }
 
     public void doAbility(int abilityNum){
-        abilityManager.doAbility(abilityNum);
+        if(!isActive()){
+            setActive();
+            abilityManager.doAbility(abilityNum);
+        }
     }
 
     public void accept(EntityVisitor ev){

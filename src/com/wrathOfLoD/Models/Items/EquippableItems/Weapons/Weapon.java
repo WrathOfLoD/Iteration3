@@ -1,5 +1,8 @@
 package com.wrathOfLoD.Models.Items.EquippableItems.Weapons;
 
+import com.wrathOfLoD.Models.Commands.ActionCommand;
+import com.wrathOfLoD.Models.Commands.EntityActionCommands.AttackCommands.AttackCommand;
+import com.wrathOfLoD.Models.Commands.EntityActionCommands.AttackCommands.MeleeAttackCommand;
 import com.wrathOfLoD.Models.Commands.EntityActionCommands.EquipItemCommands.EquipItemCommand;
 import com.wrathOfLoD.Models.Commands.EntityActionCommands.EquipItemCommands.EquipWeaponCommand;
 import com.wrathOfLoD.Models.Commands.EntityActionCommands.UnequipItemCommands.UnequipItemCommand;
@@ -8,9 +11,6 @@ import com.wrathOfLoD.Models.Entity.Character.Character;
 import com.wrathOfLoD.Models.Items.EquippableItems.EquippableItem;
 import com.wrathOfLoD.Models.Occupation.Occupation;
 import com.wrathOfLoD.Models.Skill.SkillManager;
-import com.wrathOfLoD.Models.Skill.SmasherSkillManager;
-import com.wrathOfLoD.Models.Skill.SneakSkillManager;
-import com.wrathOfLoD.Models.Skill.SummonerSkillManager;
 import com.wrathOfLoD.Models.Stats.StatsModifiable;
 
 /**
@@ -44,6 +44,8 @@ public abstract class Weapon extends EquippableItem{
 
     protected abstract boolean occupationCheckHook(Occupation o);
 
+    protected abstract int getSkillHook(SkillManager skillManager);
+
     @Override
     public void equip(Character character){
         Occupation occupation = character.getOccupation();
@@ -59,7 +61,10 @@ public abstract class Weapon extends EquippableItem{
         unequipWeaponCommand.execute();
     }
 
-    public void attack(Character character){
-
+    public void attack(Character character, SkillManager skillManager){
+        int weaponSkillLevel = getSkillHook(skillManager);
+        AttackCommand meleeAttackCommand = new MeleeAttackCommand(character, this, weaponSkillLevel);
+        meleeAttackCommand.execute();
     }
+
 }
