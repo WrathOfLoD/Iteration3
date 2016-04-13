@@ -14,7 +14,7 @@ import java.util.ArrayList;
 /**
  * Created by zach on 4/7/16.
  */
-public class Equipment implements Observable{
+public class Equipment{
     private final Weapon defaultWeapon = new DefaultWeapon();
     private Armor armor;
     private Weapon weapon;
@@ -28,30 +28,17 @@ public class Equipment implements Observable{
         }
 
         @Override
-        protected  boolean occupationCheckHook(Occupation o){
+        protected boolean occupationCheckHook(Occupation o){
             return true;
         }
     }
 
     public Equipment() {
-        this.equip(defaultWeapon);
+        this.weapon = defaultWeapon;
         this.armor = null;
         this.greaves = null;
         this.helm = null;
     }
-
-
-    public void alertUpdate(){
-        System.out.println("ATTEMPTING AN Equipment change from equipment");
-        for (EquipmentObserver o: observers) {
-            o.alertEquipmentChange();
-        }
-    }
-
-    public void addObserver(EquipmentObserver observer) {
-        observers.add(observer);
-    }
-
 
     /***** getter & setter for Equipment *******/
     public Weapon getDefaultWeapon() {
@@ -83,26 +70,42 @@ public class Equipment implements Observable{
 
     /***** END of getter & setter *******/
 
+    public void alertUpdate(){
+        System.out.println("ATTEMPTING AN Equipment change from equipment");
+        for (EquipmentObserver o: observers) {
+            o.alertEquipmentChange();
+        }
+    }
+
+    public void addObserver(EquipmentObserver observer) {
+        observers.add(observer);
+    }
+
     public void equip(Armor armor){
+        unequip(this.armor);
         this.armor = armor;
         alertUpdate();
     }
 
     public void equip(Greaves greaves) {
+        unequip(this.greaves);
         this.greaves = greaves;
+        alertUpdate();
     }
 
     public void equip(Helm helm){
-//        unequip(this.getHelm()); // TODO: 4/12/2016 is this needed?
+        unequip(this.helm);
         this.helm = helm;
         alertUpdate();
     }
 
     public void equip(Weapon weapon) {
+        if(this.weapon != defaultWeapon){
+            unequip(this.weapon);
+        }
+
         this.weapon = weapon;
         alertUpdate();
-        // TODO: 4/9/16 do the below for the view
-        // alertWeaponEquipped(weapon);
     }
 
     public boolean unequip(Armor armor){
@@ -139,20 +142,5 @@ public class Equipment implements Observable{
             return true;
         }
         return false;
-    }
-
-    @Override
-    public void registerObserver(Observer o) {
-
-    }
-
-    @Override
-    public void removeObserver(Observer o) {
-
-    }
-
-    @Override
-    public void notifyObservers() {
-
     }
 }
