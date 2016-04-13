@@ -96,8 +96,6 @@ public class Main {
         //LocationTrackerManager.getInstance().registerEntity(avatar, avatar.getTargetManager());
 
 
-
-
         Thread.sleep(2000);
         System.out.println("Setting active state");
 //        mainController.setActiveState(avatarState);

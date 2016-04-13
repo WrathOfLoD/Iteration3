@@ -6,6 +6,7 @@ import com.wrathOfLoD.Controllers.InputStates.Action.AvatarActions.MoveAction;
 import com.wrathOfLoD.Controllers.InputStates.Action.InventoryActions.ChangeSelectionAction;
 import com.wrathOfLoD.Models.Commands.ActionCommand;
 import com.wrathOfLoD.Models.Commands.ActionCommandVendor;
+import com.wrathOfLoD.Models.Commands.EntityActionCommands.ChangeDirectionCommand;
 import com.wrathOfLoD.Models.Entity.Character.Avatar;
 import com.wrathOfLoD.Utility.Direction;
 import com.wrathOfLoD.Views.ItemDisplayView.InventoryView;
@@ -15,40 +16,42 @@ import com.wrathOfLoD.Views.ItemDisplayView.InventoryView;
  */
 public class ActionVendor {
 
+    // TODO: 4/12/16 ASK IAN WHY a.getDirection() was used
     public static Action createMoveNorthAction(){
         Avatar a = Avatar.getInstance();
-        ActionCommand move = ActionCommandVendor.createMovementCommand(a, a.getDirection());
-        ActionCommand look = ActionCommandVendor.createChangeDirectionCommand(a, Direction.NORTH);
+        ActionCommand move = ActionCommandVendor.createMovementCommand(a, Direction.NORTH);
+        ChangeDirectionCommand look = ActionCommandVendor.createChangeDirectionCommand(a, Direction.NORTH);
         return new MoveAction(KeyEvent.VK_W, move, look);
     }
     public static Action createMoveNorthEastAction(){
         Avatar a = Avatar.getInstance();
-        ActionCommand move = ActionCommandVendor.createMovementCommand(a, a.getDirection());
-        ActionCommand look = ActionCommandVendor.createChangeDirectionCommand(a, Direction.NORTH_EAST);
+//        ActionCommand move = ActionCommandVendor.createMovementCommand(a, a.getDirection());
+        ActionCommand move = ActionCommandVendor.createMovementCommand(a, Direction.NORTH_EAST);
+        ChangeDirectionCommand look = ActionCommandVendor.createChangeDirectionCommand(a, Direction.NORTH_EAST);
         return new MoveAction(KeyEvent.VK_E, move, look);
     }
     public static Action createMoveNorthWestAction(){
         Avatar a = Avatar.getInstance();
-        ActionCommand move = ActionCommandVendor.createMovementCommand(a, a.getDirection());
-        ActionCommand look = ActionCommandVendor.createChangeDirectionCommand(a, Direction.NORTH_WEST);
+        ActionCommand move = ActionCommandVendor.createMovementCommand(a, Direction.NORTH_WEST);
+        ChangeDirectionCommand look = ActionCommandVendor.createChangeDirectionCommand(a, Direction.NORTH_WEST);
         return new MoveAction(KeyEvent.VK_Q, move, look);
     }
     public static Action createMoveSouthAction(){
         Avatar a = Avatar.getInstance();
-        ActionCommand move = ActionCommandVendor.createMovementCommand(a, a.getDirection());
-        ActionCommand look = ActionCommandVendor.createChangeDirectionCommand(a, Direction.SOUTH);
+        ActionCommand move = ActionCommandVendor.createMovementCommand(a, Direction.SOUTH);
+        ChangeDirectionCommand look = ActionCommandVendor.createChangeDirectionCommand(a, Direction.SOUTH);
         return new MoveAction(KeyEvent.VK_S, move, look);
     }
     public static Action createMoveSouthEastAction(){
         Avatar a = Avatar.getInstance();
-        ActionCommand move = ActionCommandVendor.createMovementCommand(a, a.getDirection());
-        ActionCommand look = ActionCommandVendor.createChangeDirectionCommand(a, Direction.SOUTH_EAST);
+        ActionCommand move = ActionCommandVendor.createMovementCommand(a, Direction.SOUTH_EAST);
+        ChangeDirectionCommand look = ActionCommandVendor.createChangeDirectionCommand(a, Direction.SOUTH_EAST);
         return new MoveAction(KeyEvent.VK_D, move, look);
     }
     public static Action createMoveSouthWestAction(){
         Avatar a = Avatar.getInstance();
-        ActionCommand move = ActionCommandVendor.createMovementCommand(a, a.getDirection());
-        ActionCommand look = ActionCommandVendor.createChangeDirectionCommand(a, Direction.SOUTH_WEST);
+        ActionCommand move = ActionCommandVendor.createMovementCommand(a, Direction.SOUTH_WEST);
+        ChangeDirectionCommand look = ActionCommandVendor.createChangeDirectionCommand(a, Direction.SOUTH_WEST);
         return new MoveAction(KeyEvent.VK_A, move, look);
     }
 

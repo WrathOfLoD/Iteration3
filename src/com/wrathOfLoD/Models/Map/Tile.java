@@ -7,6 +7,7 @@ import com.wrathOfLoD.Models.Map.AreaEffect.AreaEffect;
 import com.wrathOfLoD.VisitorInterfaces.TileVisitor;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -52,8 +53,14 @@ public class Tile {
 
 	}
 
+
+    public Iterator<Entity> getEntities() {
+        return entities.iterator();
+    }
+
     public void accept(TileVisitor tileVisitor){
         tileVisitor.visitTile(this);
+
     }
 }
 
