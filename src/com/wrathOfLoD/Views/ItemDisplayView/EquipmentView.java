@@ -75,7 +75,7 @@ public class EquipmentView extends ItemDisplayView implements EquipmentObserver 
     }
 
         public EquipmentView() { // TODO: 4/12/2016 delete this constructor it's for testing purposes? 
-            setEquipment(new Equipment()); // TODO: 4/12/2016 delete this it's for testing purposes?
+            //setEquipment(new Equipment()); // TODO: 4/12/2016 delete this it's for testing purposes?
             //getEquipment().addObserver(this);
             this.setBackground(new Color(0f, 0f, 0f, 0f));
             this.setBorder(new LineBorder(Color.WHITE));

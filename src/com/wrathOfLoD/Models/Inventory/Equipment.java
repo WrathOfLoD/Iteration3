@@ -13,33 +13,16 @@ import java.util.ArrayList;
  * Created by zach on 4/7/16.
  */
 public class Equipment{
-    private final Weapon defaultWeapon = new DefaultWeapon();
+    private final Weapon defaultWeapon;
     private Armor armor;
     private Weapon weapon;
     private Greaves greaves;
     private Helm helm;
     private ArrayList<EquipmentObserver> observers = new ArrayList<EquipmentObserver>();
 
-    private class DefaultWeapon extends Weapon{
-        public DefaultWeapon(){
-            super();
-        }
-
-        @Override
-        protected boolean occupationCheckHook(Occupation o){
-            return true;
-        }
-
-        //can't unequip defaultWeapon
-        @Override
-        public void unequip(Character character){}
-    }
-
-    public Equipment() {
-        this.weapon = defaultWeapon;
-        this.armor = null;
-        this.greaves = null;
-        this.helm = null;
+    public Equipment(Weapon defaultWeapon){
+        this.defaultWeapon = defaultWeapon;
+        setWeapon(this.defaultWeapon);
     }
 
     /***** getter & setter for Equipment *******/

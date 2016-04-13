@@ -1,6 +1,5 @@
 package com.wrathOfLoD.Models.Items.EquippableItems.Weapons.SmasherWeapons;
 
-import com.wrathOfLoD.Models.Entity.Character.Character;
 import com.wrathOfLoD.Models.Items.EquippableItems.Weapons.Weapon;
 import com.wrathOfLoD.Models.Occupation.Occupation;
 import com.wrathOfLoD.Models.Skill.SkillManager;
@@ -18,5 +17,11 @@ public class FistWeapon extends Weapon implements SmasherWeapon {
     @Override
     protected boolean occupationCheckHook(Occupation o) {
         return o.canEquip(this);
+    }
+
+    @Override
+    protected int getSkillHook(SkillManager skillManager) {
+        SmasherSkillManager smasherSkillManager = (SmasherSkillManager)skillManager;
+        return smasherSkillManager.getBrawlingLevel();
     }
 }
