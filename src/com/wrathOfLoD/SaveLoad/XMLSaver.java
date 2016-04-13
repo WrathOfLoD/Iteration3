@@ -280,7 +280,7 @@ public class XMLSaver implements Saver,EntityPropertyVisitor,EntityVisitor,HeldI
          * will just know that they are recorded bottom to top in tile pillar
          * minor connascence of algorithm if i do that but its within a single class so a very minor violation
          */
-        Entity[] entities = tile.getEntities();
+        Entity[] entities = tile.getEntitiesArray();
         Item[] items = tile.getItems();
         AreaEffect[] areaEffect = tile.getAreaEffects();
 

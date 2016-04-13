@@ -87,7 +87,7 @@ public class Tile {
 
     }
 
-    public Entity[] getEntities(){
+    public Entity[] getEntitiesArray(){
         return entities.toArray(new Entity[entities.size()]);
     }
 
