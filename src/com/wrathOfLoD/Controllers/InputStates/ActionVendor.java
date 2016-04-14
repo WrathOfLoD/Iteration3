@@ -74,4 +74,8 @@ public class ActionVendor {
         ActionCommand selectRightCommand = ActionCommandVendor.createSelectRightCommand(inventoryView);
         return new ChangeSelectionAction(KeyEvent.VK_D, selectRightCommand);
     }
+    public static Action createSelectItemAction(InventoryView inventoryView) {
+        ActionCommand selectItemCommand = ActionCommandVendor.createSelectItemCommand(inventoryView);
+        return new ChangeSelectionAction(KeyEvent.VK_ENTER, selectItemCommand);
+    }
 }
