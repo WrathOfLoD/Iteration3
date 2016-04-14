@@ -10,6 +10,10 @@ import com.wrathOfLoD.Models.Stats.StatsModifiable;
  * Created by matthewdiaz on 4/7/16.
  */
 public class FistWeapon extends Weapon implements SmasherWeapon {
+    public FistWeapon(){
+        super();
+    }
+
     public FistWeapon( String name, StatsModifiable stats, int coolDown, int windUp) {
         super(name, stats, coolDown, windUp);
     }

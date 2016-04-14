@@ -1,6 +1,5 @@
 package com.wrathOfLoD.Models.Items.EquippableItems.Weapons;
 
-import com.wrathOfLoD.Models.Commands.ActionCommand;
 import com.wrathOfLoD.Models.Commands.EntityActionCommands.AttackCommands.AttackCommand;
 import com.wrathOfLoD.Models.Commands.EntityActionCommands.AttackCommands.MeleeAttackCommand;
 import com.wrathOfLoD.Models.Commands.EntityActionCommands.EquipItemCommands.EquipItemCommand;
@@ -21,11 +20,11 @@ public abstract class Weapon extends EquippableItem{
     private int windUp;
 
     public Weapon(){
-        this("space weapon", StatsModifiable.createWeaponBonusStatsModifiable(10), 1, 1);
+        this("default weapon", StatsModifiable.createWeaponBonusStatsModifiable(1), 1, 1);
     }
 
-    public Weapon( String name, StatsModifiable stats, int coolDown, int windUp){
-        super(name,stats);
+    public Weapon( String name, StatsModifiable statsModifiable, int coolDown, int windUp){
+        super(name,statsModifiable);
         this.coolDown = coolDown;
         this.windUp = windUp;
     }
@@ -63,7 +62,7 @@ public abstract class Weapon extends EquippableItem{
 
     public void attack(Character character, SkillManager skillManager){
         int weaponSkillLevel = getSkillHook(skillManager);
-        AttackCommand meleeAttackCommand = new MeleeAttackCommand(character, this, weaponSkillLevel);
+        AttackCommand meleeAttackCommand = new MeleeAttackCommand(character, this.coolDown, this.windUp, weaponSkillLevel);
         meleeAttackCommand.execute();
     }
 

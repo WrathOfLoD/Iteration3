@@ -45,7 +45,7 @@ public class Smasher extends Occupation {
 
     @Override
     public Weapon createWeapon(){
-        return new FistWeapon("default fist", StatsModifiable.createWeaponBonusStatsModifiable(1),1,1);
+        return new FistWeapon();
     }
 
     public void addAbilities(AbilityManager abilityManager){

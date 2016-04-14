@@ -33,7 +33,7 @@ public class RangedWeapon extends Weapon implements SneakWeapon {
     @Override
     public void attack(Character character, SkillManager skillManager){
         int weaponSkillLevel = getSkillHook(skillManager);
-        AttackCommand rangedAttackCommand = new RangedAttackCommand(character, this, weaponSkillLevel);
+        AttackCommand rangedAttackCommand = new RangedAttackCommand(character, getCoolDown(), getWindUp(), weaponSkillLevel);
         rangedAttackCommand.execute();
     }
 }

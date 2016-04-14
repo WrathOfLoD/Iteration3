@@ -10,6 +10,10 @@ import com.wrathOfLoD.Models.Stats.StatsModifiable;
  * Created by matthewdiaz on 4/7/16.
  */
 public class BackStabWeapon extends Weapon implements SneakWeapon {
+    public BackStabWeapon(){
+        super();
+    }
+
     public BackStabWeapon(String name, StatsModifiable stats, int coolDown, int windUp) {
         super(name, stats, coolDown, windUp);
     }

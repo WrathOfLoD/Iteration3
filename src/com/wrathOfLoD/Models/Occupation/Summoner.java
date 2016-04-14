@@ -47,7 +47,7 @@ public class Summoner extends Occupation {
 
     @Override
     public Weapon createWeapon(){
-        return new StaffWeapon("default staff", StatsModifiable.createWeaponBonusStatsModifiable(1),1,1);
+        return new StaffWeapon();
     }
 
     public void addAbilities(AbilityManager abilityManager){

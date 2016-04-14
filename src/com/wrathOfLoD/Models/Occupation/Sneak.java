@@ -46,7 +46,7 @@ public class Sneak extends Occupation {
 
     @Override
     public Weapon createWeapon(){
-        return new BackStabWeapon("default stab", StatsModifiable.createWeaponBonusStatsModifiable(1),1,1);
+        return new BackStabWeapon();
     }
 
     public void addAbilities(AbilityManager abilityManager){
