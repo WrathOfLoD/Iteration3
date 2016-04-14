@@ -20,7 +20,7 @@ public class Equipment implements Observable{
     private Weapon weapon;
     private Greaves greaves;
     private Helm helm;
-    private ArrayList<EquipmentObserver> observers = new ArrayList<EquipmentObserver>();
+    private ArrayList<Observer> observers = new ArrayList<Observer>();
 
     private class DefaultWeapon extends Weapon{
         public DefaultWeapon(){
@@ -33,23 +33,29 @@ public class Equipment implements Observable{
         }
     }
 
+    @Override
+    public void registerObserver(Observer o) {
+        observers.add(o);
+    }
+
+    @Override
+    public void removeObserver(Observer o) {
+        observers.remove(o);
+    }
+
+    @Override
+    public void notifyObservers() {
+        System.out.println("ATTEMPTING AN Equipment change from equipment");
+        for (Observer o: observers) {
+            o.update();
+        }
+    }
+
     public Equipment() {
         this.equip(defaultWeapon);
         this.armor = null;
         this.greaves = null;
         this.helm = null;
-    }
-
-
-    public void alertUpdate(){
-        System.out.println("ATTEMPTING AN Equipment change from equipment");
-        for (EquipmentObserver o: observers) {
-            o.alertEquipmentChange();
-        }
-    }
-
-    public void addObserver(EquipmentObserver observer) {
-        observers.add(observer);
     }
 
 
@@ -85,7 +91,7 @@ public class Equipment implements Observable{
 
     public void equip(Armor armor){
         this.armor = armor;
-        alertUpdate();
+        notifyObservers();
     }
 
     public void equip(Greaves greaves) {
@@ -95,12 +101,12 @@ public class Equipment implements Observable{
     public void equip(Helm helm){
 //        unequip(this.getHelm()); // TODO: 4/12/2016 is this needed?
         this.helm = helm;
-        alertUpdate();
+        notifyObservers();
     }
 
     public void equip(Weapon weapon) {
         this.weapon = weapon;
-        alertUpdate();
+        notifyObservers();
         // TODO: 4/9/16 do the below for the view
         // alertWeaponEquipped(weapon);
     }
@@ -108,7 +114,7 @@ public class Equipment implements Observable{
     public boolean unequip(Armor armor){
         if(this.armor == armor){
             this.armor = null;
-            alertUpdate();
+            notifyObservers();
             return true;
         }
         return false;
@@ -117,7 +123,7 @@ public class Equipment implements Observable{
     public boolean unequip(Greaves greaves){
         if(this.greaves == greaves){
             this.armor = null;
-            alertUpdate();
+            notifyObservers();
             return true;
         }
         return false;
@@ -126,7 +132,7 @@ public class Equipment implements Observable{
     public boolean unequip(Helm helm){
         if(this.helm == helm){
             this.armor = null;
-            alertUpdate();
+            notifyObservers();
             return true;
         }
         return false;
@@ -135,24 +141,10 @@ public class Equipment implements Observable{
     public boolean unequip(Weapon weapon) {
         if(this.weapon == weapon){
             equip(defaultWeapon);
-            alertUpdate();
+            notifyObservers();
             return true;
         }
         return false;
     }
 
-    @Override
-    public void registerObserver(Observer o) {
-
-    }
-
-    @Override
-    public void removeObserver(Observer o) {
-
-    }
-
-    @Override
-    public void notifyObservers() {
-
-    }
 }

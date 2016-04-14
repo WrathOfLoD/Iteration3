@@ -16,12 +16,14 @@ import com.wrathOfLoD.Controllers.MainController;
 import com.wrathOfLoD.Models.Commands.ActionCommandVendor;
 import com.wrathOfLoD.Models.Entity.Character.Avatar;
 import com.wrathOfLoD.Models.Occupation.Smasher;
+import com.wrathOfLoD.Models.Stats.Stats;
 import com.wrathOfLoD.Models.Stats.StatsModifiable;
 import com.wrathOfLoD.Utility.Direction;
 import com.wrathOfLoD.Utility.Position;
 import com.wrathOfLoD.Views.AreaView.AreaView;
 import com.wrathOfLoD.Views.AvatarIESView.AvatarIESView;
 import com.wrathOfLoD.Views.ContentDisplayStructure.GridStructure;
+import com.wrathOfLoD.Views.ContentDisplayStructure.ListStructure;
 import com.wrathOfLoD.Views.ItemDisplayView.EquipmentView;
 import com.wrathOfLoD.Views.ItemDisplayView.InventoryView;
 import com.wrathOfLoD.Views.StatsView.StatsView;
@@ -58,9 +60,13 @@ public class Main {
         viewEngine.registerView(areaView);
 
         //InventoryView inventoryView = new InventoryView();
-        InventoryView inventoryView = new InventoryView(inventory, new GridStructure(new Dimension(4,6)));
+        InventoryView inventoryView = new InventoryView(inventory, new GridStructure(6,4));
 
-        StatsView statsView = new StatsView();
+        ListStructure listStructure = new ListStructure(7,2, 15, 0);
+        Avatar avatar = Avatar.getInstance();
+        Stats stats = new Stats(avatar);
+
+        StatsView statsView = new StatsView(stats,listStructure);
         //EquipmentView equipmentView = new EquipmentView();
         EquipmentView equipmentView = new EquipmentView(equipment);
         AvatarIESView avatarIESView = new AvatarIESView(inventoryView, statsView, equipmentView);
@@ -76,7 +82,7 @@ public class Main {
         ModelEngine.getInstance().start();
 
 
-        Avatar avatar = Avatar.getInstance();
+        //Avatar avatar = Avatar.getInstance();
 
         avatar.configureAvatar("Dave", new Position(0,0,0,0), new Smasher());
 

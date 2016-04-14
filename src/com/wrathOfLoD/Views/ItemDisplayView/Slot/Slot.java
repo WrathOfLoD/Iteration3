@@ -2,6 +2,7 @@ package com.wrathOfLoD.Views.ItemDisplayView.Slot;
 
 import com.wrathOfLoD.Views.ViewObjects.ItemViewObject;
 
+import javax.swing.*;
 import java.awt.*;
 
 /**
@@ -31,6 +32,8 @@ public abstract class Slot {
     }
 
     public void paintComponent(Graphics g, int x, int y, int width, int height) {
+        g.setColor(Color.WHITE);
+        g.drawRect(x,y,width,height);
         if(getItem()!=null) {
             getItem().paintComponent(g,x,y,width,height);
         }
