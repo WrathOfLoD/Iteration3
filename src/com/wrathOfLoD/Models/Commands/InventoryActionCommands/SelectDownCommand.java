@@ -13,17 +13,14 @@ import com.wrathOfLoD.Views.ItemDisplayView.InventoryView;
 /**
  * Created by zach on 4/9/16.
  */
-public class SelectDownCommand extends ActionCommand {
-    private InventoryView inventoryView;
-    private Entity entity;
+public class SelectDownCommand extends InventorySelectCommand {
 
     public SelectDownCommand(InventoryView inventoryView) {
-        this.inventoryView = inventoryView;
+        super(inventoryView);
     }
 
     @Override
     public void execute(){
-        System.out.println("Executing down command ");
-        this.inventoryView.selectDownItem();
+        this.getInventoryView().selectDownItem();
     }
 }

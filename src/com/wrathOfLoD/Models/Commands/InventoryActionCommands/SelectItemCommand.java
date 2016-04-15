@@ -7,16 +7,14 @@ import com.wrathOfLoD.Views.ItemDisplayView.InventoryView;
 /**
  * Created by zach on 4/13/16.
  */
-public class SelectItemCommand extends ActionCommand {
-    private InventoryView inventoryView;
-    private Entity entity;
+public class SelectItemCommand extends InventorySelectCommand {
 
     public SelectItemCommand(InventoryView inventoryView) {
-        this.inventoryView = inventoryView;
+        super(inventoryView);
     }
 
     @Override
     public void execute() {
-        this.inventoryView.useSelectedItem();
+        this.getInventoryView().useSelectedItem();
     }
 }
