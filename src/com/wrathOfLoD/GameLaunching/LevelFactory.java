@@ -1,6 +1,7 @@
 package com.wrathOfLoD.GameLaunching;
 
 import com.wrathOfLoD.Models.Map.Map;
+import com.wrathOfLoD.Views.AreaView.AreaView;
 
 /**
  * Created by icavitt on 4/12/2016.
@@ -36,8 +37,15 @@ public class LevelFactory {
     }
     //not set yet add to this as wanted for putting things on test map
     private void populateTestMap() {
+
+
+
+
     }
     //not set yet add to this as wanted for creating the map ,mapareas, and the tiles in them as well as area effects or other static things that will be on the map
     private void createTestMap() {
+
+
+
     }
 }

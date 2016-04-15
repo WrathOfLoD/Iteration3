@@ -47,5 +47,4 @@ public class AreaView extends StaticView { //need to change to just extending Vi
 		}
 */
 	}
-
 }
