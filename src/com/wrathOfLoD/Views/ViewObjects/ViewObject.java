@@ -14,6 +14,8 @@ public abstract class ViewObject extends JPanel {
     private Image image;
     private Collection<ImageAnimation> animations;
     private String imageFilePath;
+    private int offsetX = 0;
+    private int offsetY = 0;
 
     public String getFilePath() {
         return imageFilePath;
@@ -28,4 +30,19 @@ public abstract class ViewObject extends JPanel {
         this.image = itemImage;
     }
 
+    public int getOffsetX() {
+        return offsetX;
+    }
+
+    public void setOffsetX(int offsetX) {
+        this.offsetX = offsetX;
+    }
+
+    public int getOffsetY() {
+        return offsetY;
+    }
+
+    public void setOffsetY(int offsetY) {
+        this.offsetY = offsetY;
+    }
 }

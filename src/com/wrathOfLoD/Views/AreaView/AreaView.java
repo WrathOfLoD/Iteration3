@@ -33,6 +33,10 @@ public class AreaView extends StaticView { //need to change to just extending Vi
 		cameraCenter = Avatar.getInstance().getPosition();
     }
 
+	public void setTilePillarViewObjects(HashMap<Position, TilePillarViewObject> map) {
+		this.tilePillarViewObjects = map;
+	}
+
 	@Override
 	public void paintComponent(Graphics g){
 		super.paintComponent(g);

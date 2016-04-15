@@ -24,12 +24,13 @@ public class TileViewObject extends ViewObject{
 		this.pos = pos;
 		this.tile = Map.getInstance().getTile(pos);
 		modelVOList = new ArrayList<>();
+		setImage(animation.getFrame());
 	}
 
 	public void paintComponent(Graphics g, int x, int y, int width, int height) {
 		//super.paintComponent(g);
-		//g.drawImage(this.getImage(), x, y, width, height, this);
-
+		g.drawImage(this.getImage(), x + this.getOffsetX(), y + this.getOffsetY(), width, height, this);
+//		super.paintComponent(g,x,y,width,height);
 		//TODO: ???
 		for(ModelViewObject mvo : modelVOList){
 			mvo.paintComponents(g);
