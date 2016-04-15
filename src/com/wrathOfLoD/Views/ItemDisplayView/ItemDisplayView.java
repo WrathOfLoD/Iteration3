@@ -1,5 +1,6 @@
 package com.wrathOfLoD.Views.ItemDisplayView;
 
+import com.wrathOfLoD.Observers.Observer;
 import com.wrathOfLoD.Views.StaticView;
 import com.wrathOfLoD.Views.View;
 import com.wrathOfLoD.Views.ViewObjects.ItemViewObject;
@@ -11,7 +12,7 @@ import java.util.ArrayList;
 /**
  * Created by erik on 4/7/2016.
  */
-public abstract class ItemDisplayView extends StaticView {
+public abstract class ItemDisplayView extends StaticView implements Observer {
 
     private JPanel titlePanel;
 

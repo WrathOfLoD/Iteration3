@@ -5,6 +5,6 @@ package com.wrathOfLoD.Observers;
  */
 public interface Observer {
 
-    public void update();
+    void update();
 
 }

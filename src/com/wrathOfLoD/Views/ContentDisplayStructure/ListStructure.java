@@ -6,68 +6,73 @@ import java.awt.*;
  * Created by erik on 4/7/2016.
  */
 public class ListStructure extends ContentDisplayStructure {
+    private int horOffset = 0;
+    private int vertOffset = 0;
 
-    public ListStructure(Dimension dimension) {
-        super(dimension);
+    public int getHorOffset() {
+        return horOffset;
+    }
+    public void setHorOffset(int horOffset) {
+        this.horOffset = horOffset;
+    }
+    public int getVertOffset() {
+        return vertOffset;
+    }
+    public void setVertOffset(int vertOffset) {
+        this.vertOffset = vertOffset;
     }
 
+    public ListStructure(int numRows, int numCols, int horOffset, int vertOffset) {
+        super(numRows, numCols);
+        this.horOffset = horOffset;
+        this.vertOffset = vertOffset;
+    }
+    public ListStructure(int numRows, int numCols) {
+        super(numRows, numCols);
+    }
+
+
     @Override
-    public int calculateXCoord(int displayWidth, int index) {
-        return 0;
+    public int calculateXCoord(int displayWidth, int index){
+        int columnSlotIndex = determineColumn(index);
+        int slotWidth = calculateSlotWidth(displayWidth);
+        int multipleX = 0 + 3*columnSlotIndex; // TODO: 4/13/2016 change to 1 + 3*csi? 
+        int xCoord = (slotWidth/2)* multipleX + getHorOffset();
+        return xCoord;
     }
 
     @Override
     public int calculateYCoord(int displayHeight, int index) {
-        return 0;
+        int rowSlotIndex = determineRow(index);
+        int multipleY = 0 + 3*rowSlotIndex; // TODO: 4/13/2016 change to 1 + 3*rsi? 
+        int slotHeight = calculateSlotHeight(displayHeight);
+        int lineLength = slotHeight/2;
+        int yCoord = ((slotHeight/2) * multipleY) + getVertOffset();
+        return yCoord;
     }
 
     @Override
-    public int calculateXCoord(int displayWidth, int index, int numCols) {
-        return 0;
-    }
-
-    @Override
-    public int calculateYCoord(int displayHeight, int index, int numRows, int numCols) {
-        return 0;
-    }
-
-    @Override
-    public int determineColumn(int index, int numCols) {
-        return 0;
-    }
-
-    @Override
-    public int determineRow(int index, int numCols) {
-        return 0;
-    }
-
-    @Override
-    public int determineColumn(int index) {
-        return 0;
+    public int determineColumn(int index){
+        int columnSlot = index/getNumRows();
+        return columnSlot;
     }
 
     @Override
     public int determineRow(int index) {
-        return 0;
-    }
-
-    @Override
-    public int calculateSlotWidth(int displayWidth, int numCols) {
-        return 0;
-    }
-
-    @Override
-    public int calculateSlotHeight(int displayHeight, int numRows) {
-        return 0;
+        int rowSlot = index%getNumRows();
+        return rowSlot;
     }
 
     @Override
     public int calculateSlotWidth(int displayWidth) {
-        return 0;
+        int slotWidth = (int)(displayWidth * (2.0/((3*getNumCols())+1))); // TODO: 4/13/2016 could easily change this formula to just make it the width/numCols
+        return slotWidth;
     }
 
     @Override
     public int calculateSlotHeight(int displayHeight) {
-        return 0;
+        int slotHeight = (int)((displayHeight) * (2.0/((3*getNumRows())+1)));
+        return slotHeight;
     }
+
 }
