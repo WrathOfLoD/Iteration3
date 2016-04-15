@@ -37,6 +37,7 @@ public class AreaView extends StaticView { //need to change to just extending Vi
 	public void paintComponent(Graphics g){
 		super.paintComponent(g);
 
+		/*
 		List<Position> renderOrder = new ArrayList<Position>();
 		renderOrder.addAll(tilePillarViewObjects.keySet());
 		Collections.sort(renderOrder, new RenderPositionComparator());
@@ -45,7 +46,7 @@ public class AreaView extends StaticView { //need to change to just extending Vi
 			TilePillarViewObject tPVO = tilePillarViewObjects.get(pos);
 			tPVO.paint(g);
 		}
-
+*/
 	}
 
 }
