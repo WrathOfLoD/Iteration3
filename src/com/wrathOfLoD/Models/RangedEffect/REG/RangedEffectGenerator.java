@@ -3,7 +3,7 @@ package com.wrathOfLoD.Models.RangedEffect.REG;
 import com.wrathOfLoD.GameClock.Fuseable;
 import com.wrathOfLoD.GameClock.TimeModel;
 import com.wrathOfLoD.Models.RangedEffect.HitBox.HitBox;
-import com.wrathOfLoD.Models.RangedEffect.HitBox.HitBoxFactory;
+import com.wrathOfLoD.Models.RangedEffect.HitBox.HitBoxFactories.HitBoxFactory;
 import com.wrathOfLoD.Utility.ModelConfig;
 import com.wrathOfLoD.Utility.Position;
 

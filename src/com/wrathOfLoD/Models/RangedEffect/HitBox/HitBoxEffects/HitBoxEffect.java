@@ -1,4 +1,4 @@
-package com.wrathOfLoD.Models.RangedEffect.HitBox;
+package com.wrathOfLoD.Models.RangedEffect.HitBox.HitBoxEffects;
 
 import com.wrathOfLoD.Models.Entity.Entity;
 

@@ -2,7 +2,6 @@ package com.wrathOfLoD.Models.Commands.EntityActionCommands;
 
 import com.wrathOfLoD.Models.Commands.ActionCommand;
 import com.wrathOfLoD.Models.Entity.Entity;
-import com.wrathOfLoD.Utility.Direction;
 
 /**
  * Created by matthewdiaz on 4/8/16.
