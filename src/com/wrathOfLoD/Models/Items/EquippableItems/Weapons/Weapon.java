@@ -1,5 +1,7 @@
 package com.wrathOfLoD.Models.Items.EquippableItems.Weapons;
 
+import com.wrathOfLoD.Models.Commands.EntityActionCommands.AttackCommands.AttackCommand;
+import com.wrathOfLoD.Models.Commands.EntityActionCommands.AttackCommands.MeleeAttackCommand;
 import com.wrathOfLoD.Models.Commands.EntityActionCommands.EquipItemCommands.EquipItemCommand;
 import com.wrathOfLoD.Models.Commands.EntityActionCommands.EquipItemCommands.EquipWeaponCommand;
 import com.wrathOfLoD.Models.Commands.EntityActionCommands.UnequipItemCommands.UnequipItemCommand;
@@ -7,6 +9,7 @@ import com.wrathOfLoD.Models.Commands.EntityActionCommands.UnequipItemCommands.U
 import com.wrathOfLoD.Models.Entity.Character.Character;
 import com.wrathOfLoD.Models.Items.EquippableItems.EquippableItem;
 import com.wrathOfLoD.Models.Occupation.Occupation;
+import com.wrathOfLoD.Models.Skill.SkillManager;
 import com.wrathOfLoD.Models.Stats.StatsModifiable;
 
 /**
@@ -17,11 +20,11 @@ public abstract class Weapon extends EquippableItem{
     private int windUp;
 
     public Weapon(){
-        this("space weapon", StatsModifiable.createWeaponBonusStatsModifiable(10), 1, 1);
+        this("default weapon", StatsModifiable.createWeaponBonusStatsModifiable(1), 1, 1);
     }
 
-    public Weapon( String name, StatsModifiable stats, int coolDown, int windUp){
-        super(name,stats);
+    public Weapon( String name, StatsModifiable statsModifiable, int coolDown, int windUp){
+        super(name,statsModifiable);
         this.coolDown = coolDown;
         this.windUp = windUp;
     }
@@ -40,6 +43,8 @@ public abstract class Weapon extends EquippableItem{
 
     protected abstract boolean occupationCheckHook(Occupation o);
 
+    protected abstract int getSkillHook(SkillManager skillManager);
+
     @Override
     public void equip(Character character){
         Occupation occupation = character.getOccupation();
@@ -54,4 +59,11 @@ public abstract class Weapon extends EquippableItem{
         UnequipItemCommand unequipWeaponCommand = new UnequipWeaponCommand(character, this);
         unequipWeaponCommand.execute();
     }
+
+    public void attack(Character character, SkillManager skillManager){
+        int weaponSkillLevel = getSkillHook(skillManager);
+        AttackCommand meleeAttackCommand = new MeleeAttackCommand(character, this.coolDown, this.windUp, weaponSkillLevel);
+        meleeAttackCommand.execute();
+    }
+
 }

@@ -1,6 +1,7 @@
 package com.wrathOfLoD.Views.ItemDisplayView;
 
 import com.wrathOfLoD.Models.Inventory.Inventory;
+import com.wrathOfLoD.Models.Items.Item;
 import com.wrathOfLoD.Models.Items.TakeableItem;
 import com.wrathOfLoD.Views.ContentDisplayStructure.ContentDisplayStructure;
 import com.wrathOfLoD.Views.ContentDisplayStructure.GridStructure;
@@ -108,8 +109,6 @@ public class InventoryView extends ItemDisplayView { // TODO: 4/12/2016 segregat
      */
     public void selectNextItem() {
         this.safeIncrementRight();
-
-//        this.paintComponent(this.getGraphics());
     }
 
     /**
@@ -129,8 +128,6 @@ public class InventoryView extends ItemDisplayView { // TODO: 4/12/2016 segregat
      */
     public void selectPrevItem() {
         this.safeDecrementLeft();
-
-//        this.paintComponent(this.getGraphics());
     }
 
     /**
@@ -150,8 +147,6 @@ public class InventoryView extends ItemDisplayView { // TODO: 4/12/2016 segregat
      */
     public void selectUpItem() {
         this.safeDecrementUp();
-
-//        this.paintComponent(this.getGraphics());
     }
 
     /**
@@ -169,8 +164,6 @@ public class InventoryView extends ItemDisplayView { // TODO: 4/12/2016 segregat
      */
     public void selectDownItem() {
         this.safeIncrementDown();
-
-//        this.paintComponent(this.getGraphics());
     }
 
     /**
@@ -184,6 +177,13 @@ public class InventoryView extends ItemDisplayView { // TODO: 4/12/2016 segregat
             this.currentIndex = prevIndex;
     }
 
+    /**
+     * desc: Return the currently selected item
+     */
+    public Item useSelectedItem() {
+        System.out.println(this.getItemViewObject(currentIndex).getItem().getName());
+        return this.getItemViewObject(currentIndex).getItem();
+    }
 }
 
 

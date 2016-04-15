@@ -20,4 +20,12 @@ public class ChangeDirectionCommand extends ActionCommand {
     public void execute() {
 
     }
+
+    public Direction getDirection() {
+        return this.dir;
+    }
+
+    public void setDirection(Direction dir) {
+        this.dir = dir;
+    }
 }

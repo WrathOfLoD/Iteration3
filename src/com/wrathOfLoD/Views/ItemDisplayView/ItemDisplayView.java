@@ -35,6 +35,9 @@ public abstract class ItemDisplayView extends StaticView implements Observer {
     public void addItemViewObject(ItemViewObject ivo) {
         ivoList.add(ivo);
     }
+    public ItemViewObject getItemViewObject(int index) {
+        return this.ivoList.get(index);
+    }
 
     public void paintComponent(Graphics g) {
         super.paintComponent(g);

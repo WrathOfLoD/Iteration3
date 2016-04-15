@@ -5,7 +5,6 @@ import com.wrathOfLoD.Controllers.InputStates.Action.Action;
 import com.wrathOfLoD.Controllers.InputStates.ActionVendor;
 import com.wrathOfLoD.Models.ActionsHolder;
 import com.wrathOfLoD.Models.Items.TakeableItem;
-import com.wrathOfLoD.Observers.InventoryObserver;
 import com.wrathOfLoD.Observers.Observable;
 import com.wrathOfLoD.Observers.Observer;
 

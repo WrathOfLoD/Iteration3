@@ -4,33 +4,24 @@ import com.wrathOfLoD.Models.Items.EquippableItems.Armor;
 import com.wrathOfLoD.Models.Items.EquippableItems.Greaves;
 import com.wrathOfLoD.Models.Items.EquippableItems.Helm;
 import com.wrathOfLoD.Models.Items.EquippableItems.Weapons.Weapon;
-import com.wrathOfLoD.Models.Occupation.Occupation;
-import com.wrathOfLoD.Observers.EquipmentObserver;
 import com.wrathOfLoD.Observers.Observable;
 import com.wrathOfLoD.Observers.Observer;
-
 import java.util.ArrayList;
 
 /**
  * Created by zach on 4/7/16.
  */
-public class Equipment implements Observable{
-    private final Weapon defaultWeapon = new DefaultWeapon();
+public class Equipment implements Observable {
+    private final Weapon defaultWeapon;
     private Armor armor;
     private Weapon weapon;
     private Greaves greaves;
     private Helm helm;
     private ArrayList<Observer> observers = new ArrayList<Observer>();
 
-    private class DefaultWeapon extends Weapon{
-        public DefaultWeapon(){
-            super();
-        }
-
-        @Override
-        protected  boolean occupationCheckHook(Occupation o){
-            return true;
-        }
+    public Equipment(Weapon defaultWeapon){
+        this.defaultWeapon = defaultWeapon;
+        setWeapon(this.defaultWeapon);
     }
 
     @Override
@@ -49,13 +40,6 @@ public class Equipment implements Observable{
         for (Observer o: observers) {
             o.update();
         }
-    }
-
-    public Equipment() {
-        this.equip(defaultWeapon);
-        this.armor = null;
-        this.greaves = null;
-        this.helm = null;
     }
 
 
@@ -89,6 +73,7 @@ public class Equipment implements Observable{
 
     /***** END of getter & setter *******/
 
+
     public void equip(Armor armor){
         this.armor = armor;
         notifyObservers();
@@ -96,10 +81,10 @@ public class Equipment implements Observable{
 
     public void equip(Greaves greaves) {
         this.greaves = greaves;
+        notifyObservers();
     }
 
     public void equip(Helm helm){
-//        unequip(this.getHelm()); // TODO: 4/12/2016 is this needed?
         this.helm = helm;
         notifyObservers();
     }
@@ -109,6 +94,7 @@ public class Equipment implements Observable{
         notifyObservers();
         // TODO: 4/9/16 do the below for the view
         // alertWeaponEquipped(weapon);
+
     }
 
     public boolean unequip(Armor armor){

@@ -2,8 +2,10 @@ package com.wrathOfLoD.Models.Occupation;
 
 import com.wrathOfLoD.Models.Ability.AbilityManager;
 import com.wrathOfLoD.Models.Items.EquippableItems.Weapons.SmasherWeapons.SmasherWeapon;
+import com.wrathOfLoD.Models.Items.EquippableItems.Weapons.SneakWeapons.BackStabWeapon;
 import com.wrathOfLoD.Models.Items.EquippableItems.Weapons.SneakWeapons.SneakWeapon;
 import com.wrathOfLoD.Models.Items.EquippableItems.Weapons.SummonerWeapons.SummonerWeapon;
+import com.wrathOfLoD.Models.Items.EquippableItems.Weapons.Weapon;
 import com.wrathOfLoD.Models.Skill.SkillManager;
 import com.wrathOfLoD.Models.Skill.SneakSkillManager;
 import com.wrathOfLoD.Models.Stats.Stats;
@@ -37,10 +39,14 @@ public class Sneak extends Occupation {
         return false;
     }
 
-
     @Override
     public SkillManager createSkillManager() {
         return new SneakSkillManager();
+    }
+
+    @Override
+    public Weapon createWeapon(){
+        return new BackStabWeapon();
     }
 
     public void addAbilities(AbilityManager abilityManager){

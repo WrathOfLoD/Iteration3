@@ -3,7 +3,9 @@ package com.wrathOfLoD.Models.Occupation;
 import com.wrathOfLoD.Models.Ability.AbilityManager;
 import com.wrathOfLoD.Models.Items.EquippableItems.Weapons.SmasherWeapons.SmasherWeapon;
 import com.wrathOfLoD.Models.Items.EquippableItems.Weapons.SneakWeapons.SneakWeapon;
+import com.wrathOfLoD.Models.Items.EquippableItems.Weapons.SummonerWeapons.StaffWeapon;
 import com.wrathOfLoD.Models.Items.EquippableItems.Weapons.SummonerWeapons.SummonerWeapon;
+import com.wrathOfLoD.Models.Items.EquippableItems.Weapons.Weapon;
 import com.wrathOfLoD.Models.Skill.SkillManager;
 import com.wrathOfLoD.Models.Skill.SummonerSkillManager;
 import com.wrathOfLoD.Models.Stats.Stats;
@@ -41,6 +43,11 @@ public class Summoner extends Occupation {
     @Override
     public SkillManager createSkillManager() {
         return new SummonerSkillManager();
+    }
+
+    @Override
+    public Weapon createWeapon(){
+        return new StaffWeapon();
     }
 
     public void addAbilities(AbilityManager abilityManager){

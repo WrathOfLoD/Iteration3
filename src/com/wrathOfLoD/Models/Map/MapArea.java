@@ -15,6 +15,7 @@ import java.util.List;
  */
 public class MapArea{
     private HashMap<Position, TilePillar> tilePillarMap;
+	private String mapAreaName;
 
     public MapArea(){
         this.tilePillarMap = new HashMap<Position, TilePillar>();
@@ -36,8 +37,8 @@ public class MapArea{
 	}
 
 	public boolean hasTileAt(Position pos){
-		TilePillar pillar = getTilePillar(pos);
-		if(pillar != null){
+		if(this.hasTilePillarAt(pos)){
+			TilePillar pillar = getTilePillar(pos);
 			return pillar.hasTileAt(pos);
 		}
 		else{
@@ -58,7 +59,6 @@ public class MapArea{
 
         return tiles;
     }
-
 
     public void addEntity(Entity entity, Position pos){
 		TilePillar pillar = getTilePillar(pos);
@@ -96,5 +96,17 @@ public class MapArea{
 
 	public HashMap<Position, TilePillar> getTilePillarMap() {
 		return tilePillarMap;
+	}
+
+	public void setTilePillarMap(HashMap<Position, TilePillar> tilePillarMap) {
+		this.tilePillarMap = tilePillarMap;
+	}
+
+	public String getMapAreaName() {
+		return mapAreaName;
+	}
+
+	public void setMapAreaName(String mapAreaName) {
+		this.mapAreaName = mapAreaName;
 	}
 }

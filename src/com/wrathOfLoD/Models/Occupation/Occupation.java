@@ -6,6 +6,7 @@ import com.wrathOfLoD.Models.Ability.AbilityManager;
 import com.wrathOfLoD.Models.Items.EquippableItems.Weapons.SmasherWeapons.SmasherWeapon;
 import com.wrathOfLoD.Models.Items.EquippableItems.Weapons.SneakWeapons.SneakWeapon;
 import com.wrathOfLoD.Models.Items.EquippableItems.Weapons.SummonerWeapons.SummonerWeapon;
+import com.wrathOfLoD.Models.Items.EquippableItems.Weapons.Weapon;
 import com.wrathOfLoD.Models.Skill.Skill;
 import com.wrathOfLoD.Models.Skill.SkillManager;
 import com.wrathOfLoD.Models.Stats.Stats;
@@ -27,6 +28,8 @@ public abstract class Occupation {
 
     public abstract SkillManager createSkillManager();
 
+    public abstract Weapon createWeapon();
+
     public void levelUp(Stats stats) {}
 
     protected void setStatsModifiable(StatsModifiable newStatsModifiable){
@@ -35,6 +38,6 @@ public abstract class Occupation {
 
     public void addAbilities(AbilityManager abilityManager){
         //TODO: ADD ABILITIES
-        abilityManager.addAbilities(new BindWoundsAbility(1));
+        //abilityManager.addAbilities(new BindWoundsAbility(1));
     }
 }

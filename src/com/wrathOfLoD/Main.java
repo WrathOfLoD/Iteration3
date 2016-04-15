@@ -4,21 +4,20 @@ import com.wrathOfLoD.Controllers.InputStates.InventoryState;
 import com.wrathOfLoD.Models.Inventory.Equipment;
 import com.wrathOfLoD.Models.Inventory.Inventory;
 import com.wrathOfLoD.Models.Items.EquippableItems.Helm;
+import com.wrathOfLoD.Models.Items.EquippableItems.Weapons.SmasherWeapons.FistWeapon;
 import com.wrathOfLoD.Models.Items.EquippableItems.Weapons.SmasherWeapons.TwoHandWeapon;
-import com.wrathOfLoD.Models.Items.EquippableItems.Weapons.Weapon;
 
-import com.wrathOfLoD.Models.LocationTracker.LocationTrackerManager;
+
+
 import com.wrathOfLoD.Models.ModelEngine;
 import com.wrathOfLoD.Controllers.InputStates.ActionVendor;
 import com.wrathOfLoD.Controllers.InputStates.AvatarState;
 import com.wrathOfLoD.Controllers.InputStates.InputState;
 import com.wrathOfLoD.Controllers.MainController;
-import com.wrathOfLoD.Models.Commands.ActionCommandVendor;
 import com.wrathOfLoD.Models.Entity.Character.Avatar;
 import com.wrathOfLoD.Models.Occupation.Smasher;
 import com.wrathOfLoD.Models.Stats.Stats;
 import com.wrathOfLoD.Models.Stats.StatsModifiable;
-import com.wrathOfLoD.Utility.Direction;
 import com.wrathOfLoD.Utility.Position;
 import com.wrathOfLoD.Views.AreaView.AreaView;
 import com.wrathOfLoD.Views.AvatarIESView.AvatarIESView;
@@ -43,7 +42,7 @@ public class Main {
         TwoHandWeapon hammer2 = new TwoHandWeapon("hammer");
         Helm helm = new Helm("helm");
 
-        Equipment equipment = new Equipment();
+        Equipment equipment = new Equipment(new FistWeapon("default fist", StatsModifiable.createWeaponBonusStatsModifiable(1),1,1));
         equipment.equip(helm);
         equipment.equip(hammer);
 
@@ -94,14 +93,13 @@ public class Main {
         inventory.addToActionSet(ActionVendor.createSelectRightAction(inventoryView));
         inventory.addToActionSet(ActionVendor.createSelectLeftAction(inventoryView));
         inventory.addToActionSet(ActionVendor.createSelectDownAction(inventoryView));
+        inventory.addToActionSet(ActionVendor.createSelectItemAction(inventoryView));
 
         InputState inventoryState = new InventoryState(inventory);
         mainController.setActiveState(avatarState);
         mainController.setActiveState(inventoryState);
 
         //LocationTrackerManager.getInstance().registerEntity(avatar, avatar.getTargetManager());
-
-
 
 
         Thread.sleep(2000);

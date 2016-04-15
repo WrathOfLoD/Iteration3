@@ -4,6 +4,7 @@ import com.wrathOfLoD.Models.Entity.Character.Character;
 import com.wrathOfLoD.Models.Items.TakeableItem;
 import com.wrathOfLoD.Models.Stats.StatsModifiable;
 import com.wrathOfLoD.Utility.Position;
+import com.wrathOfLoD.VisitorInterfaces.ItemVisitor;
 
 /**
  * Created by matthewdiaz on 4/7/16.
@@ -26,4 +27,8 @@ public abstract class ConsumableItem extends TakeableItem {
     }
 
     protected abstract void consume(Character character);
+
+    public void accept(ItemVisitor iv){
+        iv.visitConsumableItem(this);
+    }
 }

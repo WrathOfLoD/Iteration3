@@ -39,7 +39,10 @@ public class MovementCommand extends ActionCommand implements Fuseable{
         System.out.println("======= BEGINNING OF MOVEMENT CMD =========");
         System.out.println("Entity src pos: " + entity.getPosition().getQ() + ", " + entity.getPosition().getR() + ", " + entity.getPosition().getH());
 
+
+
         entity.setDirection(movingDirection);
+        System.out.println("Entity dest direction: " + entity.getDirection());
         entity.setPosition(destinationPosition);
 
         /* TODO: uncomment ... now we have no map.. no maparea... etc
@@ -58,6 +61,13 @@ public class MovementCommand extends ActionCommand implements Fuseable{
         entity.setActive();
         System.out.println("Entity dest pos: " + entity.getPosition().getQ() + ", " + entity.getPosition().getR() + ", " + entity.getPosition().getH());
         System.out.println("======= END OF MOVEMENT CMD =========");
+    }
+
+    public Direction getDirection() {
+        return this.movingDirection;
+    }
+    public void setDirection(Direction dir) {
+        this.movingDirection = dir;
     }
 
 }
