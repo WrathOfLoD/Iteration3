@@ -6,9 +6,14 @@ import com.wrathOfLoD.Models.Map.AreaEffect.AreaEffect;
 import com.wrathOfLoD.Models.Map.Tile;
 import com.wrathOfLoD.Utility.Position;
 import com.wrathOfLoD.Views.AreaView.AreaView;
+import com.wrathOfLoD.Views.ImageFactory.ImageFactory;
 import com.wrathOfLoD.Views.SpriteMap.ImageAnimation;
 import com.wrathOfLoD.Views.SpriteMap.SpriteMap;
 import com.wrathOfLoD.Views.ViewObjects.*;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.awt.*;
 
 /**
  * Created by luluding on 4/16/16.
@@ -37,7 +42,11 @@ public class ViewObjectFactory {
     }
 
     public TileViewObject createTileViewObject(Position pos, Tile tile){
-        return null;
+        //TODO: hook up with spriteMap
+        List<Image> img = new ArrayList<>();
+        img.add(ImageFactory.generateImage("resources/SpaceRockTile.png"));
+
+        return new TileViewObject(pos, new ImageAnimation(img));
     }
 
     public AreaEffectViewObject createAEViewObject(Position pos, AreaEffect ae){

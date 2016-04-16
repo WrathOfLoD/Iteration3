@@ -17,14 +17,12 @@ public class TilePillarViewObject extends ViewObject{
 	private TilePillar tilePillar;
 	private Position pos;
 
-	//private List<TileViewObject> tileViewObjects;
 	private HashMap<Position, TileViewObject> tileViewObjects;
 
 	public TilePillarViewObject(Position pos){
 		this.pos = pos;
 		this.tilePillar = Map.getInstance().getTilePillar(pos);
 	}
-
 
 	public void paintComponent(Graphics g, Position cameraCenter, Point screenCenter){
 		if(!tilePillar.isDiscovered()){
@@ -33,12 +31,6 @@ public class TilePillarViewObject extends ViewObject{
 		Point point = Position.vectorSubtract(this.pos, cameraCenter).positionToXY();
 		this.setOffsetX(point.x);
 		this.setOffsetY(point.y);
-
-		/*
-		for(int i = 0; i < tileViewObjects.size(); i++){
-			TileViewObject tvo = tileViewObjects.get(i);
-			tvo.paintComponent(g, cameraCenter, screenCenter);
-		}*/
 
 		for(java.util.Map.Entry<Position, TileViewObject> entry : tileViewObjects.entrySet()){
 			TileViewObject tvo = entry.getValue();
@@ -62,6 +54,10 @@ public class TilePillarViewObject extends ViewObject{
 
 	public void addTileVO(Position pos, TileViewObject tvo){
 		tileViewObjects.put(pos, tvo);
+	}
+
+	public void addVOToTile(Position pos, ModelViewObject mvo){
+		tileViewObjects.get(pos).addMOVToTile(mvo);
 	}
 
 
