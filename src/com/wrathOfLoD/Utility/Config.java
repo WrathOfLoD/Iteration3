@@ -6,6 +6,7 @@ package com.wrathOfLoD.Utility;
 public class Config {
 
     private static final String IVOPath = "resources/Items/";
+    private static final String EntityVOPath = "resources/Entity/";
     private static final String MapIVOPath = "resources/MapItems/";
     private static final String InventoryIVOPath = "resources/InventoryItems/";
     private static final String EquippedIVOPath = "resources/EquippedItems/";
@@ -13,6 +14,9 @@ public class Config {
 
     public static String getIVOPath() {
         return IVOPath;
+    }
+    public static String getEntityVOPath() {
+        return EntityVOPath;
     }
     public static String getMapIVOPath() {
         return MapIVOPath;

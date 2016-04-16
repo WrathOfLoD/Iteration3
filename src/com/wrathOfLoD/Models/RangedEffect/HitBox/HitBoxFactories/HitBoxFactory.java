@@ -1,5 +1,6 @@
-package com.wrathOfLoD.Models.RangedEffect.HitBox;
+package com.wrathOfLoD.Models.RangedEffect.HitBox.HitBoxFactories;
 
+import com.wrathOfLoD.Models.RangedEffect.HitBox.HitBox;
 import com.wrathOfLoD.Utility.Position;
 
 /**

@@ -10,7 +10,7 @@ import java.awt.*;
 /**
  * Created by erik on 4/7/2016.
  */
-public class ItemViewObject extends ViewObject {
+public class ItemViewObject extends ModelViewObject {
 
     private Item item;
     private boolean isDisplayed;
@@ -37,10 +37,11 @@ public class ItemViewObject extends ViewObject {
 
 
     public ItemViewObject(){
-
+        super(20); //zLevel
     }
 
     public ItemViewObject(Item item) {
+        super(20); //zLevel
         setItem(item);
         //initializeImage(item);
         //setIsDisplayed(false);

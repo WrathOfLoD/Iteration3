@@ -13,16 +13,14 @@ import com.wrathOfLoD.Views.ItemDisplayView.InventoryView;
 /**
  * Created by zach on 4/9/16.
  */
-public class SelectUpCommand extends ActionCommand {
-    private InventoryView inventoryView;
-    private Entity entity;
+public class SelectUpCommand extends InventorySelectCommand {
 
     public SelectUpCommand(InventoryView inventoryView) {
-        this.inventoryView = inventoryView;
+        super(inventoryView);
     }
 
     @Override
     public void execute(){
-        this.inventoryView.selectUpItem();
+        this.getInventoryView().selectUpItem();
     }
 }

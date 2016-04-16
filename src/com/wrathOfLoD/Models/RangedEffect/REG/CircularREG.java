@@ -1,10 +1,8 @@
 package com.wrathOfLoD.Models.RangedEffect.REG;
 
-import com.wrathOfLoD.Models.RangedEffect.HitBox.HitBoxFactory;
+import com.wrathOfLoD.Models.RangedEffect.HitBox.HitBoxFactories.HitBoxFactory;
 import com.wrathOfLoD.Utility.Position;
 
-import java.awt.font.NumericShaper;
-import java.util.ArrayList;
 import java.util.List;
 
 /**

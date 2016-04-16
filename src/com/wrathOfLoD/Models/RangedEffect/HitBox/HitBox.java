@@ -2,8 +2,8 @@ package com.wrathOfLoD.Models.RangedEffect.HitBox;
 
 import com.wrathOfLoD.Models.Entity.Entity;
 import com.wrathOfLoD.Models.Map.Map;
+import com.wrathOfLoD.Models.RangedEffect.HitBox.HitBoxEffects.HitBoxEffect;
 import com.wrathOfLoD.Utility.Position;
-import javafx.geometry.Pos;
 
 import java.util.*;
 

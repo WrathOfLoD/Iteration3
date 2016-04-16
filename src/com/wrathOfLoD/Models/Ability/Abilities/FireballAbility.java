@@ -1,14 +1,10 @@
 package com.wrathOfLoD.Models.Ability.Abilities;
 
 import com.wrathOfLoD.Models.Entity.Character.Character;
-import com.wrathOfLoD.Models.Entity.Entity;
-import com.wrathOfLoD.Models.Occupation.Summoner;
-import com.wrathOfLoD.Models.RangedEffect.HitBox.FireBallHitBoxFactory;
+import com.wrathOfLoD.Models.RangedEffect.HitBox.HitBoxFactories.FireBallHitBoxFactory;
 import com.wrathOfLoD.Models.RangedEffect.REG.LineREG;
 import com.wrathOfLoD.Models.RangedEffect.REG.RangedEffectGenerator;
 import com.wrathOfLoD.Models.Skill.SummonerSkillManager;
-import com.wrathOfLoD.Models.Stats.Stats;
-import com.wrathOfLoD.Models.Stats.StatsModifiable;
 import com.wrathOfLoD.Utility.Direction;
 import com.wrathOfLoD.Utility.ModelConfig;
 
