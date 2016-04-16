@@ -5,6 +5,7 @@ import com.wrathOfLoD.Models.Items.Item;
 import com.wrathOfLoD.Models.Items.TakeableItem;
 import com.wrathOfLoD.Views.ContentDisplayStructure.ContentDisplayStructure;
 import com.wrathOfLoD.Views.ContentDisplayStructure.GridStructure;
+import com.wrathOfLoD.Views.Selectable;
 import com.wrathOfLoD.Views.ViewObjectFactory.InventoryIVOFactory;
 import com.wrathOfLoD.Views.ViewObjects.InventoryItemViewObject;
 import com.wrathOfLoD.Views.ViewObjects.ItemViewObject;
@@ -18,7 +19,7 @@ import java.util.Iterator;
 /**
  * Created by echristiansen on 4/8/2016.
  */
-public class InventoryView extends ItemDisplayView { // TODO: 4/12/2016 segregate the inventory into a content area and description area  
+public class InventoryView extends ItemDisplayView implements Selectable { // TODO: 4/12/2016 segregate the inventory into a content area and description area
 
     /* Need to enforce the invariant that the numRows and numCols do not exceed the max Inventory size? */
     private int currentIndex;
