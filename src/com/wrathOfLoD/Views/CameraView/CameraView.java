@@ -30,8 +30,11 @@ public class CameraView extends StaticView{
     private Position cameraCenter;
     private ViewObjectFactory vof = ViewObjectFactory.getInstance();
 
-    public CameraView(){
+    public CameraView(MapArea mapArea){
         cameraCenter = Avatar.getInstance().getPosition();
+        this.mapArea = mapArea;
+        this.tilePillarViewObjects = new HashMap<>();
+        populateCV();
     }
 
     @Override
@@ -53,6 +56,13 @@ public class CameraView extends StaticView{
         for(Position pos : tilePillarHashMap.keySet()){
             TilePillarViewObject tpvo = vof.createTilePillarViewObject(pos);
             tilePillarViewObjects.put(pos, tpvo);
+
+            Tile tiles[] = tilePillarHashMap.get(pos).getTiles();
+            for(int i = 0; i < tiles.length; i++){
+                TileViewObject tvo = vof.createTileViewObject(new Position(pos.getQ(), pos.getR(), i), tiles[i]);
+                tpvo.addTileVO(pos, tvo);
+            }
+
 
             for(Tile t : tilePillarHashMap.get(pos).getTiles()){
                 //TileViewObject tvo = vof.createTileViewObject(t);

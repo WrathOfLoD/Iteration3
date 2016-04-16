@@ -21,6 +21,7 @@ public class TilePillarViewObject extends ViewObject{
 
 	public TilePillarViewObject(Position pos){
 		this.pos = pos;
+		this.tileViewObjects = new HashMap<>();
 		this.tilePillar = Map.getInstance().getTilePillar(pos);
 	}
 

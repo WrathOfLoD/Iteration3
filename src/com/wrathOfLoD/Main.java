@@ -8,7 +8,11 @@ import com.wrathOfLoD.Models.Items.EquippableItems.Weapons.SmasherWeapons.FistWe
 import com.wrathOfLoD.Models.Items.EquippableItems.Weapons.SmasherWeapons.TwoHandWeapon;
 
 
-
+import com.wrathOfLoD.Models.Map.Map;
+import com.wrathOfLoD.Models.Map.MapArea;
+import com.wrathOfLoD.Models.Map.Terrain.Ground;
+import com.wrathOfLoD.Models.Map.Tile;
+import com.wrathOfLoD.Models.Map.TilePillar;
 import com.wrathOfLoD.Models.ModelEngine;
 import com.wrathOfLoD.Controllers.InputStates.ActionVendor;
 import com.wrathOfLoD.Controllers.InputStates.AvatarState;
@@ -21,6 +25,8 @@ import com.wrathOfLoD.Models.Stats.StatsModifiable;
 import com.wrathOfLoD.Utility.Position;
 import com.wrathOfLoD.Views.AreaView.AreaView;
 import com.wrathOfLoD.Views.AvatarIESView.AvatarIESView;
+import com.wrathOfLoD.Views.CameraView.CameraView;
+import com.wrathOfLoD.Views.CameraView.CameraViewManager;
 import com.wrathOfLoD.Views.ContentDisplayStructure.GridStructure;
 import com.wrathOfLoD.Views.ContentDisplayStructure.ListStructure;
 import com.wrathOfLoD.Views.ItemDisplayView.EquipmentView;
@@ -36,6 +42,23 @@ import java.awt.*;
 public class Main {
 
     public static void main(String[] args) throws InterruptedException {
+
+        /*** Create Map *****/
+        MapArea mapArea1 = new MapArea();
+
+        for(int i = 0; i < 20; i++){ //q
+            for(int j = 0; j < 15; j++){ //r
+                TilePillar tilePillar = new TilePillar();
+                for(int k = 0; k < 10; k++){ //h
+                    tilePillar.addTile(k, new Tile(new Ground()));
+                }
+                mapArea1.addTilePillar(new Position(i,j,0), tilePillar);
+            }
+        }
+        Map.getInstance().addMapArea(mapArea1);
+        Map.getInstance().setActiveMapArea(mapArea1);
+
+
 
         Inventory inventory = new Inventory();
         //inventory.addItem();
@@ -56,8 +79,16 @@ public class Main {
         }
 
 
-        AreaView areaView = new AreaView();
+        CameraViewManager cvm = new CameraViewManager();
+        CameraView cameraView1 = new CameraView(mapArea1);
+        //TODO: areaView needs to create all the VO based on the populated MapArea
+        cvm.addCameraView(mapArea1, cameraView1);
+
+        AreaView areaView = new AreaView(cvm);
+        areaView.setActiveCameraView(cameraView1);
         ViewObjectFactory.getInstance().initVOFactory(areaView);
+
+
 
         ViewEngine viewEngine = ViewEngine.getInstance();
         viewEngine.registerView(areaView);
@@ -77,10 +108,11 @@ public class Main {
 
         viewEngine.registerView(vm);
 
-        Thread.sleep(2000);
+        //Thread.sleep(2000);
         //viewEngine.registerView(inventoryView);
         //viewEngine.registerView(avatarIESView);
-        vm.addView(avatarIESView);
+        //vm.addView(avatarIESView);
+        vm.addView(areaView);
 
         ModelEngine.getInstance().start();
 
