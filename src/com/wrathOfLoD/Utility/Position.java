@@ -246,7 +246,9 @@ public class Position{
 
 	public Point positionToXY(){
 		double x = (3.0/2.0) * this.getQ() + (0 * this.getR());
-		double y = ((Math.sqrt(3)/2.0) * this.getQ()) + (Math.sqrt(3) * this.getR()) - ((5/39) * this.getH());
+		x *= 39;
+		double y = ((Math.sqrt(3)/2.0) * this.getQ()) + (Math.sqrt(3) * this.getR()) - ((5/23) * this.getH());
+		y *= 23;
 		return new Point((int) x, (int) y);
 	}
 
