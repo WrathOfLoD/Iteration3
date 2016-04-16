@@ -38,6 +38,14 @@ public class TilePillar{
 		this.visible = visible;
 	}
 
+	public boolean isDiscovered(){
+		return discovered;
+	}
+
+	public boolean isVisible(){
+		return visible;
+	}
+
 	public boolean hasTileAt(Position pos){
 		if(pos.getH() >= 0 && pos.getH() < PILLAR_HEIGHT){
 			return (tiles[pos.getH()] != null);

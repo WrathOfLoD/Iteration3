@@ -14,7 +14,7 @@ import java.util.List;
 /**
  * Created by luluding on 4/16/16.
  */
-public class CameraView{
+public class CameraView extends StaticView{
 
     private HashMap<Position, TilePillarViewObject> tilePillarViewObjects;
     private Position cameraCenter;
@@ -23,6 +23,7 @@ public class CameraView{
         cameraCenter = Avatar.getInstance().getPosition();
     }
 
+    @Override
     public void paintComponent(Graphics g){
         List<Position> renderOrder = new ArrayList<Position>();
         renderOrder.addAll(tilePillarViewObjects.keySet());
@@ -30,10 +31,7 @@ public class CameraView{
 
         for(Position pos: renderOrder){
             TilePillarViewObject tPVO = tilePillarViewObjects.get(pos);
-
-            Position dist = Position.vectorSubtract(tPVO.getPosition(), cameraCenter);
-
-            //tPVO.paintComponent(g);
+            tPVO.paintComponent(g, cameraCenter, new Point(this.getWidth()/2, this.getHeight()/2));
         }
     }
 

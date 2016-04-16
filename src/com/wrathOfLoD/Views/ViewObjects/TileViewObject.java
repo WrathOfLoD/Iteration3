@@ -25,9 +25,11 @@ public class TileViewObject extends ViewObject{
 		setImage(animation.getFrame()); //terrain
 	}
 
-	public void paintComponent(Graphics g, int x, int y, int width, int height) {
+	public void paintComponent(Graphics g, int x, int y, int h, Point screenCenter) {
 		//super.paintComponent(g);
-		g.drawImage(this.getImage(), x + this.getOffsetX(), y + this.getOffsetY(), width, height, this);
+		this.setOffsetX(x);
+		this.setOffsetY(y - (int)(h * TILE_THICKNESS/this.getImage().getHeight(null)));
+		g.drawImage(this.getImage(), this.getOffsetX(), this.getOffsetY(), screenCenter.x, screenCenter.y, null);
 //		super.paintComponent(g,x,y,width,height);
 		//TODO: ???
 		for(ModelViewObject mvo : modelVOList){
