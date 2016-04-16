@@ -43,18 +43,17 @@ public class MenuItem extends JPanel {
         int textYCoord;
 
         textWidth = g.getFontMetrics().stringWidth(getText());
-        textHeight = g.getFontMetrics().getHeight();
+        textHeight = g.getFontMetrics().getAscent();
 
         textXCoord = x + width/2 - textWidth/2;
-        textYCoord = y + height/2 - textHeight/2;
+        textYCoord = y + height/2 + textHeight/4;
 
+        g.setColor(Color.RED);
         g.drawString(getText(), textXCoord, textYCoord);
         if (this.isSelected()) {
-            Border b = BorderFactory.createLineBorder(Color.CYAN, 1);
-            b.paintBorder(this, g, x, y - height/4 - textHeight/2, width, height);
+            g.setColor(new Color(0f,0f,1.0f,0.2f));
+            g.fillRect(x,y,width,height);
         }
-
-
     }
 
     public void execute() {

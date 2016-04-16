@@ -1,6 +1,7 @@
 package com.wrathOfLoD.Views.Menu;
 
 import com.wrathOfLoD.Controllers.InputStates.Action.Action;
+import com.wrathOfLoD.Controllers.InputStates.ActionVendor;
 import com.wrathOfLoD.Models.ActionsHolder;
 import com.wrathOfLoD.Views.Selectable;
 import com.wrathOfLoD.Views.StaticView;
@@ -28,6 +29,7 @@ public abstract class Menu extends StaticView implements ActionsHolder, Selectab
     public int getCurrentIndex() {
         return currentIndex;
     }
+
 
     /**
      * desc: Increment to previous row
@@ -77,7 +79,9 @@ public abstract class Menu extends StaticView implements ActionsHolder, Selectab
 
     @Override
     public void initializeActionSet() {
-
+        this.addToActionSet(ActionVendor.createSelectUpAction(this));
+        this.addToActionSet(ActionVendor.createSelectDownAction(this));
+        this.addToActionSet(ActionVendor.createSelectItemAction(this));
     }
 
     @Override
