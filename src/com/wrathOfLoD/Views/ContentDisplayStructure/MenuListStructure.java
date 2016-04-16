@@ -10,6 +10,8 @@ public class MenuListStructure {
     private int numCols;
     private int containerWidth;
     private int containerHeight;
+    private int padding;
+    private int verticalItemOffset;
 
 
     public int getNumRows() {
@@ -36,29 +38,40 @@ public class MenuListStructure {
     public void setContainerHeight(int containerHeight) {
         this.containerHeight = containerHeight;
     }
-
+    public int getPadding() {
+        return padding;
+    }
+    public void setPadding(int padding) {
+        this.padding = padding;
+    }
+    public int getVerticalItemOffset() {
+        return verticalItemOffset;
+    }
+    public void setVerticalItemOffset(int verticalItemOffset) {
+        this.verticalItemOffset = verticalItemOffset;
+    }
 
     public MenuListStructure(int numRows, int numCols, int containerWidth, int containerHeight) {
         setNumRows(numRows);
         setNumCols(numCols);
         setContainerWidth(containerWidth);
         setContainerHeight(containerHeight);
+        setPadding((int)(getContainerHeight()*(1.0/3.0)));
+        setVerticalItemOffset(15);
+//        System.out.println("MENU item padding set at : " + getPadding());
+
     }
 
 
     public int calculateXCoord(int index) {
         int offsetConstant = (2*calculateHorLineLength()-calculateSlotWidth()/2);
         int xCoord = offsetConstant + determineColumn(index)* offsetConstant;
-        System.out.println("MENU item xCoord at : " + xCoord);
+//        System.out.println("MENU item xCoord at : " + xCoord);
         return xCoord;
     }
 
-    public int calculateYCoord(int index) {
-        int initialOffset = getContainerHeight()/3;
-        int offsetConstant = (2*calculateVertLineLength()-calculateRowHeight()/2);
-        int yCoord = offsetConstant + determineRow(index)*offsetConstant;
-        //int yCoord = initialOffset + determineRow(index)*
-        System.out.println("MENU item yCoord at : " + yCoord);
+    public int calculateYCoord(int index, int slotHeight) {
+        int yCoord = getPadding() + index*(getVerticalItemOffset() + slotHeight);
         return yCoord;
     }
 
@@ -92,6 +105,7 @@ public class MenuListStructure {
 
     public int calculateSlotHeight() {
         int slotHeight = calculateVertLineLength();
+        //int slotHeight = 100;
         return slotHeight;
     }
 

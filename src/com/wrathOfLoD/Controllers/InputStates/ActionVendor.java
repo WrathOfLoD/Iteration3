@@ -10,6 +10,7 @@ import com.wrathOfLoD.Models.Commands.EntityActionCommands.ChangeDirectionComman
 import com.wrathOfLoD.Models.Entity.Character.Avatar;
 import com.wrathOfLoD.Utility.Direction;
 import com.wrathOfLoD.Views.ItemDisplayView.InventoryView;
+import com.wrathOfLoD.Views.Selectable;
 
 /**
  * Created by icavitt on 4/7/2016.
@@ -17,6 +18,8 @@ import com.wrathOfLoD.Views.ItemDisplayView.InventoryView;
 public class ActionVendor {
 
     // TODO: 4/12/16 ASK IAN WHY a.getDirection() was used
+
+    /* Actions related to Avatar movement */
     public static Action createMoveNorthAction(){
         Avatar a = Avatar.getInstance();
         ActionCommand move = ActionCommandVendor.createMovementCommand(a, Direction.NORTH);
@@ -55,27 +58,28 @@ public class ActionVendor {
         return new MoveAction(KeyEvent.VK_A, move, look);
     }
 
-    public static Action createSelectUpAction(InventoryView inventoryView) {
-        ActionCommand selectUpCommand = ActionCommandVendor.createSelectUpCommand(inventoryView);
+    /* Actions related to menu/inventory selection */
+    public static Action createSelectUpAction(Selectable selectable) {
+        ActionCommand selectUpCommand = ActionCommandVendor.createSelectUpCommand(selectable);
         return new ChangeSelectionAction(KeyEvent.VK_W, selectUpCommand);
     }
 
-    public static Action createSelectDownAction(InventoryView inventoryView) {
-        ActionCommand selectDownCommand = ActionCommandVendor.createSelectDownCommand(inventoryView);
+    public static Action createSelectDownAction(Selectable selectable) {
+        ActionCommand selectDownCommand = ActionCommandVendor.createSelectDownCommand(selectable);
         return new ChangeSelectionAction(KeyEvent.VK_S, selectDownCommand);
     }
 
-    public static Action createSelectLeftAction(InventoryView inventoryView) {
-        ActionCommand selectLeftCommand = ActionCommandVendor.createSelectLeftCommand(inventoryView);
+    public static Action createSelectLeftAction(Selectable selectable) {
+        ActionCommand selectLeftCommand = ActionCommandVendor.createSelectLeftCommand(selectable);
         return new ChangeSelectionAction(KeyEvent.VK_A, selectLeftCommand);
     }
 
-    public static Action createSelectRightAction(InventoryView inventoryView) {
-        ActionCommand selectRightCommand = ActionCommandVendor.createSelectRightCommand(inventoryView);
+    public static Action createSelectRightAction(Selectable selectable) {
+        ActionCommand selectRightCommand = ActionCommandVendor.createSelectRightCommand(selectable);
         return new ChangeSelectionAction(KeyEvent.VK_D, selectRightCommand);
     }
-    public static Action createSelectItemAction(InventoryView inventoryView) {
-        ActionCommand selectItemCommand = ActionCommandVendor.createSelectItemCommand(inventoryView);
+    public static Action createSelectItemAction(Selectable selectable) {
+        ActionCommand selectItemCommand = ActionCommandVendor.createSelectItemCommand(selectable);
         return new ChangeSelectionAction(KeyEvent.VK_ENTER, selectItemCommand);
     }
 }

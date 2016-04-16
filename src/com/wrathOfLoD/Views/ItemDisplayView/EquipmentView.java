@@ -3,7 +3,7 @@ package com.wrathOfLoD.Views.ItemDisplayView;
 import com.wrathOfLoD.Models.Inventory.Equipment;
 import com.wrathOfLoD.Views.ContentDisplayStructure.EquipmentDisplayStructure;
 import com.wrathOfLoD.Views.ItemDisplayView.Slot.EquipmentSlot;
-import com.wrathOfLoD.Views.ViewObjectFactory.EquippedIVOFactory;
+import com.wrathOfLoD.Views.ViewFactories.ViewObjectFactory.EquippedIVOFactory;
 import javax.swing.border.LineBorder;
 import java.awt.*;
 

@@ -5,6 +5,7 @@ import com.wrathOfLoD.Views.StaticView;
 import com.wrathOfLoD.Models.Commands.MenuActionCommands.*;
 
 import javax.swing.*;
+import javax.swing.border.Border;
 import java.awt.*;
 
 /**
@@ -13,9 +14,12 @@ import java.awt.*;
 public class MenuItem extends JPanel {
 
     private String text;
-    private String imageFileName;
-    private Image image;
     private MenuSelectCommand command;
+    private boolean isSelected;
+
+    public MenuItem(String text) {
+        setText(text);
+    }
 
     public String getText() {
         return text;
@@ -23,18 +27,13 @@ public class MenuItem extends JPanel {
     public void setText(String text) {
         this.text = text;
     }
-    public String getImageFileName() {
-        return imageFileName;
-    }
-    public void setImageFileName(String imageFileName) {
-        this.imageFileName = imageFileName;
+
+    public boolean isSelected() {
+        return isSelected;
     }
 
-
-    public MenuItem(String text) {
-        setText(text);
-        setImageFileName("resources/Buttons/spaceMenuButton.png");
-        image = ImageFactory.generateImage(getImageFileName());
+    public void setIsSelected(boolean selected) {
+        this.isSelected = selected;
     }
 
     public void paintComponent(Graphics g, int x, int y, int width, int height) {
@@ -43,13 +42,6 @@ public class MenuItem extends JPanel {
         int textXCoord;
         int textYCoord;
 
-        if(image!=null) {
-            g.drawImage(image, x, y, width, height,this);
-        } else {
-            setBackground(Color.BLACK);
-        }
-        g.setColor(Color.WHITE);
-        g.setFont(new Font("Arial", Font.BOLD, 30));
         textWidth = g.getFontMetrics().stringWidth(getText());
         textHeight = g.getFontMetrics().getHeight();
 
@@ -57,6 +49,15 @@ public class MenuItem extends JPanel {
         textYCoord = y + height/2 - textHeight/2;
 
         g.drawString(getText(), textXCoord, textYCoord);
+        if (this.isSelected()) {
+            Border b = BorderFactory.createLineBorder(Color.CYAN, 1);
+            b.paintBorder(this, g, x, y - height/4 - textHeight/2, width, height);
+        }
+
+
+    }
+
+    public void execute() {
 
     }
 
