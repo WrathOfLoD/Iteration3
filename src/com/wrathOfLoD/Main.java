@@ -80,11 +80,12 @@ public class Main {
 
 
         CameraViewManager cvm = new CameraViewManager();
+
+
+        AreaView areaView = new AreaView(cvm);
         CameraView cameraView1 = new CameraView(mapArea1);
         //TODO: areaView needs to create all the VO based on the populated MapArea
         cvm.addCameraView(mapArea1, cameraView1);
-
-        AreaView areaView = new AreaView(cvm);
         areaView.setActiveCameraView(cameraView1);
         ViewObjectFactory.getInstance().initVOFactory(areaView);
 
@@ -135,7 +136,7 @@ public class Main {
 
         InputState inventoryState = new InventoryState(inventory);
         mainController.setActiveState(avatarState);
-        mainController.setActiveState(inventoryState);
+        //mainController.setActiveState(inventoryState);
 
         //LocationTrackerManager.getInstance().registerEntity(avatar, avatar.getTargetManager());
 

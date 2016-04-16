@@ -26,9 +26,9 @@ public class TilePillarViewObject extends ViewObject{
 	}
 
 	public void paintComponent(Graphics g, Position cameraCenter, Point screenCenter){
-		if(!tilePillar.isDiscovered()){
-			return;
-		}
+		//if(!tilePillar.isDiscovered()){
+		//	return;
+		//}
 		Point point = Position.vectorSubtract(this.pos, cameraCenter).positionToXY();
 		this.setOffsetX(point.x);
 		this.setOffsetY(point.y);
@@ -37,7 +37,6 @@ public class TilePillarViewObject extends ViewObject{
 			TileViewObject tvo = entry.getValue();
 			tvo.paintComponent(g, cameraCenter, screenCenter);
 		}
-
 		//paintComponent(g);
 	}
 
