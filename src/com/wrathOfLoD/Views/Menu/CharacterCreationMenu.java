@@ -16,6 +16,7 @@ public class CharacterCreationMenu extends Menu {
     public CharacterCreationMenu() {
         initMenuItems();
         initDefaultUI();
+        this.initializeActionSet();
     }
 
     public void initMenuItems() {

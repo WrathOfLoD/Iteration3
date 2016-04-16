@@ -32,7 +32,8 @@ public class TileViewObject extends ViewObject{
 		this.setOffsetX(offset.x);
 		this.setOffsetY(offset.y);
 		g.drawImage(this.getImage(), this.getOffsetX() + screenCenter.x, this.getOffsetY() + screenCenter.y, this.getImage().getWidth(null), this.getImage().getWidth(null), null);
-		//TODO: ???
+
+
 		Collections.sort(modelVOList, new Comparator<ModelViewObject>() {
 			@Override
 			public int compare(ModelViewObject o1, ModelViewObject o2) {
@@ -41,7 +42,7 @@ public class TileViewObject extends ViewObject{
 		});
 
 		for(ModelViewObject mvo : modelVOList){
-			//mvo.paintComponents(g);  ...not calling the right method
+			mvo.paintComponent(g, this.getOffsetX() + screenCenter.x, this.getOffsetY() + screenCenter.y, this.getImage().getWidth(null), this.getImage().getWidth(null));
 		}
 	}
 

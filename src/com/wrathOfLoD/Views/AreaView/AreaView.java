@@ -56,16 +56,7 @@ public class AreaView extends StaticView implements MapObserver{ //need to chang
 	@Override
 	public void paintComponent(Graphics g){
 		super.paintComponent(g);
-
-		/*
-		List<Position> renderOrder = new ArrayList<Position>();
-		renderOrder.addAll(tilePillarViewObjects.keySet());
-		Collections.sort(renderOrder, new RenderPositionComparator());
-
-		for(Position pos: renderOrder){
-			TilePillarViewObject tPVO = tilePillarViewObjects.get(pos);
-			tPVO.paint(g);
-		}*/
+		activeCameraView.paintComponent(g);
 	}
 
 	public void addViewObject(Position pos, ModelViewObject mvo){
