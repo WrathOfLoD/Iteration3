@@ -5,6 +5,7 @@ import com.wrathOfLoD.Models.Map.Tile;
 import com.wrathOfLoD.Models.Map.TilePillar;
 import com.wrathOfLoD.Utility.Position;
 
+import java.awt.*;
 import java.util.List;
 
 /**
@@ -21,5 +22,14 @@ public class TilePillarViewObject extends ViewObject{
 		this.pos = pos;
 		this.tilePillar = Map.getInstance().getTilePillar(pos);
 	}
+
+	public void paintComponent(Graphics g, int x, int y, int width, int height) {
+		for(TileViewObject tvo : tileViewObjects){
+			tvo.paintComponents(g);
+		}
+	}
+
+
+
 
 }

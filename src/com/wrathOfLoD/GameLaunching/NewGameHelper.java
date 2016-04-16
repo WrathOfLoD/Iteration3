@@ -23,7 +23,7 @@ public class NewGameHelper extends GameLaunchHelper{
         return null;
     }
 
-    public void populate(){
+    public void populateMap(){
         getLevelFactory().populateMap();
     }
 

@@ -47,11 +47,29 @@ public class TilePillar{
 		}
 	}
 
+	public void addTile(int index, Tile t){
+		if(index < 0 || index >= PILLAR_HEIGHT){
+			throw new IllegalArgumentException("Illegal index for tile");
+		}else{
+			tiles[index] = t;
+		}
+	}
+
     public Tile getTile(Position pos){
         return this.tiles[pos.getH()];
     }
 
-    public void addEntity(Entity entity, Position pos){
+	public Tile[] getTiles() {
+		return tiles;
+	}
+
+	public void accept(MapVisitor mv){
+		mv.visitTileColumn(this);
+	}
+
+
+	/********** Forward request to tile *************/
+	public void addEntity(Entity entity, Position pos){
 		Tile tile = getTile(pos);
 		tile.addEntity(entity);
 	}
@@ -80,12 +98,5 @@ public class TilePillar{
 		Tile tile = getTile(pos);
 		tile.removeAE(ae);
 	}
-
-	public Tile[] getTiles() {
-		return tiles;
-	}
-
-	public void accept(MapVisitor mv){
-		mv.visitTileColumn(this);
-	}
+	/********** END Forward request to tile *************/
 }
