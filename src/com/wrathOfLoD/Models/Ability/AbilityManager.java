@@ -17,6 +17,10 @@ public class AbilityManager {
     private int maxNumActiveAbilities = 4;
     private Ability[] activeAbilities = new Ability[maxNumActiveAbilities];
 
+    public Ability[] getActiveAbilities() {
+        return activeAbilities;
+    }
+
     public AbilityManager(Occupation occupation) {
         this.occupation = occupation;
         unlockedAbilities = new ArrayList<>();

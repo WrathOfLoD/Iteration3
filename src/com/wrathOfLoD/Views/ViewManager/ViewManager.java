@@ -13,6 +13,8 @@ import java.awt.*;
  */
 public class ViewManager extends StaticView { //edit: extend View or extend StaticView?
 
+    //TODO: how to swap b\w area view in viewManager when game starts?
+
     private AreaView av;
     private AvatarIESView avatarIESView;
 

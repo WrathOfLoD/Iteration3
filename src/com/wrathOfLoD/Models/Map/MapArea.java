@@ -21,6 +21,11 @@ public class MapArea{
         this.tilePillarMap = new HashMap<Position, TilePillar>();
     }
 
+	public MapArea(String mapAreaName){
+		this.tilePillarMap = new HashMap<Position, TilePillar>();
+		this.mapAreaName = mapAreaName;
+	}
+
 	public boolean hasTilePillarAt(Position pos){
 		TilePillar pillar = getTilePillar(pos);
 		if(pillar != null){
@@ -46,6 +51,11 @@ public class MapArea{
 		}
 	}
 
+	public void addTilePillar(Position pos, TilePillar tilePillar){
+		//h=0
+		tilePillarMap.put(pos.get2DProjection(), tilePillar);
+	}
+
     public Tile getTile(Position pos) {
         TilePillar pillar = getTilePillar(pos);
 		return pillar.getTile(pos);
@@ -60,7 +70,35 @@ public class MapArea{
         return tiles;
     }
 
-    public void addEntity(Entity entity, Position pos){
+
+
+	public void accept(MapVisitor mapVisitor){
+		mapVisitor.visitMapArea(this);
+	}
+
+
+	/************ Setters & Getters *************/
+	public HashMap<Position, TilePillar> getTilePillarMap() {
+		return tilePillarMap;
+	}
+
+	public void setTilePillarMap(HashMap<Position, TilePillar> tilePillarMap) {
+		this.tilePillarMap = tilePillarMap;
+	}
+
+	public String getMapAreaName() {
+		return mapAreaName;
+	}
+
+	public void setMapAreaName(String mapAreaName) {
+		this.mapAreaName = mapAreaName;
+	}
+	/************ END Setters & Getters *************/
+
+
+
+	/********** Forward to Tile ***************/
+	public void addEntity(Entity entity, Position pos){
 		TilePillar pillar = getTilePillar(pos);
 		pillar.addEntity(entity, pos);
 	}
@@ -89,24 +127,5 @@ public class MapArea{
 		TilePillar pillar = getTilePillar(pos);
 		pillar.removeAE(ae, pos);
 	}
-
-	public void accept(MapVisitor mapVisitor){
-		mapVisitor.visitMapArea(this);
-	}
-
-	public HashMap<Position, TilePillar> getTilePillarMap() {
-		return tilePillarMap;
-	}
-
-	public void setTilePillarMap(HashMap<Position, TilePillar> tilePillarMap) {
-		this.tilePillarMap = tilePillarMap;
-	}
-
-	public String getMapAreaName() {
-		return mapAreaName;
-	}
-
-	public void setMapAreaName(String mapAreaName) {
-		this.mapAreaName = mapAreaName;
-	}
+	/********** END Forward to Tile ***************/
 }

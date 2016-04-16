@@ -37,11 +37,11 @@ public class ItemViewObject extends ModelViewObject {
 
 
     public ItemViewObject(){
-        super(20); //zLevel
+        super(Config.getTakeableItemZLevel()); //zLevel
     }
 
     public ItemViewObject(Item item) {
-        super(20); //zLevel
+        super(Config.getTakeableItemZLevel()); //zLevel
         setItem(item);
         //initializeImage(item);
         //setIsDisplayed(false);
@@ -52,7 +52,6 @@ public class ItemViewObject extends ModelViewObject {
         setImage(ImageFactory.generateImage(Config.instance().getInventoryIVOPath()+item.getName()+Config.instance().getImageExtension())); //edit: testing. shouldn't be using this path
         System.out.println("initalizeImage is getting called for : " + item.getName() + "!!");
     }
-
 
     public void paintComponent(Graphics g, int x, int y, int width, int height) {
         super.paintComponent(g);

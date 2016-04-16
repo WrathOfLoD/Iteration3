@@ -50,6 +50,7 @@ public class ViewEngine extends JFrame implements Runnable {
         initialize();
     }
 
+
     public void removeOldView(){
         if (target != null)
             remove(target);

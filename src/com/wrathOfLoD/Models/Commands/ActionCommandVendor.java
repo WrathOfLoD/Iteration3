@@ -2,12 +2,10 @@ package com.wrathOfLoD.Models.Commands;
 
 import com.wrathOfLoD.Models.Commands.EntityActionCommands.ChangeDirectionCommand;
 import com.wrathOfLoD.Models.Commands.EntityActionCommands.MovementCommand;
-import com.wrathOfLoD.Models.Commands.InventoryActionCommands.*;
+import com.wrathOfLoD.Models.Commands.SelectableActionCommands.*;
 import com.wrathOfLoD.Models.Entity.Entity;
-import com.wrathOfLoD.Models.Inventory.Inventory;
 import com.wrathOfLoD.Utility.Direction;
-import com.wrathOfLoD.Utility.Position;
-import com.wrathOfLoD.Views.ItemDisplayView.InventoryView;
+import com.wrathOfLoD.Views.Selectable;
 
 /**
  * Created by icavitt on 4/7/2016.
@@ -23,19 +21,19 @@ public class ActionCommandVendor {
         return new MovementCommand(e, dir);
     }
 
-    public static ActionCommand createSelectUpCommand(InventoryView inventoryView) {
-        return new SelectUpCommand(inventoryView);
+    public static ActionCommand createSelectUpCommand(Selectable selectable) {
+        return new SelectUpCommand(selectable);
     }
-    public static ActionCommand createSelectDownCommand(InventoryView inventoryView) {
-        return new SelectDownCommand(inventoryView);
+    public static ActionCommand createSelectDownCommand(Selectable selectable) {
+        return new SelectDownCommand(selectable);
     }
-    public static ActionCommand createSelectLeftCommand(InventoryView inventoryView) {
-        return new SelectLeftCommand(inventoryView);
+    public static ActionCommand createSelectLeftCommand(Selectable selectable) {
+        return new SelectLeftCommand(selectable);
     }
-    public static ActionCommand createSelectRightCommand(InventoryView inventoryView) {
-        return new SelectRightCommand(inventoryView);
+    public static ActionCommand createSelectRightCommand(Selectable selectable) {
+        return new SelectRightCommand(selectable);
     }
-    public static ActionCommand createSelectItemCommand(InventoryView inventoryView) {
-        return new SelectItemCommand(inventoryView);
+    public static ActionCommand createSelectItemCommand(Selectable selectable) {
+        return new SelectItemCommand(selectable);
     }
 }

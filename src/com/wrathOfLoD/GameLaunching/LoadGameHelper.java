@@ -21,7 +21,7 @@ public class LoadGameHelper extends GameLaunchHelper {
         getLevelFactory().generateMap();
         return Map.getInstance();
     }
-    //this should be called after populate, the load function will handle properly creat
+    //this should be called after populateMap, the load function will handle properly creat
     //ing avatar in this case
     @Override
     public Avatar createAvatar() {
@@ -29,7 +29,7 @@ public class LoadGameHelper extends GameLaunchHelper {
     }
 
     @Override
-    public void populate() {
+    public void populateMap() {
         loader.load(Map.getInstance());
     }
 }

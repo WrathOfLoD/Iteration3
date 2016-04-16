@@ -13,7 +13,7 @@ public abstract class GameLaunchHelper {
 
     public abstract Map createMap();
     public abstract Avatar createAvatar();
-    public abstract void populate();
+    public abstract void populateMap();
 
     public LevelFactory getLevelFactory(){
         return levelFactory;
