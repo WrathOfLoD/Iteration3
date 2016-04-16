@@ -2,6 +2,7 @@ package com.wrathOfLoD.Views.Menu;
 
 import com.wrathOfLoD.Views.ContentDisplayStructure.MenuListStructure;
 import com.wrathOfLoD.Views.StaticView;
+import com.wrathOfLoD.Views.ViewFactories.TextLabelFactory;
 
 import javax.swing.*;
 import java.awt.*;
@@ -12,7 +13,6 @@ import java.util.ArrayList;
  */
 public class MainMenu extends Menu {
 
-    private JPanel contentPanel;
     private MenuListStructure mls;
 
     public MainMenu() {
@@ -21,32 +21,26 @@ public class MainMenu extends Menu {
     }
 
     public void initMenuItems() {
-        this.addMenuItem(new MenuItem("Slothst in Space"));
         this.addMenuItem(new MenuItem("New Game"));
         this.addMenuItem(new MenuItem("Load Game"));
     }
 
     public void initDefaultUI() {
-        setBackgroundImageFileName("resources/Backgrounds/spaceSlothDefault.png");
-        //setLayout(new GridLayout(menuItems.size(),1,0,0)); // TODO: 4/16/2016 edit hgap and vgap?
-       /*
-        for (int i=0; i<menuItems.size(); i++) {
-            this.add(menuItems.get(i));
-        }
-        */
+        setBackgroundImageFileName("resources/Backgrounds/slothMenu.png");
     }
 
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         mls = new MenuListStructure(this.getMenuItems().size(), 1, this.getWidth(), this.getHeight());
+        int menuItemHeight = 100; // TODO: 4/16/2016 put this in constructor for MenuListStructure???
+        int additionalVerticalOffset = 90;
         int index = 0;
         for (MenuItem menuItem: this.getMenuItems()) {
-            menuItem.paintComponent(g, mls.calculateXCoord(index), mls.calculateYCoord(index), mls.calculateSlotWidth(), mls.calculateSlotHeight());
+            g.setColor(Color.RED);
+            g.setFont(new Font("Bauhaus 93", Font.ITALIC, 72));
+            menuItem.paintComponent(g, mls.calculateXCoord(index), mls.calculateYCoord(index,menuItemHeight) + additionalVerticalOffset, mls.calculateSlotWidth(), menuItemHeight);
             index++;
         }
-        g.setColor(Color.CYAN);
-        g.drawRect(mls.calculateXCoord(4),400, 500,mls.calculateSlotHeight());
-
     }
 
 

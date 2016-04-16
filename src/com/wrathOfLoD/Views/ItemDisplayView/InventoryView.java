@@ -4,14 +4,9 @@ import com.wrathOfLoD.Models.Inventory.Inventory;
 import com.wrathOfLoD.Models.Items.Item;
 import com.wrathOfLoD.Models.Items.TakeableItem;
 import com.wrathOfLoD.Views.ContentDisplayStructure.ContentDisplayStructure;
-import com.wrathOfLoD.Views.ContentDisplayStructure.GridStructure;
-import com.wrathOfLoD.Views.ViewObjectFactory.InventoryIVOFactory;
+import com.wrathOfLoD.Views.ViewFactories.ViewObjectFactory.InventoryIVOFactory;
 import com.wrathOfLoD.Views.ViewObjects.InventoryItemViewObject;
-import com.wrathOfLoD.Views.ViewObjects.ItemViewObject;
 
-import javax.swing.*;
-import javax.swing.border.BevelBorder;
-import javax.swing.border.Border;
 import java.awt.*;
 import java.util.Iterator;
 
