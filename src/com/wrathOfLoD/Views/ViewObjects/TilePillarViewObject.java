@@ -33,9 +33,9 @@ public class TilePillarViewObject extends ViewObject{
 
 		for(int i = 0; i < tileViewObjects.size(); i++){
 			TileViewObject tvo = tileViewObjects.get(i);
-			tvo.paintComponent(g, getOffsetX(), getOffsetY(), i, screenCenter);
+			tvo.paintComponent(g, cameraCenter, screenCenter);
 		}
-		paintComponent(g);
+		//paintComponent(g);
 	}
 
 	@Override
