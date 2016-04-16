@@ -1,5 +1,6 @@
 package com.wrathOfLoD.Views.Menu;
 
+import com.wrathOfLoD.Controllers.InputStates.ActionVendor;
 import com.wrathOfLoD.Views.ContentDisplayStructure.MenuListStructure;
 import com.wrathOfLoD.Views.StaticView;
 import com.wrathOfLoD.Views.ViewFactories.TextLabelFactory;
@@ -18,6 +19,14 @@ public class MainMenu extends Menu {
     public MainMenu() {
         initMenuItems();
         initDefaultUI();
+        this.initializeActionSet();
+    }
+
+    @Override
+    public void initializeActionSet() {
+        this.addToActionSet(ActionVendor.createSelectUpAction(this));
+        this.addToActionSet(ActionVendor.createSelectDownAction(this));
+        this.addToActionSet(ActionVendor.createSelectItemAction(this));
     }
 
     public void initMenuItems() {
@@ -36,10 +45,17 @@ public class MainMenu extends Menu {
         int additionalVerticalOffset = 90;
         int index = 0;
         for (MenuItem menuItem: this.getMenuItems()) {
+            menuItem.setIsSelected(false);
             g.setColor(Color.RED);
             g.setFont(new Font("Bauhaus 93", Font.ITALIC, 72));
+
+            if (index == this.getCurrentIndex()) {
+                menuItem.setIsSelected(true);
+            }
+
             menuItem.paintComponent(g, mls.calculateXCoord(index), mls.calculateYCoord(index,menuItemHeight) + additionalVerticalOffset, mls.calculateSlotWidth(), menuItemHeight);
             index++;
+
         }
     }
 

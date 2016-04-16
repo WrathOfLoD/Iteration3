@@ -6,6 +6,7 @@ import com.wrathOfLoD.Views.Selectable;
 import com.wrathOfLoD.Views.StaticView;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Set;
 
 /**
@@ -14,7 +15,7 @@ import java.util.Set;
 public abstract class Menu extends StaticView implements ActionsHolder, Selectable {
     private int currentIndex = 0;
     private ArrayList<MenuItem> menuItems = new ArrayList<>();
-    private Set<Action> actionSet;
+    private Set<Action> actionSet = new HashSet<>();
 
     public ArrayList<MenuItem> getMenuItems() {
         return this.menuItems;
@@ -22,6 +23,10 @@ public abstract class Menu extends StaticView implements ActionsHolder, Selectab
 
     public void addMenuItem(MenuItem menuItem) {
         this.menuItems.add(menuItem);
+    }
+
+    public int getCurrentIndex() {
+        return currentIndex;
     }
 
     /**
@@ -82,7 +87,7 @@ public abstract class Menu extends StaticView implements ActionsHolder, Selectab
 
     @Override
     public void addToActionSet(Action action) {
-
+        this.actionSet.add(action);
     }
 
     @Override

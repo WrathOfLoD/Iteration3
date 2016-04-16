@@ -1,8 +1,10 @@
 package com.wrathOfLoD.Views.Menu;
 
+import com.wrathOfLoD.Controllers.InputStates.*;
 import com.wrathOfLoD.Controllers.MainController;
 import com.wrathOfLoD.Views.SpriteMap.ImageAnimation;
 import com.wrathOfLoD.Views.SpriteMap.SpriteMap;
+import com.wrathOfLoD.Models.ModelEngine;
 import com.wrathOfLoD.Views.ViewEngine;
 
 import javax.swing.*;
@@ -17,6 +19,17 @@ public class MenuTest {
 
         public static void main(String[] args) throws Exception{
             MainMenu mainMenu = new MainMenu();
+            ModelEngine.getInstance().start();
+
+            MainController mainController = MainController.getInstance();
+
+            InputState avatarState = new AvatarState();
+
+
+            System.out.println(mainMenu.getActionSet());
+
+            InputState menuState = new MenuState(mainMenu);
+            mainController.setActiveState(menuState);
 
             /*
             JFrame testFrame = new JFrame();
@@ -31,6 +44,7 @@ public class MenuTest {
 
             ViewEngine window = ViewEngine.getInstance();
             window.registerView(mainMenu);
+
 
 
             //ScrollableMenu menu = new MainScrollableMenu(120);

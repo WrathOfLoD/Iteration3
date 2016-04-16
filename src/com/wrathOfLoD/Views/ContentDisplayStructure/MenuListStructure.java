@@ -58,7 +58,7 @@ public class MenuListStructure {
         setContainerHeight(containerHeight);
         setPadding((int)(getContainerHeight()*(1.0/3.0)));
         setVerticalItemOffset(15);
-        System.out.println("MENU item padding set at : " + getPadding());
+//        System.out.println("MENU item padding set at : " + getPadding());
 
     }
 
@@ -66,7 +66,7 @@ public class MenuListStructure {
     public int calculateXCoord(int index) {
         int offsetConstant = (2*calculateHorLineLength()-calculateSlotWidth()/2);
         int xCoord = offsetConstant + determineColumn(index)* offsetConstant;
-        System.out.println("MENU item xCoord at : " + xCoord);
+//        System.out.println("MENU item xCoord at : " + xCoord);
         return xCoord;
     }
 

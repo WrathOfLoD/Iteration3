@@ -5,6 +5,7 @@ import com.wrathOfLoD.Views.StaticView;
 import com.wrathOfLoD.Models.Commands.MenuActionCommands.*;
 
 import javax.swing.*;
+import javax.swing.border.Border;
 import java.awt.*;
 
 /**
@@ -14,7 +15,11 @@ public class MenuItem extends JPanel {
 
     private String text;
     private MenuSelectCommand command;
+    private boolean isSelected;
 
+    public MenuItem(String text) {
+        setText(text);
+    }
 
     public String getText() {
         return text;
@@ -23,8 +28,12 @@ public class MenuItem extends JPanel {
         this.text = text;
     }
 
-    public MenuItem(String text) {
-        setText(text);
+    public boolean isSelected() {
+        return isSelected;
+    }
+
+    public void setIsSelected(boolean selected) {
+        this.isSelected = selected;
     }
 
     public void paintComponent(Graphics g, int x, int y, int width, int height) {
@@ -40,6 +49,11 @@ public class MenuItem extends JPanel {
         textYCoord = y + height/2 - textHeight/2;
 
         g.drawString(getText(), textXCoord, textYCoord);
+        if (this.isSelected()) {
+            Border b = BorderFactory.createLineBorder(Color.CYAN, 1);
+            b.paintBorder(this, g, x, y - height/4 - textHeight/2, width, height);
+        }
+
 
     }
 
