@@ -33,4 +33,8 @@ public class TilePillarViewObject extends ViewObject{
 		return this.pos;
 	}
 
+	public void addTileVO(TileViewObject tvo){
+		tileViewObjects.add(tvo);
+	}
+
 }
