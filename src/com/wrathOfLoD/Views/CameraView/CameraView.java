@@ -8,10 +8,8 @@ import com.wrathOfLoD.Models.Map.MapArea;
 import com.wrathOfLoD.Models.Map.Tile;
 import com.wrathOfLoD.Models.Map.TilePillar;
 import com.wrathOfLoD.Utility.Position;
-import com.wrathOfLoD.Views.StaticView;
-import com.wrathOfLoD.Views.ViewObjectFactory.ViewObjectFactory;
+import com.wrathOfLoD.Views.ViewFactories.ViewObjectFactory.ViewObjectFactory;
 import com.wrathOfLoD.Views.ViewObjects.TilePillarViewObject;
-import com.wrathOfLoD.Utility.Position;
 import com.wrathOfLoD.Utility.RenderPositionComparator;
 import com.wrathOfLoD.Views.ViewObjects.TileViewObject;
 

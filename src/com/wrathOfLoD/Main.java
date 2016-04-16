@@ -29,7 +29,7 @@ import com.wrathOfLoD.Views.Selectable;
 import com.wrathOfLoD.Views.StatsView.StatsView;
 import com.wrathOfLoD.Views.ViewEngine;
 import com.wrathOfLoD.Views.ViewManager.ViewManager;
-import com.wrathOfLoD.Views.ViewObjectFactory.ViewObjectFactory;
+import com.wrathOfLoD.Views.ViewFactories.ViewObjectFactory.*;
 
 import java.awt.*;
 

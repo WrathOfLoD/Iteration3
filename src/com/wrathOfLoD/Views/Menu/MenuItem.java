@@ -13,8 +13,8 @@ import java.awt.*;
 public class MenuItem extends JPanel {
 
     private String text;
-    private String imageFileName;
-    private Image image;
+    private MenuSelectCommand command;
+
 
     public String getText() {
         return text;
@@ -22,18 +22,9 @@ public class MenuItem extends JPanel {
     public void setText(String text) {
         this.text = text;
     }
-    public String getImageFileName() {
-        return imageFileName;
-    }
-    public void setImageFileName(String imageFileName) {
-        this.imageFileName = imageFileName;
-    }
-
 
     public MenuItem(String text) {
         setText(text);
-        setImageFileName("resources/Buttons/spaceMenuButton.png");
-        image = ImageFactory.generateImage(getImageFileName());
     }
 
     public void paintComponent(Graphics g, int x, int y, int width, int height) {
@@ -42,13 +33,6 @@ public class MenuItem extends JPanel {
         int textXCoord;
         int textYCoord;
 
-        if(image!=null) {
-            g.drawImage(image, x, y, width, height,this);
-        } else {
-            setBackground(Color.BLACK);
-        }
-        g.setColor(Color.WHITE);
-        g.setFont(new Font("Arial", Font.BOLD, 30));
         textWidth = g.getFontMetrics().stringWidth(getText());
         textHeight = g.getFontMetrics().getHeight();
 
