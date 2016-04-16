@@ -23,9 +23,26 @@ public class TilePillarViewObject extends ViewObject{
 		this.tilePillar = Map.getInstance().getTilePillar(pos);
 	}
 
-	public void paintComponent(Graphics g, int x, int y, int width, int height) {
-		for(TileViewObject tvo : tileViewObjects){
-			tvo.paintComponent(g, pos.getQ(), pos.getR(), 20, 20);
+	public void paintComponent(Graphics g, Position cameraCenter, Point screenCenter){
+		if(!tilePillar.isDiscovered()){
+			return;
+		}
+		Point point = Position.vectorSubtract(this.pos, cameraCenter).positionToXY();
+		this.setOffsetX(point.x);
+		this.setOffsetY(point.y);
+
+		for(int i = 0; i < tileViewObjects.size(); i++){
+			TileViewObject tvo = tileViewObjects.get(i);
+			tvo.paintComponent(g, getOffsetX(), getOffsetY(), i, screenCenter);
+		}
+		paintComponent(g);
+	}
+
+	@Override
+	public void paintComponent(Graphics g){
+		//TODO
+		if(!tilePillar.isVisible()){
+			//TODO draw a big-ass translucent grey rectangle
 		}
 	}
 

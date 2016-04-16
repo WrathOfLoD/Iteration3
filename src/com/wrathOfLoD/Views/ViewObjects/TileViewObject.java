@@ -24,17 +24,18 @@ public class TileViewObject extends ViewObject{
 		setImage(animation.getFrame()); //terrain
 	}
 
-	public void paintComponent(Graphics g, int x, int y, int width, int height) {
-		//terrain image
-		g.drawImage(this.getImage(), x + this.getOffsetX(), y + this.getOffsetY(), width, height, this);
-
+	public void paintComponent(Graphics g, int x, int y, int h, Point screenCenter) {
+		//super.paintComponent(g);
+		this.setOffsetX(x);
+		this.setOffsetY(y - (int)(h * TILE_THICKNESS/this.getImage().getHeight(null)));
+		g.drawImage(this.getImage(), this.getOffsetX(), this.getOffsetY(), screenCenter.x, screenCenter.y, null);
+		//TODO: ???
 		Collections.sort(modelVOList, new Comparator<ModelViewObject>() {
 			@Override
 			public int compare(ModelViewObject o1, ModelViewObject o2) {
 				return o1.getzOrder() - o2.getzOrder();
 			}
 		});
-
 
 		for(ModelViewObject mvo : modelVOList){
 			//mvo.paintComponents(g);  ...not calling the right method

@@ -8,7 +8,7 @@ import com.wrathOfLoD.Models.Map.MapArea;
 import com.wrathOfLoD.Models.Map.Tile;
 import com.wrathOfLoD.Models.Map.TilePillar;
 import com.wrathOfLoD.Utility.Position;
-import com.wrathOfLoD.Views.ViewFactories.ViewObjectFactory.ViewObjectFactory;
+import com.wrathOfLoD.Views.StaticView;
 import com.wrathOfLoD.Views.ViewObjects.TilePillarViewObject;
 import com.wrathOfLoD.Utility.RenderPositionComparator;
 import com.wrathOfLoD.Views.ViewObjects.TileViewObject;
@@ -20,7 +20,7 @@ import java.util.List;
 /**
  * Created by luluding on 4/16/16.
  */
-public class CameraView{
+public class CameraView extends StaticView{
 
     private HashMap<Position, TilePillarViewObject> tilePillarViewObjects;
     private MapArea mapArea;
@@ -31,6 +31,7 @@ public class CameraView{
         cameraCenter = Avatar.getInstance().getPosition();
     }
 
+    @Override
     public void paintComponent(Graphics g){
         List<Position> renderOrder = new ArrayList<Position>();
         renderOrder.addAll(tilePillarViewObjects.keySet());
@@ -38,11 +39,7 @@ public class CameraView{
 
         for(Position pos: renderOrder){
             TilePillarViewObject tPVO = tilePillarViewObjects.get(pos);
-
-            //Do the calculation of converting to x, y here
-            Position dist = Position.vectorSubtract(tPVO.getPosition(), cameraCenter);
-
-            //tPVO.paintComponent(g);
+            tPVO.paintComponent(g, cameraCenter, new Point(this.getWidth()/2, this.getHeight()/2));
         }
     }
 
