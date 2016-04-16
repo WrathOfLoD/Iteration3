@@ -51,7 +51,7 @@ public class LocationTracker {
         for(Entity e : entityList){
             if(pos.getHorizontalDist(e.getPosition()) < 8){
                 TargetManager targManager = entityTargetManagerMap.get(e);
-                targManager.updateMyList(new ItemTarget(item));
+                targManager.updateMyList(new ItemTarget(item, pos));
             }
         }
     }
@@ -127,7 +127,7 @@ public class LocationTracker {
             Item curr = (Item) pair.getKey();
             Position itemPos = (Position) pair.getValue();
             if(current.getHorizontalDist(itemPos) < 8){
-                entityTargetManager.updateMyList(new ItemTarget(curr));
+                entityTargetManager.updateMyList(new ItemTarget(curr, itemPos));
             }
         }
     }
