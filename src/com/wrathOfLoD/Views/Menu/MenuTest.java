@@ -14,7 +14,8 @@ public class MenuTest {
 
         public static void main(String[] args) {
             MainMenu mainMenu = new MainMenu();
-
+            PauseMenu pauseMenu = new PauseMenu();
+            CharacterCreationMenu characterCreationMenu = new CharacterCreationMenu();
             /*
             JFrame testFrame = new JFrame();
             mainMenu.setPreferredSize(new Dimension(800,900));
@@ -28,6 +29,8 @@ public class MenuTest {
 
             ViewEngine window = ViewEngine.getInstance();
             window.registerView(mainMenu);
+            window.registerView(pauseMenu);
+            window.registerView(characterCreationMenu);
 
 
             //ScrollableMenu menu = new MainScrollableMenu(120);
