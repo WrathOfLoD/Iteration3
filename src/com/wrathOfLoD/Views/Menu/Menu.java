@@ -3,9 +3,11 @@ package com.wrathOfLoD.Views.Menu;
 import com.wrathOfLoD.Controllers.InputStates.Action.Action;
 import com.wrathOfLoD.Controllers.InputStates.ActionVendor;
 import com.wrathOfLoD.Models.ActionsHolder;
+import com.wrathOfLoD.Views.ContentDisplayStructure.MenuListStructure;
 import com.wrathOfLoD.Views.Selectable;
 import com.wrathOfLoD.Views.StaticView;
 
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
@@ -17,6 +19,10 @@ public abstract class Menu extends StaticView implements ActionsHolder, Selectab
     private int currentIndex = 0;
     private ArrayList<MenuItem> menuItems = new ArrayList<>();
     private Set<Action> actionSet = new HashSet<>();
+
+    public Menu() {
+        this.initializeActionSet();
+    }
 
     public ArrayList<MenuItem> getMenuItems() {
         return this.menuItems;
@@ -101,6 +107,19 @@ public abstract class Menu extends StaticView implements ActionsHolder, Selectab
 
     @Override
     public void selectPrevItem() {
+
+    }
+
+    public void paintMenuItems(Graphics g, MenuListStructure mls, int menuItemHeight, int additionalVerticalOffset) {
+        int index = 0;
+        for (MenuItem menuItem: this.getMenuItems()) {
+            menuItem.setIsSelected(false);
+            if (index == this.getCurrentIndex()) {
+                menuItem.setIsSelected(true);
+            }
+            menuItem.paintComponent(g, mls.calculateXCoord(index), mls.calculateYCoord(index,menuItemHeight) + additionalVerticalOffset, mls.calculateSlotWidth(), menuItemHeight);
+            index++;
+        }
 
     }
 }

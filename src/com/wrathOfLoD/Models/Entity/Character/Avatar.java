@@ -10,6 +10,7 @@ import com.wrathOfLoD.Models.Items.EquippableItems.Weapons.SmasherWeapons.Smashe
 import com.wrathOfLoD.Models.Occupation.Occupation;
 import com.wrathOfLoD.Models.Occupation.Smasher;
 import com.wrathOfLoD.Models.Stats.StatsModifiable;
+import com.wrathOfLoD.Models.Target.AvatarTargetManager;
 import com.wrathOfLoD.Utility.Position;
 import com.wrathOfLoD.VisitorInterfaces.EntityVisitor;
 
@@ -26,6 +27,7 @@ public class Avatar extends Character implements ActionsHolder {
 
     private Avatar() {
         super();
+        setTargetManager(new AvatarTargetManager());
     }
 
     public static Avatar getInstance(){

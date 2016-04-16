@@ -6,6 +6,7 @@ import com.wrathOfLoD.Models.Map.TilePillar;
 import com.wrathOfLoD.Utility.Position;
 
 import java.awt.*;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -16,12 +17,14 @@ public class TilePillarViewObject extends ViewObject{
 	private TilePillar tilePillar;
 	private Position pos;
 
-	private List<TileViewObject> tileViewObjects;
+	//private List<TileViewObject> tileViewObjects;
+	private HashMap<Position, TileViewObject> tileViewObjects;
 
 	public TilePillarViewObject(Position pos){
 		this.pos = pos;
 		this.tilePillar = Map.getInstance().getTilePillar(pos);
 	}
+
 
 	public void paintComponent(Graphics g, Position cameraCenter, Point screenCenter){
 		if(!tilePillar.isDiscovered()){
@@ -31,11 +34,18 @@ public class TilePillarViewObject extends ViewObject{
 		this.setOffsetX(point.x);
 		this.setOffsetY(point.y);
 
+		/*
 		for(int i = 0; i < tileViewObjects.size(); i++){
 			TileViewObject tvo = tileViewObjects.get(i);
-			tvo.paintComponent(g, getOffsetX(), getOffsetY(), i, screenCenter);
+			tvo.paintComponent(g, cameraCenter, screenCenter);
+		}*/
+
+		for(java.util.Map.Entry<Position, TileViewObject> entry : tileViewObjects.entrySet()){
+			TileViewObject tvo = entry.getValue();
+			tvo.paintComponent(g, cameraCenter, screenCenter);
 		}
-		paintComponent(g);
+
+		//paintComponent(g);
 	}
 
 	@Override
@@ -50,8 +60,10 @@ public class TilePillarViewObject extends ViewObject{
 		return this.pos;
 	}
 
-	public void addTileVO(TileViewObject tvo){
-		tileViewObjects.add(tvo);
+	public void addTileVO(Position pos, TileViewObject tvo){
+		tileViewObjects.put(pos, tvo);
 	}
+
+
 
 }

@@ -127,5 +127,10 @@ public class MapArea{
 		TilePillar pillar = getTilePillar(pos);
 		pillar.removeAE(ae, pos);
 	}
+
+	public void removeTrap(Position pos){
+		TilePillar pillar = getTilePillar(pos);
+		pillar.removeTrap(pos);
+	}
 	/********** END Forward to Tile ***************/
 }

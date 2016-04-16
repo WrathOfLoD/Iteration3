@@ -20,7 +20,6 @@ import com.wrathOfLoD.VisitorInterfaces.EntityVisitor;
 public abstract class Character extends Entity {
     private Occupation occupation;
     private Equipment equipment;
-    private TargetManager targetManager;
     private AbilityManager abilityManager;
     private SkillManager skillManager;
 
@@ -29,7 +28,6 @@ public abstract class Character extends Entity {
         this.occupation = new Smasher();
         Weapon defaultWeapon = this.occupation.createWeapon();
         this.equipment = new Equipment(defaultWeapon);
-        this.targetManager = new TargetManager();
         this.abilityManager = new AbilityManager(getOccupation());
         this.skillManager = this.occupation.createSkillManager();
         this.abilityManager.unlockAbilities(getStats().getLevel());
@@ -41,7 +39,6 @@ public abstract class Character extends Entity {
         this.occupation = occupation;
         Weapon defaultWeapon = this.occupation.createWeapon();
         this.equipment = new Equipment(defaultWeapon);
-        this.targetManager = new TargetManager();
         this.abilityManager.unlockAbilities(getStats().getLevel());
         this.skillManager = this.occupation.createSkillManager();
     }
@@ -51,8 +48,6 @@ public abstract class Character extends Entity {
     public Equipment getEquipment(){ return this.equipment; }
 
     public Occupation getOccupation(){ return this.occupation; }
-
-    public TargetManager getTargetManager(){ return this.targetManager; }
 
     public AbilityManager getAbilityManager(){ return this.abilityManager; }
 

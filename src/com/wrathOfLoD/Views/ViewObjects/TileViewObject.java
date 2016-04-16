@@ -16,19 +16,22 @@ import java.util.Comparator;
 public class TileViewObject extends ViewObject{
 
 	private Tile tile;
+	private Position pos;
 	private ArrayList<ModelViewObject> modelVOList;
 
-	public TileViewObject(Tile tile, ImageAnimation animation){
-		this.tile = tile;
+	public TileViewObject(Position pos, ImageAnimation animation){
+		this.pos = pos;
+		this.tile = Map.getInstance().getTile(pos);
 		modelVOList = new ArrayList<>();
 		setImage(animation.getFrame()); //terrain
 	}
 
-	public void paintComponent(Graphics g, int x, int y, int h, Point screenCenter) {
+	public void paintComponent(Graphics g, Position cameraCenter, Point screenCenter) {
 		//super.paintComponent(g);
-		this.setOffsetX(x);
-		this.setOffsetY(y - (int)(h * TILE_THICKNESS/this.getImage().getHeight(null)));
-		g.drawImage(this.getImage(), this.getOffsetX(), this.getOffsetY(), screenCenter.x, screenCenter.y, null);
+		Point offset = Position.vectorSubtract(this.pos, cameraCenter).positionToXY();
+		this.setOffsetX(offset.x);
+		this.setOffsetY(offset.y);
+		g.drawImage(this.getImage(), this.getOffsetX() + screenCenter.x, this.getOffsetY() + screenCenter.y, this.getImage().getWidth(null), this.getImage().getWidth(null), null);
 		//TODO: ???
 		Collections.sort(modelVOList, new Comparator<ModelViewObject>() {
 			@Override

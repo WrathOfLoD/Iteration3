@@ -10,6 +10,7 @@ import com.wrathOfLoD.Utility.RenderPositionComparator;
 import com.wrathOfLoD.Views.CameraView.CameraView;
 import com.wrathOfLoD.Views.CameraView.CameraViewManager;
 import com.wrathOfLoD.Views.StaticView;
+import com.wrathOfLoD.Views.ViewObjects.ModelViewObject;
 import com.wrathOfLoD.Views.ViewObjects.TilePillarViewObject;
 import com.wrathOfLoD.Views.ViewObjects.TileViewObject;
 
@@ -66,6 +67,11 @@ public class AreaView extends StaticView implements MapObserver{ //need to chang
 			tPVO.paint(g);
 		}*/
 	}
+
+	public void addViewObject(Position pos, ModelViewObject mvo){
+		activeCameraView.addVOToTile(pos, mvo);
+	}
+
 
 	@Override
 	public void notifyMapAreaChange(MapArea ma) {
