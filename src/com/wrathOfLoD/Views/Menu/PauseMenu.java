@@ -13,9 +13,9 @@ public class PauseMenu extends Menu {
     private String titleString = "Paused";
 
     public PauseMenu() {
+        super();
         initMenuItems();
         initDefaultUI();
-        this.initializeActionSet();
     }
 
     public void initMenuItems() {
@@ -47,11 +47,8 @@ public class PauseMenu extends Menu {
         /* Paint all MenuItems */
         g.setColor(Color.RED);
         g.setFont(new Font("Bauhaus 93", Font.ITALIC, 72));
-        int index = 0;
-        for (MenuItem menuItem: this.getMenuItems()) {
-            menuItem.paintComponent(g, mls.calculateXCoord(index), mls.calculateYCoord(index,menuItemHeight) + additionalVerticalOffset, mls.calculateSlotWidth(), menuItemHeight);
-            index++;
-        }
+
+        this.paintMenuItems(g, mls, menuItemHeight, additionalVerticalOffset);
     }
 
 
