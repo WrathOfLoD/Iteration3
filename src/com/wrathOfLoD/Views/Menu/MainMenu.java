@@ -17,9 +17,9 @@ public class MainMenu extends Menu {
     private MenuListStructure mls;
 
     public MainMenu() {
+        super();
         initMenuItems();
         initDefaultUI();
-        this.initializeActionSet();
     }
 
 
@@ -40,16 +40,9 @@ public class MainMenu extends Menu {
 
         g.setColor(Color.RED);
         g.setFont(new Font("Bauhaus 93", Font.ITALIC, 72));
-        int index = 0;
-        for (MenuItem menuItem: this.getMenuItems()) {
-            menuItem.setIsSelected(false);
-            if (index == this.getCurrentIndex()) {
-                menuItem.setIsSelected(true);
-            }
-            menuItem.paintComponent(g, mls.calculateXCoord(index), mls.calculateYCoord(index,menuItemHeight) + additionalVerticalOffset, mls.calculateSlotWidth(), menuItemHeight);
-            index++;
 
-        }
+        this.paintMenuItems(g, mls, menuItemHeight, additionalVerticalOffset);
+
     }
 
 
