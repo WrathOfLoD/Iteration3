@@ -25,6 +25,7 @@ import com.wrathOfLoD.Views.ContentDisplayStructure.GridStructure;
 import com.wrathOfLoD.Views.ContentDisplayStructure.ListStructure;
 import com.wrathOfLoD.Views.ItemDisplayView.EquipmentView;
 import com.wrathOfLoD.Views.ItemDisplayView.InventoryView;
+import com.wrathOfLoD.Views.Selectable;
 import com.wrathOfLoD.Views.StatsView.StatsView;
 import com.wrathOfLoD.Views.ViewEngine;
 import com.wrathOfLoD.Views.ViewManager.ViewManager;
@@ -88,6 +89,8 @@ public class Main {
         MainController mainController = MainController.getInstance();
 
         InputState avatarState = new AvatarState();
+
+
 
         inventory.addToActionSet(ActionVendor.createSelectUpAction(inventoryView));
         inventory.addToActionSet(ActionVendor.createSelectRightAction(inventoryView));
