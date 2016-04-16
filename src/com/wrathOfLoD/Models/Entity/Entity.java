@@ -103,7 +103,10 @@ public abstract class Entity {
 
     public void doInteraction(Character character) {}
 
-    public void gainExp(int exp) {}
+    public void gainExp(int exp) {
+        StatsModifiable expStats = StatsModifiable.createExperienceStatsModifiable(exp);
+        getStats().modifyStats(expStats);
+    }
 
     public void levelUp() {}
 

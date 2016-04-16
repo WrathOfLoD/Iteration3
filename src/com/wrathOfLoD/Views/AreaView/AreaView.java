@@ -37,6 +37,9 @@ public class AreaView extends StaticView { //need to change to just extending Vi
 		this.tilePillarViewObjects = map;
 	}
 
+
+	//TODO: Have 1 AreaView and Multiple Camera View?
+
 	@Override
 	public void paintComponent(Graphics g){
 		super.paintComponent(g);

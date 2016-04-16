@@ -22,7 +22,7 @@ public class TileViewObject extends ViewObject{
 		this.pos = pos;
 		this.tile = Map.getInstance().getTile(pos);
 		modelVOList = new ArrayList<>();
-		setImage(animation.getFrame());
+		setImage(animation.getFrame()); //terrain
 	}
 
 	public void paintComponent(Graphics g, int x, int y, int width, int height) {

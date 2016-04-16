@@ -30,13 +30,14 @@ public class Tile {
         this.terrain = new Ground();
     }
 
-    private Tile(Terrain terrain){
+    public Tile(Terrain terrain){
         this.entities = new ArrayList<>();
         this.items = new ArrayList<>();
         this.areaEffects = new ArrayList<>();
         this.terrain = terrain;
     }
 
+    /*
     public Tile createSkyTile(){
         return new Tile(new Sky());
     }
@@ -47,7 +48,7 @@ public class Tile {
 
     public Tile createWaterTile(){
         return new Tile(new Water());
-    }
+    }*/
 
     public void addEntity(Entity e){
         entities.add(e);
