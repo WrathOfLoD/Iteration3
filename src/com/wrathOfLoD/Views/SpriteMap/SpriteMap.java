@@ -16,7 +16,7 @@ import java.util.HashMap;
  */
 public class SpriteMap {
     private  HashMap<String, ImageAnimation> aoeMap;
-    private  HashMap<String,ImageAnimation> entityMap;
+    private  HashMap<String, ImageAnimation> entityMap;
     private  HashMap<String, ImageAnimation> hitBoxMap;
     private  HashMap<String, ImageAnimation> itemMap;
 
@@ -49,7 +49,7 @@ public class SpriteMap {
         List<Image> images = new ArrayList<>();
         Files.walk(Paths.get(path)).forEach(filePath -> {
             if (Files.isRegularFile(filePath)) {
-                System.out.println(filePath);
+                //System.out.println(filePath);
                 try {
                     File file = filePath.toFile();
                     String fileName = file.getName();
@@ -67,7 +67,7 @@ public class SpriteMap {
     //iterate through all the files and create bufferedImage for each file
     //Create a new imageAnimation with the list of bufferedImages
     public  void generateItemMap() throws IOException{
-        List<Image> images = generateBufferedImages("./resources/Items");
+        List<Image> images = generateBufferedImages("./resources/Backgrounds");
         ImageAnimation imageAnimation = new ImageAnimation(images);
         itemMap.put("items", imageAnimation);
     }

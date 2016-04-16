@@ -6,6 +6,8 @@ import com.wrathOfLoD.Models.Map.AreaEffect.AreaEffect;
 import com.wrathOfLoD.Models.Map.Tile;
 import com.wrathOfLoD.Utility.Position;
 import com.wrathOfLoD.Views.AreaView.AreaView;
+import com.wrathOfLoD.Views.SpriteMap.ImageAnimation;
+import com.wrathOfLoD.Views.SpriteMap.SpriteMap;
 import com.wrathOfLoD.Views.ViewObjects.*;
 
 /**
@@ -14,6 +16,7 @@ import com.wrathOfLoD.Views.ViewObjects.*;
 public class ViewObjectFactory {
     private static ViewObjectFactory instance;
     private AreaView areaView;
+    private SpriteMap spriteMap;
 
     public static ViewObjectFactory getInstance(){
         if(instance == null)
@@ -22,9 +25,11 @@ public class ViewObjectFactory {
         return instance;
     }
 
-    //TODO: configure this somewhere
+    //TODO: configure this somewhere!!!
     public void initVOFactory(AreaView areaView){
         this.areaView = areaView;
+        //TODO: init the Sprite Map
+
     }
 
     public TilePillarViewObject createTilePillarViewObject(Position pos){
@@ -34,7 +39,6 @@ public class ViewObjectFactory {
     public TileViewObject createTileViewObject(Tile tile){
         return null;
     }
-
 
     public AreaEffectViewObject createAEViewObject(AreaEffect ae){
         return null;
@@ -47,10 +51,5 @@ public class ViewObjectFactory {
     public MapItemViewObject createMapItemViewObject(Item item){
         return null;
     }
-
-
-
-
-
 
 }

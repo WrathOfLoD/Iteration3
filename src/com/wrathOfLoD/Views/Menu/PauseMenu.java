@@ -15,6 +15,7 @@ public class PauseMenu extends Menu {
     public PauseMenu() {
         initMenuItems();
         initDefaultUI();
+        this.initializeActionSet();
     }
 
     public void initMenuItems() {
@@ -27,6 +28,7 @@ public class PauseMenu extends Menu {
     public void initDefaultUI() {
         this.setBackground(new Color(0f,0f,0.7f,0.2f));
     }
+
 
     public void paintComponent(Graphics g) {
 

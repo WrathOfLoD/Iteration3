@@ -18,6 +18,8 @@ import com.wrathOfLoD.Views.Selectable;
 public class ActionVendor {
 
     // TODO: 4/12/16 ASK IAN WHY a.getDirection() was used
+
+    /* Actions related to Avatar movement */
     public static Action createMoveNorthAction(){
         Avatar a = Avatar.getInstance();
         ActionCommand move = ActionCommandVendor.createMovementCommand(a, Direction.NORTH);
@@ -56,6 +58,7 @@ public class ActionVendor {
         return new MoveAction(KeyEvent.VK_A, move, look);
     }
 
+    /* Actions related to menu/inventory selection */
     public static Action createSelectUpAction(Selectable selectable) {
         ActionCommand selectUpCommand = ActionCommandVendor.createSelectUpCommand(selectable);
         return new ChangeSelectionAction(KeyEvent.VK_W, selectUpCommand);

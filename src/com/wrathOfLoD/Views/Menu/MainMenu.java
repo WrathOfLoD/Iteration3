@@ -1,5 +1,6 @@
 package com.wrathOfLoD.Views.Menu;
 
+import com.wrathOfLoD.Controllers.InputStates.ActionVendor;
 import com.wrathOfLoD.Views.ContentDisplayStructure.MenuListStructure;
 import com.wrathOfLoD.Views.StaticView;
 import com.wrathOfLoD.Views.ViewFactories.TextLabelFactory;
@@ -18,7 +19,9 @@ public class MainMenu extends Menu {
     public MainMenu() {
         initMenuItems();
         initDefaultUI();
+        this.initializeActionSet();
     }
+
 
     public void initMenuItems() {
         this.addMenuItem(new MenuItem("New Game"));
@@ -33,14 +36,19 @@ public class MainMenu extends Menu {
         super.paintComponent(g);
         mls = new MenuListStructure(this.getMenuItems().size(), 1, this.getWidth(), this.getHeight());
         int menuItemHeight = 100; // TODO: 4/16/2016 put this in constructor for MenuListStructure???
-        int additionalVerticalOffset = 90;
+        int additionalVerticalOffset = 0;
 
         g.setColor(Color.RED);
         g.setFont(new Font("Bauhaus 93", Font.ITALIC, 72));
         int index = 0;
         for (MenuItem menuItem: this.getMenuItems()) {
+            menuItem.setIsSelected(false);
+            if (index == this.getCurrentIndex()) {
+                menuItem.setIsSelected(true);
+            }
             menuItem.paintComponent(g, mls.calculateXCoord(index), mls.calculateYCoord(index,menuItemHeight) + additionalVerticalOffset, mls.calculateSlotWidth(), menuItemHeight);
             index++;
+
         }
     }
 

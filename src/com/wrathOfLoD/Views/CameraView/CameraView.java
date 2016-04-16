@@ -46,7 +46,6 @@ public class CameraView{
         }
     }
 
-    //TODO: height of tile is calculated in camera view
 
     public void populateCV(){
         HashMap<Position, TilePillar> tilePillarHashMap = mapArea.getTilePillarMap();
