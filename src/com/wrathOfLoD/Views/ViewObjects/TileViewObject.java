@@ -29,19 +29,13 @@ public class TileViewObject extends ViewObject{
 		this.setOffsetX(x);
 		this.setOffsetY(y - (int)(h * TILE_THICKNESS/this.getImage().getHeight(null)));
 		g.drawImage(this.getImage(), this.getOffsetX(), this.getOffsetY(), screenCenter.x, screenCenter.y, null);
-//		super.paintComponent(g,x,y,width,height);
 		//TODO: ???
-	public void paintComponent(Graphics g, int x, int y, int width, int height) {
-		//terrain image
-		g.drawImage(this.getImage(), x + this.getOffsetX(), y + this.getOffsetY(), width, height, this);
-
 		Collections.sort(modelVOList, new Comparator<ModelViewObject>() {
 			@Override
 			public int compare(ModelViewObject o1, ModelViewObject o2) {
 				return o1.getzOrder() - o2.getzOrder();
 			}
 		});
-
 
 		for(ModelViewObject mvo : modelVOList){
 			//mvo.paintComponents(g);  ...not calling the right method
