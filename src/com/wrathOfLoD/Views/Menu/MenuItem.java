@@ -2,6 +2,7 @@ package com.wrathOfLoD.Views.Menu;
 
 import com.wrathOfLoD.Views.ImageFactory.ImageFactory;
 import com.wrathOfLoD.Views.StaticView;
+import com.wrathOfLoD.Models.Commands.MenuActionCommands.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -14,6 +15,7 @@ public class MenuItem extends JPanel {
     private String text;
     private String imageFileName;
     private Image image;
+    private MenuSelectCommand command;
 
     public String getText() {
         return text;
