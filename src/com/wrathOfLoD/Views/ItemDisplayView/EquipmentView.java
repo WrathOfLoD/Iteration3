@@ -1,14 +1,9 @@
 package com.wrathOfLoD.Views.ItemDisplayView;
 
 import com.wrathOfLoD.Models.Inventory.Equipment;
-import com.wrathOfLoD.Models.Items.EquippableItems.EquippableItem;
-import com.wrathOfLoD.Observers.EquipmentObserver;
-import com.wrathOfLoD.Observers.Observable;
-import com.wrathOfLoD.Observers.Observer;
 import com.wrathOfLoD.Views.ContentDisplayStructure.EquipmentDisplayStructure;
 import com.wrathOfLoD.Views.ItemDisplayView.Slot.EquipmentSlot;
 import com.wrathOfLoD.Views.ViewObjectFactory.EquippedIVOFactory;
-import com.wrathOfLoD.Views.ViewObjects.ItemViewObject;
 import javax.swing.border.LineBorder;
 import java.awt.*;
 
@@ -16,11 +11,11 @@ import java.awt.*;
  * Created by echristiansen on 4/9/2016.
  */
 
-public class EquipmentView extends ItemDisplayView implements EquipmentObserver { // TODO: 4/12/2016 might need more specific observer, or to move the implementation to ItemDisplayView
+public class EquipmentView extends ItemDisplayView { // TODO: 4/12/2016 might need more specific observer, or to move the implementation to ItemDisplayView
 
 
     @Override
-    public void alertEquipmentChange() {
+    public void update() {
         //updateEquipment(equipment); // TODO: 4/12/2016 we call update rather than
         fillSlots();
         System.out.println("ATTEMPTING AN Equipment change from equipment VIEW");
@@ -65,21 +60,15 @@ public class EquipmentView extends ItemDisplayView implements EquipmentObserver 
     public void setGreavesSlot(EquipmentSlot greavesSlot) {
         this.greavesSlot = greavesSlot;
     }
-
     public Equipment getEquipment() {
         return equipment;
     }
     public void setEquipment(Equipment equipment) {
         this.equipment = equipment;
-        getEquipment().addObserver(this); // TODO: 4/12/2016 might need to delete this...but I think it's good spot
+        getEquipment().registerObserver(this); // TODO: 4/12/2016 might need to delete this...but I think it's good spot
     }
 
-        public EquipmentView() { // TODO: 4/12/2016 delete this constructor it's for testing purposes?
-            //setEquipment(new Equipment()); // TODO: 4/12/2016 delete this it's for testing purposes?
-            //getEquipment().addObserver(this);
-            this.setBackground(new Color(0f, 0f, 0f, 0f));
-            this.setBorder(new LineBorder(Color.WHITE));
-        }
+
 
         public EquipmentView(Equipment equipment) {
             setEquipment(equipment);
@@ -110,24 +99,17 @@ public class EquipmentView extends ItemDisplayView implements EquipmentObserver 
             super.paintComponent(g);
 
             eds = new EquipmentDisplayStructure(this.getWidth(), this.getHeight());
-            //getEquipment().addObserver(this);
 
-           // int width = this.getWidth();
-           // int height = this.getHeight();
             g.setColor(Color.WHITE);
             g.drawLine(this.getWidth()/2, 0, this.getWidth()/2, this.getHeight());
             g.drawLine(0, this.getHeight()/2, this.getWidth(), this.getHeight()/2);
-            g.drawRect(eds.getHelmetX(), eds.getHelmetY(), eds.getSlotWidth(), eds.getslotHeight());
-            g.drawRect(eds.getWeaponX(), eds.getWeaponY(), eds.getSlotWidth(), eds.getslotHeight());
-            g.drawRect(eds.getChestX(), eds.getChestY(), eds.getSlotWidth(), eds.getslotHeight());
-            g.drawRect(eds.getShieldX(), eds.getShieldY(), eds.getSlotWidth(), eds.getslotHeight());
-            g.drawRect(eds.getLegsX(), eds.getLegsY(), eds.getSlotWidth(), eds.getslotHeight());
 
             getHelmetSlot().paintComponent(g,eds.getHelmetX(),eds.getHelmetY(),eds.getSlotWidth(),eds.getslotHeight());
             getWeaponSlot().paintComponent(g,eds.getWeaponX(), eds.getWeaponY(), eds.getSlotWidth(), eds.getslotHeight());
             getChestSlot().paintComponent(g,eds.getChestX(),eds.getChestY(),eds.getSlotWidth(),eds.getslotHeight());
             //getShieldSlot().paintComponent(g,eds.getHelmetX(),eds.getHelmetY(),eds.getSlotWidth(),eds.getslotHeight());
             getGreavesSlot().paintComponent(g,eds.getLegsX(),eds.getLegsY(),eds.getSlotWidth(),eds.getslotHeight());
+
 
             // TODO: 4/9/2016 Create a Slot class, where each Slot has an x and a y and then we call slot.paintComponent and the check for whether or not something is null happens in the slot
 

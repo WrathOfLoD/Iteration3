@@ -18,36 +18,40 @@ import java.util.Iterator;
 /**
  * Created by echristiansen on 4/8/2016.
  */
-public class InventoryView extends ItemDisplayView {
+public class InventoryView extends ItemDisplayView { // TODO: 4/12/2016 segregate the inventory into a content area and description area  
 
     /* Need to enforce the invariant that the numRows and numCols do not exceed the max Inventory size? */
     private int currentIndex;
     private Inventory inventory;
     private ContentDisplayStructure cds;
 
+    public ContentDisplayStructure getContentDisplayStructure() {
+        return cds;
+    }
+    public void setContentDisplayStructure(ContentDisplayStructure cds) {
+        this.cds = cds;
+    }
+    public Inventory getInventory() {
+        return inventory;
+    }
+    public void setInventory(Inventory inventory) {
+        this.inventory = inventory;
+        getInventory().registerObserver(this);
+        initializeInventoryView(); /* edit: good idea to have this here? Like it this way because it sets everything right when we set the inventory, no matter when we do that.
+        so that the inventoryView is always populated when an inventory is added, no matter constructor is used */
+    }
+
+
+    @Override
+    public void update() {
+
+    }
+
     public InventoryView(Inventory inventory, ContentDisplayStructure cds) {
         currentIndex = 0;
         setContentDisplayStructure(cds);
         setInventory(inventory);
         this.setBackground(new Color(0f, 0f, 0f, 0f));
-    }
-
-    public ContentDisplayStructure getContentDisplayStructure() {
-        return cds;
-    }
-
-    public void setContentDisplayStructure(ContentDisplayStructure cds) {
-        this.cds = cds;
-    }
-
-    public Inventory getInventory() {
-        return inventory;
-    }
-
-    public void setInventory(Inventory inventory) {
-        this.inventory = inventory;
-        initializeInventoryView(); /* edit: good idea to have this here? Like it this way because it sets everything right when we set the inventory, no matter when we do that.
-        so that the inventoryView is always populated when an inventory is added, no matter constructor is used */
     }
 
     private void initializeInventoryView() { //may need to edit...only works if we maintain the idea that an inventory view must be initialized with an inventory

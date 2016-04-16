@@ -1,15 +1,18 @@
 package com.wrathOfLoD.Models.Stats;
 
 import com.wrathOfLoD.Models.Entity.Entity;
+import com.wrathOfLoD.Observers.Observable;
+import com.wrathOfLoD.Observers.Observer;
 
 import java.util.ArrayList;
 
 /**
  * Created by luluding on 4/7/16.
  */
-public class Stats {
-    private Entity owner;
+public class Stats implements Observable {
 
+    private ArrayList<Observer> observers = new ArrayList<Observer>();
+    private Entity owner;
 
     //Primary Stats
     private int strength;
@@ -40,6 +43,20 @@ public class Stats {
 
     private ArrayList<StatsModifiable> temporaryStats;
 
+    @Override
+    public void registerObserver(Observer o) {
+        observers.add(o);
+    }
+    @Override
+    public void removeObserver(Observer o) {
+        observers.remove(o);
+    }
+    @Override
+    public void notifyObservers() {
+        for (Observer o: observers) {
+            o.update();
+        }
+    }
 
     public Stats(Entity owner){
         this.owner = owner;
