@@ -1,6 +1,10 @@
 package com.wrathOfLoD.Models.Map;
 
 import com.wrathOfLoD.Models.Entity.Entity;
+import com.wrathOfLoD.Models.Map.AreaEffect.AreaEffect;
+import com.wrathOfLoD.Models.Map.Tile;
+
+import java.awt.geom.Area;
 
 /**
  * Created by luluding on 4/16/16.
@@ -11,19 +15,14 @@ public class Trap {
 
     public Trap(int damage){
         this.damage = damage;
-        this.visible = false;
+        visible = false;
     }
 
-    public void interact(Entity entity){
+    public void interact(Entity entity) {
         entity.takeDamage(damage);
     }
 
-    public boolean remove(){
-        if(!visible)
-            return false;
-        else{
-            //TODO: remove self from tile
-            return true;
-        }
+    public boolean isVisible(){
+        return visible;
     }
 }

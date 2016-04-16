@@ -36,19 +36,19 @@ public class ViewObjectFactory {
         return new TilePillarViewObject(pos);
     }
 
-    public TileViewObject createTileViewObject(Tile tile){
+    public TileViewObject createTileViewObject(Position pos, Tile tile){
         return null;
     }
 
-    public AreaEffectViewObject createAEViewObject(AreaEffect ae){
+    public AreaEffectViewObject createAEViewObject(Position pos, AreaEffect ae){
         return null;
     }
 
-    public EntityViewObject createEntityViewObject(Entity entity){
+    public EntityViewObject createEntityViewObject(Position pos, Entity entity){
         return null;
     }
 
-    public MapItemViewObject createMapItemViewObject(Item item){
+    public MapItemViewObject createMapItemViewObject(Position pos, Item item){
         return null;
     }
 
