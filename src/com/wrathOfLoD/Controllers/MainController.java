@@ -37,7 +37,9 @@ public class MainController {
             this.removeActionKeyListeners();
         }
 
+        System.out.println("Activting");
         this.activeState.activate();
+
         this.addActionKeyListeners();
     }
 

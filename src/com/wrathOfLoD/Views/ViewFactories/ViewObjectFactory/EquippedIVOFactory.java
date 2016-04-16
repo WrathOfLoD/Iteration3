@@ -1,11 +1,9 @@
-package com.wrathOfLoD.Views.ViewObjectFactory;
+package com.wrathOfLoD.Views.ViewFactories.ViewObjectFactory;
 
 import com.wrathOfLoD.Models.Items.EquippableItems.EquippableItem;
-import com.wrathOfLoD.Models.Items.TakeableItem;
 import com.wrathOfLoD.Utility.Config;
 import com.wrathOfLoD.Views.ImageFactory.ImageFactory;
 import com.wrathOfLoD.Views.ViewObjects.EquippedItemViewObject;
-import com.wrathOfLoD.Views.ViewObjects.InventoryItemViewObject;
 
 import java.awt.*;
 

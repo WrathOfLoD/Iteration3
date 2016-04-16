@@ -33,7 +33,7 @@ public class ImageAnimation{
 	}
 
 	public boolean isFinished(){
-		return (this.currentFrame == this.frames.size()-1);
+		return (this.currentFrame == this.frames.size() - 1);
 	}
 
 }

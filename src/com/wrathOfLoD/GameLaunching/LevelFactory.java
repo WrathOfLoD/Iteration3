@@ -9,17 +9,15 @@ import com.wrathOfLoD.Models.Map.Terrain.Ground;
 import com.wrathOfLoD.Models.Map.Tile;
 import com.wrathOfLoD.Models.Map.TilePillar;
 import com.wrathOfLoD.Utility.Position;
-import com.wrathOfLoD.Views.AreaView.AreaView;
-import com.wrathOfLoD.Views.AreaView.AreaViewManager;
-
-import java.awt.geom.Area;
+import com.wrathOfLoD.Views.CameraView.CameraView;
+import com.wrathOfLoD.Views.CameraView.CameraViewManager;
 
 /**
  * Created by icavitt on 4/12/2016.
  */
 public class LevelFactory {
 
-    private AreaViewManager avm;
+    private CameraViewManager cvm;
     private String levelName;
     private ItemVendor itemVendor;
     private EntityVendor entityVendor;
@@ -27,14 +25,14 @@ public class LevelFactory {
 
     public LevelFactory(String levelName){
         this.levelName = levelName;
-        avm = new AreaViewManager();
+        cvm = new CameraViewManager();
         itemVendor = new ItemVendor();
         entityVendor = new EntityVendor();
         aeVendor = new AEVendor();
     }
 
-    public AreaViewManager getAreaViewManager(){
-        return this.avm;
+    public CameraViewManager getCameraViewManager(){
+        return this.cvm;
     }
 
     public void generateMap(){
@@ -71,9 +69,9 @@ public class LevelFactory {
 
 
         /**** Create area view for the map area ****/
-        AreaView areaView1 = new AreaView();
+        CameraView cameraView1 = new CameraView();
         //TODO: areaView needs to create all the VO based on the populated MapArea
-        avm.addAreaView(mapArea1, areaView1);
+        cvm.addCameraView(mapArea1, cameraView1);
 
     }
 
@@ -95,7 +93,6 @@ public class LevelFactory {
         }
 
         /*********** END Map Area 1 ***************/
-
 
 
 
