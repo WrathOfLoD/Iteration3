@@ -8,6 +8,8 @@ import com.wrathOfLoD.Models.Inventory.Inventory;
 import com.wrathOfLoD.Models.Items.TakeableItem;
 import com.wrathOfLoD.Models.Stats.Stats;
 import com.wrathOfLoD.Models.Stats.StatsModifiable;
+import com.wrathOfLoD.Models.Target.NPCTargetManager;
+import com.wrathOfLoD.Models.Target.TargetManager;
 import com.wrathOfLoD.Utility.Direction;
 import com.wrathOfLoD.Utility.Position;
 import com.wrathOfLoD.VisitorInterfaces.EntityVisitor;
@@ -16,6 +18,7 @@ import com.wrathOfLoD.VisitorInterfaces.EntityVisitor;
  * Created by zach on 4/7/16.
  */
 public abstract class Entity {
+    private TargetManager targetManager = new NPCTargetManager();
     private String name;
     private Position position;
     private Stats stats;
@@ -120,5 +123,12 @@ public abstract class Entity {
         ev.visitEntity(this);
     }
 
+    public TargetManager getTargetManager() {
+        return targetManager;
+    }
+
+    protected void setTargetManager(TargetManager t){
+        targetManager = t;
+    }
 }
 

@@ -9,6 +9,7 @@ import com.wrathOfLoD.VisitorInterfaces.ItemVisitor;
  */
 public abstract class Item {
     private String name;
+    private int value = 10;
 
     public Item(String name){
         this.name = name;
@@ -17,6 +18,10 @@ public abstract class Item {
     /***** getter & setter for Item *******/
 
     public String getName(){return this.name;}
+
+    public int getValue() {
+        return value;
+    }
 
     /********* END Getters and Setters *********/
 
