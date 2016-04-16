@@ -21,6 +21,7 @@ public class EntityTarget extends Target {
             setPriority(998);
         }
         this.target = target;
+        setPosition(target.getPosition());
     }
 
     public Entity getTarget() {
