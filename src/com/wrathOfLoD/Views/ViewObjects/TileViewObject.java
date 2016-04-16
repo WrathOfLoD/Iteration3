@@ -14,13 +14,10 @@ import java.util.ArrayList;
 public class TileViewObject extends ViewObject{
 
 	private Tile tile;
-	private Position pos;
-
 	private ArrayList<ModelViewObject> modelVOList;
 
-	public TileViewObject(Position pos, ImageAnimation animation){
-		this.pos = pos;
-		this.tile = Map.getInstance().getTile(pos);
+	public TileViewObject(Tile tile, ImageAnimation animation){
+		this.tile = tile;
 		modelVOList = new ArrayList<>();
 		setImage(animation.getFrame()); //terrain
 	}
@@ -31,10 +28,9 @@ public class TileViewObject extends ViewObject{
 //		super.paintComponent(g,x,y,width,height);
 		//TODO: ???
 		for(ModelViewObject mvo : modelVOList){
-			mvo.paintComponents(g);
+			//mvo.paintComponents(g);  ...not calling the right method
 		}
 	}
-
 
 	public void addMOVToTile(ModelViewObject mvo){
 		modelVOList.add(mvo);
@@ -43,7 +39,5 @@ public class TileViewObject extends ViewObject{
 	public void removeMOVFromTile(ModelViewObject mvo){
 		modelVOList.remove(mvo);
 	}
-
-
 
 }

@@ -25,11 +25,16 @@ public class TilePillarViewObject extends ViewObject{
 
 	public void paintComponent(Graphics g, int x, int y, int width, int height) {
 		for(TileViewObject tvo : tileViewObjects){
-			tvo.paintComponents(g);
+			tvo.paintComponent(g, pos.getQ(), pos.getR(), 20, 20);
 		}
 	}
 
+	public Position getPosition(){
+		return this.pos;
+	}
 
-
+	public void addTileVO(TileViewObject tvo){
+		tileViewObjects.add(tvo);
+	}
 
 }

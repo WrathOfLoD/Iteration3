@@ -1,5 +1,6 @@
 package com.wrathOfLoD.Utility;
 
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -237,6 +238,12 @@ public class Position{
 
 	public void setH(int h) {
 		this.h = h;
+	}
+
+	public Point positionToXY(){
+		double x = (3.0/2.0) * this.getQ() + (0 * this.getR());
+		double y = ((Math.sqrt(3)/2.0) * this.getQ()) + (Math.sqrt(3) * this.getR()) - ((5/39) * this.getH());
+		return new Point((int) x, (int) y);
 	}
 
 }

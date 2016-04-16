@@ -20,6 +20,7 @@ public class Tile {
     private List<Entity> entities;
     private List<Item> items;
     private List<AreaEffect> areaEffects;
+    private Trap trap;
     private Terrain terrain;
 //    private Flow flow;
 
@@ -36,19 +37,6 @@ public class Tile {
         this.areaEffects = new ArrayList<>();
         this.terrain = terrain;
     }
-
-    /*
-    public Tile createSkyTile(){
-        return new Tile(new Sky());
-    }
-
-    public Tile createGroundTile(){
-        return new Tile(new Ground());
-    }
-
-    public Tile createWaterTile(){
-        return new Tile(new Water());
-    }*/
 
     public void addEntity(Entity e){
         entities.add(e);
@@ -75,7 +63,13 @@ public class Tile {
     }
 
     public void interact(Entity e){
+        for (Item i : items)
+            i.encounter(e);
 
+        for (AreaEffect ae : areaEffects)
+            ae.interact(e);
+
+        trap.interact(e);
 	}
 
 
@@ -85,7 +79,6 @@ public class Tile {
 
     public void accept(TileVisitor tileVisitor){
         tileVisitor.visitTile(this);
-
     }
 
     public Entity[] getEntitiesArray(){
