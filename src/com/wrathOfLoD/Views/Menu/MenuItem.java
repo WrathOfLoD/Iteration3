@@ -8,11 +8,26 @@ import java.awt.*;
  */
 public class MenuItem extends JComponent {
 
+    private String name;
 
-    public MenuItem() {
+
+    @Override
+    public String getName() {
+        return name;
+    }
+    @Override
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public void paintComponent(Graphics g) {
+    public MenuItem(String name) {
+        setName(name);
+    }
+
+    public void paintComponent(Graphics g, int x, int y, int width, int height) {
+        g.setColor(Color.BLUE);
+        g.drawRect(x,y,width,height);
+        g.drawString(getName(), x, y);
 
 
     }
