@@ -8,10 +8,11 @@ import com.wrathOfLoD.Models.Map.MapArea;
 import com.wrathOfLoD.Models.Map.Tile;
 import com.wrathOfLoD.Models.Map.TilePillar;
 import com.wrathOfLoD.Utility.Position;
+import com.wrathOfLoD.Views.ViewFactories.ViewObjectFactory.ViewObjectFactory;
+import com.wrathOfLoD.Views.ViewObjects.ModelViewObject;
 import com.wrathOfLoD.Views.StaticView;
-import com.wrathOfLoD.Views.ViewObjectFactory.ViewObjectFactory;
+import com.wrathOfLoD.Views.ViewFactories.ViewObjectFactory.ViewObjectFactory;
 import com.wrathOfLoD.Views.ViewObjects.TilePillarViewObject;
-import com.wrathOfLoD.Utility.Position;
 import com.wrathOfLoD.Utility.RenderPositionComparator;
 import com.wrathOfLoD.Views.ViewObjects.TileViewObject;
 
@@ -22,7 +23,7 @@ import java.util.List;
 /**
  * Created by luluding on 4/16/16.
  */
-public class CameraView{
+public class CameraView extends StaticView{
 
     private HashMap<Position, TilePillarViewObject> tilePillarViewObjects;
     private MapArea mapArea;
@@ -33,6 +34,7 @@ public class CameraView{
         cameraCenter = Avatar.getInstance().getPosition();
     }
 
+    @Override
     public void paintComponent(Graphics g){
         List<Position> renderOrder = new ArrayList<Position>();
         renderOrder.addAll(tilePillarViewObjects.keySet());
@@ -40,15 +42,10 @@ public class CameraView{
 
         for(Position pos: renderOrder){
             TilePillarViewObject tPVO = tilePillarViewObjects.get(pos);
-
-            //Do the calculation of converting to x, y here
-            Position dist = Position.vectorSubtract(tPVO.getPosition(), cameraCenter);
-
-            //tPVO.paintComponent(g);
+            tPVO.paintComponent(g, cameraCenter, new Point(this.getWidth()/2, this.getHeight()/2));
         }
     }
 
-    //TODO: height of tile is calculated in camera view
 
     public void populateCV(){
         HashMap<Position, TilePillar> tilePillarHashMap = mapArea.getTilePillarMap();
@@ -58,9 +55,9 @@ public class CameraView{
             tilePillarViewObjects.put(pos, tpvo);
 
             for(Tile t : tilePillarHashMap.get(pos).getTiles()){
-                TileViewObject tvo = vof.createTileViewObject(t);
-                tpvo.addTileVO(tvo);
-                populateTile(t, tvo);
+                //TileViewObject tvo = vof.createTileViewObject(t);
+                //tpvo.addTileVO(tvo);
+                //populateTile(t, tvo);
             }
         }
 
@@ -68,15 +65,15 @@ public class CameraView{
 
     private void populateTile(Tile t, TileViewObject tvo){
         for(AreaEffect ae : t.getAreaEffects()){
-           tvo.addMOVToTile(vof.createAEViewObject(ae));
+           //tvo.addMOVToTile(vof.createAEViewObject(ae));
         }
 
         for (Item i : t.getItems()){
-            tvo.addMOVToTile(vof.createMapItemViewObject(i));
+            //tvo.addMOVToTile(vof.createMapItemViewObject(i));
         }
 
         for (Entity e : t.getEntitiesArray()){
-            tvo.addMOVToTile(vof.createEntityViewObject(e));
+            //tvo.addMOVToTile(vof.createEntityViewObject(e));
         }
 
     }
@@ -84,6 +81,11 @@ public class CameraView{
 
     public void setTilePillarViewObjects(HashMap<Position, TilePillarViewObject> map) {
         this.tilePillarViewObjects = map;
+    }
+
+    public void addVOToTile(Position pos, ModelViewObject mvo){
+        //TilePillarViewObject tpvo = tilePillarViewObjects.get(pos.get2DProjection());
+
     }
 
 }

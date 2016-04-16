@@ -5,6 +5,7 @@ import com.wrathOfLoD.Views.StaticView;
 import com.wrathOfLoD.Models.Commands.MenuActionCommands.*;
 
 import javax.swing.*;
+import javax.swing.border.Border;
 import java.awt.*;
 
 /**
@@ -13,8 +14,12 @@ import java.awt.*;
 public class MenuItem extends JPanel {
 
     private String text;
-    private String imageFileName;
-    private Image image;
+    private MenuSelectCommand command;
+    private boolean isSelected;
+
+    public MenuItem(String text) {
+        setText(text);
+    }
 
     public String getText() {
         return text;
@@ -22,18 +27,13 @@ public class MenuItem extends JPanel {
     public void setText(String text) {
         this.text = text;
     }
-    public String getImageFileName() {
-        return imageFileName;
-    }
-    public void setImageFileName(String imageFileName) {
-        this.imageFileName = imageFileName;
+
+    public boolean isSelected() {
+        return isSelected;
     }
 
-
-    public MenuItem(String text) {
-        setText(text);
-        setImageFileName("resources/Buttons/spaceMenuButton.png");
-        image = ImageFactory.generateImage(getImageFileName());
+    public void setIsSelected(boolean selected) {
+        this.isSelected = selected;
     }
 
     public void paintComponent(Graphics g, int x, int y, int width, int height) {
@@ -42,21 +42,18 @@ public class MenuItem extends JPanel {
         int textXCoord;
         int textYCoord;
 
-        if(image!=null) {
-            g.drawImage(image, x, y, width, height,this);
-        } else {
-            setBackground(Color.BLACK);
-        }
-        g.setColor(Color.WHITE);
-        g.setFont(new Font("Arial", Font.BOLD, 30));
         textWidth = g.getFontMetrics().stringWidth(getText());
-        textHeight = g.getFontMetrics().getHeight();
+        textHeight = g.getFontMetrics().getAscent();
 
         textXCoord = x + width/2 - textWidth/2;
-        textYCoord = y + height/2 - textHeight/2;
+        textYCoord = y + height/2 + textHeight/4;
 
+        g.setColor(Color.RED);
         g.drawString(getText(), textXCoord, textYCoord);
-
+        if (this.isSelected()) {
+            g.setColor(new Color(0f,0f,1.0f,0.2f));
+            g.fillRect(x,y,width,height);
+        }
     }
 
     public void execute() {

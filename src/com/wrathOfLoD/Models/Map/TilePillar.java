@@ -38,6 +38,14 @@ public class TilePillar{
 		this.visible = visible;
 	}
 
+	public boolean isDiscovered(){
+		return discovered;
+	}
+
+	public boolean isVisible(){
+		return visible;
+	}
+
 	public boolean hasTileAt(Position pos){
 		if(pos.getH() >= 0 && pos.getH() < PILLAR_HEIGHT){
 			return (tiles[pos.getH()] != null);
@@ -97,6 +105,11 @@ public class TilePillar{
 	public void removeAE(AreaEffect ae, Position pos){
 		Tile tile = getTile(pos);
 		tile.removeAE(ae);
+	}
+
+	public void removeTrap(Position pos){
+		Tile tile = getTile(pos);
+		tile.removeTrap();
 	}
 	/********** END Forward request to tile *************/
 }

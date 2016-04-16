@@ -1,9 +1,8 @@
-package com.wrathOfLoD.Views.ViewObjectFactory;
+package com.wrathOfLoD.Views.ViewFactories.ViewObjectFactory;
 
 import com.wrathOfLoD.Models.Items.Item;
 import com.wrathOfLoD.Utility.Config;
 import com.wrathOfLoD.Views.ImageFactory.ImageFactory;
-import com.wrathOfLoD.Views.ViewObjects.EquippedItemViewObject;
 import com.wrathOfLoD.Views.ViewObjects.MapItemViewObject;
 
 import java.awt.*;

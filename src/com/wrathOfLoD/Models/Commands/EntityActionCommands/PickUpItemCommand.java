@@ -22,11 +22,7 @@ public class PickUpItemCommand extends ActionCommand {
 
     @Override
     public void execute(){
-        Map map = Map.getInstance();
-        Position position = entity.getPosition();
-
-        Tile tile = map.getTile(position);
-        tile.removeItem(item);
+        Map.getInstance().removeItem(item, entity.getPosition());
 
         // Remove item from the LTM
         LocationTrackerManager.getInstance().deregisterItem(item);

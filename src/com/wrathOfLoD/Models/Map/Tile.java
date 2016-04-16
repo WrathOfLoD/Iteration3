@@ -2,12 +2,9 @@ package com.wrathOfLoD.Models.Map;
 
 import com.wrathOfLoD.Models.Entity.Entity;
 import com.wrathOfLoD.Models.Items.Item;
-import com.wrathOfLoD.Models.LocationTracker.LocationTrackerManager;
 import com.wrathOfLoD.Models.Map.AreaEffect.AreaEffect;
 import com.wrathOfLoD.Models.Map.Terrain.Ground;
-import com.wrathOfLoD.Models.Map.Terrain.Sky;
 import com.wrathOfLoD.Models.Map.Terrain.Terrain;
-import com.wrathOfLoD.Models.Map.Terrain.Water;
 import com.wrathOfLoD.VisitorInterfaces.TileVisitor;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -20,8 +17,8 @@ public class Tile {
     private List<Entity> entities;
     private List<Item> items;
     private List<AreaEffect> areaEffects;
-    private Trap trap;
     private Terrain terrain;
+    private Trap trap;
 //    private Flow flow;
 
     public Tile(){
@@ -60,6 +57,15 @@ public class Tile {
 
     public void removeAE(AreaEffect ae){
         areaEffects.remove(ae);
+    }
+
+    public void setTrap(Trap t){
+        this.trap = t;
+    }
+
+    public void removeTrap(){
+        if(trap.isVisible())
+            trap = null;
     }
 
     public void interact(Entity e){

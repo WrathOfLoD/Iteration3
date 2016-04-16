@@ -1,10 +1,20 @@
 package com.wrathOfLoD.Models.Target;
 
+import com.wrathOfLoD.Models.Items.Item;
+
 /**
  * Created by zach on 4/7/16.
  */
 public class ItemTarget extends Target {
-//    private Item target;
+    private final Item target;
 
-    public ItemTarget() {}
+    public ItemTarget(Item target) {
+        setPriority(target.getValue());
+
+        this.target = target;
+    }
+
+    public Item getTarget(){
+        return target;
+    }
 }

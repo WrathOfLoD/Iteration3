@@ -4,6 +4,8 @@ import com.wrathOfLoD.Models.Entity.Entity;
 import com.wrathOfLoD.Models.Items.Item;
 import com.wrathOfLoD.Models.LocationTracker.LocationTrackerManager;
 import com.wrathOfLoD.Models.Map.AreaEffect.AreaEffect;
+import com.wrathOfLoD.Observers.ModelObservers.MapObservable;
+import com.wrathOfLoD.Observers.ModelObservers.MapObserver;
 import com.wrathOfLoD.Utility.Position;
 import com.wrathOfLoD.VisitorInterfaces.MapVisitor;
 
@@ -15,14 +17,17 @@ import java.util.List;
 /**
  * Created by zach on 4/7/16.
  */
-public class Map {
+public class Map implements MapObservable{
     private static Map instance = null;
 
     private Collection<MapArea> mapAreas;
     private MapArea activeMapArea;
+	private ArrayList<MapObserver> mapObservers;
+
 
     protected Map() {
         this.mapAreas = new HashSet<MapArea>();
+		this.mapObservers = new ArrayList<>();
     }
 
     public static Map getInstance() {
@@ -43,6 +48,8 @@ public class Map {
 		if(mapAreas.contains(mArea)){
 			this.activeMapArea = mArea;
 			LocationTrackerManager.getInstance().updateActiveMapArea(this.activeMapArea);
+			for(MapObserver mo : mapObservers)
+				mo.notifyMapAreaChange(mArea);
 		}
 		else{
 			throw new IllegalArgumentException("Selected MapArea is not contained in the collection of MapAreas.");
@@ -68,7 +75,29 @@ public class Map {
         return this.activeMapArea.getTiles(pList);
     }
 
-    public void addEntity(Entity entity, Position pos){
+
+
+	public MapArea[] getMapAreas(){
+		return mapAreas.toArray(new MapArea[mapAreas.size()]);
+	}
+
+	public void accept(MapVisitor mapVisitor){
+		mapVisitor.visitMap(this);
+	}
+
+	@Override
+	public void registerObserver(MapObserver mo) {
+		mapObservers.add(mo);
+	}
+
+	@Override
+	public void deregisterObserver(MapObserver mo) {
+		mapObservers.remove(mo);
+	}
+
+
+	/********* Forward to tile ************/
+	public void addEntity(Entity entity, Position pos){
 		this.activeMapArea.addEntity(entity, pos);
 	}
 
@@ -92,14 +121,10 @@ public class Map {
 		this.activeMapArea.removeAE(ae, pos);
 	}
 
-	public MapArea[] getMapAreas(){
-		return mapAreas.toArray(new MapArea[mapAreas.size()]);
+	public void Trap(Position pos){
+		this.activeMapArea.removeTrap(pos);
 	}
-
-	public void accept(MapVisitor mapVisitor){
-		mapVisitor.visitMap(this);
-	}
-
+	/********* END Forward to tile ************/
 }
 
 

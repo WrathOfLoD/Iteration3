@@ -1,8 +1,6 @@
 package com.wrathOfLoD.Views.ViewObjects;
 
-import com.sun.tools.corba.se.idl.ConstGen;
 import com.wrathOfLoD.Models.Entity.Entity;
-import com.wrathOfLoD.Models.Items.Item;
 import com.wrathOfLoD.Utility.Config;
 import com.wrathOfLoD.Views.ImageFactory.ImageFactory;
 

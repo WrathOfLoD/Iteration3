@@ -7,7 +7,13 @@ import com.wrathOfLoD.Utility.Position;
  */
 public abstract class Target {
     private int priority;
-    private Position position;
 
 //    public void accept(TargetVisitor visitor)
+    protected void setPriority(int priority){
+        this.priority = priority;
+    }
+    public int getPriority(){
+        return priority;
+    }
+    public abstract Object getTarget();
 }

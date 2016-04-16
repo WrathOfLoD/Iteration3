@@ -18,7 +18,7 @@ import java.util.HashMap;
  */
 public class SpriteMap {
     private  HashMap<String, ImageAnimation> aoeMap;
-    private  HashMap<String,ImageAnimation> entityMap;
+    private  HashMap<String, ImageAnimation> entityMap;
     private  HashMap<String, ImageAnimation> hitBoxMap;
     private  HashMap<String, ImageAnimation> itemMap;
 
@@ -46,6 +46,7 @@ public class SpriteMap {
         String name = fileName.substring(0,truncateIndex);
         return name;
     }
+
 
     private BufferedImage[] createdBufferedImages(File file) throws IOException{
         BufferedImage bigImg = ImageIO.read(file);
@@ -83,9 +84,6 @@ public class SpriteMap {
                 System.out.println(file.getName());
                 BufferedImage[] sprites = createdBufferedImages(file);
 
-            }
-        }
-
 //        Files.walk(Paths.get(path)).forEach(filePath -> {
 //            if (Files.isRegularFile(filePath)) {
 //                System.out.println(filePath);
@@ -102,11 +100,20 @@ public class SpriteMap {
 //            }
 //        });
 
+            }
+        }
     }
 
     //iterate through all the files and create bufferedImage for each file
     //Create a new imageAnimation with the list of bufferedImages
+
     public  void generateEntityMap() throws IOException{
         generateEntityMap("./resources/Entity/Avatar/Smasher/AttackWithWeapon");
-    }
+        }
+
+    public  void generateItemMap() throws IOException{
+//        List<Image> images = generateEntityMap("./resources/Backgrounds");
+//        ImageAnimation imageAnimation = new ImageAnimation(images);
+//        itemMap.put("items", imageAnimation);
+            }
 }

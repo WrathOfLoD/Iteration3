@@ -147,6 +147,10 @@ public class Position{
 		return distanceHorz + distanceVert;
 	}
 
+	public int getHorizontalDist(Position pos){
+		return Math.abs((this.getQ() - pos.getQ()) +
+				(this.getR() - pos.getR()) + (this.getS() - pos.getS()));
+	}
 	public Position getPosInDir(Direction dir){
 		return vectorAdd(this, dir.getPosVector());
 	}

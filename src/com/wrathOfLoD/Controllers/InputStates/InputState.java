@@ -20,7 +20,9 @@ public abstract class InputState {
     }
 
     public void activate(){
+        System.out.println(activeActionSet);
         for(Action a : activeActionSet){
+
             a.activate();
             System.out.println("activating : " + a.toString());
             System.out.println("is a active?: " + a.isActive());
