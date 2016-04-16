@@ -31,7 +31,7 @@ public class TileViewObject extends ViewObject{
 		Point offset = Position.vectorSubtract(this.pos, cameraCenter).positionToXY();
 		this.setOffsetX(offset.x);
 		this.setOffsetY(offset.y);
-		g.drawImage(this.getImage(), this.getOffsetX() + screenCenter.x, this.getOffsetY() + screenCenter.y, this.getImage().getWidth(null), this.getImage().getWidth(null), null);
+		g.drawImage(this.getImage(), this.getOffsetX() + screenCenter.x, this.getOffsetY() + screenCenter.y, 120, 120, null);
 		System.out.println("paint tile?: " + (this.getOffsetX() + screenCenter.x) + " " +  (this.getOffsetY() + screenCenter.y));
 
 		Collections.sort(modelVOList, new Comparator<ModelViewObject>() {

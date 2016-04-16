@@ -63,8 +63,9 @@ public class CameraView{
 
             Tile tiles[] = tilePillarHashMap.get(pos).getTiles();
             for(int i = 0; i < tiles.length; i++){
-                TileViewObject tvo = vof.createTileViewObject(new Position(pos.getQ(), pos.getR(), i), tiles[i]);
-                tpvo.addTileVO(pos, tvo);
+				Position tPos = new Position(pos.getQ(), pos.getR(), i);
+                TileViewObject tvo = vof.createTileViewObject(tPos, tiles[i]);
+                tpvo.addTileVO(tPos, tvo);
                 System.out.println("add TVO to TPVO: " + pos.getQ() + " " + pos.getR() + " " + i);
             }
 
