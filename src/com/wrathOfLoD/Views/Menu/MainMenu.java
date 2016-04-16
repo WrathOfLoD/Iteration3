@@ -10,10 +10,9 @@ import java.util.ArrayList;
 /**
  * Created by Mistiansen on 4/15/16.
  */
-public class MainMenu extends StaticView {
+public class MainMenu extends Menu {
 
     private JPanel contentPanel;
-    private ArrayList<MenuItem> menuItems = new ArrayList<>();
     private MenuListStructure mls;
 
     public MainMenu() {
@@ -22,9 +21,9 @@ public class MainMenu extends StaticView {
     }
 
     public void initMenuItems() {
-        menuItems.add(new MenuItem("Slothst in Space"));
-        menuItems.add(new MenuItem("New Game"));
-        menuItems.add(new MenuItem("Load Game"));
+        this.addMenuItem(new MenuItem("Slothst in Space"));
+        this.addMenuItem(new MenuItem("New Game"));
+        this.addMenuItem(new MenuItem("Load Game"));
     }
 
     public void initDefaultUI() {
@@ -39,9 +38,9 @@ public class MainMenu extends StaticView {
 
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
-        mls = new MenuListStructure(menuItems.size(), 1, this.getWidth(), this.getHeight());
+        mls = new MenuListStructure(this.getMenuItems().size(), 1, this.getWidth(), this.getHeight());
         int index = 0;
-        for (MenuItem menuItem: menuItems) {
+        for (MenuItem menuItem: this.getMenuItems()) {
             menuItem.paintComponent(g, mls.calculateXCoord(index), mls.calculateYCoord(index), mls.calculateSlotWidth(), mls.calculateSlotHeight());
             index++;
         }
