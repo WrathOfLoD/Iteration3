@@ -29,6 +29,7 @@ import com.wrathOfLoD.Views.Selectable;
 import com.wrathOfLoD.Views.StatsView.StatsView;
 import com.wrathOfLoD.Views.ViewEngine;
 import com.wrathOfLoD.Views.ViewManager.ViewManager;
+import com.wrathOfLoD.Views.ViewObjectFactory.ViewObjectFactory;
 
 import java.awt.*;
 
@@ -56,6 +57,8 @@ public class Main {
 
 
         AreaView areaView = new AreaView();
+        ViewObjectFactory.getInstance().initVOFactory(areaView);
+
         ViewEngine viewEngine = ViewEngine.getInstance();
         viewEngine.registerView(areaView);
 
