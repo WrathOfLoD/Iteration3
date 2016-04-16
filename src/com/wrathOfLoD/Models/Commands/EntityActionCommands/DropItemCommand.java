@@ -30,7 +30,7 @@ public class DropItemCommand extends ActionCommand {
         tile.addItem(item);
 
         // Add item to LTM
-        LocationTrackerManager.getInstance().registerItem(item);
+        LocationTrackerManager.getInstance().registerItem(item, position);
     }
 }
 
