@@ -1,10 +1,12 @@
 package com.wrathOfLoD.Views.Menu;
 
 import com.wrathOfLoD.Controllers.MainController;
+import com.wrathOfLoD.Views.SpriteMap.SpriteMap;
 import com.wrathOfLoD.Views.ViewEngine;
 
 import javax.swing.*;
 import java.awt.*;
+import java.io.IOException;
 
 /**
  * Created by echristiansen on 4/14/2016.
@@ -12,8 +14,10 @@ import java.awt.*;
 public class MenuTest {
 
 
-        public static void main(String[] args) {
+        public static void main(String[] args) throws IOException {
             MainMenu mainMenu = new MainMenu();
+            SpriteMap sm = new SpriteMap();
+            sm.generateEntityMap();
 
             /*
             JFrame testFrame = new JFrame();

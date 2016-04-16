@@ -1,5 +1,7 @@
 package com.wrathOfLoD.Views.SpriteMap;
 
+import com.sun.xml.internal.ws.policy.privateutil.PolicyUtils;
+
 import javax.imageio.ImageIO;
 import java.io.File;
 import java.util.List;
@@ -45,30 +47,66 @@ public class SpriteMap {
         return name;
     }
 
-    private  List<Image> generateBufferedImages(String path) throws IOException {
-        List<Image> images = new ArrayList<>();
-        Files.walk(Paths.get(path)).forEach(filePath -> {
-            if (Files.isRegularFile(filePath)) {
-                System.out.println(filePath);
-                try {
-                    File file = filePath.toFile();
-                    String fileName = file.getName();
-                    String name = truncateName(fileName);
-                    BufferedImage image = ImageIO.read(file);
-                    images.add(image);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+    private BufferedImage[] createdBufferedImages(File file) throws IOException{
+        BufferedImage bigImg = ImageIO.read(file);
+
+        final int width = 153;
+        final int height = 148;
+        final int rows = 4;
+        final int cols = 6;
+        BufferedImage[] sprites = new BufferedImage[rows * cols];
+        File outputfile = new File("saved.png");
+        for (int i = 0; i < rows; i++)
+        {
+            for (int j = 0; j < cols; j++)
+            {
+                sprites[(i * cols) + j] = bigImg.getSubimage(
+                        j * width,
+                        i * height,
+                        width,
+                        height
+                );
+                ImageIO.write( sprites[(i * cols) + j] , "png", outputfile);
             }
-        });
-        return images;
+        }
+        return sprites;
+    }
+
+    private void generateEntityMap(String path) throws IOException {
+        //List<Image> images = new ArrayList<>();
+
+        File folder = new File(path);
+        File[] listOfFiles = folder.listFiles();
+
+        for (File file : listOfFiles) {
+            if (file.isFile()) {
+                System.out.println(file.getName());
+                BufferedImage[] sprites = createdBufferedImages(file);
+
+            }
+        }
+
+//        Files.walk(Paths.get(path)).forEach(filePath -> {
+//            if (Files.isRegularFile(filePath)) {
+//                System.out.println(filePath);
+//                try {
+//                    File file = filePath.toFile();
+//                    String fileName = file.getName();
+//                    String name = truncateName(fileName);
+//                    System.out.println(name);
+//                    BufferedImage image = ImageIO.read(file);
+//                    //images.add(image);
+//                } catch (IOException e) {
+//                    e.printStackTrace();
+//                }
+//            }
+//        });
+
     }
 
     //iterate through all the files and create bufferedImage for each file
     //Create a new imageAnimation with the list of bufferedImages
-    public  void generateItemMap() throws IOException{
-        List<Image> images = generateBufferedImages("./resources/Items");
-        ImageAnimation imageAnimation = new ImageAnimation(images);
-        itemMap.put("items", imageAnimation);
+    public  void generateEntityMap() throws IOException{
+        generateEntityMap("./resources/Entity/Avatar/Smasher/AttackWithWeapon");
     }
 }
