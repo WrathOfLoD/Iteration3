@@ -1,8 +1,10 @@
 package com.wrathOfLoD.Views.Menu;
 
+import com.wrathOfLoD.Controllers.InputStates.*;
 import com.wrathOfLoD.Controllers.MainController;
 import com.wrathOfLoD.Views.SpriteMap.ImageAnimation;
 import com.wrathOfLoD.Views.SpriteMap.SpriteMap;
+import com.wrathOfLoD.Models.ModelEngine;
 import com.wrathOfLoD.Views.ViewEngine;
 
 import javax.swing.*;
@@ -17,20 +19,24 @@ public class MenuTest {
 
         public static void main(String[] args) throws Exception{
             MainMenu mainMenu = new MainMenu();
+            PauseMenu pauseMenu = new PauseMenu();
+            CharacterCreationMenu characterCreationMenu = new CharacterCreationMenu();
+            ModelEngine.getInstance().start();
 
-            /*
-            JFrame testFrame = new JFrame();
-            mainMenu.setPreferredSize(new Dimension(800,900));
-            testFrame.setContentPane(mainMenu);
-            testFrame.setLocationRelativeTo(null);
-            testFrame.setResizable(false);
-            testFrame.pack();
-            testFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-            testFrame.setVisible(true);
-*/
+            MainController mainController = MainController.getInstance();
+
+            InputState avatarState = new AvatarState();
+
+            System.out.println(mainMenu.getActionSet());
+
+            InputState menuState = new MenuState(mainMenu);
+            mainController.setActiveState(menuState);
+
 
             ViewEngine window = ViewEngine.getInstance();
             window.registerView(mainMenu);
+            //window.registerView(pauseMenu);
+            //window.registerView(characterCreationMenu);
 
 
             //ScrollableMenu menu = new MainScrollableMenu(120);
