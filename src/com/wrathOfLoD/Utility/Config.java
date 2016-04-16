@@ -31,6 +31,42 @@ public class Config {
         return ImageExtension;
     }
 
+    private static final int EntityZLevel = 50;
+    private static final int TerrainZLevel = 10;
+    private static final int TakeableItemZLevel = 20;
+    private static final int OneShotItemZLevel = 15;
+    private static final int ObstacleZLevel = 15;
+    private static final int InteractiveItemZLevel = 15;
+    private static final int AreaEffectZLevel = 25;
+
+    public static int getEntityZLevel(){
+        return EntityZLevel;
+    }
+
+    public static int getTerrainZLevel(){
+        return TerrainZLevel;
+    }
+
+    public static int getTakeableItemZLevel(){
+        return TakeableItemZLevel;
+    }
+
+    public static int getOneShotItemZLevel() {
+        return OneShotItemZLevel;
+    }
+
+    public static int getObstacleZLevel() {
+        return ObstacleZLevel;
+    }
+
+    public static int getInteractiveItemZLevel() {
+        return InteractiveItemZLevel;
+    }
+
+    public static int getAreaEffectZLevel(){
+        return AreaEffectZLevel;
+    }
+
 
     private static final int WINDOW_WIDTH = 1300; //set the overall window width. Was 1400
     private static final int WINDOW_HEIGHT = 900; //was 900

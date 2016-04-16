@@ -33,10 +33,9 @@ public class TileViewObject extends ViewObject{
 //		super.paintComponent(g,x,y,width,height);
 		//TODO: ???
 		for(ModelViewObject mvo : modelVOList){
-			mvo.paintComponents(g);
+			//mvo.paintComponents(g);  ...not calling the right method
 		}
 	}
-
 
 	public void addMOVToTile(ModelViewObject mvo){
 		modelVOList.add(mvo);
@@ -45,7 +44,5 @@ public class TileViewObject extends ViewObject{
 	public void removeMOVFromTile(ModelViewObject mvo){
 		modelVOList.remove(mvo);
 	}
-
-
 
 }

@@ -5,6 +5,7 @@ import com.wrathOfLoD.Utility.Config;
 import com.wrathOfLoD.Utility.Direction;
 import com.wrathOfLoD.Utility.Position;
 import com.wrathOfLoD.Utility.RenderPositionComparator;
+import com.wrathOfLoD.Views.CameraView.CameraView;
 import com.wrathOfLoD.Views.StaticView;
 import com.wrathOfLoD.Views.ViewObjects.TilePillarViewObject;
 import com.wrathOfLoD.Views.ViewObjects.TileViewObject;
@@ -21,30 +22,38 @@ public class AreaView extends StaticView { //need to change to just extending Vi
     public static final int WIDTH = Config.instance().getAreaViewWidth();
     public static final int HEIGHT = Config.instance().getAreaViewHeight();
 
-	private static Direction areaOrientation;
+	private CameraView activeCameraView;
 
-	private Position cameraCenter;
-	private HashMap<Position, TilePillarViewObject> tilePillarViewObjects;
+	//private static Direction areaOrientation;
+
+	//private Position cameraCenter;
+	//private HashMap<Position, TilePillarViewObject> tilePillarViewObjects;
 
     public AreaView() {
         setPreferredSize(new Dimension(WIDTH, HEIGHT));
         setBackgroundImageFileName("resources/Backgrounds/spaceSloth.png");
 
-		cameraCenter = Avatar.getInstance().getPosition();
+		//cameraCenter = Avatar.getInstance().getPosition();
     }
 
+	/*
 	public void setTilePillarViewObjects(HashMap<Position, TilePillarViewObject> map) {
 		this.tilePillarViewObjects = map;
+	}*/
+
+	public void setActiveCameraView(CameraView cv){
+		this.activeCameraView = cv;
 	}
 
-
-	//TODO: Have 1 AreaView and Multiple Camera View?
+	public CameraView getActiveCameraView(){
+		return this.activeCameraView;
+	}
 
 	@Override
 	public void paintComponent(Graphics g){
 		super.paintComponent(g);
 
-		/* todo Commented this out cause it's breaking things
+		/*
 		List<Position> renderOrder = new ArrayList<Position>();
 		renderOrder.addAll(tilePillarViewObjects.keySet());
 		Collections.sort(renderOrder, new RenderPositionComparator());
@@ -52,7 +61,6 @@ public class AreaView extends StaticView { //need to change to just extending Vi
 		for(Position pos: renderOrder){
 			TilePillarViewObject tPVO = tilePillarViewObjects.get(pos);
 			tPVO.paint(g);
-		}
-*/
+		}*/
 	}
 }
