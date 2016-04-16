@@ -31,6 +31,11 @@ public class ListStructure extends ContentDisplayStructure {
         super(numRows, numCols);
     }
 
+    //to generalize, centered list x coord would be 1/2 of width - 1/2 item width
+    //but want it to be centered with respect to the column
+    //use num cols
+    //if index<numRows, numCols=1; else, numCols = numCols specified by the user (store numCols in a temp variable)
+    //
 
     @Override
     public int calculateXCoord(int displayWidth, int index){

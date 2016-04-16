@@ -43,7 +43,8 @@ public class AreaView extends StaticView { //need to change to just extending Vi
 	@Override
 	public void paintComponent(Graphics g){
 		super.paintComponent(g);
-/* todo Commented this out cause it's breaking things
+
+		/* todo Commented this out cause it's breaking things
 		List<Position> renderOrder = new ArrayList<Position>();
 		renderOrder.addAll(tilePillarViewObjects.keySet());
 		Collections.sort(renderOrder, new RenderPositionComparator());
