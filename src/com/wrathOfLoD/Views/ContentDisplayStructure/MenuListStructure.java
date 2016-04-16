@@ -45,22 +45,20 @@ public class MenuListStructure {
         setContainerHeight(containerHeight);
     }
 
-    /*
-    public abstract int calculateXCoord(int displayWidth, int index);
-    public abstract int calculateYCoord(int displayHeight, int index);
-    public abstract int determineColumn(int index);
-    public abstract int determineRow(int index);
-    public abstract int calculateSlotWidth(int displayWidth);
-    public abstract int calculateSlotHeight(int displayHeigh
-    */
 
     public int calculateXCoord(int index) {
-        int xCoord = determineColumn(index)*(2*calculateHorLineLength()-calculateSlotWidth()/2);
+        int offsetConstant = (2*calculateHorLineLength()-calculateSlotWidth()/2);
+        int xCoord = offsetConstant + determineColumn(index)* offsetConstant;
+        System.out.println("MENU item xCoord at : " + xCoord);
         return xCoord;
     }
 
     public int calculateYCoord(int index) {
-        int yCoord = determineRow(index)*(2*calculateVertLineLength()-calculateRowHeight()/2);
+        int initialOffset = getContainerHeight()/3;
+        int offsetConstant = (2*calculateVertLineLength()-calculateRowHeight()/2);
+        int yCoord = offsetConstant + determineRow(index)*offsetConstant;
+        //int yCoord = initialOffset + determineRow(index)*
+        System.out.println("MENU item yCoord at : " + yCoord);
         return yCoord;
     }
 

@@ -20,7 +20,7 @@ public class Inventory implements ActionsHolder, Observable {
 
 
     private List<TakeableItem> itemList;
-    private Set<Action> actionSet;
+    private Set<Action> actionSet = new HashSet<>();
     private ArrayList<Observer> observers = new ArrayList<Observer>();
 
     @Override
@@ -67,7 +67,6 @@ public class Inventory implements ActionsHolder, Observable {
 
     @Override
     public void initializeActionSet() {
-        this.actionSet = new HashSet<>();
     }
 
     @Override
