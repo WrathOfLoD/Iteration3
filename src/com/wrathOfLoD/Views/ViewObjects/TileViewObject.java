@@ -1,7 +1,5 @@
 package com.wrathOfLoD.Views.ViewObjects;
 
-import com.sun.tools.internal.xjc.model.Model;
-import com.sun.tools.internal.xjc.reader.RawTypeSet;
 import com.wrathOfLoD.Models.Map.Map;
 import com.wrathOfLoD.Models.Map.Tile;
 import com.wrathOfLoD.Utility.Position;
