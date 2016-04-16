@@ -15,7 +15,6 @@ public class MenuItem extends JPanel {
     private String text;
     private String imageFileName;
     private Image image;
-    private MenuSelectCommand command;
 
     public String getText() {
         return text;
@@ -57,6 +56,10 @@ public class MenuItem extends JPanel {
         textYCoord = y + height/2 - textHeight/2;
 
         g.drawString(getText(), textXCoord, textYCoord);
+
+    }
+
+    public void execute() {
 
     }
 

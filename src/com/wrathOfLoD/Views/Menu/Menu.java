@@ -60,6 +60,8 @@ public abstract class Menu extends StaticView implements ActionsHolder, Selectab
     public Object useSelectedItem() {
         System.out.println(this.getMenuItems().get(currentIndex));
 
+        this.getMenuItems().get(currentIndex).execute();
+
         return this.getMenuItems().get(currentIndex);
     }
 
