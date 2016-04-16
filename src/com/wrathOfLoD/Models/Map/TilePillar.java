@@ -98,5 +98,10 @@ public class TilePillar{
 		Tile tile = getTile(pos);
 		tile.removeAE(ae);
 	}
+
+	public void removeTrap(Position pos){
+		Tile tile = getTile(pos);
+		tile.removeTrap();
+	}
 	/********** END Forward request to tile *************/
 }

@@ -9,6 +9,7 @@ import com.wrathOfLoD.Models.Map.Tile;
 import com.wrathOfLoD.Models.Map.TilePillar;
 import com.wrathOfLoD.Utility.Position;
 import com.wrathOfLoD.Views.ViewFactories.ViewObjectFactory.ViewObjectFactory;
+import com.wrathOfLoD.Views.ViewObjects.ModelViewObject;
 import com.wrathOfLoD.Views.ViewObjects.TilePillarViewObject;
 import com.wrathOfLoD.Utility.RenderPositionComparator;
 import com.wrathOfLoD.Views.ViewObjects.TileViewObject;
@@ -55,9 +56,9 @@ public class CameraView{
             tilePillarViewObjects.put(pos, tpvo);
 
             for(Tile t : tilePillarHashMap.get(pos).getTiles()){
-                TileViewObject tvo = vof.createTileViewObject(t);
-                tpvo.addTileVO(tvo);
-                populateTile(t, tvo);
+                //TileViewObject tvo = vof.createTileViewObject(t);
+                //tpvo.addTileVO(tvo);
+                //populateTile(t, tvo);
             }
         }
 
@@ -65,15 +66,15 @@ public class CameraView{
 
     private void populateTile(Tile t, TileViewObject tvo){
         for(AreaEffect ae : t.getAreaEffects()){
-           tvo.addMOVToTile(vof.createAEViewObject(ae));
+           //tvo.addMOVToTile(vof.createAEViewObject(ae));
         }
 
         for (Item i : t.getItems()){
-            tvo.addMOVToTile(vof.createMapItemViewObject(i));
+            //tvo.addMOVToTile(vof.createMapItemViewObject(i));
         }
 
         for (Entity e : t.getEntitiesArray()){
-            tvo.addMOVToTile(vof.createEntityViewObject(e));
+            //tvo.addMOVToTile(vof.createEntityViewObject(e));
         }
 
     }
@@ -81,6 +82,11 @@ public class CameraView{
 
     public void setTilePillarViewObjects(HashMap<Position, TilePillarViewObject> map) {
         this.tilePillarViewObjects = map;
+    }
+
+    public void addVOToTile(Position pos, ModelViewObject mvo){
+        //TilePillarViewObject tpvo = tilePillarViewObjects.get(pos.get2DProjection());
+
     }
 
 }

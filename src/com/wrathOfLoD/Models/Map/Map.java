@@ -120,6 +120,10 @@ public class Map implements MapObservable{
 	public void removeAE(AreaEffect ae, Position pos){
 		this.activeMapArea.removeAE(ae, pos);
 	}
+
+	public void Trap(Position pos){
+		this.activeMapArea.removeTrap(pos);
+	}
 	/********* END Forward to tile ************/
 }
 

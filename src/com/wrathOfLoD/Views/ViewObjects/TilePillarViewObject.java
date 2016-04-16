@@ -6,6 +6,7 @@ import com.wrathOfLoD.Models.Map.TilePillar;
 import com.wrathOfLoD.Utility.Position;
 
 import java.awt.*;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -16,7 +17,8 @@ public class TilePillarViewObject extends ViewObject{
 	private TilePillar tilePillar;
 	private Position pos;
 
-	private List<TileViewObject> tileViewObjects;
+	//private List<TileViewObject> tileViewObjects;
+	private HashMap<Position, TileViewObject> tileViewObjects;
 
 	public TilePillarViewObject(Position pos){
 		this.pos = pos;
@@ -24,17 +26,19 @@ public class TilePillarViewObject extends ViewObject{
 	}
 
 	public void paintComponent(Graphics g, int x, int y, int width, int height) {
-		for(TileViewObject tvo : tileViewObjects){
-			tvo.paintComponent(g, pos.getQ(), pos.getR(), 20, 20);
-		}
+		//for(TileViewObject tvo : tileViewObjects){
+		//	tvo.paintComponent(g, pos.getQ(), pos.getR(), 20, 20);
+		//}
 	}
 
 	public Position getPosition(){
 		return this.pos;
 	}
 
-	public void addTileVO(TileViewObject tvo){
-		tileViewObjects.add(tvo);
+	public void addTileVO(Position pos, TileViewObject tvo){
+		tileViewObjects.put(pos, tvo);
 	}
+
+
 
 }
