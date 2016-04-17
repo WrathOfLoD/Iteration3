@@ -28,8 +28,7 @@ public class LoadGameHelper extends GameLaunchHelper {
         return null;
     }
 
-    //this should be called after populateMap, the load function will handle properly creat
-    //ing avatar in this case
+
     @Override
     public Avatar createAvatar() {
         return Avatar.getInstance();

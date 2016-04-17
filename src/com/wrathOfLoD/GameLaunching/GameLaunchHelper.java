@@ -9,8 +9,6 @@ import com.wrathOfLoD.Views.AreaView.AreaView;
  */
 public abstract class GameLaunchHelper {
     private LevelFactory levelFactory;
-    //no area view amanger been created yet so this is commented out
-//    public areaViewManager getAreaViewManager();
 
     public abstract Map createMap();
     public abstract AreaView getAreaView();
