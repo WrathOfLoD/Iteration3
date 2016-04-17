@@ -12,8 +12,8 @@ public class Flow extends AreaEffect {
     private Direction flowDirection;
     private int flowStrength;
 
-    public Flow(String name, Direction flowDirection, int flowStrength){
-        super(name);
+    public Flow(Direction flowDirection, int flowStrength){
+        super("Flow");
         this.flowDirection = flowDirection;
         this.flowStrength = flowStrength;
     }
