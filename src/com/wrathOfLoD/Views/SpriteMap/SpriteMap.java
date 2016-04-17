@@ -1,16 +1,13 @@
 package com.wrathOfLoD.Views.SpriteMap;
 
-import com.sun.xml.internal.ws.policy.privateutil.PolicyUtils;
 
+import com.wrathOfLoD.Utility.Direction;
 import javax.imageio.ImageIO;
 import java.io.File;
 import java.util.List;
 import java.util.ArrayList;
 import java.awt.*;
-import java.awt.image.BufferedImage;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.HashMap;
 
 /**
@@ -18,9 +15,21 @@ import java.util.HashMap;
  */
 public class SpriteMap {
     private  HashMap<String, ImageAnimation> aoeMap;
-    private  HashMap<String, ImageAnimation> entityMap;
+    private  HashMap<EntityKey, ImageAnimation> entityMap;
     private  HashMap<String, ImageAnimation> hitBoxMap;
     private  HashMap<String, ImageAnimation> itemMap;
+
+    public class EntityKey{
+        private String entityType;
+        private String action;
+        private Direction direction;
+
+        EntityKey(String entityType, String action, Direction direction){
+            this.entityType = entityType;
+            this.action = action;
+            this.direction = direction;
+        }
+    }
 
     public SpriteMap(){
         this.aoeMap = new HashMap<>();
@@ -32,7 +41,7 @@ public class SpriteMap {
     /***** getter & setter for SpriteMap *******/
     public  HashMap<String, ImageAnimation> getAoeMap() { return aoeMap; }
 
-    public  HashMap<String, ImageAnimation>  getEntityMap(){ return entityMap; }
+    public  HashMap<EntityKey, ImageAnimation>  getEntityMap(){ return entityMap; }
 
     public  HashMap<String, ImageAnimation>  getHitBoxMap(){ return hitBoxMap; }
 
@@ -41,77 +50,67 @@ public class SpriteMap {
     /********* END Getters *********/
 
 
+//    Not sure if we need this
     private String truncateName(String fileName){
         int truncateIndex = fileName.indexOf(".");
         String name = fileName.substring(0,truncateIndex);
         return name;
     }
 
+    private void insertToEntityHash(String entityType, String action, Direction direction, ImageAnimation val){
+        EntityKey entityKey = new EntityKey(entityType, action, Direction.DOWN_NORTH);
+        this.entityMap.put(entityKey, val);
+    }
 
-    private List<BufferedImage> createdBufferedImages(File file) throws IOException{
-        BufferedImage bigImg = ImageIO.read(file);
-        final int rows = 4;
-        final int cols = 6;
-        final int width = bigImg.getWidth()/cols;
-        final int height = bigImg.getHeight()/rows;
+    private void insertToItemHash(String itemName , ImageAnimation val){
+        this.itemMap.put(itemName, val);
+    }
 
-        List<BufferedImage> sprites = new ArrayList<>();
 
-        for (int i = 0; i < rows; i++)
-        {
-            for (int j = 0; j < cols; j++)
-            {
-                String name = "file" + i + j+".png";
-                File outputfile = new File(name);
-                BufferedImage subImage = bigImg.getSubimage(j * width, i * height,width, height);
-                ImageIO.write(subImage, "png", outputfile);
+    private List<Image> generateImageFrames(File folder) throws IOException{
+        File[] listOfFiles = folder.listFiles();
 
+        List<Image> sprites = new ArrayList<>();
+        for (File file : listOfFiles) {
+            if (file.isFile()) {
+                System.out.println(file.getName());
+                sprites.add(ImageIO.read(file));
             }
         }
+
         return sprites;
     }
 
     private void generateEntityMap(String path) throws IOException {
-        //List<Image> images = new ArrayList<>();
-
         File folder = new File(path);
-        File[] listOfFiles = folder.listFiles();
+        System.out.println(truncateName(path));
 
-        for (File file : listOfFiles) {
-            if (file.isFile()) {
-                System.out.println(file.getName());
-                List sprites = createdBufferedImages(file);
-
-//        Files.walk(Paths.get(path)).forEach(filePath -> {
-//            if (Files.isRegularFile(filePath)) {
-//                System.out.println(filePath);
-//                try {
-//                    File file = filePath.toFile();
-//                    String fileName = file.getName();
-//                    String name = truncateName(fileName);
-//                    System.out.println(name);
-//                    BufferedImage image = ImageIO.read(file);
-//                    //images.add(image);
-//                } catch (IOException e) {
-//                    e.printStackTrace();
-//                }
-//            }
-//        });
-
-            }
+        List<Image> sprites = generateImageFrames(folder);
+        for(int i = 0; i < sprites.size(); i++){
+            System.out.println(sprites.get(i).toString());
         }
+
+        ImageAnimation imageAnimation = new ImageAnimation(sprites);
+        insertToEntityHash(folder.getName(), "walk", Direction.DOWN_NORTH, imageAnimation);
     }
 
-    //iterate through all the files and create bufferedImage for each file
-    //Create a new imageAnimation with the list of bufferedImages
+    private void generateItemMap(String path) throws IOException{
+        File folder = new File(path);
+        List<Image> sprites = generateImageFrames(folder);
+        for(int i = 0; i < sprites.size(); i++){
+            System.out.println(sprites.get(i).toString());
+        }
 
-    public  void generateEntityMap() throws IOException{
+        ImageAnimation imageAnimation = new ImageAnimation(sprites);
+        insertToItemHash(folder.getName(), imageAnimation);
+    }
+
+
+    public void generateEntityMap() throws IOException{
         generateEntityMap("./resources/Entity/Avatar/Smasher/AttackWithWeapon");
     }
 
     public  void generateItemMap() throws IOException{
-//        List<Image> images = generateEntityMap("./resources/Backgrounds");
-//        ImageAnimation imageAnimation = new ImageAnimation(images);
-//        itemMap.put("items", imageAnimation);
+        generateItemMap("./resources/Backgrounds");
     }
 }
