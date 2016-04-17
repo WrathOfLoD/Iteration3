@@ -61,9 +61,17 @@ public class Map implements MapObservable{
 		this.mapAreas.add(mapArea);
 	}
 
+	public boolean hasTilePillarAt(Position pos){
+		return this.activeMapArea.hasTilePillarAt(pos);
+	}
+
 	public TilePillar getTilePillar(Position pos){
 		TilePillar pillar = this.activeMapArea.getTilePillar(pos);
 		return pillar;
+	}
+
+	public boolean hasTileAt(Position pos){
+		return this.activeMapArea.hasTileAt(pos);
 	}
 
     public Tile getTile(Position pos) {
@@ -74,8 +82,6 @@ public class Map implements MapObservable{
     public List<Tile> getTiles(List<Position> pList) {
         return this.activeMapArea.getTiles(pList);
     }
-
-
 
 	public MapArea[] getMapAreas(){
 		return mapAreas.toArray(new MapArea[mapAreas.size()]);
