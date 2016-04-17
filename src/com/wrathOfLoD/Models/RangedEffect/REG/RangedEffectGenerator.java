@@ -6,6 +6,7 @@ import com.wrathOfLoD.Models.RangedEffect.HitBox.HitBox;
 import com.wrathOfLoD.Models.RangedEffect.HitBox.HitBoxFactories.HitBoxFactory;
 import com.wrathOfLoD.Utility.ModelConfig;
 import com.wrathOfLoD.Utility.Position;
+import com.wrathOfLoD.Views.ViewFactories.ViewObjectFactory.ViewObjectFactory;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -44,7 +45,8 @@ public abstract class RangedEffectGenerator implements Fuseable{
 
             for(Position p : effectivePos){
                 HitBox hb = hitBoxFactory.createHitBox(damage, accuracy, p);
-                //TODO: create view object
+                ViewObjectFactory.getInstance().createHitBoxViewObject(p, hb);
+
                 effectiveHB.add(hb);
                 hb.apply();
             }
@@ -62,7 +64,7 @@ public abstract class RangedEffectGenerator implements Fuseable{
         Iterator<HitBox> hitBoxIterator = effectiveHB.iterator();
         while (hitBoxIterator.hasNext()){
             HitBox hb = hitBoxIterator.next();
-            //TODO: hb.alertDestroyed()
+            hb.destroyHitbox();
             hitBoxIterator.remove();
         }
     }

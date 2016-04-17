@@ -6,6 +6,6 @@ import com.wrathOfLoD.Utility.Position;
 /**
  * Created by luluding on 4/17/16.
  */
-public interface MapItemObserver {
+public interface DestroyableModelObserver {
     public void notifyDestroy();
 }

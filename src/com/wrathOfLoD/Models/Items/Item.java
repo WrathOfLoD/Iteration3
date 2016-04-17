@@ -1,9 +1,8 @@
 package com.wrathOfLoD.Models.Items;
 
 import com.wrathOfLoD.Models.Entity.Entity;
-import com.wrathOfLoD.Observers.ModelObservers.MapItemObservable;
-import com.wrathOfLoD.Observers.ModelObservers.MapItemObserver;
-import com.wrathOfLoD.Utility.Position;
+import com.wrathOfLoD.Observers.ModelObservers.DestroyableModelObservable;
+import com.wrathOfLoD.Observers.ModelObservers.DestroyableModelObserver;
 import com.wrathOfLoD.VisitorInterfaces.ItemVisitor;
 
 import java.util.ArrayList;
@@ -11,14 +10,14 @@ import java.util.ArrayList;
 /**
  * Created by matthewdiaz on 4/7/16.
  */
-public abstract class Item implements MapItemObservable{
+public abstract class Item implements DestroyableModelObservable {
     private String name;
     private int value = 10;
-    private ArrayList<MapItemObserver> mapItemObservers;
+    private ArrayList<DestroyableModelObserver> destroyableModelObservers;
 
     public Item(String name){
         this.name = name;
-        mapItemObservers = new ArrayList<>();
+        destroyableModelObservers = new ArrayList<>();
     }
 
     /***** getter & setter for Item *******/
@@ -38,16 +37,16 @@ public abstract class Item implements MapItemObservable{
     }
 
     @Override
-    public void registerObserver(MapItemObserver mio) {
-        mapItemObservers.add(mio);
+    public void registerObserver(DestroyableModelObserver mio) {
+        destroyableModelObservers.add(mio);
     }
 
     @Override
-    public void deregisterObserver(MapItemObserver mio) {
-        mapItemObservers.remove(mio);
+    public void deregisterObserver(DestroyableModelObserver mio) {
+        destroyableModelObservers.remove(mio);
     }
 
-    public ArrayList<MapItemObserver> getMapItemObservers(){
-        return this.mapItemObservers;
+    public ArrayList<DestroyableModelObserver> getDestroyableModelObservers(){
+        return this.destroyableModelObservers;
     }
 }

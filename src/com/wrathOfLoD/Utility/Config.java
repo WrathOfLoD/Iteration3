@@ -38,6 +38,11 @@ public class Config {
     private static final int ObstacleZLevel = 15;
     private static final int InteractiveItemZLevel = 15;
     private static final int AreaEffectZLevel = 25;
+    private static final int HitBoxZLevel = 30;
+
+    public static int getHitBoxZLevel() {
+        return HitBoxZLevel;
+    }
 
     public static int getEntityZLevel(){
         return EntityZLevel;

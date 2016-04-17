@@ -4,7 +4,7 @@ import com.wrathOfLoD.Models.Entity.Entity;
 import com.wrathOfLoD.Models.Items.Item;
 import com.wrathOfLoD.Models.Map.AreaEffect.AreaEffect;
 import com.wrathOfLoD.Models.Map.Tile;
-import com.wrathOfLoD.Utility.Config;
+import com.wrathOfLoD.Models.RangedEffect.HitBox.HitBox;
 import com.wrathOfLoD.Utility.Position;
 import com.wrathOfLoD.Views.AreaView.AreaView;
 import com.wrathOfLoD.Views.ImageFactory.ImageFactory;
@@ -53,7 +53,7 @@ public class ViewObjectFactory {
 
     public AreaEffectViewObject createAEViewObject(Position pos, AreaEffect ae){
         AreaEffectViewObject aevo = new AreaEffectViewObject(ae, null); //TODO: hook up to sprite map
-        areaView.addViewObject(pos, aevo);
+        areaView.addViewObjectToActiveCV(pos, aevo);
         return aevo;
     }
 
@@ -62,23 +62,36 @@ public class ViewObjectFactory {
         img.add(ImageFactory.generateImage("resources/MapItems/Hammer.png"));
 
         EntityViewObject evo = new EntityViewObject(entity, new ImageAnimation(img));
-        areaView.addViewObject(pos, evo);
+        areaView.addViewObjectToActiveCV(pos, evo);
         entity.registerObserver(evo);
         evo.registerObserver(areaView.getActiveCameraView());
         return evo;
     }
 
-    public MapItemViewObject createMapItemViewObject(Position pos, Item item){
+    public DestroyableModelViewObject createMapItemViewObject(Position pos, Item item){
         List<Image> img = new ArrayList<>();
         String itemName = item.getName();
         img.add(ImageFactory.generateImage("resources/MapItems/" + itemName+ ".png"));
-        MapItemViewObject mivo = new MapItemViewObject(item, new ImageAnimation(img));
+        DestroyableModelViewObject mivo = new DestroyableModelViewObject(item, new ImageAnimation(img));
 
         item.registerObserver(mivo);
-        mivo.registerObserver(areaView.getTileVO(pos));
+        mivo.registerObserver(areaView.getTileVOFromActiveCV(pos));
 
-        areaView.addViewObject(pos, mivo);
+        areaView.addViewObjectToActiveCV(pos, mivo);
         return mivo;
+    }
+
+    public HitBoxViewObject createHitBoxViewObject(Position position, HitBox hitBox){
+        List<Image> img = new ArrayList<>();
+        String hbName = hitBox.getName();
+        img.add(ImageFactory.generateImage("resources/Effects/" + hbName + "/" + hbName + ".png"));
+        HitBoxViewObject hitBoxViewObject = new HitBoxViewObject(hitBox, new ImageAnimation(img));
+
+        hitBox.registerObserver(hitBoxViewObject);
+        hitBoxViewObject.registerObserver(areaView.getTileVOFromActiveCV(position));
+
+        areaView.addViewObjectToActiveCV(position, hitBoxViewObject);
+        return hitBoxViewObject;
     }
 
 }
