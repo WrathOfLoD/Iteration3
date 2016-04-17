@@ -4,6 +4,7 @@ import com.wrathOfLoD.GameLaunching.Vendors.AEVendor;
 import com.wrathOfLoD.GameLaunching.Vendors.EntityVendor;
 import com.wrathOfLoD.GameLaunching.Vendors.ItemVendor;
 import com.wrathOfLoD.Models.Items.EquippableItems.Weapons.SmasherWeapons.TwoHandWeapon;
+import com.wrathOfLoD.Models.Map.AreaEffect.Flow;
 import com.wrathOfLoD.Models.Map.Map;
 import com.wrathOfLoD.Models.Map.MapArea;
 import com.wrathOfLoD.Models.Map.Terrain.Ground;
@@ -11,6 +12,7 @@ import com.wrathOfLoD.Models.Map.Terrain.NullTerrain;
 import com.wrathOfLoD.Models.Map.Terrain.Sky;
 import com.wrathOfLoD.Models.Map.Tile;
 import com.wrathOfLoD.Models.Map.TilePillar;
+import com.wrathOfLoD.Utility.Direction;
 import com.wrathOfLoD.Utility.Position;
 import com.wrathOfLoD.Views.AreaView.AreaView;
 import com.wrathOfLoD.Views.CameraView.CameraView;
@@ -76,6 +78,11 @@ public class LevelFactory {
         ItemVendor.createHammer(mapAreaOne, new Position(1,2,9));
         EntityVendor.createEnemy(new Position(1,2,8), mapAreaOne);
         EntityVendor.createNewSmasherPlayer("Dave",new Position(0,0,8), mapAreaOne);
+
+        mapAreaOne.addAE(new Flow(Direction.SOUTH_EAST, 10), new Position(0,3,9));
+        mapAreaOne.addAE(new Flow(Direction.SOUTH_EAST, 10), new Position(1,3,9));
+        mapAreaOne.addAE(new Flow(Direction.SOUTH_EAST, 10), new Position(2,3,9));
+
         CameraView cameraView1 = new CameraView(mapAreaOne);
         cvm.addCameraView(mapAreaOne, cameraView1);
         areaView.setActiveCameraView(cameraView1);

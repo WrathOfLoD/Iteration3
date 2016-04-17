@@ -32,6 +32,7 @@ public class TimeModel {
         Iterator<Map.Entry<Fuseable, Integer>> fuseableIterator = this.fuseableList.entrySet().iterator();
         while(fuseableIterator.hasNext()){
             Map.Entry<Fuseable, Integer> entry = fuseableIterator.next();
+            entry.setValue(entry.getValue()-1);
             if(entry.getValue() <= 0){
                 deregisterFuseable(entry.getKey());
                 entry.getKey().explode();
