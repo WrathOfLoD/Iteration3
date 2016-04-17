@@ -42,7 +42,6 @@ public class CameraView implements MovableVOObserver{
         this.tilePillarViewObjects = new HashMap<>();
         this.frameWidth = Config.getAreaViewWidth();
         this.frameHeight = Config.getAreaViewHeight();
-        //populateCV();
     }
 
     public void paintComponent(Graphics g){
@@ -84,7 +83,6 @@ public class CameraView implements MovableVOObserver{
 
         for (Item i : t.getItems()){
             vof.createMapItemViewObject(tvo.getPosition(), i);
-            System.out.println("CREATE ITEM GETTING CALLED?");
         }
 
         for (Entity e : t.getEntitiesArray()){

@@ -58,6 +58,7 @@ public class ActionVendor {
         return new MoveAction(KeyEvent.VK_A, move, look);
     }
 
+
     /* Actions related to menu/inventory selection */
     public static Action createSelectUpAction(Selectable selectable) {
         ActionCommand selectUpCommand = ActionCommandVendor.createSelectUpCommand(selectable);
