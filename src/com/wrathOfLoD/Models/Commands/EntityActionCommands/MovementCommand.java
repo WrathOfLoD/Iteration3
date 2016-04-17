@@ -1,10 +1,12 @@
 package com.wrathOfLoD.Models.Commands.EntityActionCommands;
 
 import com.wrathOfLoD.Controllers.InputStates.Action.Action;
+import com.wrathOfLoD.Controllers.InputStates.ActionVendor;
 import com.wrathOfLoD.GameClock.Fuseable;
 import com.wrathOfLoD.GameClock.Tickable;
 import com.wrathOfLoD.GameClock.TimeModel;
 import com.wrathOfLoD.Models.Commands.ActionCommand;
+import com.wrathOfLoD.Models.Commands.ActionCommandVendor;
 import com.wrathOfLoD.Models.Entity.Entity;
 import com.wrathOfLoD.Models.Entity.EntityCanMoveVisitor.CanMoveVisitor;
 import com.wrathOfLoD.Models.LocationTracker.LocationTrackerManager;
@@ -15,7 +17,7 @@ import com.wrathOfLoD.Utility.Position;
 /**
  * Created by icavitt on 4/7/2016.
  */
-public class MovementCommand extends ActionCommand implements Fuseable{
+public class MovementCommand extends ActionCommand implements Fuseable {
     private Entity entity;
     private Position currentPosition;
     private Position destinationPosition;
@@ -42,12 +44,6 @@ public class MovementCommand extends ActionCommand implements Fuseable{
         Position belowPos = new Position(adjacentPos.getQ(), adjacentPos.getR(), adjacentPos.getH()-1);
         //TODO: handle if H=0 already
 
-//
-//        System.out.println("Entity src pos: " + entity.getPosition().getQ() + ", " + entity.getPosition().getR() + ", " + entity.getPosition().getH());
-//        //System.out.println("Entity dest pos: " + destinationPosition.getQ() + ", " + destinationPosition.getR() + ", " + destinationPosition.getH());
-//        System.out.println("Ground level: " + Map.getInstance().getTilePillar(entity.getPosition()).getGroundLevel());
-
-
         if(entity.getPosition().getH()+1 < Map.getInstance().getTilePillar(adjacentPos).getGroundLevel()){
             entity.setInactive();
             return;
@@ -59,10 +55,6 @@ public class MovementCommand extends ActionCommand implements Fuseable{
 
         int entityGroundLevel = entity.getPosition().getH();
         int adjacentGroundLevel = Map.getInstance().getTilePillar(adjacentPos).getGroundLevel();
-
-//        System.out.println("Entity's ground level is " + entityGroundLevel);
-//        System.out.println("Adjacent ground level: " + adjacentGroundLevel);
-
 
         if (adjacentGroundLevel == (entityGroundLevel + 1) && !(entityGroundLevel + 1 > 10)) {
             Map.getInstance().getTile(abovePos).accept(canMoveVisitor);
@@ -78,6 +70,9 @@ public class MovementCommand extends ActionCommand implements Fuseable{
         }
 
 
+        // Will contain the fallCommand (if the entity is going to fall)
+        ActionCommand fallCommand = null;
+
         if(canMoveAbove) {
             if(abovePos.getH() > (entity.getPosition().getH()+1)){
                 entity.setInactive();
@@ -92,8 +87,16 @@ public class MovementCommand extends ActionCommand implements Fuseable{
             destinationPosition = belowPos;
         }
         else{
-            entity.setInactive();
-            return;
+            if (adjacentGroundLevel < entityGroundLevel - 1) {
+                fallCommand = ActionCommandVendor.createFallCommand(entity, entityGroundLevel - adjacentGroundLevel);
+                Position fallPosition = new Position(adjacentPos.getQ(), adjacentPos.getR(), adjacentGroundLevel);
+
+                // TODO: 4/17/16 NEED TO CHECK IF THE FALL POSITION IS MOVABLE VIA THE CANMOVEVISITOR
+                destinationPosition = fallPosition;
+            } else {
+                entity.setInactive();
+                return;
+            }
         }
 
 
@@ -113,7 +116,9 @@ public class MovementCommand extends ActionCommand implements Fuseable{
 
         TimeModel.getInstance().registerFuseable(this, movementTicks);
 
-
+        if (fallCommand != null) {
+            fallCommand.execute();
+        }
     }
 
     @Override
