@@ -63,6 +63,7 @@ public class TilePillarViewObject extends ViewObject{
 	}
 
 	public void addVOToTile(Position pos, ModelViewObject mvo){
+		System.out.println("ADDING " + mvo + " to tile");
 		tileViewObjects.get(pos).addMOVToTile(mvo);
 	}
 
