@@ -11,7 +11,6 @@ import com.wrathOfLoD.Views.ImageFactory.ImageFactory;
 import com.wrathOfLoD.Views.SpriteMap.ImageAnimation;
 import com.wrathOfLoD.Views.SpriteMap.SpriteMap;
 import com.wrathOfLoD.Views.ViewObjects.*;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.awt.*;

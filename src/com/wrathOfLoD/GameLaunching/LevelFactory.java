@@ -3,6 +3,8 @@ package com.wrathOfLoD.GameLaunching;
 import com.wrathOfLoD.GameLaunching.Vendors.AEVendor;
 import com.wrathOfLoD.GameLaunching.Vendors.EntityVendor;
 import com.wrathOfLoD.GameLaunching.Vendors.ItemVendor;
+import com.wrathOfLoD.Models.Ability.Abilities.BlastAbilities.FireballAbility;
+import com.wrathOfLoD.Models.Entity.Character.Avatar;
 import com.wrathOfLoD.Models.Items.EquippableItems.Weapons.SmasherWeapons.TwoHandWeapon;
 import com.wrathOfLoD.Models.Map.AreaEffect.Flow;
 import com.wrathOfLoD.Models.Map.Map;
@@ -76,7 +78,11 @@ public class LevelFactory {
     private void popolateTestMapAreaOne(){
         MapArea mapAreaOne =  Map.getInstance().getMapAreas()[0];
         ItemVendor.createHammer(mapAreaOne, new Position(1,2,9));
-        EntityVendor.createNewSmasherPlayer("Dave",new Position(0,0,8), mapAreaOne);
+        EntityVendor.createNewSummonerPlayer("Dave",new Position(0,0,8), mapAreaOne);
+
+        //TODO: test can remove
+        //Avatar.getInstance().getAbilityManager().addAbilities(new FireballAbility(Avatar.getInstance(),5,10,3,5));
+        Avatar.getInstance().equipAbility1(new FireballAbility(Avatar.getInstance(),5,10,3,5));
 
         mapAreaOne.addAE(new Flow(Direction.SOUTH_EAST, 10), new Position(0,3,9));
         mapAreaOne.addAE(new Flow(Direction.SOUTH_EAST, 10), new Position(1,3,9));

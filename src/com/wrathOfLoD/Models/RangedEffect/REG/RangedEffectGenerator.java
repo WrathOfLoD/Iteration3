@@ -2,6 +2,8 @@ package com.wrathOfLoD.Models.RangedEffect.REG;
 
 import com.wrathOfLoD.GameClock.Fuseable;
 import com.wrathOfLoD.GameClock.TimeModel;
+import com.wrathOfLoD.Models.Map.Map;
+import com.wrathOfLoD.Models.Map.MapArea;
 import com.wrathOfLoD.Models.RangedEffect.HitBox.HitBox;
 import com.wrathOfLoD.Models.RangedEffect.HitBox.HitBoxFactories.HitBoxFactory;
 import com.wrathOfLoD.Utility.ModelConfig;
@@ -44,6 +46,7 @@ public abstract class RangedEffectGenerator implements Fuseable{
             int accuracy = calculateAccuracy(unmodifiedAccuracy, currentDistance);
 
             for(Position p : effectivePos){
+
                 HitBox hb = hitBoxFactory.createHitBox(damage, accuracy, p);
                 ViewObjectFactory.getInstance().createHitBoxViewObject(p, hb);
 

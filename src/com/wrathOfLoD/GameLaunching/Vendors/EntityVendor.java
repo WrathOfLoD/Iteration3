@@ -8,6 +8,9 @@ import com.wrathOfLoD.Models.Occupation.Occupation;
 import com.wrathOfLoD.Models.Occupation.Smasher;
 import com.wrathOfLoD.Models.Occupation.Sneak;
 import com.wrathOfLoD.Models.Occupation.Summoner;
+import com.wrathOfLoD.Models.Skill.SmasherSkillManager;
+import com.wrathOfLoD.Models.Skill.SneakSkillManager;
+import com.wrathOfLoD.Models.Skill.SummonerSkillManager;
 import com.wrathOfLoD.Models.Stats.Stats;
 import com.wrathOfLoD.Utility.Position;
 
@@ -19,7 +22,7 @@ public class EntityVendor {
     public static Avatar createNewSmasherPlayer(String name, Position startingPosition, MapArea mapArea){
         Avatar avatar = Avatar.getInstance();
         Stats stats = new Stats(avatar);
-        avatar.configureAvatar(name, startingPosition, new Smasher());
+        avatar.configureAvatar(name, startingPosition, new Smasher(), new SmasherSkillManager());
         mapArea.addEntity(avatar, startingPosition);
         Map.getInstance().setActiveMapArea(mapArea);
         LocationTrackerManager.getInstance().registerEntity(avatar,mapArea);
@@ -28,7 +31,7 @@ public class EntityVendor {
     public static Avatar createNewSummonerPlayer(String name, Position startingPosition, MapArea mapArea){
         Avatar avatar = Avatar.getInstance();
         Stats stats = new Stats(avatar);
-        avatar.configureAvatar(name, startingPosition, new Summoner());
+        avatar.configureAvatar(name, startingPosition, new Summoner(), new SummonerSkillManager());
         mapArea.addEntity(avatar, startingPosition);
         Map.getInstance().setActiveMapArea(mapArea);
         LocationTrackerManager.getInstance().registerEntity(avatar,mapArea);
@@ -37,7 +40,7 @@ public class EntityVendor {
     public static Avatar createNewSneakPlayer(String name, Position startingPosition, MapArea mapArea){
         Avatar avatar = Avatar.getInstance();
         Stats stats = new Stats(avatar);
-        avatar.configureAvatar(name, startingPosition, new Sneak());
+        avatar.configureAvatar(name, startingPosition, new Sneak(), new SneakSkillManager());
         mapArea.addEntity(avatar, startingPosition);
         Map.getInstance().setActiveMapArea(mapArea);
         LocationTrackerManager.getInstance().registerEntity(avatar,mapArea);
