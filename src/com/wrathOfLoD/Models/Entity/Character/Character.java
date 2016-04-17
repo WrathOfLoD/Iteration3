@@ -2,6 +2,7 @@ package com.wrathOfLoD.Models.Entity.Character;
 
 import com.wrathOfLoD.Models.Ability.AbilityManager;
 import com.wrathOfLoD.Models.Entity.Entity;
+import com.wrathOfLoD.Models.Entity.EntityCanMoveVisitor.CanMoveVisitor;
 import com.wrathOfLoD.Models.Inventory.Equipment;
 import com.wrathOfLoD.Models.Items.EquippableItems.EquippableItem;
 import com.wrathOfLoD.Models.Items.EquippableItems.Weapons.Weapon;
@@ -33,8 +34,8 @@ public abstract class Character extends Entity {
         this.abilityManager.unlockAbilities(getStats().getLevel());
     }
 
-    public Character(String name, Position position, Occupation occupation){
-        super(name,position);
+    public Character(String name, Position position, Occupation occupation, CanMoveVisitor canMoveVisitor){
+        super(name,position,canMoveVisitor);
         this.abilityManager = new AbilityManager(this);
         this.occupation = occupation;
         Weapon defaultWeapon = this.occupation.createWeapon();

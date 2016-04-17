@@ -3,17 +3,15 @@ package com.wrathOfLoD.Models.Map.Terrain;
 import com.wrathOfLoD.VisitorInterfaces.TileVisitor;
 
 /**
- * Created by zach on 4/7/16.
+ * Created by luluding on 4/16/16.
  */
-public class Sky extends Terrain {
-    public Sky() {
+public class NullTerrain extends Terrain{
+    public NullTerrain() {
         super();
-        this.setName("SkyTile");
+        this.setName("");
     }
 
-
-
     public void accept(TileVisitor tv){
-        tv.visitSkyTerrain(this);
+        tv.visitNullTerrain(this);
     }
 }

@@ -73,6 +73,10 @@ public class ViewObjectFactory {
         String itemName = item.getName();
         img.add(ImageFactory.generateImage("resources/MapItems/" + itemName+ ".png"));
         MapItemViewObject mivo = new MapItemViewObject(item, new ImageAnimation(img));
+
+        item.registerObserver(mivo);
+        mivo.registerObserver(areaView.getTileVO(pos));
+
         areaView.addViewObject(pos, mivo);
         return mivo;
     }

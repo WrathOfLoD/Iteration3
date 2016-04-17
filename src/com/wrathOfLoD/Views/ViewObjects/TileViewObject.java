@@ -2,6 +2,7 @@ package com.wrathOfLoD.Views.ViewObjects;
 
 import com.wrathOfLoD.Models.Map.Map;
 import com.wrathOfLoD.Models.Map.Tile;
+import com.wrathOfLoD.Observers.ViewObjectObservers.DestroyableVOObserver;
 import com.wrathOfLoD.Utility.Position;
 import com.wrathOfLoD.Views.SpriteMap.ImageAnimation;
 import javafx.geometry.Pos;
@@ -14,7 +15,7 @@ import java.util.Comparator;
 /**
  * Created by Mitchell on 4/12/2016.
  */
-public class TileViewObject extends ViewObject{
+public class TileViewObject extends ViewObject implements DestroyableVOObserver{
 
 	private Tile tile;
 	private Position pos;
@@ -58,4 +59,8 @@ public class TileViewObject extends ViewObject{
 		return this.pos;
 	}
 
+	@Override
+	public void notifyDestroy(ModelViewObject vo) {
+		removeMOVFromTile(vo);
+	}
 }
