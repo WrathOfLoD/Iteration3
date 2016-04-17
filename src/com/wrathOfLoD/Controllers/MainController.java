@@ -1,6 +1,7 @@
 package com.wrathOfLoD.Controllers;
 
 import com.wrathOfLoD.Controllers.InputStates.InputState;
+import com.wrathOfLoD.Controllers.NPCControllers.Controller;
 import com.wrathOfLoD.Models.Entity.Character.Avatar;
 import com.wrathOfLoD.Views.ViewEngine;
 import com.wrathOfLoD.Views.ViewManager.ViewManager;
@@ -10,7 +11,7 @@ import javax.swing.*;
 /**
  * Created by icavitt on 4/7/2016.
  */
-public class MainController {
+public class MainController extends Controller {
     private static MainController instance = new MainController();
     private Avatar avatar = Avatar.getInstance();
     private InputState avatarState;

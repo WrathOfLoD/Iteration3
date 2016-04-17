@@ -23,11 +23,8 @@ public class DropItemCommand extends ActionCommand {
 
     @Override
     public void execute(){
-        Map map = Map.getInstance();
         Position position = entity.getPosition();
-
-        Tile tile = map.getTile(position);
-        tile.addItem(item);
+        Map.getInstance().addItem(item, position);
 
         // Add item to LTM
         LocationTrackerManager.getInstance().registerItem(item, position);

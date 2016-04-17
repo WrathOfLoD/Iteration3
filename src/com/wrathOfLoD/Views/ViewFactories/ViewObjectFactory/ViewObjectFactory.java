@@ -45,7 +45,9 @@ public class ViewObjectFactory {
     public TileViewObject createTileViewObject(Position pos, Tile tile){
         //TODO: hook up with spriteMap
         List<Image> img = new ArrayList<>();
-        img.add(ImageFactory.generateImage("resources/SpaceRockTile.png"));
+        String terrainName = tile.getTerrain().getName();
+        img.add(ImageFactory.generateImage("resources/" + terrainName + ".png"));
+        //img.add(ImageFactory.generateImage(Config.instance().getInventoryIVOPath()+"hammer"+Config.instance().getImageExtension()));
 
         return new TileViewObject(pos, new ImageAnimation(img));
     }
@@ -69,8 +71,8 @@ public class ViewObjectFactory {
 
     public MapItemViewObject createMapItemViewObject(Position pos, Item item){
         List<Image> img = new ArrayList<>();
-        img.add(ImageFactory.generateImage("resources/EquippedItems/hammer.png"));
-
+//        img.add(ImageFactory.generateImage("resources/EquippedItems/hammer.png"));
+        img.add(ImageFactory.generateImage("resources/Hammer.png"));
         MapItemViewObject mivo = new MapItemViewObject(item, new ImageAnimation(img));
         areaView.addViewObject(pos, mivo);
         return mivo;

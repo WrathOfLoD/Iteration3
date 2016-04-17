@@ -12,13 +12,13 @@ public class EntityTarget extends Target {
 
     public EntityTarget(Entity target) {
         if(target instanceof Avatar){
-            setPriority(1000);
+            setPriority(2);
         }
         else if(target instanceof Pet){
-            setPriority(999);
+            setPriority(2);
         }
         else{
-            setPriority(998);
+            setPriority(1);
         }
         this.target = target;
         setPosition(target.getPosition());

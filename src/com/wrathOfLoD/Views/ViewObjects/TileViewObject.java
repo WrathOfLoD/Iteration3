@@ -30,9 +30,10 @@ public class TileViewObject extends ViewObject{
 	public void paintComponent(Graphics g, Position cameraCenter, Point screenCenter) {
 		//super.paintComponent(g);
 		Point offset = Position.vectorSubtract(this.pos, cameraCenter).positionToXY();
-		this.setOffsetX(offset.x);
-		this.setOffsetY(offset.y);
-		g.drawImage(this.getImage(), this.getOffsetX() + screenCenter.x, this.getOffsetY() + screenCenter.y, 120, 120, null);
+		this.setOffsetX(offset.x-40);
+		this.setOffsetY(offset.y-90);
+		g.drawImage(this.getImage(), this.getOffsetX() + screenCenter.x, this.getOffsetY() + screenCenter.y, 80, 140, null);
+		System.out.println("paint tile?: " + (this.getOffsetX() + screenCenter.x) + " " +  (this.getOffsetY() + screenCenter.y));
 		//System.out.println("paint tile?: " + (this.getOffsetX() + screenCenter.x) + " " +  (this.getOffsetY() + screenCenter.y));
 
 		Collections.sort(modelVOList, new Comparator<ModelViewObject>() {
@@ -43,7 +44,7 @@ public class TileViewObject extends ViewObject{
 		});
 
 		for(ModelViewObject mvo : modelVOList){
-			mvo.paintComponent(g, this.getOffsetX() + screenCenter.x, this.getOffsetY() + screenCenter.y, 120, 120);
+			mvo.paintComponent(g, this.getOffsetX() + screenCenter.x, this.getOffsetY() + screenCenter.y, mvo.getImage().getWidth(null), mvo.getImage().getHeight(null));
 		}
 	}
 

@@ -30,9 +30,6 @@ public class MenuTest {
 
             InputState avatarState = new AvatarState();
 
-
-            System.out.println(mainMenu.getActionSet());
-
             InputState menuState = new MenuState(mainMenu);
             mainController.setActiveState(menuState);
 

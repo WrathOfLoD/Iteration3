@@ -2,6 +2,7 @@ package com.wrathOfLoD.Models.Entity;
 
 import com.wrathOfLoD.Models.Commands.ActionCommand;
 import com.wrathOfLoD.Models.Commands.ActionCommandVendor;
+import com.wrathOfLoD.Models.Commands.EntityActionCommands.DieCommand;
 import com.wrathOfLoD.Models.Commands.EntityActionCommands.DropItemCommand;
 import com.wrathOfLoD.Models.Entity.Character.Character;
 import com.wrathOfLoD.Models.Inventory.Inventory;
@@ -31,6 +32,12 @@ public abstract class Entity implements EntityObservable{
     private Inventory inventory;
     private boolean isActive = false;
     private ArrayList<EntityObserver> entityObservers;
+
+    /**
+     * aggroLevel is 0 for non aggressive entities
+     * 1 for aggressive ones
+     */
+    private int aggroLevel = 0;
 
     public Entity(){
         this("Master Chief", new Position(0,0,0,0));
@@ -121,7 +128,10 @@ public abstract class Entity implements EntityObservable{
 
     public void levelUp() {}
 
-    public void die(){}
+    public void die(){
+        ActionCommand dieCommand = new DieCommand(this);
+        dieCommand.execute();
+    }
 
     public boolean isActive() {
         return isActive;
@@ -154,10 +164,18 @@ public abstract class Entity implements EntityObservable{
     }
 
     //TODO: not sure if this is good
-    public void notifyObserverOnMove(Position src, Position dest, Direction dir, int ticks){
-        for(EntityObserver eo : entityObservers){
+    public void notifyObserverOnMove(Position src, Position dest, Direction dir, int ticks) {
+        for (EntityObserver eo : entityObservers) {
             eo.notifyMove(src, dest, dir, ticks);
         }
+    }
+
+    public void setAggroLevel(int aggro){
+        this.aggroLevel = aggro;
+    }
+
+    public int getAggroLevel(){
+        return aggroLevel;
     }
 }
 

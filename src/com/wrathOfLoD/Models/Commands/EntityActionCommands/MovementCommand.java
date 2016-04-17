@@ -48,13 +48,11 @@ public class MovementCommand extends ActionCommand implements Fuseable{
         entity.setPosition(destinationPosition);
 
 
-        /* TODO: uncomment ... now we have no map.. no maparea... etc
-        //Map.getInstance().removeEntity(entity, currentPosition);
-        //Map.getInstance().addEntity(entity, destinationPosition);
+        Map.getInstance().removeEntity(entity, currentPosition);
+        Map.getInstance().addEntity(entity, destinationPosition);
 
         // Update Entity's location in LocationTrackerManager
-//        LocationTrackerManager.getInstance().updateLocation(entity);
-        */
+        LocationTrackerManager.getInstance().updateLocation(entity);
 
         TimeModel.getInstance().registerFuseable(this, movementTicks);
     }
