@@ -16,21 +16,23 @@ public class PetController extends NotFlyingNPCController {
 
     @Override
     protected void think(Target target) {
-        if( (getControlledEntity().getAggroLevel() == 0 && target instanceof EntityTarget) || target.equals(null)){
-            //idle
-        }
-        else{
-            if(target.getPosition().getHorizontalDist(getControlledEntity().getPosition()) > 1){
-                moveTowardsTarget(target.getPosition());
+        if(target != null){
+            if( (getControlledEntity().getAggroLevel() == 0 && target instanceof EntityTarget)){
+                //idle
             }
             else{
-                if(target instanceof EntityTarget && (!target.getTarget().equals(Avatar.getInstance()))){
-                    attack(target);
+                if(target.getPosition().getHorizontalDist(getControlledEntity().getPosition()) > 1){
+                    moveTowardsTarget(target.getPosition());
                 }
                 else{
-                    moveOn(target);
+                    if(target instanceof EntityTarget && (!target.getTarget().equals(Avatar.getInstance()))){
+                        attack(target);
+                    }
+                    else{
+                        moveOn(target);
+                    }
                 }
             }
         }
-    }
+        }
 }

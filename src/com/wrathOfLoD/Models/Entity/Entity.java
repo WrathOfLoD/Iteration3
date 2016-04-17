@@ -99,9 +99,9 @@ public abstract class Entity implements EntityObservable{
 
     public void move(Direction movingDirection){
         if(!isActive()){
+            setActive();
             ActionCommand acm = ActionCommandVendor.createMovementCommand(this, movingDirection);
             //TODO: may need command's execute to return ticks to set entity inActive and not to notify observer
-            setActive();
             acm.execute();
         }
     }

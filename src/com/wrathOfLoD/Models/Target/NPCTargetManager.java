@@ -1,6 +1,7 @@
 package com.wrathOfLoD.Models.Target;
 
 import com.wrathOfLoD.Models.Entity.Character.NPC;
+import com.wrathOfLoD.Models.Entity.Entity;
 import com.wrathOfLoD.Models.Items.Item;
 
 /**
@@ -19,9 +20,10 @@ public class NPCTargetManager extends TargetManager{
 
     @Override
     public void updateMyList(EntityTarget entityTarget){
-        if(entityTarget.getTarget() instanceof NPC){
+        if(entityTarget.getTarget() instanceof Entity){
             if(entityTarget.getTarget().getAggroLevel() == 0){
                 addToTargetList(entityTarget);
+                updateActiveTarget();
             }
         }
     }

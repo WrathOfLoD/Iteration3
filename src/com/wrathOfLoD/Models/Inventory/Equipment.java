@@ -1,5 +1,7 @@
 package com.wrathOfLoD.Models.Inventory;
 
+import com.wrathOfLoD.Controllers.InputStates.Action.Action;
+import com.wrathOfLoD.Models.ActionsHolder;
 import com.wrathOfLoD.Models.Items.EquippableItems.Armor;
 import com.wrathOfLoD.Models.Items.EquippableItems.Greaves;
 import com.wrathOfLoD.Models.Items.EquippableItems.Helm;
@@ -7,12 +9,15 @@ import com.wrathOfLoD.Models.Items.EquippableItems.Weapons.Weapon;
 import com.wrathOfLoD.Observers.Observable;
 import com.wrathOfLoD.Observers.Observer;
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Created by zach on 4/7/16.
  */
-public class Equipment implements Observable {
+public class Equipment implements Observable, ActionsHolder {
     private final Weapon defaultWeapon;
+    private Set<Action> actionSet = new HashSet<>();
     private Armor armor;
     private Weapon weapon;
     private Greaves greaves;
@@ -133,4 +138,23 @@ public class Equipment implements Observable {
         return false;
     }
 
+    @Override
+    public Set<Action> getActionSet() {
+        return this.actionSet;
+    }
+
+    @Override
+    public void initializeActionSet() {
+
+    }
+
+    @Override
+    public void setActionSet(Set<Action> actionSet) {
+        this.actionSet = actionSet;
+    }
+
+    @Override
+    public void addToActionSet(Action action) {
+        this.actionSet.add(action);
+    }
 }

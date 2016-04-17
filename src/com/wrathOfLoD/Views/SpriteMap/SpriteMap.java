@@ -1,15 +1,15 @@
 package com.wrathOfLoD.Views.SpriteMap;
 
 
-import com.sun.xml.internal.rngom.parse.compact.EOFException;
 import com.wrathOfLoD.Utility.Direction;
+
 import javax.imageio.ImageIO;
-import java.io.File;
-import java.util.List;
-import java.util.ArrayList;
 import java.awt.*;
+import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 /**
  * Created by matthewdiaz on 4/15/16.
