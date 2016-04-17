@@ -59,14 +59,13 @@ public class AreaView extends StaticView implements MapObserver{ //need to chang
 		activeCameraView.paintComponent(g);
 	}
 
-	public void addViewObject(Position pos, ModelViewObject mvo){
+	public void addViewObjectToActiveCV(Position pos, ModelViewObject mvo){
 		activeCameraView.addVOToTile(pos, mvo);
 	}
 
-	public TileViewObject getTileVO(Position pos){
+	public TileViewObject getTileVOFromActiveCV(Position pos){
 		return activeCameraView.getTileVO(pos);
 	}
-
 
 	@Override
 	public void notifyMapAreaChange(MapArea ma) {
