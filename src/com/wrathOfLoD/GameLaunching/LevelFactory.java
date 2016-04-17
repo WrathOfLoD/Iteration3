@@ -79,7 +79,7 @@ public class LevelFactory {
     private void popolateTestMapAreaOne(){
         MapArea mapAreaOne =  Map.getInstance().getMapAreas()[0];
 //        ItemVendor.createHammer(mapAreaOne, new Position(1,2,9));
-        EntityVendor.createEnemy(new Position(1,2,8), mapAreaOne);
+        EntityVendor.createEnemy(new Position(1,2,9), mapAreaOne);
 
         EntityVendor.createNewSmasherPlayer("Dave",new Position(0,0,8), mapAreaOne);
 

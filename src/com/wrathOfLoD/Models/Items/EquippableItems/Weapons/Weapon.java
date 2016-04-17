@@ -20,7 +20,7 @@ public abstract class Weapon extends EquippableItem{
     private int windUp;
 
     public Weapon(){
-        this("default weapon", StatsModifiable.createWeaponBonusStatsModifiable(1), 1, 1);
+        this("default weapon", StatsModifiable.createWeaponBonusStatsModifiable(1), 200, 50);
     }
 
     public Weapon( String name, StatsModifiable statsModifiable, int coolDown, int windUp){
