@@ -25,4 +25,8 @@ public class Trap {
     public boolean isVisible(){
         return visible;
     }
+
+    public void detected(){
+        this.visible = true;
+    }
 }

@@ -12,7 +12,6 @@ import com.wrathOfLoD.Utility.ModelConfig;
 public class BindWoundsAbility extends TimedAbility{
     private SummonerSkillManager ssm;
 
-
     public BindWoundsAbility(Character character, int windup, int coolDown) {
         super(character, windup, coolDown, ModelConfig.getMidManaCost());
         ssm = (SummonerSkillManager) getCharacter().getSkillManager();

@@ -48,6 +48,7 @@ public class Tile {
         areaEffects.add(ae);
     }
 
+
     public void removeEntity(Entity e){
         entities.remove(e);
     }
