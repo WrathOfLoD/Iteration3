@@ -52,7 +52,10 @@ public class ViewObjectFactory {
     }
 
     public AreaEffectViewObject createAEViewObject(Position pos, AreaEffect ae){
-        AreaEffectViewObject aevo = new AreaEffectViewObject(ae, null); //TODO: hook up to sprite map
+        List<Image> img = new ArrayList<>();
+        img.add(ImageFactory.generateImage("resources/WaterTile.png"));
+
+        AreaEffectViewObject aevo = new AreaEffectViewObject(ae, new ImageAnimation(img)); //TODO: hook up to sprite map
         areaView.addViewObjectToActiveCV(pos, aevo);
         return aevo;
     }

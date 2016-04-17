@@ -25,10 +25,12 @@ public class FlowMovementCommand extends ActionCommand implements Fuseable{
     public void execute() {
         TimeModel.getInstance().registerFuseable(this, flowStrength);
         //todo: hook up correctly to View!!
+        System.out.println("FLOW EXECUTE");
     }
 
     @Override
     public void explode() {
+        System.out.println("FLOW EXPLODE?");
         Position nextPos = entity.getPosition().getPosInDir(flowDirection);
         Map.getInstance().removeEntity(entity, entity.getPosition());
         Map.getInstance().addEntity(entity, nextPos);

@@ -27,11 +27,14 @@ public class Flow extends AreaEffect {
 
     private void createFlowMovementCommand(Entity entity){
         ActionCommand flowMovementCommand = new FlowMovementCommand(entity, flowDirection, flowStrength);
+        System.out.println("CREATE FLOW MOVEMNT");
         flowMovementCommand.execute();
     }
 
     @Override
     public void interact(Entity entity) {
         createFlowMovementCommand(entity);
+
+
     }
 }

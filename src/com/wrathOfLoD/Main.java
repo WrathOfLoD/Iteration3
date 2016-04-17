@@ -11,6 +11,8 @@ import com.wrathOfLoD.Models.Items.EquippableItems.Weapons.SmasherWeapons.FistWe
 import com.wrathOfLoD.Models.Items.EquippableItems.Weapons.SmasherWeapons.TwoHandWeapon;
 
 
+import com.wrathOfLoD.Models.Map.AreaEffect.AreaEffect;
+import com.wrathOfLoD.Models.Map.AreaEffect.Flow;
 import com.wrathOfLoD.Models.Map.Map;
 import com.wrathOfLoD.Models.Map.MapArea;
 import com.wrathOfLoD.Models.Map.Terrain.Ground;
@@ -27,6 +29,7 @@ import com.wrathOfLoD.Models.Entity.Character.Avatar;
 import com.wrathOfLoD.Models.Occupation.Smasher;
 import com.wrathOfLoD.Models.Stats.Stats;
 import com.wrathOfLoD.Models.Stats.StatsModifiable;
+import com.wrathOfLoD.Utility.Direction;
 import com.wrathOfLoD.Utility.Position;
 import com.wrathOfLoD.Views.AreaView.AreaView;
 import com.wrathOfLoD.Views.AvatarIESView.AvatarIESView;
@@ -100,7 +103,13 @@ public class Main {
         mapArea1.addEntity(avatar, new Position(0,0,8));
 
         NPC npc1 = new NPC("Hammer", new Position(3,3,9), new Smasher(), new TerrestrialCanMoveVisitor());
-        mapArea1.addEntity(npc1, new Position(3,3,9));
+        //mapArea1.addEntity(npc1, new Position(3,3,9));
+        mapArea1.addAE(new Flow(Direction.SOUTH_EAST, 10), new Position(1,3,9));
+        mapArea1.addAE(new Flow(Direction.SOUTH_EAST, 10), new Position(2,3,9));
+        mapArea1.addAE(new Flow(Direction.SOUTH_EAST, 10), new Position(3,3,9));
+
+
+
 
         //mapArea1.addItem(new TwoHandWeapon("hammer"), new Position(0, 0, 9));
 
