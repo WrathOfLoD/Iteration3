@@ -29,7 +29,7 @@ public class EntityViewObject extends ModelViewObject implements EntityObserver,
     }
 
     public void paintComponent(Graphics g, int x, int y, int width, int height) {
-        g.drawImage(this.getImage(), x+10, y+50, width/4, height/4, this);
+        g.drawImage(this.getImage(), x, y, this.getImage().getWidth(null), this.getImage().getHeight(null), this);
 
     }
 

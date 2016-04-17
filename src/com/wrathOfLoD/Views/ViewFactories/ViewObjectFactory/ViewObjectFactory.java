@@ -60,7 +60,7 @@ public class ViewObjectFactory {
 
     public EntityViewObject createEntityViewObject(Position pos, Entity entity){
         List<Image> img = new ArrayList<>();
-        img.add(ImageFactory.generateImage("resources/EquippedItems/hammer.png"));
+        img.add(ImageFactory.generateImage("resources/MapItems/Hammer.png"));
 
         EntityViewObject evo = new EntityViewObject(entity, new ImageAnimation(img));
         areaView.addViewObject(pos, evo);
@@ -71,8 +71,8 @@ public class ViewObjectFactory {
 
     public MapItemViewObject createMapItemViewObject(Position pos, Item item){
         List<Image> img = new ArrayList<>();
-//        img.add(ImageFactory.generateImage("resources/EquippedItems/hammer.png"));
-        img.add(ImageFactory.generateImage("resources/Hammer.png"));
+        String itemName = item.getName();
+        img.add(ImageFactory.generateImage("resources/MapItems/" + itemName+ ".png"));
         MapItemViewObject mivo = new MapItemViewObject(item, new ImageAnimation(img));
         areaView.addViewObject(pos, mivo);
         return mivo;
