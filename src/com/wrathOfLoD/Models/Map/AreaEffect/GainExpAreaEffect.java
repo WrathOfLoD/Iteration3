@@ -9,7 +9,8 @@ import com.wrathOfLoD.VisitorInterfaces.AreaEffectVisitor;
 public class GainExpAreaEffect extends AreaEffect {
     private int exp;
 
-    public GainExpAreaEffect(int exp){
+    public GainExpAreaEffect(String name, int exp){
+        super(name);
         this.exp = exp;
     }
 

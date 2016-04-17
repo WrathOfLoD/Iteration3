@@ -43,10 +43,11 @@ import com.wrathOfLoD.Views.ViewManager.ViewManager;
 import com.wrathOfLoD.Views.ViewFactories.ViewObjectFactory.*;
 
 import java.awt.*;
+import java.io.IOException;
 
 public class Main {
 
-    public static void main(String[] args) throws InterruptedException {
+    public static void main(String[] args) throws InterruptedException, IOException {
 
 
         GameLauncher gameLauncher = new GameLauncher(new NewGameHelper());
