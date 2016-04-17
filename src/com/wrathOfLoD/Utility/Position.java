@@ -269,8 +269,8 @@ public class Position{
 				return dir;
 			}
 		}
-		System.out.println("Can't find a direction that matches, wtf?!?!");
-		return Direction.CENTER;
+//		System.out.println("Can't find a direction that matches, wtf?!?!");
+		return Direction.SOUTH;
     }
 
     public void setQ(int q) {
