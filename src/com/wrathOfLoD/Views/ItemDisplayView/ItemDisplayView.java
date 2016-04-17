@@ -4,6 +4,7 @@ import com.wrathOfLoD.Models.Items.Item;
 import com.wrathOfLoD.Observers.Observer;
 import com.wrathOfLoD.Views.ContentDisplayStructure.ContentDisplayStructure;
 import com.wrathOfLoD.Views.ContentDisplayStructure.GridStructure;
+import com.wrathOfLoD.Views.ItemDisplayView.Slot.InventorySlot;
 import com.wrathOfLoD.Views.Selectable;
 import com.wrathOfLoD.Views.StaticView;
 import com.wrathOfLoD.Views.View;
@@ -18,41 +19,7 @@ import java.util.ArrayList;
  */
 public class ItemDisplayView extends StaticView implements Observer, Selectable {
 
-    /** Attributes **/
-    private JPanel titlePanel;
     private int currentIndex;
-    //private ContentDisplayStructure cds;
-    private ArrayList<ItemViewObject> ivoList = new ArrayList<>(20); // TODO: 4/12/2016 remove this from here and put in inventory? add slots to inventory?
-    /**End attributes **/
-
-
-    /** Getters and setters **/
-    public int getCurrentIndex() {
-        return currentIndex;
-    }
-    public void setCurrentIndex(int currentIndex) {
-        this.currentIndex = currentIndex;
-    }
-    public JPanel getTitlePanel() {
-        return titlePanel;
-    }
-    public void setTitlePanel(JPanel titlePanel) {
-        this.titlePanel = titlePanel;
-    }
-    public ArrayList<ItemViewObject> getIvoList() {
-        return ivoList;
-    }
-    public void setIvoList(ArrayList<ItemViewObject> ivoList) {
-        this.ivoList = ivoList;
-    }
-    public void addItemViewObject(ItemViewObject ivo) {
-        ivoList.add(ivo);
-    }
-    public ItemViewObject getItemViewObject(int index) {
-        return this.ivoList.get(index);
-    }
-    /** End getters and setters **/
-
 
     @Override
     public void update() {
@@ -66,12 +33,6 @@ public class ItemDisplayView extends StaticView implements Observer, Selectable 
     public ItemDisplayView() {
         setContentDisplayStructure(new GridStructure(8,4));
     }
-
-    public void paintComponent(Graphics g) {
-        super.paintComponent(g);
-    }
-
-
 
 
     /**
@@ -91,6 +52,7 @@ public class ItemDisplayView extends StaticView implements Observer, Selectable 
         //if (prevRow != currRow || this.currentIndex == this.getSvoList().size()) {
 //        if (prevRow != currRow || this.currentIndex == this.getInventorySlots().size()) {
         if (prevRow != currRow || this.currentIndex == this.getContentDisplayStructure().getSlotList().size()) {
+            //getContentDisplayStructure().getSlotList().get(currentIndex).setSelected(false);
             this.currentIndex--;
         }
     }
@@ -158,7 +120,11 @@ public class ItemDisplayView extends StaticView implements Observer, Selectable 
         return getContentDisplayStructure().getSlotList().get(currentIndex).getStaticViewObject().getObject();
     }
 
-
+    public void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        getContentDisplayStructure().getSlotList().stream().forEach(x -> x.setSelected(false));
+        getContentDisplayStructure().getSlotList().get(currentIndex).setSelected(true);
+    }
 
 
 }

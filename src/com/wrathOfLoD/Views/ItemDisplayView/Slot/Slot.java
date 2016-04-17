@@ -38,10 +38,11 @@ public abstract class Slot extends StaticViewObject {
 
     public void paintComponent(Graphics g, int x, int y, int width, int height) {
         g.setColor(Color.WHITE);
-        //g.drawRect(x,y,width,height); //put this in equipment slot?
         if(getStaticViewObject()!=null) {
             getStaticViewObject().paintComponent(g,x,y,width,height);
-            //System.out.println("SLOT PAINTCOMPOENTN GETTING CALLED For " + staticViewObject);
+            if (isSelected()) {
+                g.drawRect(x,y,width,height);
+            }
         }
     }
 

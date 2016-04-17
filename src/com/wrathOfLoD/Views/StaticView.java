@@ -16,14 +16,13 @@ public class StaticView extends View {
     private JPanel titlePanel;
     private ContentDisplayStructure contentDisplayStructure;
 
+    /** Getters and Setters **/
     public StaticView(ContentDisplayStructure cds) {
         setContentDisplayStructure(cds);
     }
-
     public StaticView() { //// TODO: 4/17/2016 maybe delete default constructor
-        setContentDisplayStructure(new GridStructure(8,4));
+       setContentDisplayStructure(new GridStructure(8,4));
     }
-
     public ContentDisplayStructure getContentDisplayStructure() {
         return contentDisplayStructure;
     }
@@ -45,20 +44,19 @@ public class StaticView extends View {
 
 
     public final void generateTitle() {
-        titlePanel = new JPanel();
-        titlePanel.setLayout(new BorderLayout());
-        titlePanel.setBackground(new Color(0f, 0f, 0f, 0f));
-        titlePanel.setPreferredSize(new Dimension(this.getWidth(), 50));
-        JLabel titleLabel = TextLabelFactory.generateTextLabel(getTitle(), 24, Color.white);
-        titlePanel.add(titleLabel, BorderLayout.SOUTH);
-
+        setTitlePanel(new JPanel());
+        getTitlePanel().setLayout(new BorderLayout());
+        getTitlePanel().setBackground(new Color(0f, 0f, 0f, 0f));
+        getTitlePanel().setPreferredSize(new Dimension(this.getWidth(), 50));
+        JLabel titleLabel = TextLabelFactory.generateTextLabel(getTitle(), 30, Color.white);
+        getTitlePanel().add(titleLabel, BorderLayout.SOUTH);
     }
 
 
     public final void initDefaultUI() {
         this.setLayout(new BorderLayout());
         generateTitle();
-        this.add(titlePanel, BorderLayout.NORTH);
+        this.add(getTitlePanel(), BorderLayout.NORTH);
     }
 
 

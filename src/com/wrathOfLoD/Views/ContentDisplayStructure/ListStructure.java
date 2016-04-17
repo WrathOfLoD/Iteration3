@@ -32,13 +32,6 @@ public class ListStructure extends ContentDisplayStructure {
         super(numRows, numCols);
     }
 
-//    public ListStructure(int numRows, int numCols, int displayWidth, int displayHeight, int horOffset, int vertOffset) {
-//        super(numRows, numCols, displayWidth, displayHeight);
-//        setHorOffset(horOffset);
-//        setVertOffset(vertOffset);
-//    }
-
-
     //to generalize, centered list x coord would be 1/2 of width - 1/2 item width
     //but want it to be centered with respect to the column
     //use num cols
@@ -47,6 +40,25 @@ public class ListStructure extends ContentDisplayStructure {
 
 
     @Override
+    public int calculateXCoord(int index, int initialX) {
+        int columnSlotIndex = determineColumn(index);
+        int slotWidth = calculateSlotWidth();
+        int multipleX = 0 + 3*columnSlotIndex; // TODO: 4/13/2016 change to 1 + 3*csi?
+        int xCoord = (slotWidth/2)* multipleX + getHorOffset() + initialX;
+        return xCoord;
+    }
+
+    @Override
+    public int calculateYCoord(int index, int initialY) {
+        int rowSlotIndex = determineRow(index);
+        int multipleY = 0 + 3*rowSlotIndex; // TODO: 4/13/2016 change to 1 + 3*rsi?
+        int slotHeight = calculateSlotHeight();
+        int lineLength = slotHeight/2;
+        int yCoord = ((slotHeight/2) * multipleY) + getVertOffset() + initialY;
+        return yCoord;
+    }
+
+    //@Override
     public int calculateXCoord(int index) {
         int columnSlotIndex = determineColumn(index);
         int slotWidth = calculateSlotWidth();
@@ -55,7 +67,7 @@ public class ListStructure extends ContentDisplayStructure {
         return xCoord;
     }
 
-    @Override
+    //@Override
     public int calculateYCoord(int index) {
         int rowSlotIndex = determineRow(index);
         int multipleY = 0 + 3*rowSlotIndex; // TODO: 4/13/2016 change to 1 + 3*rsi?
@@ -90,7 +102,8 @@ public class ListStructure extends ContentDisplayStructure {
     }
 
     public void paintComponent(Graphics g, int displayWidth, int displayHeight) {
-        super.paintComponent(g, displayWidth, displayHeight);
+        //super.paintComponent(g, displayWidth, displayHeight);
+        super.paintComponent(g);
     }
 
     /*
