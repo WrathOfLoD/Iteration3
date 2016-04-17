@@ -39,12 +39,7 @@ public class LocationTracker {
 
     private void updateTargetManager(List<Entity> eList, List<Item> iList) {}
 
-    /**
-     * @desc Register an item to track
-     * @param item - Item to be tracked
-//     * @param position - Current position
-     */
-    // TODO: 4/9/16 MAY NEED TO ADD A POSITION TO THIS
+
     public void registerItem(Item item, Position pos) {
         this.itemPositionMap.put(item, pos);
 //        this.itemList.add(item);
@@ -69,15 +64,12 @@ public class LocationTracker {
     }
 
 
-    /**
-     * @desc Register an entity to track
-     * @param entity - Entity to be tracked
-//     * @param position - Current position
-     */
+
     public void registerEntity(Entity entity) {
 //        this.entityPositionMap.put(entity, position);
         this.entityList.add(entity);
         entityTargetManagerMap.put(entity, entity.getTargetManager());
+        updateLocation(entity);
     }
 
     public void deregisterEntity(Entity entity) {
