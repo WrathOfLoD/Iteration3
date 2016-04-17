@@ -9,7 +9,8 @@ import com.wrathOfLoD.VisitorInterfaces.AreaEffectVisitor;
 public class TakeDamageAreaEffect extends AreaEffect {
     private int damage;
 
-    public TakeDamageAreaEffect(int damage){
+    public TakeDamageAreaEffect(String name, int damage){
+        super(name);
         this.damage = damage;
     }
 

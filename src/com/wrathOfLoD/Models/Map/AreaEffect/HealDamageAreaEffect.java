@@ -9,7 +9,8 @@ import com.wrathOfLoD.VisitorInterfaces.AreaEffectVisitor;
 public class HealDamageAreaEffect extends AreaEffect {
     private int healAmount;
 
-    public HealDamageAreaEffect(int healAmount){
+    public HealDamageAreaEffect(String name, int healAmount){
+        super(name);
         this.healAmount = healAmount;
     }
 

@@ -26,7 +26,7 @@ public class CharacterCreationMenu extends Menu {
     }
 
     public void initDefaultUI() {
-        setBackgroundImageFileName("resources/Backgrounds/occupationMenu.png");
+        setBackgroundImageFileName("resources/Backgrounds/slothAreaOfEffect.png");
     }
 
     public void paintComponent(Graphics g) {
