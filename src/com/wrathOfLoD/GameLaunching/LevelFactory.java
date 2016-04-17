@@ -92,7 +92,7 @@ public class LevelFactory {
 //        Avatar.getInstance().equipAbility1(new FireballAbility(Avatar.getInstance(),5,10,3,5));
 
 //        ItemVendor.createHammer(mapAreaOne, new Position(1,2,9));
-        EntityVendor.createEnemy(new Position(1,2,9), mapAreaOne);
+//        EntityVendor.createEnemy(new Position(1,2,9), mapAreaOne);
 
 //        EntityVendor.createNewSmasherPlayer("Dave",new Position(0,0,8), mapAreaOne);
         EntityVendor.createNewSmasherPlayer("Dave",new Position(0,0,8), mapAreaOne);
