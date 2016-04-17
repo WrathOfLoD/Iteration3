@@ -11,9 +11,6 @@ import com.wrathOfLoD.Models.LocationTracker.LocationTrackerManager;
 import com.wrathOfLoD.Models.Map.Map;
 import com.wrathOfLoD.Utility.Direction;
 import com.wrathOfLoD.Utility.Position;
-import javafx.geometry.Pos;
-
-import javax.swing.plaf.synth.SynthTextAreaUI;
 
 /**
  * Created by icavitt on 4/7/2016.
@@ -45,37 +42,40 @@ public class MovementCommand extends ActionCommand implements Fuseable{
         Position belowPos = new Position(adjacentPos.getQ(), adjacentPos.getR(), adjacentPos.getH()-1);
         //TODO: handle if H=0 already
 
-
 //
 //        System.out.println("Entity src pos: " + entity.getPosition().getQ() + ", " + entity.getPosition().getR() + ", " + entity.getPosition().getH());
 //        //System.out.println("Entity dest pos: " + destinationPosition.getQ() + ", " + destinationPosition.getR() + ", " + destinationPosition.getH());
 //        System.out.println("Ground level: " + Map.getInstance().getTilePillar(entity.getPosition()).getGroundLevel());
 
 
-
         if(entity.getPosition().getH()+1 < Map.getInstance().getTilePillar(adjacentPos).getGroundLevel()){
             entity.setInactive();
             return;
         }
-        //else if .. > ground Level, drop command
-
 
         //TODO: if h > 10 or h < 0 don't visitTile
         boolean canMoveAbove = false, canMoveAdjacent = false, canMoveBelow = false;
 
-        if(abovePos.getH() < 10) {
+
+        int entityGroundLevel = entity.getPosition().getH();
+        int adjacentGroundLevel = Map.getInstance().getTilePillar(adjacentPos).getGroundLevel();
+
+//        System.out.println("Entity's ground level is " + entityGroundLevel);
+//        System.out.println("Adjacent ground level: " + adjacentGroundLevel);
+
+
+        if (adjacentGroundLevel == (entityGroundLevel + 1) && !(entityGroundLevel + 1 > 10)) {
             Map.getInstance().getTile(abovePos).accept(canMoveVisitor);
             canMoveAbove = canMoveVisitor.canMove();
-        }
+            System.out.println("CANT MOVE UP!");
+        } else if (adjacentGroundLevel == entityGroundLevel) {
+            Map.getInstance().getTile(adjacentPos).accept(canMoveVisitor);
+            canMoveAdjacent = canMoveVisitor.canMove();
 
-        Map.getInstance().getTile(adjacentPos).accept(canMoveVisitor);
-        canMoveAdjacent = canMoveVisitor.canMove();
-
-        if(belowPos.getH() >= Map.getInstance().getTilePillar(adjacentPos).getGroundLevel()) {
+        } else if (adjacentGroundLevel == entityGroundLevel - 1 && entityGroundLevel - 1 >= 0) {
             Map.getInstance().getTile(belowPos).accept(canMoveVisitor);  //TODO: make sure this is not TDAAAAAA!!!!!
             canMoveBelow = canMoveVisitor.canMove();
         }
-
 
 
         if(canMoveAbove) {
