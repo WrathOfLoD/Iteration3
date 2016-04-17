@@ -1,8 +1,10 @@
 package com.wrathOfLoD.Models.Occupation;
 
-import com.wrathOfLoD.Models.Ability.Abilities.BindWoundsAbility;
+import com.wrathOfLoD.Models.Ability.Abilities.DetectTrapAbility;
 import com.wrathOfLoD.Models.Ability.Abilities.PickPocketAbility;
+import com.wrathOfLoD.Models.Ability.Abilities.RemoveTrapAbility;
 import com.wrathOfLoD.Models.Ability.AbilityManager;
+import com.wrathOfLoD.Models.Entity.Character.Character;
 import com.wrathOfLoD.Models.Items.EquippableItems.Weapons.SmasherWeapons.SmasherWeapon;
 import com.wrathOfLoD.Models.Items.EquippableItems.Weapons.SneakWeapons.BackStabWeapon;
 import com.wrathOfLoD.Models.Items.EquippableItems.Weapons.SneakWeapons.SneakWeapon;
@@ -53,7 +55,10 @@ public class Sneak extends Occupation {
 
     public void addAbilities(AbilityManager abilityManager){
         super.addAbilities(abilityManager);
-        //TODO: ADD ABILITIES, CALL SUPER
-        abilityManager.addAbilities(new PickPocketAbility(abilityManager.getCharacter(), 10) );
+        Character character = abilityManager.getCharacter();
+
+        abilityManager.addAbilities(new PickPocketAbility(character, 10));
+        abilityManager.addAbilities(new DetectTrapAbility(character, 10));
+        abilityManager.addAbilities(new RemoveTrapAbility(character, 10));
     }
 }
