@@ -47,7 +47,6 @@ public class ViewObjectFactory {
         List<Image> img = new ArrayList<>();
         String terrainName = tile.getTerrain().getName();
         img.add(ImageFactory.generateImage("resources/" + terrainName + ".png"));
-        //img.add(ImageFactory.generateImage(Config.instance().getInventoryIVOPath()+"hammer"+Config.instance().getImageExtension()));
 
         return new TileViewObject(pos, new ImageAnimation(img));
     }
@@ -59,15 +58,20 @@ public class ViewObjectFactory {
     }
 
     public EntityViewObject createEntityViewObject(Position pos, Entity entity){
-        EntityViewObject evo = new EntityViewObject(entity, null);
+        List<Image> img = new ArrayList<>();
+        img.add(ImageFactory.generateImage("resources/MapItems/Hammer.png"));
+
+        EntityViewObject evo = new EntityViewObject(entity, new ImageAnimation(img));
         areaView.addViewObject(pos, evo);
+        entity.registerObserver(evo);
+        evo.registerObserver(areaView.getActiveCameraView());
         return evo;
     }
 
     public MapItemViewObject createMapItemViewObject(Position pos, Item item){
         List<Image> img = new ArrayList<>();
-//        img.add(ImageFactory.generateImage("resources/EquippedItems/hammer.png"));
-        img.add(ImageFactory.generateImage("resources/Hammer.png"));
+        String itemName = item.getName();
+        img.add(ImageFactory.generateImage("resources/MapItems/" + itemName+ ".png"));
         MapItemViewObject mivo = new MapItemViewObject(item, new ImageAnimation(img));
         areaView.addViewObject(pos, mivo);
         return mivo;

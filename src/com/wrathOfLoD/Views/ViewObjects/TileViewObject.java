@@ -33,8 +33,6 @@ public class TileViewObject extends ViewObject{
 		this.setOffsetX(offset.x-40);
 		this.setOffsetY(offset.y-90);
 		g.drawImage(this.getImage(), this.getOffsetX() + screenCenter.x, this.getOffsetY() + screenCenter.y, 80, 140, null);
-		System.out.println("paint tile?: " + (this.getOffsetX() + screenCenter.x) + " " +  (this.getOffsetY() + screenCenter.y));
-		//System.out.println("paint tile?: " + (this.getOffsetX() + screenCenter.x) + " " +  (this.getOffsetY() + screenCenter.y));
 
 		Collections.sort(modelVOList, new Comparator<ModelViewObject>() {
 			@Override

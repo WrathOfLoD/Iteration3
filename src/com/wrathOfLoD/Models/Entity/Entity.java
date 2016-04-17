@@ -11,14 +11,19 @@ import com.wrathOfLoD.Models.Stats.Stats;
 import com.wrathOfLoD.Models.Stats.StatsModifiable;
 import com.wrathOfLoD.Models.Target.NPCTargetManager;
 import com.wrathOfLoD.Models.Target.TargetManager;
+import com.wrathOfLoD.Observers.ModelObservers.EntityObservable;
+import com.wrathOfLoD.Observers.ModelObservers.EntityObserver;
 import com.wrathOfLoD.Utility.Direction;
 import com.wrathOfLoD.Utility.Position;
 import com.wrathOfLoD.VisitorInterfaces.EntityVisitor;
 
+import java.util.ArrayList;
+import java.util.Iterator;
+
 /**
  * Created by zach on 4/7/16.
  */
-public abstract class Entity {
+public abstract class Entity implements EntityObservable{
     private TargetManager targetManager = new NPCTargetManager();
     private String name;
     private Position position;
@@ -26,6 +31,8 @@ public abstract class Entity {
     private Direction direction;
     private Inventory inventory;
     private boolean isActive = false;
+    private ArrayList<EntityObserver> entityObservers;
+
     /**
      * aggroLevel is 0 for non aggressive entities
      * 1 for aggressive ones
@@ -42,6 +49,7 @@ public abstract class Entity {
         this.inventory = new Inventory();
         this.stats = new Stats(this);
         this.direction = Direction.DOWN_SOUTH;
+        entityObservers = new ArrayList<>();
     }
 
     /***** getter & setter for Entity *******/
@@ -79,6 +87,7 @@ public abstract class Entity {
     public void move(Direction movingDirection){
         if(!isActive()){
             ActionCommand acm = ActionCommandVendor.createMovementCommand(this, movingDirection);
+            //TODO: may need command's execute to return ticks to set entity inActive and not to notify observer
             setActive();
             acm.execute();
         }
@@ -141,6 +150,27 @@ public abstract class Entity {
 
     protected void setTargetManager(TargetManager t){
         targetManager = t;
+    }
+
+    public Iterator<EntityObserver> getEntityObservers(){
+        return entityObservers.iterator();
+    }
+
+    @Override
+    public void registerObserver(EntityObserver eo) {
+        entityObservers.add(eo);
+    }
+
+    @Override
+    public void deregisterObserver(EntityObserver eo) {
+        entityObservers.remove(eo);
+    }
+
+    //TODO: not sure if this is good
+    public void notifyObserverOnMove(Position src, Position dest, Direction dir, int ticks) {
+        for (EntityObserver eo : entityObservers) {
+            eo.notifyMove(src, dest, dir, ticks);
+        }
     }
 
     public void setAggroLevel(int aggro){

@@ -20,6 +20,6 @@ public class MapItemViewObject extends ItemViewObject {
 
     @Override
     public void paintComponent(Graphics g, int x, int y, int width, int height) {
-        g.drawImage(this.getImage(), x, y, width, height, this);
+        g.drawImage(this.getImage(), x, y - 20, width, height, this);
     }
 }
