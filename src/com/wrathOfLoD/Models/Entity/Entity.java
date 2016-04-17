@@ -2,6 +2,7 @@ package com.wrathOfLoD.Models.Entity;
 
 import com.wrathOfLoD.Models.Commands.ActionCommand;
 import com.wrathOfLoD.Models.Commands.ActionCommandVendor;
+import com.wrathOfLoD.Models.Commands.EntityActionCommands.DieCommand;
 import com.wrathOfLoD.Models.Commands.EntityActionCommands.DropItemCommand;
 import com.wrathOfLoD.Models.Entity.Character.Character;
 import com.wrathOfLoD.Models.Inventory.Inventory;
@@ -118,7 +119,10 @@ public abstract class Entity {
 
     public void levelUp() {}
 
-    public void die(){}
+    public void die(){
+        ActionCommand dieCommand = new DieCommand(this);
+        dieCommand.execute();
+    }
 
     public boolean isActive() {
         return isActive;

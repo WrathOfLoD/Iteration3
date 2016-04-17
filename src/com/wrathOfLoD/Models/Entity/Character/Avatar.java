@@ -78,4 +78,10 @@ public class Avatar extends Character implements ActionsHolder {
     public void accept(EntityVisitor ev){
         ev.visitAvatar(this);
     }
+
+    @Override
+    public void die(){
+        super.die();
+        //todo: Notify GameOver!
+    }
 }

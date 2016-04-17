@@ -2,6 +2,7 @@ package com.wrathOfLoD.Models.Commands.EntityActionCommands;
 
 import com.wrathOfLoD.Models.Commands.ActionCommand;
 import com.wrathOfLoD.Models.Entity.Entity;
+import com.wrathOfLoD.Models.LocationTracker.LocationTrackerManager;
 import com.wrathOfLoD.Models.Map.Map;
 
 /**
@@ -16,6 +17,9 @@ public class DieCommand  extends ActionCommand {
     @Override
     public void execute() {
         Map.getInstance().removeEntity(entity,entity.getPosition());
+
+        // Remove entity from the LTM
+        LocationTrackerManager.getInstance().deregisterEntity(entity);
         //todo: notify the view!!
     }
 }
