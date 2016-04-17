@@ -6,6 +6,8 @@ import com.wrathOfLoD.Models.Map.Map;
 import com.wrathOfLoD.Models.Map.MapArea;
 import com.wrathOfLoD.Models.Occupation.Occupation;
 import com.wrathOfLoD.Models.Occupation.Smasher;
+import com.wrathOfLoD.Models.Occupation.Sneak;
+import com.wrathOfLoD.Models.Occupation.Summoner;
 import com.wrathOfLoD.Models.Stats.Stats;
 import com.wrathOfLoD.Utility.Position;
 
@@ -26,7 +28,7 @@ public class EntityVendor {
     public static Avatar createNewSummonerPlayer(String name, Position startingPosition, MapArea mapArea){
         Avatar avatar = Avatar.getInstance();
         Stats stats = new Stats(avatar);
-        avatar.configureAvatar(name, startingPosition, new Smasher());
+        avatar.configureAvatar(name, startingPosition, new Summoner());
         mapArea.addEntity(avatar, startingPosition);
         Map.getInstance().setActiveMapArea(mapArea);
         LocationTrackerManager.getInstance().registerEntity(avatar,mapArea);
@@ -35,7 +37,7 @@ public class EntityVendor {
     public static Avatar createNewSneakPlayer(String name, Position startingPosition, MapArea mapArea){
         Avatar avatar = Avatar.getInstance();
         Stats stats = new Stats(avatar);
-        avatar.configureAvatar(name, startingPosition, new Smasher());
+        avatar.configureAvatar(name, startingPosition, new Sneak());
         mapArea.addEntity(avatar, startingPosition);
         Map.getInstance().setActiveMapArea(mapArea);
         LocationTrackerManager.getInstance().registerEntity(avatar,mapArea);
