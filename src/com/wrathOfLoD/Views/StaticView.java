@@ -1,5 +1,9 @@
 package com.wrathOfLoD.Views;
 
+import com.wrathOfLoD.Views.ContentDisplayStructure.ContentDisplayStructure;
+import com.wrathOfLoD.Views.ContentDisplayStructure.GridStructure;
+import com.wrathOfLoD.Views.ViewFactories.TextLabelFactory;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -8,56 +12,70 @@ import java.awt.*;
  */
 public class StaticView extends View {
 
-    private int viewWidth;
-    private int viewHeight;
-    private JPanel contentPanel;
-    private String backgroundImageFileName;
+    private String title;
+    private JPanel titlePanel;
+    private ContentDisplayStructure contentDisplayStructure;
 
-    public StaticView() {
-    }
-
-    public JPanel getContentPanel() {
-        return contentPanel;
-    }
-    public void setContentPanel(JPanel contentPanel) {
-        this.contentPanel = contentPanel;
-    }
-    public int getViewWidth() {
-        return viewWidth;
-    }
-    public void setViewWidth(int viewWidth) {
-        this.viewWidth = viewWidth;
-    }
-    public int getViewHeight() {
-        return viewHeight;
-    }
-    public void setViewHeight(int viewHeight) {
-        this.viewHeight = viewHeight;
-    }
-    public String getBackgroundImageFileName() {
-        return backgroundImageFileName;
-    }
-    public void setBackgroundImageFileName(String backgroundImageFileName) {
-        this.backgroundImageFileName = backgroundImageFileName;
+    public StaticView(ContentDisplayStructure cds) {
+        setContentDisplayStructure(cds);
     }
 
-    public final void generateImageBackground(String imageName, Graphics g) {
-        ImageIcon itemIcon = new ImageIcon(imageName);
-        Image backgroundImage = itemIcon.getImage();
-        g.drawImage(backgroundImage, 0, 0, this.getWidth(), this.getHeight(),this);
+    public StaticView() { //// TODO: 4/17/2016 maybe delete default constructor
+        setContentDisplayStructure(new GridStructure(8,4));
     }
 
-    public JLabel generateTitleLabel(String title, int fontSize, Color color) {
-        JLabel titleLabel = new JLabel(title);
-        Font font = new Font(titleLabel.getFont().getName(), Font.BOLD, fontSize);
-        titleLabel.setForeground(color);
-        titleLabel.setFont(font);
-        titleLabel.setHorizontalAlignment(SwingConstants.CENTER);
-        return titleLabel;
+    public ContentDisplayStructure getContentDisplayStructure() {
+        return contentDisplayStructure;
     }
+    public void setContentDisplayStructure(ContentDisplayStructure cds) {
+        this.contentDisplayStructure = cds;
+    }
+    public String getTitle() {
+        return title;
+    }
+    public void setTitle(String title) {
+        this.title = title;
+    }
+    public JPanel getTitlePanel() {
+        return titlePanel;
+    }
+    public void setTitlePanel(JPanel titlePanel) {
+        this.titlePanel = titlePanel;
+    }
+
+
+    public final void generateTitle() {
+        titlePanel = new JPanel();
+        titlePanel.setLayout(new BorderLayout());
+        titlePanel.setBackground(new Color(0f, 0f, 0f, 0f));
+        titlePanel.setPreferredSize(new Dimension(this.getWidth(), 50));
+        JLabel titleLabel = TextLabelFactory.generateTextLabel(getTitle(), 24, Color.white);
+        titlePanel.add(titleLabel, BorderLayout.SOUTH);
+
+    }
+
+
+    public final void initDefaultUI() {
+        this.setLayout(new BorderLayout());
+        generateTitle();
+        this.add(titlePanel, BorderLayout.NORTH);
+    }
+
 
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
-        generateImageBackground(backgroundImageFileName, g);
+        /*
+        if(getTitle()==null) {
+            setTitle("");
+        }
+        g.setColor(Color.WHITE);
+        g.setFont(new Font("Bauhaus 93", Font.BOLD, 30));
+        int titleHeight = g.getFontMetrics().getAscent();
+        int titleWidth = g.getFontMetrics().stringWidth(getTitle());
+        int titleX = this.getWidth()/2 - titleWidth/2;
+        int titleY = titleHeight + 10;
+        g.drawString(getTitle(), titleX, titleY);
+        */
     }
+
 }

@@ -1,6 +1,7 @@
 package com.wrathOfLoD.Views.ItemDisplayView;
 
 import com.wrathOfLoD.Models.Inventory.Equipment;
+import com.wrathOfLoD.Observers.Observer;
 import com.wrathOfLoD.Views.ContentDisplayStructure.EquipmentDisplayStructure;
 import com.wrathOfLoD.Views.ItemDisplayView.Slot.EquipmentSlot;
 import com.wrathOfLoD.Views.ViewFactories.ViewObjectFactory.EquippedIVOFactory;
@@ -11,7 +12,7 @@ import java.awt.*;
  * Created by echristiansen on 4/9/2016.
  */
 
-public class EquipmentView extends ItemDisplayView { // TODO: 4/12/2016 might need more specific observer, or to move the implementation to ItemDisplayView
+public class EquipmentView extends ItemDisplayView { // TODO: 4/12/2016 might need more specific observer, or to move the implementation to ItemDisplayView. Might need to extend ItemDisplayView
 
 
     @Override
@@ -72,6 +73,7 @@ public class EquipmentView extends ItemDisplayView { // TODO: 4/12/2016 might ne
 
         public EquipmentView(Equipment equipment) {
             setEquipment(equipment);
+            setTitle("Equipment");
             //getEquipment().addObserver(this);
             fillSlots();
             this.setBackground(new Color(0f, 0f, 0f, 0f));
@@ -97,8 +99,12 @@ public class EquipmentView extends ItemDisplayView { // TODO: 4/12/2016 might ne
 
         public void paintComponent(Graphics g) {
             super.paintComponent(g);
+            int contentWidth = this.getWidth();
+            //int contentHeight = this.getHeight()-getTitlePanel().getHeight();
+            int contentHeight = this.getHeight();
 
-            eds = new EquipmentDisplayStructure(this.getWidth(), this.getHeight());
+            //eds = new EquipmentDisplayStructure(this.getWidth(), this.getHeight());
+            eds = new EquipmentDisplayStructure(contentWidth, contentHeight);
 
             g.setColor(Color.WHITE);
             g.drawLine(this.getWidth()/2, 0, this.getWidth()/2, this.getHeight());

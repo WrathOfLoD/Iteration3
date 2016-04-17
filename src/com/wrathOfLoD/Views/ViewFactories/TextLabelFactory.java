@@ -18,6 +18,7 @@ public class TextLabelFactory {
         Font font = new Font(textLabel.getFont().getName(), Font.BOLD, fontSize);
         textLabel.setForeground(color);
         textLabel.setFont(font);
+        textLabel.setHorizontalAlignment(SwingConstants.CENTER);
         return textLabel;
     }
 }
