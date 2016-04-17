@@ -25,6 +25,11 @@ public abstract class Entity {
     private Direction direction;
     private Inventory inventory;
     private boolean isActive = false;
+    /**
+     * aggroLevel is 0 for non aggressive entities
+     * 1 for aggressive ones
+     */
+    private int aggroLevel = 0;
 
     public Entity(){
         this("Master Chief", new Position(0,0,0,0));
@@ -129,6 +134,14 @@ public abstract class Entity {
 
     protected void setTargetManager(TargetManager t){
         targetManager = t;
+    }
+
+    public void setAggroLevel(int aggro){
+        this.aggroLevel = aggro;
+    }
+
+    public int getAggroLevel(){
+        return aggroLevel;
     }
 }
 
