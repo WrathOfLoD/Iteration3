@@ -26,10 +26,10 @@ public abstract class Ability {
 
 
     public void doAbility(){ //TM
-        if(shouldDoAbility()){
+        //if(shouldDoAbility()){ //TODO: uncomment after done testing
             character.loseMana(manaCost);
             doAbilityHook();
-        }
+        //}
     }
 
 

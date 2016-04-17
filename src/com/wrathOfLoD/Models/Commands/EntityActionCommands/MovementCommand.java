@@ -32,17 +32,20 @@ public class MovementCommand extends ActionCommand implements Fuseable{
 
     @Override
     public void execute() {
-
         currentPosition = entity.getPosition();
         movementTicks = 60 - entity.getStats().getMovement(); //TODO: MAX SPEED - movement speed??
         entity.setDirection(movingDirection);
 
-        /* logic: check 1 tile above entity's direction (if can't move) -> check tile adjacent to entity (if can't move)-> check 1 tile below entity's direction (if can't move-> reject movement*/
+    /* logic: check 1 tile above entity's direction (if can't move) -> check tile adjacent to entity (if can't move)-> check 1 tile below entity's direction (if can't move-> reject movement*/
         Position adjacentPos = currentPosition.getPosInDir(movingDirection);
         Position abovePos = new Position(adjacentPos.getQ(), adjacentPos.getR(), adjacentPos.getH()+1);
         Position belowPos = new Position(adjacentPos.getQ(), adjacentPos.getR(), adjacentPos.getH()-1);
         //TODO: handle if H=0 already
 
+//
+//        System.out.println("Entity src pos: " + entity.getPosition().getQ() + ", " + entity.getPosition().getR() + ", " + entity.getPosition().getH());
+//        //System.out.println("Entity dest pos: " + destinationPosition.getQ() + ", " + destinationPosition.getR() + ", " + destinationPosition.getH());
+//        System.out.println("Ground level: " + Map.getInstance().getTilePillar(entity.getPosition()).getGroundLevel());
 
 
         if(entity.getPosition().getH()+1 < Map.getInstance().getTilePillar(adjacentPos).getGroundLevel()){
@@ -57,8 +60,8 @@ public class MovementCommand extends ActionCommand implements Fuseable{
         int entityGroundLevel = entity.getPosition().getH();
         int adjacentGroundLevel = Map.getInstance().getTilePillar(adjacentPos).getGroundLevel();
 
-        System.out.println("Entity's ground level is " + entityGroundLevel);
-        System.out.println("Adjacent ground level: " + adjacentGroundLevel);
+//        System.out.println("Entity's ground level is " + entityGroundLevel);
+//        System.out.println("Adjacent ground level: " + adjacentGroundLevel);
 
 
         if (adjacentGroundLevel == (entityGroundLevel + 1) && !(entityGroundLevel + 1 > 10)) {
@@ -109,6 +112,8 @@ public class MovementCommand extends ActionCommand implements Fuseable{
         LocationTrackerManager.getInstance().updateLocation(entity);
 
         TimeModel.getInstance().registerFuseable(this, movementTicks);
+
+
     }
 
     @Override

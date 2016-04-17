@@ -101,7 +101,6 @@ public class LocationTracker {
     public void updateLocation(Entity entity) {
         // TODO: 4/15/16 Need to do this for *every* target manager within our entityTargetManagerMap
         //      This is so that entities that aren't moving still get updates from other entities
-
         TargetManager entityTargetManager = this.entityTargetManagerMap.get(entity);
 
         // Iterate over Entity list

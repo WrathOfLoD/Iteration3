@@ -3,6 +3,8 @@ package com.wrathOfLoD.GameLaunching;
 import com.wrathOfLoD.GameLaunching.Vendors.AEVendor;
 import com.wrathOfLoD.GameLaunching.Vendors.EntityVendor;
 import com.wrathOfLoD.GameLaunching.Vendors.ItemVendor;
+import com.wrathOfLoD.Models.Ability.Abilities.BlastAbilities.FireballAbility;
+import com.wrathOfLoD.Models.Entity.Character.Avatar;
 import com.wrathOfLoD.Models.Entity.Character.NPC;
 import com.wrathOfLoD.Models.Entity.EntityCanMoveVisitor.TerrestrialCanMoveVisitor;
 import com.wrathOfLoD.Models.Items.EquippableItems.Weapons.SmasherWeapons.TwoHandWeapon;
@@ -78,11 +80,23 @@ public class LevelFactory {
 
     private void popolateTestMapAreaOne(){
         MapArea mapAreaOne =  Map.getInstance().getMapAreas()[0];
-//        ItemVendor.createHammer(mapAreaOne, new Position(1,2,9));
-        EntityVendor.createNewSmasherPlayer("Dave",new Position(0,0,8), mapAreaOne);
 
-        NPC myNPC = new NPC("Hehe",new Position(1,1,8), new Smasher(), new TerrestrialCanMoveVisitor());
-        mapAreaOne.addEntity(myNPC, new Position(1,1,8));
+        //ItemVendor.createHammer(mapAreaOne, new Position(1,2,9));
+        EntityVendor.createNewSummonerPlayer("Dave",new Position(0,0,8), mapAreaOne);
+
+        //TODO: test can remove
+        //Avatar.getInstance().getAbilityManager().addAbilities(new FireballAbility(Avatar.getInstance(),5,10,3,5));
+        Avatar.getInstance().equipAbility1(new FireballAbility(Avatar.getInstance(),5,10,3,5));
+
+//        ItemVendor.createHammer(mapAreaOne, new Position(1,2,9));
+        EntityVendor.createEnemy(new Position(1,2,9), mapAreaOne);
+
+        EntityVendor.createNewSmasherPlayer("Dave",new Position(0,0,8), mapAreaOne);
+        //EntityVendor.createNewSmasherPlayer("Dave",new Position(0,0,8), mapAreaOne);
+
+
+//        NPC myNPC = new NPC("Hehe",new Position(1,1,8), new Smasher(), new TerrestrialCanMoveVisitor());
+//        mapAreaOne.addEntity(myNPC, new Position(1,1,8));
 //
         mapAreaOne.addAE(new Flow(Direction.SOUTH_EAST, 10), new Position(0,3,9));
         mapAreaOne.addAE(new Flow(Direction.SOUTH_EAST, 10), new Position(1,3,9));
