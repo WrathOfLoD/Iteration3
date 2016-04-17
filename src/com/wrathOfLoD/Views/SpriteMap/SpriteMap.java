@@ -48,10 +48,10 @@ public class SpriteMap {
     }
 
 
-    private List<BufferedImage> createdBufferedImages(File file) throws IOException{
+    public List<BufferedImage> createdBufferedImages(File file) throws IOException{
         BufferedImage bigImg = ImageIO.read(file);
-        final int rows = 4;
-        final int cols = 6;
+        final int rows = 1;
+        final int cols = 9;
         final int width = bigImg.getWidth()/cols;
         final int height = bigImg.getHeight()/rows;
 
@@ -81,6 +81,8 @@ public class SpriteMap {
             if (file.isFile()) {
                 System.out.println(file.getName());
                 List sprites = createdBufferedImages(file);
+
+
 
 //        Files.walk(Paths.get(path)).forEach(filePath -> {
 //            if (Files.isRegularFile(filePath)) {

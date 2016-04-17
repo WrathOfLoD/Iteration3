@@ -12,6 +12,7 @@ import com.wrathOfLoD.Models.Items.EquippableItems.Weapons.SmasherWeapons.TwoHan
 import com.wrathOfLoD.Models.Map.Map;
 import com.wrathOfLoD.Models.Map.MapArea;
 import com.wrathOfLoD.Models.Map.Terrain.Ground;
+import com.wrathOfLoD.Models.Map.Terrain.Sky;
 import com.wrathOfLoD.Models.Map.Tile;
 import com.wrathOfLoD.Models.Map.TilePillar;
 import com.wrathOfLoD.Models.ModelEngine;
@@ -53,15 +54,20 @@ public class Main {
             for(int j = 0; j < 5; j++){ //r
                 TilePillar tilePillar = new TilePillar();
                 for(int k = 0; k < 10; k++){ //h
-                    tilePillar.addTile(k, new Tile(new Ground()));
+                    if (10 - k < j) {
+                        tilePillar.addTile(k, new Tile(new Sky()));
+                    }else {
+                        tilePillar.addTile(k, new Tile(new Ground()));
+                    }
                 }
                 mapArea1.addTilePillar(new Position(i,j,0), tilePillar);
             }
         }
+
         Map.getInstance().addMapArea(mapArea1);
         Map.getInstance().setActiveMapArea(mapArea1);
 
-        //mapArea1.addItem(new TwoHandWeapon("hammer"), new Position(0, 0, 9));
+        mapArea1.addItem(new TwoHandWeapon("hammer"), new Position(0, 0, 9));
 
 
 

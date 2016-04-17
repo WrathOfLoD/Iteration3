@@ -68,6 +68,7 @@ public class CameraView{
                 tpvo.addTileVO(tPos, tvo);
                 //System.out.println("add TVO to TPVO: " + pos.getQ() + " " + pos.getR() + " " + i);
                 populateTile(tiles[i], tvo);
+//                System.out.println("add TVO to TPVO: " + pos.getQ() + " " + pos.getR() + " " + i);
             }
         }
 
