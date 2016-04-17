@@ -59,8 +59,13 @@ public abstract class Character extends Entity {
 
     /********* END Getters and Setters *********/
 
-    public void interact(Entity entity) {}
-    public void interact(InteractiveItem item) {}
+    public void interact(Entity entity) {
+        //you interact with some else
+        entity.doInteraction(this);
+    }
+    public void interact(InteractiveItem item) {
+        item.doInteraction(this);
+    }
 
     public void use(TakeableItem item){
         item.use(this);

@@ -29,10 +29,8 @@ public class FireballAbility extends TimedAbility {
         super(unlockingLevel, character, windup, coolDown, ModelConfig.getMidManaCost());
         this.direction = dir;
         this.totalDistance = totalDistance;
-        this.travelTime = travelTime;
         ssm = (SummonerSkillManager) getCharacter().getSkillManager();
     }
-
 
     @Override
     public void windUpHook(){

@@ -1,7 +1,7 @@
 package com.wrathOfLoD.Models.Items;
 
+import com.wrathOfLoD.Models.Entity.Character.Character;
 import com.wrathOfLoD.Models.Entity.Entity;
-import com.wrathOfLoD.Utility.Position;
 import com.wrathOfLoD.VisitorInterfaces.ItemVisitor;
 
 /**
@@ -13,6 +13,7 @@ public class InteractiveItem extends Item{
 
     @Override
     public void encounter(Entity entity){
+
     }
 
     public void doInteraction(Character c){

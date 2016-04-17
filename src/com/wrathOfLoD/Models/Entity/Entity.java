@@ -110,7 +110,10 @@ public abstract class Entity {
     }
 
 
-    public void doInteraction(Character character) {}
+    public void doInteraction(Character character) {
+        //the entity starts the interaction
+        //what is an interaction?
+    }
 
     public void gainExp(int exp) {
         StatsModifiable expStats = StatsModifiable.createExperienceStatsModifiable(exp);
