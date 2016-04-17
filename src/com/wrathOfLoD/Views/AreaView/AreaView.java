@@ -64,6 +64,10 @@ public class AreaView extends View implements MapObserver{ //need to change to j
 		activeCameraView.addVOToTile(pos, mvo);
 	}
 
+	public TileViewObject getTileVO(Position pos){
+		return activeCameraView.getTileVO(pos);
+	}
+
 
 	@Override
 	public void notifyMapAreaChange(MapArea ma) {

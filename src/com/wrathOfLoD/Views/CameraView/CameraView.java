@@ -103,6 +103,11 @@ public class CameraView implements MovableVOObserver{
         tpvo.addVOToTile(pos, mvo);
     }
 
+    public TileViewObject getTileVO(Position position){
+        TilePillarViewObject tpvo = tilePillarViewObjects.get(position.get2DProjection());
+        return tpvo.getTileVO(position);
+    }
+
     @Override
     public void notifyOnMove(ModelViewObject mvo, Position src, Position dest, Direction dir, int ticks) {
         //TODO: register new active CV with Avatar (MovingVOObservable) ... upon MapArea change

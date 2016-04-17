@@ -54,7 +54,7 @@ public class Main {
         for(int i = 0; i < 4; i++){ //q
             for(int j = 0; j < 5; j++){ //r
                 TilePillar tilePillar = new TilePillar();
-                tilePillar.setGroundLevel(10-j); //Need for movement to work
+                tilePillar.setGroundLevel(10-j); //TODO:Need for movement to work
                 for(int k = 0; k < 10; k++){ //h
                     if (k >= 9 && j < 2) {
                         tilePillar.addTile(k, new Tile(new Sky()));
@@ -91,11 +91,11 @@ public class Main {
         Map.getInstance().setActiveMapArea(mapArea1);
 
 
-        //mapArea1.addItem(new TwoHandWeapon("hammer"), new Position(0, 0, 9));
+        mapArea1.addItem(new TwoHandWeapon("hammer"), new Position(1, 2, 9));
         Avatar avatar = Avatar.getInstance();
         Stats stats = new Stats(avatar);
-        avatar.configureAvatar("Dave", new Position(0,0,9), new Smasher());
-        mapArea1.addEntity(avatar, new Position(0,0,9));
+        avatar.configureAvatar("Dave", new Position(0,0,8), new Smasher());
+        mapArea1.addEntity(avatar, new Position(0,0,8));
 
         //mapArea1.addItem(new TwoHandWeapon("hammer"), new Position(0, 0, 9));
 
