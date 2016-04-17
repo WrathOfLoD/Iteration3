@@ -3,7 +3,7 @@ package com.wrathOfLoD.Models.Items;
 import com.wrathOfLoD.Models.Commands.EntityActionCommands.PickUpItemCommand;
 import com.wrathOfLoD.Models.Entity.Character.Character;
 import com.wrathOfLoD.Models.Entity.Entity;
-import com.wrathOfLoD.Observers.ModelObservers.MapItemObserver;
+import com.wrathOfLoD.Observers.ModelObservers.DestroyableModelObserver;
 import com.wrathOfLoD.VisitorInterfaces.ItemVisitor;
 
 /**
@@ -17,7 +17,7 @@ public abstract class TakeableItem extends Item{
         PickUpItemCommand pickUpItemCommand = new PickUpItemCommand(entity, this);
         pickUpItemCommand.execute();
         System.out.println("PICK UP CALLED?");
-        for(MapItemObserver mio : getMapItemObservers()){
+        for(DestroyableModelObserver mio : getDestroyableModelObservers()){
             mio.notifyDestroy();
         }
     }
