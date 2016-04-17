@@ -75,13 +75,13 @@ public class LevelFactory {
 
     private void popolateTestMapAreaOne(){
         MapArea mapAreaOne =  Map.getInstance().getMapAreas()[0];
-        ItemVendor.createHammer(mapAreaOne, new Position(1,2,9));
+//        ItemVendor.createHammer(mapAreaOne, new Position(1,2,9));
         EntityVendor.createEnemy(new Position(1,2,8), mapAreaOne);
         EntityVendor.createNewSmasherPlayer("Dave",new Position(0,0,8), mapAreaOne);
 
-//        mapAreaOne.addAE(new Flow(Direction.SOUTH_EAST, 10), new Position(0,3,9));
-//        mapAreaOne.addAE(new Flow(Direction.SOUTH_EAST, 10), new Position(1,3,9));
-//        mapAreaOne.addAE(new Flow(Direction.SOUTH_EAST, 10), new Position(2,3,9));
+        mapAreaOne.addAE(new Flow(Direction.SOUTH_EAST, 10), new Position(0,3,9));
+        mapAreaOne.addAE(new Flow(Direction.SOUTH_EAST, 10), new Position(1,3,9));
+        mapAreaOne.addAE(new Flow(Direction.SOUTH_EAST, 10), new Position(2,3,9));
 
         CameraView cameraView1 = new CameraView(mapAreaOne);
         cvm.addCameraView(mapAreaOne, cameraView1);
