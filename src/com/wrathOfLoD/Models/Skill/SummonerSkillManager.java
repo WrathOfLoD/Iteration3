@@ -26,7 +26,6 @@ public class SummonerSkillManager extends SkillManager {
         staff = new Skill(staffLevel);
     }
 
-
     /***** getter & setter for skills *******/
 
     public int getEnchantmentLevel(){

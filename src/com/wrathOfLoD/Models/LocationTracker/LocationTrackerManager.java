@@ -20,7 +20,7 @@ public class LocationTrackerManager {
 
     protected LocationTrackerManager() {
         this.locTrackerMap = new HashMap<MapArea, LocationTracker>();
-        this.activeLocationTracker = null;
+        this.activeLocationTracker = null; //TODO nothing ever sets this to non-null
     }
 
     /**
@@ -39,6 +39,7 @@ public class LocationTrackerManager {
      * @param locationTracker - LocationTracker
      * @param mapArea - MapArea
      */
+	//TODO this method is never called
     public void registerLocationTracker(LocationTracker locationTracker, MapArea mapArea) {
         this.locTrackerMap.put(mapArea, locationTracker);
     }
@@ -59,7 +60,9 @@ public class LocationTrackerManager {
     }
 
     public void updateLocation(Entity e) {
-        this.activeLocationTracker.updateLocation(e);
+		System.out.println("num of location trackers in hash map: " + this.locTrackerMap.values().size());
+		System.out.println("is active location tracker null? " + (this.activeLocationTracker == null));
+		this.activeLocationTracker.updateLocation(e);
     }
     public void updateLocation(Item i, Position position) {
         this.activeLocationTracker.updateLocation(i, position);

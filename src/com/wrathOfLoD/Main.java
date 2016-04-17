@@ -51,12 +51,12 @@ public class Main {
         ItemVendor itemVendor = new ItemVendor();
         MapArea mapArea1 = new MapArea();
 
-        for(int i = 0; i < 5; i++){ //q
+        for(int i = 0; i < 4; i++){ //q
             for(int j = 0; j < 5; j++){ //r
                 TilePillar tilePillar = new TilePillar();
                 tilePillar.setGroundLevel(10-j); //Need for movement to work
                 for(int k = 0; k < 10; k++){ //h
-                    if (10 - k < j) {
+                    if (k >= 9 && j < 2) {
                         tilePillar.addTile(k, new Tile(new Sky()));
                     }else {
                         tilePillar.addTile(k, new Tile(new Ground()));
