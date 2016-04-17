@@ -259,10 +259,43 @@ public class Position{
 
     public static Direction getDirectionFromPostoPos(Position source, Position dest){
         Position vector = vectorSubtract(dest, source);
-		int unitQ = Integer.signum(vector.getQ());
-		int unitR = Integer.signum(vector.getR());
-		int unitS = Integer.signum(vector.getS());
+		int unitQ = vector.getQ();
+		int unitR = vector.getR();
+		int unitS = vector.getS();
 		int unitH = Integer.signum(vector.getH());
+		if(Math.abs(unitQ) >= Math.abs(unitR) && Math.abs(unitQ) >= Math.abs(unitS)){
+			unitQ = Integer.signum(unitQ);
+			if(Math.abs(unitR) >= Math.abs(unitS)){
+				unitR = Integer.signum(unitR);
+				unitS = -1 * (unitQ + unitR);
+			}
+			else{
+				unitS = Integer.signum(unitS);
+				unitR = -1 * (unitQ + unitS);
+			}
+		}
+		else if(Math.abs(unitR) >= Math.abs(unitS)){
+			unitR = Integer.signum(unitR);
+			if(Math.abs(unitQ) >= Math.abs(unitS)){
+				unitQ = Integer.signum(unitQ);
+				unitS = -1 * (unitQ + unitR);
+			}
+			else{
+				unitS = Integer.signum(unitS);
+				unitQ = -1 * (unitR + unitS);
+			}
+		}
+		else{
+			unitS = Integer.signum(unitS);
+			if(Math.abs(unitQ) >= Math.abs(unitR)){
+				unitQ = Integer.signum(unitQ);
+				unitR = -1 * (unitQ + unitS);
+			}
+			else{
+				unitR = Integer.signum(unitR);
+				unitQ = -1 * (unitR + unitS);
+			}
+		}
 		//Position unit = new Position(unitQ, unitR, unitS, unitH);
 		for(Direction dir: Direction.values()){
 			if(dir.matches(unitQ, unitR, unitS, unitH)){
