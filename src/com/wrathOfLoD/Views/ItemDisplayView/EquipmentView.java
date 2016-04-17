@@ -87,7 +87,7 @@ public class EquipmentView extends ItemDisplayView { // TODO: 4/12/2016 might ne
     }
 
     public void fillSlots() {
-        System.out.println("Hlmet is this: " + getEquipment().getHelm().getName());
+        //System.out.println("Hlmet is this: " + getEquipment().getHelm().getName());
         getHelmetSlot().addToSlot(EquippedIVOFactory.generateEquippedIVO(getEquipment().getHelm()));
         getWeaponSlot().addToSlot(EquippedIVOFactory.generateEquippedIVO(getEquipment().getWeapon()));
         getChestSlot().addToSlot(EquippedIVOFactory.generateEquippedIVO(getEquipment().getArmor()));
