@@ -1,5 +1,7 @@
 package com.wrathOfLoD.Models.Occupation;
 
+import com.wrathOfLoD.Models.Ability.Abilities.BindWoundsAbility;
+import com.wrathOfLoD.Models.Ability.Abilities.PickPocketAbility;
 import com.wrathOfLoD.Models.Ability.AbilityManager;
 import com.wrathOfLoD.Models.Items.EquippableItems.Weapons.SmasherWeapons.SmasherWeapon;
 import com.wrathOfLoD.Models.Items.EquippableItems.Weapons.SneakWeapons.BackStabWeapon;
@@ -52,5 +54,6 @@ public class Sneak extends Occupation {
     public void addAbilities(AbilityManager abilityManager){
         super.addAbilities(abilityManager);
         //TODO: ADD ABILITIES, CALL SUPER
+        abilityManager.addAbilities(new PickPocketAbility(abilityManager.getCharacter(), 10) );
     }
 }

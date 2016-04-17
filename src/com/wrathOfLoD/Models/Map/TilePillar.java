@@ -101,6 +101,11 @@ public class TilePillar{
 		tile.addAE(ae);
 	}
 
+	public  void addTrap(Trap trap, Position pos){
+		Tile tile = getTile(pos);
+		tile.setTrap(trap);
+	}
+
 	public void removeEntity(Entity entity, Position pos){
 		Tile tile = getTile(pos);
 		tile.removeEntity(entity);

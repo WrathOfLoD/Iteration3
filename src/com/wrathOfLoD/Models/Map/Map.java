@@ -105,6 +105,10 @@ public class Map implements MapObservable{
 		this.activeMapArea.addItem(item, pos);
 	}
 
+	public void addTrap(Trap trap, Position pos){
+		this.activeMapArea.addTrap(trap, pos);
+	}
+
 	public void addAE(AreaEffect ae, Position pos){
 		this.activeMapArea.addAE(ae, pos);
 	}
@@ -117,13 +121,13 @@ public class Map implements MapObservable{
 		this.activeMapArea.removeItem(item, pos);
 	}
 
+	public void removeTrap( Position pos) { this.activeMapArea.removeTrap(pos);}
+
 	public void removeAE(AreaEffect ae, Position pos){
 		this.activeMapArea.removeAE(ae, pos);
 	}
 
-	public void Trap(Position pos){
-		this.activeMapArea.removeTrap(pos);
-	}
+
 	/********* END Forward to tile ************/
 }
 

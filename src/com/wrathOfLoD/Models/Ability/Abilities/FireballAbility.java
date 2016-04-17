@@ -12,22 +12,19 @@ import com.wrathOfLoD.Utility.ModelConfig;
  * Created by zach on 4/7/16.
  */
 public class FireballAbility extends TimedAbility {
-    private Direction direction;
     private int totalDistance;
     private int travelTime;
     private SummonerSkillManager ssm;
 
-    public FireballAbility(Character character, int windup, int coolDown, Direction dir, int totalDistance, int travelTime) {
+    public FireballAbility(Character character, int windup, int coolDown, int totalDistance, int travelTime) {
         super(character, windup, coolDown, ModelConfig.getMidManaCost());
-        this.direction = dir;
         this.totalDistance = totalDistance;
         this.travelTime = travelTime;
         ssm = (SummonerSkillManager) getCharacter().getSkillManager();
     }
 
-    public FireballAbility(int unlockingLevel, Character character, int windup,int coolDown, Direction dir, int totalDistance){
+    public FireballAbility(int unlockingLevel, Character character, int windup,int coolDown, int totalDistance){
         super(unlockingLevel, character, windup, coolDown, ModelConfig.getMidManaCost());
-        this.direction = dir;
         this.totalDistance = totalDistance;
         ssm = (SummonerSkillManager) getCharacter().getSkillManager();
     }

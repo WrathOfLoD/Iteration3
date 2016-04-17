@@ -113,6 +113,11 @@ public class MapArea{
 		pillar.addAE(ae, pos);
 	}
 
+	public void addTrap(Trap trap, Position pos){
+		TilePillar pillar = getTilePillar(pos);
+		pillar.addTrap(trap, pos);
+	}
+
 	public void removeEntity(Entity entity, Position pos){
 		TilePillar pillar = getTilePillar(pos);
 		pillar.removeEntity(entity, pos);

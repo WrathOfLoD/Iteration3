@@ -3,6 +3,7 @@ package com.wrathOfLoD.Models.Occupation;
 import com.wrathOfLoD.Models.Ability.Abilities.Ability;
 import com.wrathOfLoD.Models.Ability.Abilities.BindWoundsAbility;
 import com.wrathOfLoD.Models.Ability.AbilityManager;
+import com.wrathOfLoD.Models.Entity.Character.Character;
 import com.wrathOfLoD.Models.Items.EquippableItems.Weapons.SmasherWeapons.SmasherWeapon;
 import com.wrathOfLoD.Models.Items.EquippableItems.Weapons.SneakWeapons.SneakWeapon;
 import com.wrathOfLoD.Models.Items.EquippableItems.Weapons.SummonerWeapons.SummonerWeapon;
@@ -30,14 +31,17 @@ public abstract class Occupation {
 
     public abstract Weapon createWeapon();
 
-    public void levelUp(Stats stats) {}
+    public void levelUp(Stats stats) {
+
+    }
 
     protected void setStatsModifiable(StatsModifiable newStatsModifiable){
         this.statsModifiable = newStatsModifiable;
     }
 
     public void addAbilities(AbilityManager abilityManager){
+        Character character = abilityManager.getCharacter();
         //TODO: ADD ABILITIES
-        //abilityManager.addAbilities(new BindWoundsAbility(1));
+        abilityManager.addAbilities(new BindWoundsAbility(character, 10, 5) );
     }
 }

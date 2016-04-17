@@ -142,7 +142,9 @@ public abstract class Entity implements EntityObservable{
         getStats().modifyStats(expStats);
     }
 
-    public void levelUp() {}
+    public void levelUp() {
+        //// TODO: check if this is correct!!!
+    }
 
     public void die(){
         ActionCommand dieCommand = new DieCommand(this);
