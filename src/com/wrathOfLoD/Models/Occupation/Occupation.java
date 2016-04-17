@@ -42,6 +42,7 @@ public abstract class Occupation {
     public void addAbilities(AbilityManager abilityManager){
         Character character = abilityManager.getCharacter();
         //TODO: ADD ABILITIES
-        abilityManager.addAbilities(new BindWoundsAbility(character, 10, 5) );
+        //NOTE: windup is shorter than cooldown is inclusive
+        abilityManager.addAbilities(new BindWoundsAbility(character, 5, 10) );
     }
 }
