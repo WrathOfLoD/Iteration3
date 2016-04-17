@@ -4,6 +4,8 @@ import com.wrathOfLoD.Models.Inventory.Inventory;
 import com.wrathOfLoD.Models.Items.Item;
 import com.wrathOfLoD.Models.Items.TakeableItem;
 import com.wrathOfLoD.Views.ContentDisplayStructure.ContentDisplayStructure;
+import com.wrathOfLoD.Views.ItemDisplayView.Slot.InventorySlot;
+import com.wrathOfLoD.Views.ItemDisplayView.Slot.Slot;
 import com.wrathOfLoD.Views.ViewFactories.ViewObjectFactory.InventoryIVOFactory;
 import com.wrathOfLoD.Views.Selectable;
 import com.wrathOfLoD.Views.ViewObjects.InventoryItemViewObject;
@@ -20,10 +22,13 @@ public class InventoryView extends ItemDisplayView /*implements Selectable*/ { /
     private int currentIndex;
     private Inventory inventory;
 
-    /**Getters and Setters **/
+    /**
+     * Getters and Setters
+     **/
     public Inventory getInventory() {
         return inventory;
     }
+
     public void setInventory(Inventory inventory) {
         this.inventory = inventory;
         getInventory().registerObserver(this);
@@ -39,7 +44,7 @@ public class InventoryView extends ItemDisplayView /*implements Selectable*/ { /
     }
 
 
-      public InventoryView(Inventory inventory, ContentDisplayStructure contentDisplayStructure) {
+    public InventoryView(Inventory inventory, ContentDisplayStructure contentDisplayStructure) {
         setContentDisplayStructure(contentDisplayStructure);
         setInventory(inventory);
         //initializeInventoryView(); // TODO: 4/17/2016 this was in the
@@ -48,7 +53,7 @@ public class InventoryView extends ItemDisplayView /*implements Selectable*/ { /
         this.setBackground(new Color(0f, 0f, 0f, 0f));
         add(getContentDisplayStructure(), BorderLayout.CENTER);
 
-      }
+    }
 
     private void initializeInventoryView() { //may need to edit...only works if we maintain the idea that an inventory view must be initialized with an inventory
         InventoryItemViewObject itemViewObject;
@@ -81,6 +86,7 @@ public class InventoryView extends ItemDisplayView /*implements Selectable*/ { /
         int initialY = this.getTitlePanel().getHeight();
         getContentDisplayStructure().paintComponent(g, initialX, initialY, structureWidth, structureHeight); //calls cds paint, which calls slot paint, which paints the item
     }
+}
 
 
 

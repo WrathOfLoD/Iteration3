@@ -18,6 +18,7 @@ public class MapItemViewObject extends ModelViewObject {
     public Item getItem() {
         return item;
     }
+
     public void setItem(Item item) {
         this.item = item;
     }
@@ -26,9 +27,17 @@ public class MapItemViewObject extends ModelViewObject {
         super(Config.getTakeableItemZLevel()); //zLevel
         setItem(item);
         initializeImage(getItem());
-    public MapItemViewObject(Item item, ImageAnimation imageAnimation) {
-        super(item);
-        setImage(imageAnimation.getFrame());
+    }
+
+        public MapItemViewObject(Item item, ImageAnimation imageAnimation) {
+            setItem(item);
+            setImage(imageAnimation.getFrame());
+        }
+
+    public void initializeImage(Item item) {
+        //setImage(ImageFactory.generateImage(Config.instance().getIVOPath()+item.getName()+Config.instance().getImageExtension()));
+        setImage(ImageFactory.generateImage(Config.instance().getInventoryIVOPath() + item.getName() + Config.instance().getImageExtension())); //edit: testing. shouldn't be using this path
+        System.out.println("initalizeImage is getting called for : " + item.getName() + "!!");
     }
 
     @Override
@@ -37,3 +46,4 @@ public class MapItemViewObject extends ModelViewObject {
     }
 
 }
+
