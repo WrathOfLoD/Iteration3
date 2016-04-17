@@ -7,10 +7,21 @@ import com.wrathOfLoD.Views.ImageFactory.ImageFactory;
 /**
  * Created by echristiansen on 4/9/2016.
  */
-public class MapItemViewObject extends ItemViewObject {
+public class MapItemViewObject extends ModelViewObject {
+
+    private Item item;
+
+    public Item getItem() {
+        return item;
+    }
+    public void setItem(Item item) {
+        this.item = item;
+    }
 
     public MapItemViewObject(Item item) {
-        super(item);
+        super(Config.getTakeableItemZLevel()); //zLevel
+        setItem(item);
+        initializeImage(getItem());
     }
 
     public void initializeImage(Item item) {

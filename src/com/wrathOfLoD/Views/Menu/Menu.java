@@ -7,6 +7,7 @@ import com.wrathOfLoD.Views.ContentDisplayStructure.MenuListStructure;
 import com.wrathOfLoD.Views.Selectable;
 import com.wrathOfLoD.Views.StaticView;
 
+import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -15,10 +16,18 @@ import java.util.Set;
 /**
  * Created by zach on 4/16/16.
  */
-public abstract class Menu extends StaticView implements ActionsHolder, Selectable {
+public abstract class Menu extends JPanel implements ActionsHolder, Selectable { //edit: used to extend StaticView
     private int currentIndex = 0;
     private ArrayList<MenuItem> menuItems = new ArrayList<>();
     private Set<Action> actionSet = new HashSet<>();
+    private String backgroundImageFileName;
+
+    public String getBackgroundImageFileName() {
+        return backgroundImageFileName;
+    }
+    public void setBackgroundImageFileName(String backgroundImageFileName) {
+        this.backgroundImageFileName = backgroundImageFileName;
+    }
 
     public Menu() {
         this.initializeActionSet();
@@ -110,7 +119,14 @@ public abstract class Menu extends StaticView implements ActionsHolder, Selectab
 
     }
 
+    public final void generateImageBackground(String imageName, Graphics g) {
+        ImageIcon itemIcon = new ImageIcon(imageName);
+        Image backgroundImage = itemIcon.getImage();
+        g.drawImage(backgroundImage, 0, 0, this.getWidth(), this.getHeight(),this);
+    }
+
     public void paintMenuItems(Graphics g, MenuListStructure mls, int menuItemHeight, int additionalVerticalOffset) {
+        generateImageBackground(backgroundImageFileName, g);
         int index = 0;
         for (MenuItem menuItem: this.getMenuItems()) {
             menuItem.setIsSelected(false);

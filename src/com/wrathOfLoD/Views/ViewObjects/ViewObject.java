@@ -11,7 +11,7 @@ import java.util.Collection;
  */
 public abstract class ViewObject extends JPanel {
 
-	protected static final double TILE_THICKNESS = 5.0;
+	protected static final double TILE_THICKNESS = 5.0; // TODO: 4/17/2016 this should not be in ViewObject
 
     private Image image;
     private Collection<ImageAnimation> animations;

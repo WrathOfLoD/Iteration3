@@ -1,11 +1,13 @@
 package com.wrathOfLoD.Views.StatsView;
 
+import com.wrathOfLoD.Views.ViewObjects.StaticViewObject;
+
 import java.awt.*;
 
 /**
  * Created by echristiansen on 4/13/2016.
  */
-public class StatsViewObject {
+public class StatsViewObject extends StaticViewObject {
     private String statName;
     private int statValue; // TODO: 4/13/2016 int or string?
     private String statString;
@@ -42,7 +44,9 @@ public class StatsViewObject {
         return statString;
     }
 
-    public void paintComponent(Graphics g, int x, int y) {
+    @Override
+    public void paintComponent(Graphics g, int x, int y, int width, int height) {
         g.drawString(getStatString(), x, y);
     }
+
 }

@@ -10,6 +10,7 @@ import com.wrathOfLoD.Utility.RenderPositionComparator;
 import com.wrathOfLoD.Views.CameraView.CameraView;
 import com.wrathOfLoD.Views.CameraView.CameraViewManager;
 import com.wrathOfLoD.Views.StaticView;
+import com.wrathOfLoD.Views.View;
 import com.wrathOfLoD.Views.ViewObjects.ModelViewObject;
 import com.wrathOfLoD.Views.ViewObjects.TilePillarViewObject;
 import com.wrathOfLoD.Views.ViewObjects.TileViewObject;
@@ -21,7 +22,7 @@ import java.util.List;
 /**
  * Created by echristiansen on 4/8/2016.
  */
-public class AreaView extends StaticView implements MapObserver{ //need to change to just extending View, perhaps
+public class AreaView extends View implements MapObserver{ //need to change to just extending View, perhaps
 
     public static final int WIDTH = Config.instance().getAreaViewWidth();
     public static final int HEIGHT = Config.instance().getAreaViewHeight();

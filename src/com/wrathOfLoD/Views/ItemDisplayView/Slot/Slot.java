@@ -1,6 +1,7 @@
 package com.wrathOfLoD.Views.ItemDisplayView.Slot;
 
 import com.wrathOfLoD.Views.ViewObjects.ItemViewObject;
+import com.wrathOfLoD.Views.ViewObjects.StaticViewObject;
 
 import javax.swing.*;
 import java.awt.*;
@@ -8,34 +9,39 @@ import java.awt.*;
 /**
  * Created by echristiansen on 4/11/2016.
  */
-public abstract class Slot {
-    private ItemViewObject item;
+public abstract class Slot extends StaticViewObject {
 
-    public ItemViewObject getItem() {
-        return item;
+    private StaticViewObject staticViewObject;
+    private boolean isSelected;
+
+    public StaticViewObject getStaticViewObject() {
+        return staticViewObject;
     }
-    public void setItem(ItemViewObject item) {
-        this.item = item;
+    public void setStaticViewObject(StaticViewObject staticViewObject) {
+        this.staticViewObject = staticViewObject;
+    }
+    public boolean isSelected() {
+        return isSelected;
+    }
+    public void setSelected(boolean selected) {
+        isSelected = selected;
     }
 
-    public Slot(ItemViewObject item) {
-        addToSlot(item);
-    }
 
-
-    public void addToSlot(ItemViewObject item) {
-        setItem(item);
+    public void addToSlot(StaticViewObject staticViewObject) {
+        setStaticViewObject(staticViewObject);
     }
 
     public void removeFromSlot() {
-        setItem(null);
+        setStaticViewObject(null);
     }
 
     public void paintComponent(Graphics g, int x, int y, int width, int height) {
         g.setColor(Color.WHITE);
-        g.drawRect(x,y,width,height);
-        if(getItem()!=null) {
-            getItem().paintComponent(g,x,y,width,height);
+        //g.drawRect(x,y,width,height); //put this in equipment slot?
+        if(getStaticViewObject()!=null) {
+            getStaticViewObject().paintComponent(g,x,y,width,height);
+            //System.out.println("SLOT PAINTCOMPOENTN GETTING CALLED For " + staticViewObject);
         }
     }
 
