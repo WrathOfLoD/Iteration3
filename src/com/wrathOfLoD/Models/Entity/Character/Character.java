@@ -85,8 +85,11 @@ public abstract class Character extends Entity {
     }
 
     public void attack() {
-        Weapon currentWeaponEquip = this.equipment.getWeapon();
-        currentWeaponEquip.attack(this, this.skillManager);
+        if(!isActive()){
+            setActive();
+            Weapon currentWeaponEquip = this.equipment.getWeapon();
+            currentWeaponEquip.attack(this, this.skillManager);
+        }
     }
 
     public void levelUp(){

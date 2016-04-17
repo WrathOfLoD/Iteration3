@@ -159,11 +159,13 @@ public class NotFlyingNPCController extends NPCController{
                 break;
         }
         getControlledEntity().setDirection(dir);
+        System.out.println("ATTACKING");
         getControlledEntity().attack();
     }
 
     @Override
     protected void moveOn(Target target) {
+
         moveTowardsTarget(target.getPosition());
     }
 }
