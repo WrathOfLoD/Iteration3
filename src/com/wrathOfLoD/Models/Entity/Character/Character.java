@@ -67,6 +67,7 @@ public abstract class Character extends Entity {
 
     /********* END Getters and Setters *********/
 
+    //NOTE: interact is only for dialog!!! attack() is for attacking
     public void interact(Entity entity) {
         //you interact with some else
         entity.doInteraction(this);

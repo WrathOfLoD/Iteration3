@@ -100,6 +100,7 @@ public class MapArea{
 	/********** Forward to Tile ***************/
 	public void addEntity(Entity entity, Position pos){
 		TilePillar pillar = getTilePillar(pos);
+		System.out.println("ADding entity to position: " + pos.getH());
 		pillar.addEntity(entity, pos);
 	}
 

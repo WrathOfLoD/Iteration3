@@ -5,6 +5,8 @@ import com.wrathOfLoD.GameLaunching.Vendors.EntityVendor;
 import com.wrathOfLoD.GameLaunching.Vendors.ItemVendor;
 import com.wrathOfLoD.Models.Ability.Abilities.BlastAbilities.FireballAbility;
 import com.wrathOfLoD.Models.Entity.Character.Avatar;
+import com.wrathOfLoD.Models.Entity.Character.NPC;
+import com.wrathOfLoD.Models.Entity.EntityCanMoveVisitor.TerrestrialCanMoveVisitor;
 import com.wrathOfLoD.Models.Items.EquippableItems.Weapons.SmasherWeapons.TwoHandWeapon;
 import com.wrathOfLoD.Models.Map.AreaEffect.Flow;
 import com.wrathOfLoD.Models.Map.Map;
@@ -14,6 +16,7 @@ import com.wrathOfLoD.Models.Map.Terrain.NullTerrain;
 import com.wrathOfLoD.Models.Map.Terrain.Sky;
 import com.wrathOfLoD.Models.Map.Tile;
 import com.wrathOfLoD.Models.Map.TilePillar;
+import com.wrathOfLoD.Models.Occupation.Smasher;
 import com.wrathOfLoD.Utility.Direction;
 import com.wrathOfLoD.Utility.Position;
 import com.wrathOfLoD.Views.AreaView.AreaView;
@@ -77,13 +80,21 @@ public class LevelFactory {
 
     private void popolateTestMapAreaOne(){
         MapArea mapAreaOne =  Map.getInstance().getMapAreas()[0];
-        ItemVendor.createHammer(mapAreaOne, new Position(1,2,9));
+
+        //ItemVendor.createHammer(mapAreaOne, new Position(1,2,9));
         EntityVendor.createNewSummonerPlayer("Dave",new Position(0,0,8), mapAreaOne);
 
         //TODO: test can remove
         //Avatar.getInstance().getAbilityManager().addAbilities(new FireballAbility(Avatar.getInstance(),5,10,3,5));
         Avatar.getInstance().equipAbility1(new FireballAbility(Avatar.getInstance(),5,10,3,5));
 
+//        ItemVendor.createHammer(mapAreaOne, new Position(1,2,9));
+        //EntityVendor.createNewSmasherPlayer("Dave",new Position(0,0,8), mapAreaOne);
+
+
+        NPC myNPC = new NPC("Hehe",new Position(1,1,8), new Smasher(), new TerrestrialCanMoveVisitor());
+        mapAreaOne.addEntity(myNPC, new Position(1,1,8));
+//
         mapAreaOne.addAE(new Flow(Direction.SOUTH_EAST, 10), new Position(0,3,9));
         mapAreaOne.addAE(new Flow(Direction.SOUTH_EAST, 10), new Position(1,3,9));
         mapAreaOne.addAE(new Flow(Direction.SOUTH_EAST, 10), new Position(2,3,9));
@@ -107,7 +118,6 @@ public class LevelFactory {
         for(int i = 0; i < 4; i++){ //q
             for(int j = 0; j < 5; j++){ //r
                 TilePillar tilePillar = new TilePillar();
-                tilePillar.setGroundLevel(10-j); //TODO:Need for movement to work
                 for(int k = 0; k < 10; k++){ //h
                     if (k >= 9 && j < 2) {
                         tilePillar.addTile(k, new Tile(new Sky()));
@@ -118,7 +128,6 @@ public class LevelFactory {
                 mapArea1.addTilePillar(new Position(i,j,0), tilePillar);
 
                 if(j == 4){
-                    tilePillar.setGroundLevel(4);
                     for(int k = 5; k < 10; k++){ //h
                         tilePillar.addTile(k, new Tile(new Sky()));
                     }

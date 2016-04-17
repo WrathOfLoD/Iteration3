@@ -46,12 +46,14 @@ public abstract class RangedEffectGenerator implements Fuseable{
             int accuracy = calculateAccuracy(unmodifiedAccuracy, currentDistance);
 
             for(Position p : effectivePos){
+                System.out.println("HB POS: " + p.getQ() + " " + p.getR() + " " + p.getH());
+                if(Map.getInstance().hasTileAt(p)){
+                    HitBox hb = hitBoxFactory.createHitBox(damage, accuracy, p);
+                    ViewObjectFactory.getInstance().createHitBoxViewObject(p, hb);
 
-                HitBox hb = hitBoxFactory.createHitBox(damage, accuracy, p);
-                ViewObjectFactory.getInstance().createHitBoxViewObject(p, hb);
-
-                effectiveHB.add(hb);
-                hb.apply();
+                    effectiveHB.add(hb);
+                    hb.apply();
+                }
             }
 
             TimeModel.getInstance().registerFuseable(this, travelTime);

@@ -1,5 +1,6 @@
 package com.wrathOfLoD.Models.Map.Terrain;
 
+import com.wrathOfLoD.VisitorInterfaces.TerrainVisitor;
 import com.wrathOfLoD.VisitorInterfaces.TileVisitor;
 
 /**
@@ -11,7 +12,11 @@ public class Water extends Terrain {
         super();
     }
 
+
     public void accept(TileVisitor tv){
+        tv.visitWaterTerrain(this);
+    }
+    public void accept(TerrainVisitor tv){
         tv.visitWaterTerrain(this);
     }
 }

@@ -239,10 +239,9 @@ public class Position{
 		return arc;
 	}
 
-
-	public void setH(int h) {
-		this.h = h;
-	}
+//	TODO: prism effects one or more concentric vertical columns of hextiles.
+//	TODO: (hemi-)conical effects (e.g., shotgun blast) approximates an expanding 60° cone centered on the direction the unit is targeting
+//	TODO: (hemi)spherical (e.g., bomb blast) 360° expanding effect (targeting independent)
 
 	public Point positionToXY(){
 		double x = (3.0/2.0) * this.getQ() + (0 * this.getR());
@@ -254,112 +253,52 @@ public class Position{
 	}
 
     public static Direction getDirectionFromPostoPos(Position source, Position dest){
-        Position temp = new Position(0,0,0,0);
-        temp.setH(source.getH() - dest.getH());
-        if(temp.getH() < 0){
-            temp.setH(-1);
-        }
-        else if(temp.getH() > 0){
-            temp.setH(1);
-        }
-        temp.setS(source.getS() - dest.getS());
-        if(temp.getS() < 0){
-            temp.setS(-1);
-        }
-        else if(temp.getS() > 0){
-            temp.setS(1);
-        }
-        temp.setR(source.getR()  - dest.getR());
-        if(temp.getR() < 0){
-            temp.setR(-1);
-        }
-        else if(temp.getR() > 0){
-            temp.setR(1);
-        }
-        temp.setQ(source.getQ() - dest.getQ());
-        if(temp.getQ() < 0){
-            temp.setQ(-1);
-        }
-        else if(temp.getQ() > 0){
-            temp.setQ(1);
-        }
-        if(Direction.CENTER.matches(temp.getQ(), temp.getR(), temp.getS(), temp.getH())){
-            return Direction.CENTER;
-        }
-        else if(Direction.DOWN.matches(temp.getQ(), temp.getR(), temp.getS(), temp.getH())){
-            return Direction.DOWN;
-        }
-        else if(Direction.UP.matches(temp.getQ(), temp.getR(), temp.getS(), temp.getH())){
-            return Direction.UP;
-        }
-        else if(Direction.DOWN_NORTH.matches(temp.getQ(), temp.getR(), temp.getS(), temp.getH())){
-            return Direction.DOWN_NORTH;
-        }
-        else if(Direction.UP_NORTH.matches(temp.getQ(), temp.getR(), temp.getS(), temp.getH())){
-            return Direction.UP_NORTH;
-        }
-        else if(Direction.NORTH.matches(temp.getQ(), temp.getR(), temp.getS(), temp.getH())){
-            return Direction.NORTH;
-        }
-        else if(Direction.DOWN_NORTH_EAST.matches(temp.getQ(), temp.getR(), temp.getS(), temp.getH())){
-            return Direction.DOWN_NORTH_EAST;
-        }
-        else if(Direction.UP_NORTH_EAST.matches(temp.getQ(), temp.getR(), temp.getS(), temp.getH())){
-            return Direction.UP_NORTH_EAST;
-        }
-        else if(Direction.NORTH_EAST.matches(temp.getQ(), temp.getR(), temp.getS(), temp.getH())){
-            return Direction.NORTH_EAST;
-        }
-        else if(Direction.DOWN_NORTH_WEST.matches(temp.getQ(), temp.getR(), temp.getS(), temp.getH())){
-            return Direction.DOWN_NORTH_WEST;
-        }
-        else if(Direction.UP_NORTH_WEST.matches(temp.getQ(), temp.getR(), temp.getS(), temp.getH())){
-            return Direction.UP_NORTH_WEST;
-        }
-        else if (Direction.NORTH_WEST.matches(temp.getQ(), temp.getR(), temp.getS(), temp.getH())){
-            return Direction.NORTH_WEST;
-        }
-
-        else if(Direction.DOWN_SOUTH.matches(temp.getQ(), temp.getR(), temp.getS(), temp.getH())){
-            return Direction.DOWN_SOUTH;
-        }
-        else if(Direction.UP_SOUTH.matches(temp.getQ(), temp.getR(), temp.getS(), temp.getH())){
-            return Direction.UP_SOUTH;
-        }
-        else if(Direction.SOUTH.matches(temp.getQ(), temp.getR(), temp.getS(), temp.getH())){
-            return Direction.SOUTH;
-        }
-        else if(Direction.DOWN_SOUTH_EAST.matches(temp.getQ(), temp.getR(), temp.getS(), temp.getH())){
-            return Direction.DOWN_SOUTH_EAST;
-        }
-        else if(Direction.UP_SOUTH_EAST.matches(temp.getQ(), temp.getR(), temp.getS(), temp.getH())){
-            return Direction.UP_SOUTH_EAST;
-        }
-        else if(Direction.SOUTH_EAST.matches(temp.getQ(), temp.getR(), temp.getS(), temp.getH())){
-            return Direction.SOUTH_EAST;
-        }
-        else if(Direction.DOWN_SOUTH_WEST.matches(temp.getQ(), temp.getR(), temp.getS(), temp.getH())){
-            return Direction.DOWN_SOUTH_WEST;
-        }
-        else if(Direction.UP_SOUTH_WEST.matches(temp.getQ(), temp.getR(), temp.getS(), temp.getH())){
-            return Direction.UP_SOUTH_WEST;
-        }
-        else if (Direction.SOUTH_WEST.matches(temp.getQ(), temp.getR(), temp.getS(), temp.getH())){
-            return Direction.SOUTH_WEST;
-        }
-        System.out.println("uuuhhhhhhhh you have to be one of the above directions you shouldn't have come here");
-        return Direction.CENTER;
+        Position vector = vectorSubtract(dest, source);
+		int unitQ = vector.getQ();
+		int unitR = vector.getR();
+		int unitS = vector.getS();
+		int unitH = Integer.signum(vector.getH());
+		if(Math.abs(unitQ) >= Math.abs(unitR) && Math.abs(unitQ) >= Math.abs(unitS)){
+			unitQ = Integer.signum(unitQ);
+			if(Math.abs(unitR) >= Math.abs(unitS)){
+				unitR = Integer.signum(unitR);
+				unitS = -1 * (unitQ + unitR);
+			}
+			else{
+				unitS = Integer.signum(unitS);
+				unitR = -1 * (unitQ + unitS);
+			}
+		}
+		else if(Math.abs(unitR) >= Math.abs(unitS)){
+			unitR = Integer.signum(unitR);
+			if(Math.abs(unitQ) >= Math.abs(unitS)){
+				unitQ = Integer.signum(unitQ);
+				unitS = -1 * (unitQ + unitR);
+			}
+			else{
+				unitS = Integer.signum(unitS);
+				unitQ = -1 * (unitR + unitS);
+			}
+		}
+		else{
+			unitS = Integer.signum(unitS);
+			if(Math.abs(unitQ) >= Math.abs(unitR)){
+				unitQ = Integer.signum(unitQ);
+				unitR = -1 * (unitQ + unitS);
+			}
+			else{
+				unitR = Integer.signum(unitR);
+				unitQ = -1 * (unitR + unitS);
+			}
+		}
+		//Position unit = new Position(unitQ, unitR, unitS, unitH);
+		for(Direction dir: Direction.values()){
+			if(dir.matches(unitQ, unitR, unitS, unitH)){
+				return dir;
+			}
+		}
+		System.out.println("Can't find a direction that matches, wtf?!?!");
+		return Direction.CENTER;
     }
 
-    public void setQ(int q) {
-        this.q = q;
-    }
-
-    public void setR(int r) {
-        this.r = r;
-    }
-
-    public void setS(int s) {
-        this.s = s;
-    }
 }

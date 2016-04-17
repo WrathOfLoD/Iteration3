@@ -1,5 +1,6 @@
 package com.wrathOfLoD.Models.Map.Terrain;
 
+import com.wrathOfLoD.VisitorInterfaces.TerrainVisitor;
 import com.wrathOfLoD.VisitorInterfaces.TileVisitor;
 
 /**
@@ -12,6 +13,10 @@ public class NullTerrain extends Terrain{
     }
 
     public void accept(TileVisitor tv){
+        tv.visitNullTerrain(this);
+    }
+
+    public void accept(TerrainVisitor tv){
         tv.visitNullTerrain(this);
     }
 }
