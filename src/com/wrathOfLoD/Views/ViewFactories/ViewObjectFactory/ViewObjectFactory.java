@@ -66,8 +66,8 @@ public class ViewObjectFactory {
 
     public MapItemViewObject createMapItemViewObject(Position pos, Item item){
         List<Image> img = new ArrayList<>();
-        img.add(ImageFactory.generateImage("resources/EquippedItems/hammer.png"));
-
+//        img.add(ImageFactory.generateImage("resources/EquippedItems/hammer.png"));
+        img.add(ImageFactory.generateImage("resources/Hammer.png"));
         MapItemViewObject mivo = new MapItemViewObject(item, new ImageAnimation(img));
         areaView.addViewObject(pos, mivo);
         return mivo;
