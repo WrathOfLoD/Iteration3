@@ -5,6 +5,7 @@ import com.wrathOfLoD.Models.Map.Tile;
 import com.wrathOfLoD.Models.Map.TilePillar;
 import com.wrathOfLoD.Utility.Position;
 import com.wrathOfLoD.Utility.RenderPositionComparator;
+import javafx.geometry.Pos;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -63,6 +64,10 @@ public class TilePillarViewObject extends ViewObject{
 
 	public void addVOToTile(Position pos, ModelViewObject mvo){
 		tileViewObjects.get(pos).addMOVToTile(mvo);
+	}
+
+	public TileViewObject getTileVO(Position position){
+		return tileViewObjects.get(position);
 	}
 
 	public void removeVOFromTile(Position pos, ModelViewObject mvo){

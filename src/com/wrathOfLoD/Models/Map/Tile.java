@@ -38,6 +38,7 @@ public class Tile {
 
     public void addEntity(Entity e){
         entities.add(e);
+        interact(e);
     }
 
     public void addItem(Item i){

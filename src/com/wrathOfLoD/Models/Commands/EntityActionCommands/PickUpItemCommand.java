@@ -25,7 +25,7 @@ public class PickUpItemCommand extends ActionCommand {
         Map.getInstance().removeItem(item, entity.getPosition());
 
         // Remove item from the LTM
-        LocationTrackerManager.getInstance().deregisterItem(item);
+        //LocationTrackerManager.getInstance().deregisterItem(item); //TODO: comment back, this is break things
 
         entity.insertItemToInventory(item);
     }
