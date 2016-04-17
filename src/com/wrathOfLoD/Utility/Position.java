@@ -271,7 +271,7 @@ public class Position{
 	//planar (horizontal or vertical)
 	public static List<Position> drawArc(Position origin, Direction dir, boolean horizontal, int range){
 		List<Position> arc = new ArrayList<Position>();
-		System.out.println("*********The telltale arc************");
+
 		dir = dir.planar(); //REVIEW, do I need this?
 		Position rightVector;
 		Position leftVector;
@@ -284,21 +284,19 @@ public class Position{
 			rightVector = dir.above().getPosVector();
 			leftVector = dir.below().getPosVector();
 		}
-		System.out.printf("Arc rightVector: (%d,%d,%d,%d)%n", rightVector.getQ(), rightVector.getR(), rightVector.getS(), rightVector.getH());
-		System.out.printf("Arc leftVector: (%d,%d,%d,%d)%n", leftVector.getQ(), leftVector.getR(), leftVector.getS(), leftVector.getH());
 
 		Position arcCenter = vectorAdd(origin, scalarMultiply(dir.getPosVector(), range));
 		arc.add(arcCenter);
-		System.out.printf("Arc arcCenter: (%d,%d,%d,%d)%n", arcCenter.getQ(), arcCenter.getR(), arcCenter.getS(), arcCenter.getH());
+
 		for(int i = 1; i <= range/2; i++){
 			Position arcRight = vectorAdd(arcCenter, scalarMultiply(rightVector, i));
 			arc.add(arcRight);
-			System.out.printf("ArcRight[%d]: (%d,%d,%d,%d)%n", i, arcRight.getQ(), arcRight.getR(), arcRight.getS(), arcRight.getH());
+
 			Position arcLeft = vectorAdd(arcCenter, scalarMultiply(leftVector, i));
 			arc.add(arcLeft);
-			System.out.printf("ArcLeft[%d]: (%d,%d,%d,%d)%n", i, arcLeft.getQ(), arcLeft.getR(), arcLeft.getS(), arcLeft.getH());
+
 		}
-		System.out.println("**********Finished arc****************");
+
 		return arc;
 	}
 	//drawing a solid circle
