@@ -53,12 +53,14 @@ public class GameLauncher {
         InputState avatarState = new AvatarState();
 
 
-
+        // TODO: 4/17/16 Do same for Equipment 
         inventory.addToActionSet(ActionVendor.createSelectUpAction(inventoryView));
         inventory.addToActionSet(ActionVendor.createSelectRightAction(inventoryView));
         inventory.addToActionSet(ActionVendor.createSelectLeftAction(inventoryView));
         inventory.addToActionSet(ActionVendor.createSelectDownAction(inventoryView));
         inventory.addToActionSet(ActionVendor.createSelectItemAction(inventoryView));
+
+
 
         InputState inventoryState = new InventoryState(inventory);
         mainController.setActiveState(avatarState);

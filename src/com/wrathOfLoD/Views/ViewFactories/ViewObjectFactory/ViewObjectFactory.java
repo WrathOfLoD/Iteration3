@@ -61,7 +61,7 @@ public class ViewObjectFactory {
 
     public EntityViewObject createEntityViewObject(Position pos, Entity entity){
         List<Image> img = new ArrayList<>();
-        img.add(ImageFactory.generateImage("resources/MapItems/Hammer/Hammer.png"));
+        img.add(ImageFactory.generateImage("resources/Entity/Avatar/Smasher/Walk/slice19_19.png"));
 
         EntityViewObject evo = new EntityViewObject(entity, new ImageAnimation(img));
         areaView.addViewObjectToActiveCV(pos, evo);
