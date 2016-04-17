@@ -16,6 +16,7 @@ public class TilePillar{
     private int horizon;
     private boolean discovered;
     private boolean visible;
+	private int groundLevel; //TODO: for movement, any alternative???
 
     public TilePillar() {
         // 10 is height of a TilePillar, 0-9
@@ -69,6 +70,14 @@ public class TilePillar{
 
 	public Tile[] getTiles() {
 		return tiles;
+	}
+
+	public int getGroundLevel() {
+		return groundLevel;
+	}
+
+	public void setGroundLevel(int groundLevel) {
+		this.groundLevel = groundLevel;
 	}
 
 	public void accept(MapVisitor mv){

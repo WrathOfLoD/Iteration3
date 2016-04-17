@@ -1,5 +1,6 @@
 package com.wrathOfLoD.Models.Entity.Character;
 
+import com.wrathOfLoD.Models.Entity.EntityCanMoveVisitor.CanMoveVisitor;
 import com.wrathOfLoD.Models.Occupation.Occupation;
 import com.wrathOfLoD.Utility.Position;
 import com.wrathOfLoD.VisitorInterfaces.EntityVisitor;
@@ -12,15 +13,15 @@ public class NPC extends Character {
     private int greed;
     private Position homePosition;
 
-    public NPC(String name, Position pos, Occupation occupation){
-        super(name, pos, occupation);
+    public NPC(String name, Position pos, Occupation occupation, CanMoveVisitor canMoveVisitor){
+        super(name, pos, occupation, canMoveVisitor);
         this.aggression = 0;
         this.greed = 0;
         this.homePosition = pos;
     }
 
-    public NPC(String name, Position pos, Occupation occupation, int aggression, int greed){
-        super(name, pos, occupation);
+    public NPC(String name, Position pos, Occupation occupation, int aggression, int greed, CanMoveVisitor canMoveVisitor){
+        super(name, pos, occupation, canMoveVisitor);
         this.aggression = aggression;
         this.greed = greed;
         this.homePosition = pos;

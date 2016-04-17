@@ -21,15 +21,10 @@ import com.wrathOfLoD.Models.Items.EquippableItems.Weapons.SmasherWeapons.TwoHan
 import com.wrathOfLoD.Models.Items.EquippableItems.Weapons.SneakWeapons.RangedWeapon;
 import com.wrathOfLoD.Models.Items.EquippableItems.Weapons.SummonerWeapons.StaffWeapon;
 import com.wrathOfLoD.Models.Items.EquippableItems.Weapons.Weapon;
-import com.wrathOfLoD.Models.Map.AreaEffect.AreaEffect;
+import com.wrathOfLoD.Models.Map.*;
+import com.wrathOfLoD.Models.Map.AreaEffect.*;
 import com.wrathOfLoD.Models.Map.Map;
-import com.wrathOfLoD.Models.Map.MapArea;
-import com.wrathOfLoD.Models.Map.Terrain.Ground;
-import com.wrathOfLoD.Models.Map.Terrain.Sky;
-import com.wrathOfLoD.Models.Map.Terrain.Terrain;
-import com.wrathOfLoD.Models.Map.Terrain.Water;
-import com.wrathOfLoD.Models.Map.Tile;
-import com.wrathOfLoD.Models.Map.TilePillar;
+import com.wrathOfLoD.Models.Map.Terrain.*;
 import com.wrathOfLoD.Models.Occupation.Occupation;
 import com.wrathOfLoD.Models.Skill.SkillManager;
 import com.wrathOfLoD.Models.Stats.Stats;
@@ -54,8 +49,29 @@ import java.util.*;
  * Created by icavitt on 4/12/2016.
  */
 
-public class XMLSaver implements Saver,EntityPropertyVisitor,EntityVisitor,HeldItemVisitor,ItemVisitor,MapVisitor,TileVisitor {
+public class XMLSaver implements Saver,EntityPropertyVisitor,EntityVisitor,HeldItemVisitor,ItemVisitor,MapVisitor,TileVisitor, AreaEffectVisitor {
     private String fileName;
+
+    @Override
+    public void visitGainExpAreaEffect(GainExpAreaEffect gainExpAreaEffect) {
+
+    }
+
+    @Override
+    public void visitHealDamageAreaEffect(HealDamageAreaEffect healDamageAreaEffect) {
+
+    }
+
+    @Override
+    public void visitInstantDeathAreaEffect(InstantDeathAreaEffect instantDeathAreaEffect) {
+
+    }
+
+    @Override
+    public void visitTakeDamageAreaEffect(TakeDamageAreaEffect takeDamageAreaEffect) {
+
+    }
+
     private Document doc;
     private Position currentPostion = new Position();
     public XMLSaver(){
@@ -309,6 +325,11 @@ public class XMLSaver implements Saver,EntityPropertyVisitor,EntityVisitor,HeldI
     }
 
     @Override
+    public void visitTrap(Trap trap) {
+
+    }
+
+    @Override
     public void visitSkyTerrain(Sky sky) {
 
     }
@@ -320,6 +341,11 @@ public class XMLSaver implements Saver,EntityPropertyVisitor,EntityVisitor,HeldI
 
     @Override
     public void visitWaterTerrain(Water water) {
+
+    }
+
+    @Override
+    public void visitNullTerrain(NullTerrain terrain) {
 
     }
 }

@@ -5,6 +5,8 @@ import com.wrathOfLoD.Models.Commands.ActionCommandVendor;
 import com.wrathOfLoD.Models.Commands.EntityActionCommands.DieCommand;
 import com.wrathOfLoD.Models.Commands.EntityActionCommands.DropItemCommand;
 import com.wrathOfLoD.Models.Entity.Character.Character;
+import com.wrathOfLoD.Models.Entity.EntityCanMoveVisitor.TerrestrialCanMoveVisitor;
+import com.wrathOfLoD.Models.Entity.EntityCanMoveVisitor.CanMoveVisitor;
 import com.wrathOfLoD.Models.Inventory.Inventory;
 import com.wrathOfLoD.Models.Items.TakeableItem;
 import com.wrathOfLoD.Models.Stats.Stats;
@@ -32,6 +34,7 @@ public abstract class Entity implements EntityObservable{
     private Inventory inventory;
     private boolean isActive = false;
     private ArrayList<EntityObserver> entityObservers;
+    private CanMoveVisitor canMoveVisitor;
 
     /**
      * aggroLevel is 0 for non aggressive entities
@@ -39,17 +42,19 @@ public abstract class Entity implements EntityObservable{
      */
     private int aggroLevel = 0;
 
+    //TODO: change the default can move visitor to an instance of DefaultCanMoveVisitor or something
     public Entity(){
-        this("Master Chief", new Position(0,0,0,0));
+        this("Master Chief", new Position(0,0,0,0), new TerrestrialCanMoveVisitor());
     }
 
-    public Entity(String name, Position position){
+    public Entity(String name, Position position, CanMoveVisitor canMoveVisitor){
         this.name = name;
         this.position = position;
         this.inventory = new Inventory();
         this.stats = new Stats(this);
         this.direction = Direction.DOWN_SOUTH;
         entityObservers = new ArrayList<>();
+        this.canMoveVisitor = canMoveVisitor;
     }
 
     /***** getter & setter for Entity *******/
@@ -81,6 +86,14 @@ public abstract class Entity implements EntityObservable{
     }
 
     protected void setName(String name){ this.name = name; }
+
+    public CanMoveVisitor getCanMoveVisitor() {
+        return canMoveVisitor;
+    }
+
+    public void setCanMoveVisitor(CanMoveVisitor canMoveVisitor) {
+        this.canMoveVisitor = canMoveVisitor;
+    }
 
     /********* END Getters and Setters *********/
 
