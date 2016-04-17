@@ -141,8 +141,7 @@ public class Position{
 	}
 
 	public int getDistance(Position pos){
-		int distanceHorz = Math.abs((this.getQ() - pos.getQ()) +
-				(this.getR() - pos.getR()) + (this.getS() - pos.getS()));
+		int distanceHorz = getHorizontalDist(pos);
 		int distanceVert = Math.abs(this.getH() - pos.getH());
 		return distanceHorz + distanceVert;
 	}
