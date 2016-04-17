@@ -1,10 +1,8 @@
 package com.wrathOfLoD.Models.Entity;
 
-//import com.sun.tools.classfile.TypeAnnotation;
-
+import com.wrathOfLoD.Models.Commands.ActionCommand;
+import com.wrathOfLoD.Models.Commands.EntityActionCommands.MountCommand;
 import com.wrathOfLoD.Models.Entity.Character.Character;
-import com.wrathOfLoD.Models.Entity.Entity;
-import com.wrathOfLoD.Models.Stats.Stats;
 import com.wrathOfLoD.Utility.Position;
 import com.wrathOfLoD.VisitorInterfaces.EntityVisitor;
 
@@ -18,7 +16,11 @@ public class Mount extends Entity {
         super(name, position);
     }
 
-    public void mount(Character character) {}
+    public void mount(Character rider) {
+        this.rider = rider;
+        ActionCommand mountCommand = new MountCommand(this, rider);
+        mountCommand.execute();
+    }
 
     public void accept(EntityVisitor ev){
         ev.visitMount(this);
