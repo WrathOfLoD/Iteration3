@@ -2,6 +2,8 @@ package com.wrathOfLoD;
 
 import com.wrathOfLoD.Controllers.InputStates.InventoryState;
 import com.wrathOfLoD.GameLaunching.Vendors.ItemVendor;
+import com.wrathOfLoD.Models.Entity.Character.NPC;
+import com.wrathOfLoD.Models.Entity.EntityCanMoveVisitor.TerrestrialCanMoveVisitor;
 import com.wrathOfLoD.Models.Inventory.Equipment;
 import com.wrathOfLoD.Models.Inventory.Inventory;
 import com.wrathOfLoD.Models.Items.EquippableItems.Helm;
@@ -96,6 +98,9 @@ public class Main {
         Stats stats = new Stats(avatar);
         avatar.configureAvatar("Dave", new Position(0,0,8), new Smasher());
         mapArea1.addEntity(avatar, new Position(0,0,8));
+
+        NPC npc1 = new NPC("Hammer", new Position(3,3,9), new Smasher(), new TerrestrialCanMoveVisitor());
+        mapArea1.addEntity(npc1, new Position(3,3,9));
 
         //mapArea1.addItem(new TwoHandWeapon("hammer"), new Position(0, 0, 9));
 

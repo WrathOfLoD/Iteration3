@@ -72,7 +72,7 @@ public class MovementCommand extends ActionCommand implements Fuseable{
         Map.getInstance().getTile(adjacentPos).accept(canMoveVisitor);
         canMoveAdjacent = canMoveVisitor.canMove();
 
-        if(belowPos.getH() > 0) {
+        if(belowPos.getH() >= Map.getInstance().getTilePillar(adjacentPos).getGroundLevel()) {
             Map.getInstance().getTile(belowPos).accept(canMoveVisitor);  //TODO: make sure this is not TDAAAAAA!!!!!
             canMoveBelow = canMoveVisitor.canMove();
         }
@@ -117,7 +117,8 @@ public class MovementCommand extends ActionCommand implements Fuseable{
 
     @Override
     public void explode() {
-        entity.setActive();
+        //entity.setActive();
+        entity.setInactive();
         System.out.println("Entity dest pos: " + entity.getPosition().getQ() + ", " + entity.getPosition().getR() + ", " + entity.getPosition().getH());
         System.out.println("======= END OF MOVEMENT CMD =========");
     }

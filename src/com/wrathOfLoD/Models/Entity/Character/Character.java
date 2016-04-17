@@ -36,8 +36,8 @@ public abstract class Character extends Entity {
 
     public Character(String name, Position position, Occupation occupation, CanMoveVisitor canMoveVisitor){
         super(name,position,canMoveVisitor);
-        this.abilityManager = new AbilityManager(this);
         this.occupation = occupation;
+        this.abilityManager = new AbilityManager(this);
         Weapon defaultWeapon = this.occupation.createWeapon();
         this.equipment = new Equipment(defaultWeapon);
         this.abilityManager.unlockAbilities(getStats().getLevel());
