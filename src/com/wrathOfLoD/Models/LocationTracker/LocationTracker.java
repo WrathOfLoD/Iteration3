@@ -74,7 +74,6 @@ public class LocationTracker {
      * @param entity - Entity to be tracked
 //     * @param position - Current position
      */
-    // TODO: 4/9/16 MAY NEED TO ADD A POSITION TO THIS
     public void registerEntity(Entity entity) {
 //        this.entityPositionMap.put(entity, position);
         this.entityList.add(entity);
