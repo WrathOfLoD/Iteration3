@@ -5,6 +5,7 @@ import com.wrathOfLoD.Models.Items.Item;
 import com.wrathOfLoD.Models.Map.MapArea;
 import com.wrathOfLoD.Models.Target.TargetManager;
 import com.wrathOfLoD.Utility.Position;
+import javafx.geometry.Pos;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -47,13 +48,28 @@ public class LocationTrackerManager {
     public void registerItem(Item item, Position pos) {
         this.activeLocationTracker.registerItem(item, pos);
     }
+    public void registerItem(Item e, MapArea ma, Position pos){
+        LocationTracker locationTracker = locTrackerMap.get(ma);
+        if(locationTracker.equals(null)){
+            locationTracker = new LocationTracker();
+            locTrackerMap.put(ma,locationTracker);
+        }
+        locationTracker.registerItem(e, pos);
+    }
     public void deregisterItem(Item item) {
         this.activeLocationTracker.deregisterItem(item);
     }
 
-    public void registerEntity(Entity e, TargetManager tm) {}
     public void registerEntity(Entity e){
         activeLocationTracker.registerEntity(e);
+    }
+    public void registerEntity(Entity e, MapArea ma){
+        LocationTracker locationTracker = locTrackerMap.get(ma);
+        if(locationTracker.equals(null)){
+            locationTracker = new LocationTracker();
+            locTrackerMap.put(ma,locationTracker);
+        }
+        locationTracker.registerEntity(e);
     }
     public void deregisterEntity(Entity e) {
         activeLocationTracker.deregisterEntity(e);
@@ -69,6 +85,11 @@ public class LocationTrackerManager {
     }
 
     public void updateActiveMapArea(MapArea newActiveMapArea) {
+        LocationTracker locationTracker = locTrackerMap.get(newActiveMapArea);
+        if(locationTracker == null){
+            locationTracker = new LocationTracker();
+            locTrackerMap.put(newActiveMapArea, locationTracker);
+        }
         this.setActiveLocationTracker(this.locTrackerMap.get(newActiveMapArea));
     }
 

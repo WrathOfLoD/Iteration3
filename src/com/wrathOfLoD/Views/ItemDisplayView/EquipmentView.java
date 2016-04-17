@@ -99,7 +99,7 @@ public class EquipmentView extends JPanel implements Observer { // TODO: 4/12/20
     }
 
     public void fillSlots() {
-        System.out.println("Hlmet is this: " + getEquipment().getHelm().getName());
+        //System.out.println("Hlmet is this: " + getEquipment().getHelm().getName());
         getHelmetSlot().addToSlot(EquippedIVOFactory.generateEquippedIVO(getEquipment().getHelm()));
         getWeaponSlot().addToSlot(EquippedIVOFactory.generateEquippedIVO(getEquipment().getWeapon()));
         getChestSlot().addToSlot(EquippedIVOFactory.generateEquippedIVO(getEquipment().getArmor()));

@@ -2,6 +2,7 @@ package com.wrathOfLoD.GameLaunching;
 
 import com.wrathOfLoD.Models.Entity.Character.Avatar;
 import com.wrathOfLoD.Models.Map.Map;
+import com.wrathOfLoD.Views.AreaView.AreaView;
 
 /**
  * Created by icavitt on 4/12/2016.
@@ -19,8 +20,13 @@ public class NewGameHelper extends GameLaunchHelper{
     }
 
     @Override
+    public AreaView getAreaView() {
+        return getLevelFactory().getAreaView();
+    }
+
+    @Override
     public Avatar createAvatar() {
-        return null;
+        return Avatar.getInstance();
     }
 
     public void populateMap(){

@@ -4,6 +4,7 @@ import com.wrathOfLoD.Models.Ability.AbilityManager;
 import com.wrathOfLoD.Models.Entity.Entity;
 import com.wrathOfLoD.Models.Entity.EntityCanMoveVisitor.CanMoveVisitor;
 import com.wrathOfLoD.Models.Inventory.Equipment;
+import com.wrathOfLoD.Models.Inventory.Inventory;
 import com.wrathOfLoD.Models.Items.EquippableItems.EquippableItem;
 import com.wrathOfLoD.Models.Items.EquippableItems.Weapons.Weapon;
 import com.wrathOfLoD.Models.Items.InteractiveItem;
@@ -23,6 +24,7 @@ public abstract class Character extends Entity {
     private Equipment equipment;
     private AbilityManager abilityManager;
     private SkillManager skillManager;
+    private Inventory inventory;
 
     public Character(){
         super();
