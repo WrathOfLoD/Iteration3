@@ -148,11 +148,9 @@ public class Position{
 	}
 
 	public int getHorizontalDist(Position pos){
-		return (int)Math.sqrt((double)
-                (this.getQ() - pos.getQ()) * (this.getQ() - pos.getQ()) +
-				(this.getR() - pos.getR()) * (this.getR() - pos.getR()) +
-                (this.getS() - pos.getS()) * (this.getS() - pos.getS()));
+		return (Math.abs(this.getQ() - pos.getQ()) + Math.abs(this.getR() - pos.getR()) + Math.abs(this.getS() - pos.getS()))/2;
 	}
+
 	public Position getPosInDir(Direction dir){
 		return vectorAdd(this, dir.getPosVector());
 	}
