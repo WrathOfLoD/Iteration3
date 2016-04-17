@@ -3,6 +3,7 @@ package com.wrathOfLoD.Models.Map;
 import com.wrathOfLoD.Models.Entity.Entity;
 import com.wrathOfLoD.Models.Items.Item;
 import com.wrathOfLoD.Models.Map.AreaEffect.AreaEffect;
+import com.wrathOfLoD.Models.Map.Terrain.FindGroundTerrainVisitor;
 import com.wrathOfLoD.Utility.Position;
 import com.wrathOfLoD.VisitorInterfaces.MapVisitor;
 
@@ -65,6 +66,7 @@ public class TilePillar{
 	}
 
     public Tile getTile(Position pos){
+
         return this.tiles[pos.getH()];
     }
 
@@ -73,12 +75,26 @@ public class TilePillar{
 	}
 
 	public int getGroundLevel() {
-		return groundLevel;
+		int groundCount = -1;
+        FindGroundTerrainVisitor findGroundTerrainVisitor = new FindGroundTerrainVisitor();
+
+		for (int i = 0; i < tiles.length; i++) {
+            tiles[i].getTerrain().accept(findGroundTerrainVisitor);
+            if (findGroundTerrainVisitor.isHitGroundLevel()) {
+                groundCount++;
+            } else {
+                return groundCount;
+            }
+		}
+
+        return groundCount;
+
 	}
 
 	public void setGroundLevel(int groundLevel) {
-		this.groundLevel = groundLevel;
-	}
+//		this.groundLevel = groundLevel;
+    }
+
 
 	public void accept(MapVisitor mv){
 		mv.visitTileColumn(this);
