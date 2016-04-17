@@ -29,6 +29,7 @@ public abstract class Ability {
         //if(shouldDoAbility()){ //TODO: uncomment after done testing
             character.loseMana(manaCost);
             doAbilityHook();
+            System.out.println("CASTING ABILITY?");
         //}
     }
 
