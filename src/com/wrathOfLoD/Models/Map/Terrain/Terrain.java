@@ -1,5 +1,6 @@
 package com.wrathOfLoD.Models.Map.Terrain;
 
+import com.wrathOfLoD.VisitorInterfaces.TerrainVisitor;
 import com.wrathOfLoD.VisitorInterfaces.TileVisitor;
 
 import java.awt.image.TileObserver;
@@ -13,6 +14,10 @@ public abstract class Terrain {
     public Terrain() {}
 
     public void accept(TileVisitor tv){
+        tv.visitTerrain(this);
+    }
+
+    public void accept(TerrainVisitor tv){
         tv.visitTerrain(this);
     }
 
