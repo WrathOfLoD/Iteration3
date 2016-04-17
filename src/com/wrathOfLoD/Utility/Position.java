@@ -243,11 +243,6 @@ public class Position{
 //	TODO: (hemi-)conical effects (e.g., shotgun blast) approximates an expanding 60° cone centered on the direction the unit is targeting
 //	TODO: (hemi)spherical (e.g., bomb blast) 360° expanding effect (targeting independent)
 
-
-	public void setH(int h) {
-		this.h = h;
-	}
-
 	public Point positionToXY(){
 		double x = (3.0/2.0) * this.getQ() + (0 * this.getR());
 		x *= 43;
@@ -306,15 +301,4 @@ public class Position{
 		return Direction.CENTER;
     }
 
-    public void setQ(int q) {
-        this.q = q;
-    }
-
-    public void setR(int r) {
-        this.r = r;
-    }
-
-    public void setS(int s) {
-        this.s = s;
-    }
 }

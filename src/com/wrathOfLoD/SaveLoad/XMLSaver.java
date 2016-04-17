@@ -283,9 +283,9 @@ public class XMLSaver implements Saver,EntityPropertyVisitor,EntityVisitor,HeldI
          * write something to the doc to identify tile pillar
          * probably just gonna be its position
          */
-        currentPostion.setH(0);
+        Position pos2D = currentPostion.get2DProjection();
         for(int h = 0; h != 10; ++h){
-            tilePillar.getTile(currentPostion).accept(this);
+            tilePillar.getTile(pos2D).accept(this);
         }
     }
 
