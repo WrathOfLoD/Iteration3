@@ -8,7 +8,7 @@ import com.wrathOfLoD.VisitorInterfaces.TileVisitor;
 public class Sky extends Terrain {
     public Sky() {
         super();
-        this.setName("SkyTile");
+        this.setName("WaterTile");
     }
 
 

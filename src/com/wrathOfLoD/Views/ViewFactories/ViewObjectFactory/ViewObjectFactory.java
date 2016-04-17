@@ -47,7 +47,6 @@ public class ViewObjectFactory {
         List<Image> img = new ArrayList<>();
         String terrainName = tile.getTerrain().getName();
         img.add(ImageFactory.generateImage("resources/" + terrainName + ".png"));
-        //img.add(ImageFactory.generateImage(Config.instance().getInventoryIVOPath()+"hammer"+Config.instance().getImageExtension()));
 
         return new TileViewObject(pos, new ImageAnimation(img));
     }
