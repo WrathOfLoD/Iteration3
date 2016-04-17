@@ -54,7 +54,7 @@ public class Main {
             for(int j = 0; j < 5; j++){ //r
                 TilePillar tilePillar = new TilePillar();
                 for(int k = 0; k < 10; k++){ //h
-                    if (10 - k < j) {
+                    if (k >= 9 && j < 2) {
                         tilePillar.addTile(k, new Tile(new Sky()));
                     }else {
                         tilePillar.addTile(k, new Tile(new Ground()));
