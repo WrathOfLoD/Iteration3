@@ -148,8 +148,10 @@ public class Position{
 	}
 
 	public int getHorizontalDist(Position pos){
-		return Math.abs((this.getQ() - pos.getQ()) +
-				(this.getR() - pos.getR()) + (this.getS() - pos.getS()));
+		return (int)Math.sqrt((double)
+                (this.getQ() - pos.getQ()) * (this.getQ() - pos.getQ()) +
+				(this.getR() - pos.getR()) * (this.getR() - pos.getR()) +
+                (this.getS() - pos.getS()) * (this.getS() - pos.getS()));
 	}
 	public Position getPosInDir(Direction dir){
 		return vectorAdd(this, dir.getPosVector());
@@ -347,8 +349,7 @@ public class Position{
         else if (Direction.SOUTH_WEST.matches(temp.getQ(), temp.getR(), temp.getS(), temp.getH())){
             return Direction.SOUTH_WEST;
         }
-        System.out.println("uuuhhhhhhhh you have to be one of the above directions you shouldn't have come here");
-        return Direction.CENTER;
+        return Direction.SOUTH;
     }
 
     public void setQ(int q) {

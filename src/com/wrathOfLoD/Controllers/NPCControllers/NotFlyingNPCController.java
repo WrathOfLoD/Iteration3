@@ -19,22 +19,26 @@ public class NotFlyingNPCController extends NPCController{
 
     @Override
     protected void think(Target target) {
-        if( (getControlledEntity().getAggroLevel() == 0 && target instanceof EntityTarget) || target.equals(null)){
-            //idle
-        }
-        else{
-            if(target.getPosition().getHorizontalDist(getControlledEntity().getPosition()) > 1){
-                moveTowardsTarget(target.getPosition());
+        if(target != null && !getControlledEntity().isActive()){
+            if( (getControlledEntity().getAggroLevel() == 0 && target instanceof EntityTarget)){
+                //idle
             }
             else{
-                if(target instanceof EntityTarget){
-                    attack(target);
+                int dist = target.getPosition().getHorizontalDist(getControlledEntity().getPosition());
+                if(dist > 1){
+                    moveTowardsTarget(target.getPosition());
                 }
                 else{
-                    moveOn(target);
+                    if(target instanceof EntityTarget){
+                        attack(target);
+                    }
+                    else{
+                        moveOn(target);
+                    }
                 }
             }
         }
+
     }
 
     @Override
