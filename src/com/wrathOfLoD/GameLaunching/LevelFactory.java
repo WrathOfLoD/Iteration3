@@ -24,6 +24,8 @@ import com.wrathOfLoD.Views.CameraView.CameraView;
 import com.wrathOfLoD.Views.CameraView.CameraViewManager;
 import com.wrathOfLoD.Views.ViewFactories.ViewObjectFactory.ViewObjectFactory;
 
+import java.io.IOException;
+
 /**
  * Created by icavitt on 4/12/2016.
  */
@@ -62,7 +64,7 @@ public class LevelFactory {
         }
     }
 
-    public void populateMap(){
+    public void populateMap() throws IOException{
         switch (levelName){
             case "test_map" :
                 populateTestMap();
@@ -71,7 +73,7 @@ public class LevelFactory {
                 System.out.println("The map you are requesting to populateMap doesn't exist");
         }
     }
-    private void populateTestMap() {
+    private void populateTestMap() throws IOException{
 
         ViewObjectFactory.getInstance().initVOFactory(getAreaView());
         popolateTestMapAreaOne();
@@ -95,9 +97,9 @@ public class LevelFactory {
         NPC myNPC = new NPC("Hehe",new Position(1,1,8), new Smasher(), new TerrestrialCanMoveVisitor());
         mapAreaOne.addEntity(myNPC, new Position(1,1,8));
 //
-        mapAreaOne.addAE(new Flow(Direction.SOUTH_EAST, 10), new Position(0,3,9));
-        mapAreaOne.addAE(new Flow(Direction.SOUTH_EAST, 10), new Position(1,3,9));
-        mapAreaOne.addAE(new Flow(Direction.SOUTH_EAST, 10), new Position(2,3,9));
+        mapAreaOne.addAE(new Flow("spaceRockEffect", Direction.SOUTH_EAST, 10), new Position(0,3,9));
+        mapAreaOne.addAE(new Flow("spaceRockEffect", Direction.SOUTH_EAST, 10), new Position(1,3,9));
+        mapAreaOne.addAE(new Flow("spaceRockEffect", Direction.SOUTH_EAST, 10), new Position(2,3,9));
 
         CameraView cameraView1 = new CameraView(mapAreaOne);
         cvm.addCameraView(mapAreaOne, cameraView1);
