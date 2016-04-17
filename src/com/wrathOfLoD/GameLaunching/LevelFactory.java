@@ -69,7 +69,7 @@ public class LevelFactory {
 
 
         /**** Create area view for the map area ****/
-        CameraView cameraView1 = new CameraView();
+        CameraView cameraView1 = new CameraView(mapArea1);
         //TODO: areaView needs to create all the VO based on the populated MapArea
         cvm.addCameraView(mapArea1, cameraView1);
 

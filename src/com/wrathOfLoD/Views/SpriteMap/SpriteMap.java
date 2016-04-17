@@ -48,26 +48,24 @@ public class SpriteMap {
     }
 
 
-    private BufferedImage[] createdBufferedImages(File file) throws IOException{
+    public List<BufferedImage> createdBufferedImages(File file) throws IOException{
         BufferedImage bigImg = ImageIO.read(file);
+        final int rows = 1;
+        final int cols = 9;
+        final int width = bigImg.getWidth()/cols;
+        final int height = bigImg.getHeight()/rows;
 
-        final int width = 153;
-        final int height = 148;
-        final int rows = 4;
-        final int cols = 6;
-        BufferedImage[] sprites = new BufferedImage[rows * cols];
-        File outputfile = new File("saved.png");
+        List<BufferedImage> sprites = new ArrayList<>();
+
         for (int i = 0; i < rows; i++)
         {
             for (int j = 0; j < cols; j++)
             {
-                sprites[(i * cols) + j] = bigImg.getSubimage(
-                        j * width,
-                        i * height,
-                        width,
-                        height
-                );
-                ImageIO.write( sprites[(i * cols) + j] , "png", outputfile);
+                String name = "file" + i + j+".png";
+                File outputfile = new File(name);
+                BufferedImage subImage = bigImg.getSubimage(j * width, i * height,width, height);
+                ImageIO.write(subImage, "png", outputfile);
+
             }
         }
         return sprites;
@@ -82,7 +80,9 @@ public class SpriteMap {
         for (File file : listOfFiles) {
             if (file.isFile()) {
                 System.out.println(file.getName());
-                BufferedImage[] sprites = createdBufferedImages(file);
+                List sprites = createdBufferedImages(file);
+
+
 
 //        Files.walk(Paths.get(path)).forEach(filePath -> {
 //            if (Files.isRegularFile(filePath)) {
@@ -109,11 +109,11 @@ public class SpriteMap {
 
     public  void generateEntityMap() throws IOException{
         generateEntityMap("./resources/Entity/Avatar/Smasher/AttackWithWeapon");
-        }
+    }
 
     public  void generateItemMap() throws IOException{
 //        List<Image> images = generateEntityMap("./resources/Backgrounds");
 //        ImageAnimation imageAnimation = new ImageAnimation(images);
 //        itemMap.put("items", imageAnimation);
-            }
+    }
 }

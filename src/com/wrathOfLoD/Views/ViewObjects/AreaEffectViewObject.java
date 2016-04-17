@@ -4,6 +4,8 @@ import com.wrathOfLoD.Models.Map.AreaEffect.AreaEffect;
 import com.wrathOfLoD.Utility.Config;
 import com.wrathOfLoD.Views.SpriteMap.ImageAnimation;
 
+import java.awt.*;
+
 /**
  * Created by luluding on 4/16/16.
  */
@@ -17,5 +19,8 @@ public class AreaEffectViewObject extends ModelViewObject{
     }
 
 
+    @Override
+    public void paintComponent(Graphics g, int x, int y, int width, int height) {
 
+    }
 }

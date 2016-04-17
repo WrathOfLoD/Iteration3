@@ -1,6 +1,7 @@
 package com.wrathOfLoD;
 
 import com.wrathOfLoD.Controllers.InputStates.InventoryState;
+import com.wrathOfLoD.GameLaunching.Vendors.ItemVendor;
 import com.wrathOfLoD.Models.Inventory.Equipment;
 import com.wrathOfLoD.Models.Inventory.Inventory;
 import com.wrathOfLoD.Models.Items.EquippableItems.Helm;
@@ -8,7 +9,12 @@ import com.wrathOfLoD.Models.Items.EquippableItems.Weapons.SmasherWeapons.FistWe
 import com.wrathOfLoD.Models.Items.EquippableItems.Weapons.SmasherWeapons.TwoHandWeapon;
 
 
-
+import com.wrathOfLoD.Models.Map.Map;
+import com.wrathOfLoD.Models.Map.MapArea;
+import com.wrathOfLoD.Models.Map.Terrain.Ground;
+import com.wrathOfLoD.Models.Map.Terrain.Sky;
+import com.wrathOfLoD.Models.Map.Tile;
+import com.wrathOfLoD.Models.Map.TilePillar;
 import com.wrathOfLoD.Models.ModelEngine;
 import com.wrathOfLoD.Controllers.InputStates.ActionVendor;
 import com.wrathOfLoD.Controllers.InputStates.AvatarState;
@@ -21,6 +27,8 @@ import com.wrathOfLoD.Models.Stats.StatsModifiable;
 import com.wrathOfLoD.Utility.Position;
 import com.wrathOfLoD.Views.AreaView.AreaView;
 import com.wrathOfLoD.Views.AvatarIESView.AvatarIESView;
+import com.wrathOfLoD.Views.CameraView.CameraView;
+import com.wrathOfLoD.Views.CameraView.CameraViewManager;
 import com.wrathOfLoD.Views.ContentDisplayStructure.GridStructure;
 import com.wrathOfLoD.Views.ContentDisplayStructure.ListStructure;
 import com.wrathOfLoD.Views.ItemDisplayView.EquipmentView;
@@ -36,6 +44,32 @@ import java.awt.*;
 public class Main {
 
     public static void main(String[] args) throws InterruptedException {
+
+
+        /*** Create Map *****/
+        ItemVendor itemVendor = new ItemVendor();
+        MapArea mapArea1 = new MapArea();
+
+        for(int i = 0; i < 5; i++){ //q
+            for(int j = 0; j < 5; j++){ //r
+                TilePillar tilePillar = new TilePillar();
+                for(int k = 0; k < 10; k++){ //h
+                    if (10 - k < j) {
+                        tilePillar.addTile(k, new Tile(new Sky()));
+                    }else {
+                        tilePillar.addTile(k, new Tile(new Ground()));
+                    }
+                }
+                mapArea1.addTilePillar(new Position(i,j,0), tilePillar);
+            }
+        }
+
+        Map.getInstance().addMapArea(mapArea1);
+        Map.getInstance().setActiveMapArea(mapArea1);
+
+        mapArea1.addItem(new TwoHandWeapon("hammer"), new Position(0, 0, 9));
+
+
 
         Inventory inventory = new Inventory();
         //inventory.addItem();
@@ -56,8 +90,18 @@ public class Main {
         }
 
 
-        AreaView areaView = new AreaView();
+        CameraViewManager cvm = new CameraViewManager();
+
+
+        AreaView areaView = new AreaView(cvm);
+        CameraView cameraView1 = new CameraView(mapArea1);
+        //TODO: areaView needs to create all the VO based on the populated MapArea
+        cvm.addCameraView(mapArea1, cameraView1);
+        areaView.setActiveCameraView(cameraView1);
         ViewObjectFactory.getInstance().initVOFactory(areaView);
+        cameraView1.populateCV();
+
+
 
         ViewEngine viewEngine = ViewEngine.getInstance();
         viewEngine.registerView(areaView);
@@ -77,10 +121,11 @@ public class Main {
 
         viewEngine.registerView(vm);
 
-        Thread.sleep(2000);
+        //Thread.sleep(2000);
         //viewEngine.registerView(inventoryView);
         //viewEngine.registerView(avatarIESView);
-        vm.addView(avatarIESView);
+        //vm.addView(avatarIESView);
+        vm.addView(areaView);
 
         ModelEngine.getInstance().start();
 
@@ -103,7 +148,7 @@ public class Main {
 
         InputState inventoryState = new InventoryState(inventory);
         mainController.setActiveState(avatarState);
-        mainController.setActiveState(inventoryState);
+        //mainController.setActiveState(inventoryState);
 
         //LocationTrackerManager.getInstance().registerEntity(avatar, avatar.getTargetManager());
 

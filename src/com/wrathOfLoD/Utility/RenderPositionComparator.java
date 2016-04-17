@@ -12,14 +12,14 @@ public class RenderPositionComparator implements Comparator<Position>{
 
 		if(pos1.getR() == pos2.getR()){
 			if(pos1.getQ() == pos2.getQ()){
-				return pos2.getH() - pos1.getH();
+				return pos1.getH() - pos2.getH();
 			}
 			else{
-				return pos2.getQ() - pos1.getQ();
+				return pos1.getQ() - pos2.getQ();
 			}
 		}
 		else{
-			return pos2.getR() - pos1.getR();
+			return pos1.getR() - pos2.getR();
 		}
 
 	}

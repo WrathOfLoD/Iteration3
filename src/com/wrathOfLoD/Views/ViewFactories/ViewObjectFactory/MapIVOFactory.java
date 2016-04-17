@@ -13,10 +13,11 @@ import java.awt.*;
 public class MapIVOFactory {
 
     public static MapItemViewObject generateMapIVO(Item item) {
-        MapItemViewObject ivo = new MapItemViewObject(item);
-        Image image = ImageFactory.generateImage(Config.instance().getMapIVOPath()+item.getName()+Config.instance().getImageExtension());
-        ivo.setImage(image);
-        return ivo;
+        //MapItemViewObject ivo = new MapItemViewObject(item);
+        //Image image = ImageFactory.generateImage(Config.instance().getMapIVOPath()+item.getName()+Config.instance().getImageExtension());
+        //ivo.setImage(image);
+        //return ivo;
+        return null;
     }
 
 }

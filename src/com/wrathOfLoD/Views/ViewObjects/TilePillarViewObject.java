@@ -4,8 +4,11 @@ import com.wrathOfLoD.Models.Map.Map;
 import com.wrathOfLoD.Models.Map.Tile;
 import com.wrathOfLoD.Models.Map.TilePillar;
 import com.wrathOfLoD.Utility.Position;
+import com.wrathOfLoD.Utility.RenderPositionComparator;
 
 import java.awt.*;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 
@@ -17,34 +20,28 @@ public class TilePillarViewObject extends ViewObject{
 	private TilePillar tilePillar;
 	private Position pos;
 
-	//private List<TileViewObject> tileViewObjects;
 	private HashMap<Position, TileViewObject> tileViewObjects;
 
 	public TilePillarViewObject(Position pos){
 		this.pos = pos;
+		this.tileViewObjects = new HashMap<>();
 		this.tilePillar = Map.getInstance().getTilePillar(pos);
 	}
 
-
 	public void paintComponent(Graphics g, Position cameraCenter, Point screenCenter){
-		if(!tilePillar.isDiscovered()){
-			return;
-		}
+		//if(!tilePillar.isDiscovered()){
+		//	return;
+		//}
 		Point point = Position.vectorSubtract(this.pos, cameraCenter).positionToXY();
 		this.setOffsetX(point.x);
 		this.setOffsetY(point.y);
-
-		/*
-		for(int i = 0; i < tileViewObjects.size(); i++){
-			TileViewObject tvo = tileViewObjects.get(i);
-			tvo.paintComponent(g, cameraCenter, screenCenter);
-		}*/
-
-		for(java.util.Map.Entry<Position, TileViewObject> entry : tileViewObjects.entrySet()){
-			TileViewObject tvo = entry.getValue();
+		List<Position> renderOrder = new ArrayList<Position>();
+		renderOrder.addAll(tileViewObjects.keySet());
+		Collections.sort(renderOrder, new RenderPositionComparator());
+		for(Position pos: renderOrder){
+			TileViewObject tvo = tileViewObjects.get(pos);
 			tvo.paintComponent(g, cameraCenter, screenCenter);
 		}
-
 		//paintComponent(g);
 	}
 
@@ -62,6 +59,10 @@ public class TilePillarViewObject extends ViewObject{
 
 	public void addTileVO(Position pos, TileViewObject tvo){
 		tileViewObjects.put(pos, tvo);
+	}
+
+	public void addVOToTile(Position pos, ModelViewObject mvo){
+		tileViewObjects.get(pos).addMOVToTile(mvo);
 	}
 
 
