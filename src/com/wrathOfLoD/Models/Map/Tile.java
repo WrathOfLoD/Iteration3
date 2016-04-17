@@ -3,6 +3,7 @@ package com.wrathOfLoD.Models.Map;
 import com.wrathOfLoD.Models.Entity.Entity;
 import com.wrathOfLoD.Models.Items.Item;
 import com.wrathOfLoD.Models.Map.AreaEffect.AreaEffect;
+import com.wrathOfLoD.Models.Map.AreaEffect.Flow;
 import com.wrathOfLoD.Models.Map.Terrain.Ground;
 import com.wrathOfLoD.Models.Map.Terrain.Terrain;
 import com.wrathOfLoD.VisitorInterfaces.TileVisitor;
@@ -19,7 +20,7 @@ public class Tile {
     private List<AreaEffect> areaEffects;
     private Terrain terrain;
     private Trap trap;
-//    private Flow flow;
+    private Flow flow;
 
     public Tile(){
         this.entities = new ArrayList<>();
@@ -63,6 +64,8 @@ public class Tile {
         this.trap = t;
     }
 
+    public void setFlow(Flow f){ this.flow = f; }
+
     public void removeTrap(){
         if(trap.isVisible())
             trap = null;
@@ -75,9 +78,10 @@ public class Tile {
         for (AreaEffect ae : areaEffects)
             ae.interact(e);
 
-        trap.interact(e);
+        if(trap != null){
+            trap.interact(e);
+        }
 	}
-
 
     public Iterator<Entity> getEntities() {
         return entities.iterator();

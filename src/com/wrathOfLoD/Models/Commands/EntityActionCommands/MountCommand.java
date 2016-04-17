@@ -25,5 +25,7 @@ public class MountCommand extends ActionCommand{
         LocationTrackerManager.getInstance().deregisterEntity(mountedCharacter);
 
         //todo: notify the view
+        //todo: change controller of mount so that mountedCharacter can controll
+
     }
 }
