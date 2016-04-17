@@ -40,13 +40,14 @@ public abstract class RangedEffectGenerator implements Fuseable{
     public void doRangedEffect(){ //template method
         if(currentDistance < totalDistance){
             currentDistance ++;
+            //System.out.println("CURRENT DIS: " + currentDistance);
 
             List<Position> effectivePos = getEffectiveLocations(currentDistance, entityLocation);
             int damage = calculatePower(unmodifiedPower, currentDistance);
             int accuracy = calculateAccuracy(unmodifiedAccuracy, currentDistance);
 
             for(Position p : effectivePos){
-                System.out.println("HB POS: " + p.getQ() + " " + p.getR() + " " + p.getH());
+                //System.out.println("HB POS: " + p.getQ() + " " + p.getR() + " " + p.getH());
                 if(Map.getInstance().hasTileAt(p)){
                     HitBox hb = hitBoxFactory.createHitBox(damage, accuracy, p);
                     ViewObjectFactory.getInstance().createHitBoxViewObject(p, hb);

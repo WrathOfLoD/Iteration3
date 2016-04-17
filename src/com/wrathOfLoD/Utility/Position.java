@@ -287,11 +287,14 @@ public class Position{
 
 		Position arcCenter = vectorAdd(origin, scalarMultiply(dir.getPosVector(), range));
 		arc.add(arcCenter);
-		for(int i = 1; i < range/2; i++){
+
+		for(int i = 1; i <= range/2; i++){
 			Position arcRight = vectorAdd(arcCenter, scalarMultiply(rightVector, i));
 			arc.add(arcRight);
+
 			Position arcLeft = vectorAdd(arcCenter, scalarMultiply(leftVector, i));
 			arc.add(arcLeft);
+
 		}
 
 		return arc;

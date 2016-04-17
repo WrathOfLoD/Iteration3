@@ -1,5 +1,6 @@
 package com.wrathOfLoD.Views.ViewFactories.ViewObjectFactory;
 
+import com.wrathOfLoD.Models.Entity.Character.Avatar;
 import com.wrathOfLoD.Models.Entity.Entity;
 import com.wrathOfLoD.Models.Items.Item;
 import com.wrathOfLoD.Models.Map.AreaEffect.AreaEffect;
@@ -69,7 +70,7 @@ public class ViewObjectFactory {
         EntityViewObject evo = new EntityViewObject(entity, new ImageAnimation(img));
         areaView.addViewObjectToActiveCV(pos, evo);
         entity.registerObserver(evo);
-        evo.registerObserver(areaView.getActiveCameraView());
+        evo.registerObserver(areaView.getActiveCameraView()); //TODO: gonna cause problem because all map areas are populated at once
         return evo;
     }
 
