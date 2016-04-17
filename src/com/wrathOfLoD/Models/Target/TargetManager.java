@@ -163,6 +163,7 @@ public abstract class TargetManager {
             boolean existsAlready = false;
             for(Target t : targetList){
                 if(t.getTarget().equals(target.getTarget())){
+                    t.setPosition(target.getPosition());
                     return;
                 }
             }

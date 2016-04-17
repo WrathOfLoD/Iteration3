@@ -27,7 +27,7 @@ import java.util.List;
 /**
  * Created by luluding on 4/16/16.
  */
-public class CameraView implements MovableVOObserver{
+public class CameraView implements MovableVOObserver {
 
     private HashMap<Position, TilePillarViewObject> tilePillarViewObjects;
     private MapArea mapArea;
@@ -42,6 +42,7 @@ public class CameraView implements MovableVOObserver{
         this.tilePillarViewObjects = new HashMap<>();
         this.frameWidth = Config.getAreaViewWidth();
         this.frameHeight = Config.getAreaViewHeight();
+        //populateCV();
     }
 
     public void paintComponent(Graphics g){
@@ -83,6 +84,7 @@ public class CameraView implements MovableVOObserver{
 
         for (Item i : t.getItems()){
             vof.createMapItemViewObject(tvo.getPosition(), i);
+            System.out.println("CREATE ITEM GETTING CALLED?");
         }
 
         for (Entity e : t.getEntitiesArray()){
@@ -111,6 +113,6 @@ public class CameraView implements MovableVOObserver{
         //TODO: register new active CV with Avatar (MovingVOObservable) ... upon MapArea change
         tilePillarViewObjects.get(src.get2DProjection()).removeVOFromTile(src, mvo);
         tilePillarViewObjects.get(dest.get2DProjection()).addVOToTile(dest, mvo);
-        cameraCenter = dest;
+        //cameraCenter = dest;
     }
 }

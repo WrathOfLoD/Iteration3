@@ -91,11 +91,14 @@ public class LevelFactory {
         Avatar.getInstance().equipAbility2(new FanBlastAbility(Avatar.getInstance(),5,10,3,5));
 
 //        ItemVendor.createHammer(mapAreaOne, new Position(1,2,9));
+        EntityVendor.createEnemy(new Position(1,2,9), mapAreaOne);
+
+        EntityVendor.createNewSmasherPlayer("Dave",new Position(0,0,8), mapAreaOne);
         //EntityVendor.createNewSmasherPlayer("Dave",new Position(0,0,8), mapAreaOne);
 
 
-        NPC myNPC = new NPC("Hehe",new Position(1,1,8), new Smasher(), new TerrestrialCanMoveVisitor());
-        mapAreaOne.addEntity(myNPC, new Position(1,1,8));
+//        NPC myNPC = new NPC("Hehe",new Position(1,1,8), new Smasher(), new TerrestrialCanMoveVisitor());
+//        mapAreaOne.addEntity(myNPC, new Position(1,1,8));
 //
         mapAreaOne.addAE(new Flow(Direction.SOUTH_EAST, 10), new Position(0,3,9));
         mapAreaOne.addAE(new Flow(Direction.SOUTH_EAST, 10), new Position(1,3,9));
