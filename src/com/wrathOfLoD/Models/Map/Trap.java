@@ -3,6 +3,7 @@ package com.wrathOfLoD.Models.Map;
 import com.wrathOfLoD.Models.Entity.Entity;
 import com.wrathOfLoD.Models.Map.AreaEffect.AreaEffect;
 import com.wrathOfLoD.Models.Map.Tile;
+import com.wrathOfLoD.VisitorInterfaces.TileVisitor;
 
 import java.awt.geom.Area;
 
@@ -24,5 +25,9 @@ public class Trap {
 
     public boolean isVisible(){
         return visible;
+    }
+
+    public void accept(TileVisitor tv){
+        tv.visitTrap(this);
     }
 }

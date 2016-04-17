@@ -3,13 +3,8 @@ package com.wrathOfLoD.Models.Entity.Character;
 import com.wrathOfLoD.Controllers.InputStates.Action.Action;
 import com.wrathOfLoD.Controllers.InputStates.ActionVendor;
 import com.wrathOfLoD.Models.ActionsHolder;
-import com.wrathOfLoD.Models.Inventory.Equipment;
-import com.wrathOfLoD.Models.Inventory.Inventory;
-import com.wrathOfLoD.Models.Items.EquippableItems.Weapons.SmasherWeapons.FistWeapon;
-import com.wrathOfLoD.Models.Items.EquippableItems.Weapons.SmasherWeapons.SmasherWeapon;
+import com.wrathOfLoD.Models.Entity.EntityCanMoveVisitor.TerrestrialCanMoveVisitor;
 import com.wrathOfLoD.Models.Occupation.Occupation;
-import com.wrathOfLoD.Models.Occupation.Smasher;
-import com.wrathOfLoD.Models.Stats.StatsModifiable;
 import com.wrathOfLoD.Models.Target.AvatarTargetManager;
 import com.wrathOfLoD.Utility.Position;
 import com.wrathOfLoD.VisitorInterfaces.EntityVisitor;
@@ -44,6 +39,7 @@ public class Avatar extends Character implements ActionsHolder {
         this.setName(name);
         this.setPosition(position);
         this.setOccupation(occupation);
+        setCanMoveVisitor(new TerrestrialCanMoveVisitor());
     }
 
     @Override
