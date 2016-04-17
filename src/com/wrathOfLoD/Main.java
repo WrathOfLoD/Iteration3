@@ -62,7 +62,10 @@ public class Main {
         Map.getInstance().setActiveMapArea(mapArea1);
 
         //mapArea1.addItem(new TwoHandWeapon("hammer"), new Position(0, 0, 9));
-
+        Avatar avatar = Avatar.getInstance();
+        Stats stats = new Stats(avatar);
+        avatar.configureAvatar("Dave", new Position(0,0,0,9), new Smasher());
+        mapArea1.addEntity(avatar, new Position(0,0,0,9));
 
 
         Inventory inventory = new Inventory();
@@ -104,8 +107,8 @@ public class Main {
         InventoryView inventoryView = new InventoryView(inventory, new GridStructure(6,4));
 
         ListStructure listStructure = new ListStructure(7,2, 15, 0);
-        Avatar avatar = Avatar.getInstance();
-        Stats stats = new Stats(avatar);
+        //Avatar avatar = Avatar.getInstance();
+        //Stats stats = new Stats(avatar);
 
         StatsView statsView = new StatsView(stats,listStructure);
         //EquipmentView equipmentView = new EquipmentView();
@@ -126,7 +129,7 @@ public class Main {
 
         //Avatar avatar = Avatar.getInstance();
 
-        avatar.configureAvatar("Dave", new Position(0,0,0,0), new Smasher());
+        //avatar.configureAvatar("Dave", new Position(0,0,0,0), new Smasher());
 
         MainController mainController = MainController.getInstance();
 

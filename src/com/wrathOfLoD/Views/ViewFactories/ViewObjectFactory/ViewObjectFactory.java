@@ -57,8 +57,13 @@ public class ViewObjectFactory {
     }
 
     public EntityViewObject createEntityViewObject(Position pos, Entity entity){
-        EntityViewObject evo = new EntityViewObject(entity, null);
+        List<Image> img = new ArrayList<>();
+        img.add(ImageFactory.generateImage("resources/EquippedItems/hammer.png"));
+
+        EntityViewObject evo = new EntityViewObject(entity, new ImageAnimation(img));
         areaView.addViewObject(pos, evo);
+        entity.registerObserver(evo);
+        evo.registerObserver(areaView.getActiveCameraView());
         return evo;
     }
 

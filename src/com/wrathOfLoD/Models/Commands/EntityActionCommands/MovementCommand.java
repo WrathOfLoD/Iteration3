@@ -40,10 +40,13 @@ public class MovementCommand extends ActionCommand implements Fuseable{
         System.out.println("Entity src pos: " + entity.getPosition().getQ() + ", " + entity.getPosition().getR() + ", " + entity.getPosition().getH());
 
 
+        //TODO: if can't move, set active = false;
 
         entity.setDirection(movingDirection);
         System.out.println("Entity dest direction: " + entity.getDirection());
+        entity.notifyObserverOnMove(entity.getPosition(), destinationPosition, movingDirection, movementTicks);
         entity.setPosition(destinationPosition);
+
 
         /* TODO: uncomment ... now we have no map.. no maparea... etc
         //Map.getInstance().removeEntity(entity, currentPosition);

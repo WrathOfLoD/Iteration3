@@ -65,6 +65,10 @@ public class TilePillarViewObject extends ViewObject{
 		tileViewObjects.get(pos).addMOVToTile(mvo);
 	}
 
+	public void removeVOFromTile(Position pos, ModelViewObject mvo){
+		tileViewObjects.get(pos).removeMOVFromTile(mvo);
+	}
+
 
 
 }

@@ -7,7 +7,10 @@ import com.wrathOfLoD.Models.Map.AreaEffect.AreaEffect;
 import com.wrathOfLoD.Models.Map.MapArea;
 import com.wrathOfLoD.Models.Map.Tile;
 import com.wrathOfLoD.Models.Map.TilePillar;
+import com.wrathOfLoD.Observers.ViewObjectObservers.MovableVOObservable;
+import com.wrathOfLoD.Observers.ViewObjectObservers.MovableVOObserver;
 import com.wrathOfLoD.Utility.Config;
+import com.wrathOfLoD.Utility.Direction;
 import com.wrathOfLoD.Utility.Position;
 import com.wrathOfLoD.Views.ViewFactories.ViewObjectFactory.ViewObjectFactory;
 import com.wrathOfLoD.Views.ViewObjects.ModelViewObject;
@@ -24,7 +27,7 @@ import java.util.List;
 /**
  * Created by luluding on 4/16/16.
  */
-public class CameraView{
+public class CameraView implements MovableVOObserver{
 
     private HashMap<Position, TilePillarViewObject> tilePillarViewObjects;
     private MapArea mapArea;
@@ -99,4 +102,11 @@ public class CameraView{
         tpvo.addVOToTile(pos, mvo);
     }
 
+    @Override
+    public void notifyOnMove(ModelViewObject mvo, Position src, Position dest, Direction dir, int ticks) {
+        //TODO: register new active CV with Avatar (MovingVOObservable) ... upon MapArea change
+        tilePillarViewObjects.get(src.get2DProjection()).removeVOFromTile(src, mvo);
+        tilePillarViewObjects.get(dest.get2DProjection()).addVOToTile(dest, mvo);
+        cameraCenter = dest;
+    }
 }
