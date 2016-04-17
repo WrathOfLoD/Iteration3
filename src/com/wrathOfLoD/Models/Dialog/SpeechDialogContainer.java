@@ -1,4 +1,4 @@
-package com.wrathOfLoD.Dialog;
+package com.wrathOfLoD.Models.Dialog;
 
 import java.util.List;
 
