@@ -21,7 +21,10 @@ public class TeleportTile extends Tile {
         LocationTrackerManager.getInstance().deregisterEntity(e);
 
         Map.getInstance().addEntity(e, newDestination);
+
         // TODO: Not sure if I need to registerEntity once again!!
         LocationTrackerManager.getInstance().registerEntity(e);
+
+
     }
 }

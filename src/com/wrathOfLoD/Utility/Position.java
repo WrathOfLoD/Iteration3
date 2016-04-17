@@ -239,6 +239,10 @@ public class Position{
 		return arc;
 	}
 
+//	TODO: prism effects one or more concentric vertical columns of hextiles.
+//	TODO: (hemi-)conical effects (e.g., shotgun blast) approximates an expanding 60° cone centered on the direction the unit is targeting
+//	TODO: (hemi)spherical (e.g., bomb blast) 360° expanding effect (targeting independent)
+
 
 	public void setH(int h) {
 		this.h = h;

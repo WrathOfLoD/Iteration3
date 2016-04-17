@@ -72,7 +72,7 @@ public class SpriteMap {
         List<Image> sprites = new ArrayList<>();
         for (File file : listOfFiles) {
             if (file.isFile()) {
-                System.out.println(file.getName());
+                //System.out.println(file.getName());
                 sprites.add(ImageIO.read(file));
             }
         }
@@ -94,14 +94,15 @@ public class SpriteMap {
     }
 
     private void generateItemMap(String path) throws IOException{
-        File folder = new File(path);
-        List<Image> sprites = generateImageFrames(folder);
-        for(int i = 0; i < sprites.size(); i++){
-            System.out.println(sprites.get(i).toString());
-        }
+        File directory = new File(path);
 
-        ImageAnimation imageAnimation = new ImageAnimation(sprites);
-        insertToItemHash(folder.getName(), imageAnimation);
+        List<Image> itemImage;
+        ImageAnimation itemImageAnimation;
+        for(File subdirectories: directory.listFiles()){
+            itemImage = generateImageFrames(subdirectories);
+            itemImageAnimation = new ImageAnimation(itemImage);
+            insertToItemHash(subdirectories.getName(), itemImageAnimation);
+        }
     }
 
 
@@ -110,6 +111,6 @@ public class SpriteMap {
     }
 
     public  void generateItemMap() throws IOException{
-        generateItemMap("./resources/Backgrounds");
+        generateItemMap("./resources/MapItems");
     }
 }
