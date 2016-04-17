@@ -57,9 +57,9 @@ public abstract class TargetManager {
     protected void addToTargetList(Target target){
         targetSet.add(target);
     }
-    protected void removeFromTargetList(Target target){
-        targetSet.remove(target);
-    }
+//    protected void removeFromTargetList(Target target){
+//        targetSet.remove(target);
+////    }
     protected void removeFromTargetList(Entity e){
         targetSet.remove(e);
     }
@@ -134,9 +134,6 @@ public abstract class TargetManager {
          * removes the specified target from the list if it exists
          * @param target
          */
-        public void remove(Target target){
-                targetList.remove(target);
-        }
 
         /**
          * the following remove all the targets that reference the entity or item from the list if they exist

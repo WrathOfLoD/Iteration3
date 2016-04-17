@@ -9,7 +9,7 @@ public abstract class Target {
     private int priority;
     private Position position;
 //    public void accept(TargetVisitor visitor)
-    protected void setPriority(int priority){
+    public void setPriority(int priority){
         this.priority = priority;
     }
     public int getPriority(){

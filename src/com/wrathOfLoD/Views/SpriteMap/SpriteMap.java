@@ -62,10 +62,9 @@ public class SpriteMap {
         this.entityMap.put(entityKey, val);
     }
 
-    private void insertToItemHash(String itemName , ImageAnimation val){
-        this.itemMap.put(itemName, val);
+    private void insertToItemHash(String item, ImageAnimation val){
+        this.itemMap.put(item, val);
     }
-
 
     private List<Image> generateImageFrames(File folder) throws IOException{
         File[] listOfFiles = folder.listFiles();
@@ -84,11 +83,11 @@ public class SpriteMap {
     private void generateEntityMap(String path) throws IOException {
         File folder = new File(path);
         System.out.println(truncateName(path));
-
         List<Image> sprites = generateImageFrames(folder);
         for(int i = 0; i < sprites.size(); i++){
             System.out.println(sprites.get(i).toString());
         }
+
 
         ImageAnimation imageAnimation = new ImageAnimation(sprites);
         insertToEntityHash(folder.getName(), "walk", Direction.DOWN_NORTH, imageAnimation);

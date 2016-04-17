@@ -53,6 +53,7 @@ public class ItemViewObject extends ModelViewObject {
         System.out.println("initalizeImage is getting called for : " + item.getName() + "!!");
     }
 
+
     public void paintComponent(Graphics g, int x, int y, int width, int height) {
         super.paintComponent(g);
         g.drawImage(this.getImage(), x, y, width, height, this);

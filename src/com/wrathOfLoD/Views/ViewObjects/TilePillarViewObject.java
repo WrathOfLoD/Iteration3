@@ -4,8 +4,11 @@ import com.wrathOfLoD.Models.Map.Map;
 import com.wrathOfLoD.Models.Map.Tile;
 import com.wrathOfLoD.Models.Map.TilePillar;
 import com.wrathOfLoD.Utility.Position;
+import com.wrathOfLoD.Utility.RenderPositionComparator;
 
 import java.awt.*;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 
@@ -26,18 +29,19 @@ public class TilePillarViewObject extends ViewObject{
 	}
 
 	public void paintComponent(Graphics g, Position cameraCenter, Point screenCenter){
-		if(!tilePillar.isDiscovered()){
-			return;
-		}
+		//if(!tilePillar.isDiscovered()){
+		//	return;
+		//}
 		Point point = Position.vectorSubtract(this.pos, cameraCenter).positionToXY();
 		this.setOffsetX(point.x);
 		this.setOffsetY(point.y);
-
-		for(java.util.Map.Entry<Position, TileViewObject> entry : tileViewObjects.entrySet()){
-			TileViewObject tvo = entry.getValue();
+		List<Position> renderOrder = new ArrayList<Position>();
+		renderOrder.addAll(tileViewObjects.keySet());
+		Collections.sort(renderOrder, new RenderPositionComparator());
+		for(Position pos: renderOrder){
+			TileViewObject tvo = tileViewObjects.get(pos);
 			tvo.paintComponent(g, cameraCenter, screenCenter);
 		}
-
 		//paintComponent(g);
 	}
 

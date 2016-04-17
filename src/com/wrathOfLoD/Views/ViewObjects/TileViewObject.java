@@ -4,6 +4,7 @@ import com.wrathOfLoD.Models.Map.Map;
 import com.wrathOfLoD.Models.Map.Tile;
 import com.wrathOfLoD.Utility.Position;
 import com.wrathOfLoD.Views.SpriteMap.ImageAnimation;
+import javafx.geometry.Pos;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -31,8 +32,9 @@ public class TileViewObject extends ViewObject{
 		Point offset = Position.vectorSubtract(this.pos, cameraCenter).positionToXY();
 		this.setOffsetX(offset.x);
 		this.setOffsetY(offset.y);
-		g.drawImage(this.getImage(), this.getOffsetX() + screenCenter.x, this.getOffsetY() + screenCenter.y, this.getImage().getWidth(null), this.getImage().getWidth(null), null);
-
+		g.drawImage(this.getImage(), this.getOffsetX() + screenCenter.x, this.getOffsetY() + screenCenter.y, 80, 140,null);
+		System.out.println("paint tile?: " + (this.getOffsetX() + screenCenter.x) + " " +  (this.getOffsetY() + screenCenter.y));
+		//System.out.println("paint tile?: " + (this.getOffsetX() + screenCenter.x) + " " +  (this.getOffsetY() + screenCenter.y));
 
 		Collections.sort(modelVOList, new Comparator<ModelViewObject>() {
 			@Override
@@ -42,7 +44,7 @@ public class TileViewObject extends ViewObject{
 		});
 
 		for(ModelViewObject mvo : modelVOList){
-			mvo.paintComponent(g, this.getOffsetX() + screenCenter.x, this.getOffsetY() + screenCenter.y, this.getImage().getWidth(null), this.getImage().getWidth(null));
+			mvo.paintComponent(g, this.getOffsetX() + screenCenter.x, this.getOffsetY() + screenCenter.y, mvo.getImage().getWidth(null), mvo.getImage().getHeight(null));
 		}
 	}
 
@@ -52,6 +54,10 @@ public class TileViewObject extends ViewObject{
 
 	public void removeMOVFromTile(ModelViewObject mvo){
 		modelVOList.remove(mvo);
+	}
+
+	public Position getPosition(){
+		return this.pos;
 	}
 
 }
