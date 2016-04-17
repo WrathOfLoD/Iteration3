@@ -45,7 +45,7 @@ public abstract class Action implements KeyListener{
     public boolean isActive() { return this.isListening; }
 
 
-    protected int getCurrCode(){
+    public int getCurrCode(){
         return currKeyCode;
     }
 
