@@ -4,6 +4,8 @@ import com.wrathOfLoD.Models.Entity.Character.Avatar;
 import com.wrathOfLoD.Models.Map.Map;
 import com.wrathOfLoD.Views.AreaView.AreaView;
 
+import java.io.IOException;
+
 /**
  * Created by icavitt on 4/12/2016.
  */
@@ -30,7 +32,9 @@ public class NewGameHelper extends GameLaunchHelper{
     }
 
     public void populateMap(){
-        getLevelFactory().populateMap();
+        try {
+            getLevelFactory().populateMap();
+        }catch (IOException e){}
     }
 
 }

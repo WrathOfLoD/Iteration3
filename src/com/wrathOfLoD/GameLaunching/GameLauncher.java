@@ -21,6 +21,8 @@ import com.wrathOfLoD.Views.ViewFactories.ViewObjectFactory.ViewObjectFactory;
 import com.wrathOfLoD.Views.ViewManager.ViewManager;
 import sun.security.x509.AVA;
 
+import java.io.IOException;
+
 /**
  * Created by luluding on 4/15/16.
  */
@@ -32,7 +34,7 @@ public class GameLauncher {
     }
 
 
-    public void launchGame() throws InterruptedException {
+    public void launchGame() throws InterruptedException, IOException{
         gameLaunchHelper.createMap();
         gameLaunchHelper.populateMap();
         ViewObjectFactory.getInstance().initVOFactory(gameLaunchHelper.getAreaView());
@@ -53,12 +55,14 @@ public class GameLauncher {
         InputState avatarState = new AvatarState();
 
 
-
+        // TODO: 4/17/16 Do same for Equipment 
         inventory.addToActionSet(ActionVendor.createSelectUpAction(inventoryView));
         inventory.addToActionSet(ActionVendor.createSelectRightAction(inventoryView));
         inventory.addToActionSet(ActionVendor.createSelectLeftAction(inventoryView));
         inventory.addToActionSet(ActionVendor.createSelectDownAction(inventoryView));
         inventory.addToActionSet(ActionVendor.createSelectItemAction(inventoryView));
+
+
 
         InputState inventoryState = new InventoryState(inventory);
         mainController.setActiveState(avatarState);

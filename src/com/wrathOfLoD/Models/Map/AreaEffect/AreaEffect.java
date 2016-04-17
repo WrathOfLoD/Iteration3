@@ -9,6 +9,15 @@ import com.wrathOfLoD.VisitorInterfaces.TileVisitor;
  * Created by zach on 4/7/16.
  */
 public abstract class AreaEffect {
+    private String name;
+
+    public AreaEffect(String name){
+        this.name = name;
+    }
+
+    public String getName(){
+        return name;
+    }
 
     public abstract void interact(Entity entity);
 
