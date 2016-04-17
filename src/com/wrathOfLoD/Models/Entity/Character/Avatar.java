@@ -4,6 +4,8 @@ import com.wrathOfLoD.Controllers.InputStates.Action.Action;
 import com.wrathOfLoD.Controllers.InputStates.ActionVendor;
 import com.wrathOfLoD.Models.ActionsHolder;
 import com.wrathOfLoD.Models.Entity.EntityCanMoveVisitor.TerrestrialCanMoveVisitor;
+import com.wrathOfLoD.Models.Inventory.Equipment;
+import com.wrathOfLoD.Models.Items.EquippableItems.Weapons.Weapon;
 import com.wrathOfLoD.Models.Occupation.Occupation;
 import com.wrathOfLoD.Models.Target.AvatarTargetManager;
 import com.wrathOfLoD.Utility.Position;
@@ -39,6 +41,8 @@ public class Avatar extends Character implements ActionsHolder {
         this.setName(name);
         this.setPosition(position);
         this.setOccupation(occupation);
+        Weapon defaultWeapon = occupation.createWeapon();
+        this.setEquipment(new Equipment(defaultWeapon));
         setCanMoveVisitor(new TerrestrialCanMoveVisitor());
     }
 
