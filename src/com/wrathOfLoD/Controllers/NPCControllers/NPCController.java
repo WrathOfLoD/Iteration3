@@ -1,5 +1,6 @@
 package com.wrathOfLoD.Controllers.NPCControllers;
 
+import com.wrathOfLoD.GameClock.Tickable;
 import com.wrathOfLoD.Models.Entity.Character.NPC;
 import com.wrathOfLoD.Models.Entity.Entity;
 import com.wrathOfLoD.Models.Target.NPCTargetManager;
@@ -11,7 +12,7 @@ import com.wrathOfLoD.Utility.Position;
 /**
  * Created by matthewdiaz on 4/9/16.
  */
-public abstract class NPCController {
+public abstract class NPCController implements Tickable{
     private NPC controlledEntity;
     private TargetManager targetManager;
 
