@@ -197,6 +197,7 @@ public class Main {
 //        Thread.sleep(1000);
 //        Helm helm2 = new Helm("helm2");
 //        equipment.equip(helm2);
+
         GameLauncher gameLauncher = new GameLauncher(new NewGameHelper());
         gameLauncher.launchGame();
 

@@ -66,24 +66,8 @@ public class LevelFactory {
                 System.out.println("The map you are requesting to populateMap doesn't exist");
         }
     }
-    //not set yet add to this as wanted for putting things on test map
     private void populateTestMap() {
-//        //TODO: get map area from map
-//        MapArea mapAreas[] = Map.getInstance().getMapAreas();
-//        MapArea mapArea1 = mapAreas[0];
-//
-//        /*********** Map Area 1 Can be put in separate method***************/
-//        mapArea1.addItem(itemVendor.createTestStaff(), new Position(0, 1, 0));
-//
-//
-//        /*********** END Map Area 1 ***************/
-//
-//
-//
-//        /**** Create area view for the map area ****/
-//        CameraView cameraView1 = new CameraView(mapArea1);
-//        //TODO: areaView needs to create all the VO based on the populated MapArea
-//        cvm.addCameraView(mapArea1, cameraView1);
+
         ViewObjectFactory.getInstance().initVOFactory(getAreaView());
         popolateTestMapAreaOne();
 
@@ -106,57 +90,12 @@ public class LevelFactory {
 
 
 
-    //not set yet add to this as wanted for creating the map ,mapareas, and the tiles in them as well as area effects or other static things that will be on the map
     private void createTestMap() {
-//        /*********** Map Area 1 Can be put in separate method***************/
-//        MapArea mapArea1 = new MapArea();
-//
-//        for(int i = 0; i < 4; i++){ //q
-//            for(int j = 0; j < 5; j++){ //r
-//                TilePillar tilePillar = new TilePillar();
-//                tilePillar.setGroundLevel(10-j); //TODO:Need for movement to work
-//                for(int k = 0; k < 10; k++){ //h
-//                    if (k >= 9 && j < 2) {
-//                        tilePillar.addTile(k, new Tile(new Sky()));
-//                    }else {
-//                        tilePillar.addTile(k, new Tile(new Ground()));
-//                    }
-//                }
-//                mapArea1.addTilePillar(new Position(i,j,0), tilePillar);
-//
-//                if(j == 4){
-//                    tilePillar.setGroundLevel(4);
-//                    for(int k = 5; k < 10; k++){ //h
-//                        tilePillar.addTile(k, new Tile(new Sky()));
-//                    }
-//                }
-//
-//
-//            }
-//        }
-//
-//        for(int i = 5; i < 6; i++){
-//            for(int j = 5; j < 6; j++){ //r
-//                TilePillar tilePillar = new TilePillar();
-//                for(int k = 0; k < 10; k++){ //h
-//                    tilePillar.addTile(k, new Tile(new NullTerrain()));
-//                }
-//                mapArea1.addTilePillar(new Position(i,j,0), tilePillar);
-//            }
-//        }
-//
-//        /*********** END Map Area 1 ***************/
-//
-//
-//
-//        Map.getInstance().addMapArea(mapArea1);
-//        Map.getInstance().setActiveMapArea(mapArea1);
         createTestMapAreaOne();
 
     }
 
     public void createTestMapAreaOne(){
-        /*** Create Map *****/
         MapArea mapArea1 = new MapArea();
 
         for(int i = 0; i < 4; i++){ //q
