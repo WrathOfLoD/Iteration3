@@ -22,6 +22,8 @@ public class FireballAbility extends BlastAbility {
     public void windUpHook(){
         //TODO: CHECK WHETHER THERE IS TARGET. Char.getActiveTarget?
 
+        System.out.println("CAST FIREBALL");
+
         RangedEffectGenerator reg = new LineREG(
                 getTotalDistance(),
                 getCharacter().getPosition(),

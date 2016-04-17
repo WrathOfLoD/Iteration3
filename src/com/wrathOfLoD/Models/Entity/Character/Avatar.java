@@ -2,11 +2,13 @@ package com.wrathOfLoD.Models.Entity.Character;
 
 import com.wrathOfLoD.Controllers.InputStates.Action.Action;
 import com.wrathOfLoD.Controllers.InputStates.ActionVendor;
+import com.wrathOfLoD.Models.Ability.Abilities.Ability;
 import com.wrathOfLoD.Models.ActionsHolder;
 import com.wrathOfLoD.Models.Entity.EntityCanMoveVisitor.TerrestrialCanMoveVisitor;
 import com.wrathOfLoD.Models.Inventory.Equipment;
 import com.wrathOfLoD.Models.Items.EquippableItems.Weapons.Weapon;
 import com.wrathOfLoD.Models.Occupation.Occupation;
+import com.wrathOfLoD.Models.Skill.SkillManager;
 import com.wrathOfLoD.Models.Target.AvatarTargetManager;
 import com.wrathOfLoD.Utility.Position;
 import com.wrathOfLoD.VisitorInterfaces.EntityVisitor;
@@ -37,10 +39,11 @@ public class Avatar extends Character implements ActionsHolder {
         return avatar;
     }
 
-    public void configureAvatar(String name, Position position, Occupation occupation){
+    public void configureAvatar(String name, Position position, Occupation occupation, SkillManager skillManager){
         this.setName(name);
         this.setPosition(position);
         this.setOccupation(occupation);
+        this.setSkillManager(skillManager);
         Weapon defaultWeapon = occupation.createWeapon();
         this.setEquipment(new Equipment(defaultWeapon));
         setCanMoveVisitor(new TerrestrialCanMoveVisitor());
@@ -61,8 +64,6 @@ public class Avatar extends Character implements ActionsHolder {
         this.addToActionSet(ActionVendor.createMoveSouthAction());
         this.addToActionSet(ActionVendor.createMoveSouthEastAction());
         this.addToActionSet(ActionVendor.createMoveSouthWestAction());
-
-
     }
 
     @Override
@@ -83,5 +84,26 @@ public class Avatar extends Character implements ActionsHolder {
     public void die(){
         super.die();
         //todo: Notify GameOver!
+    }
+
+    //TODO: need a way to swap ability when equip
+    public void equipAbility1(Ability ability){
+        getAbilityManager().setActiveAbility(ability, 1);
+        this.addToActionSet(ActionVendor.createFirstAbility(ability));
+    }
+
+    public void equipAbility2(Ability ability){
+        getAbilityManager().setActiveAbility(ability, 2);
+        this.addToActionSet(ActionVendor.createSecondAbility(ability));
+    }
+
+    public void equipAbility3(Ability ability){
+        getAbilityManager().setActiveAbility(ability, 3);
+        this.addToActionSet(ActionVendor.createThirdAbility(ability));
+    }
+
+    public void equipAbility4(Ability ability){
+        getAbilityManager().setActiveAbility(ability, 4);
+        this.addToActionSet(ActionVendor.createFourthAbility(ability));
     }
 }
