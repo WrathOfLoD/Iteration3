@@ -15,10 +15,17 @@ public class FanREG extends RangedEffectGenerator {
     public FanREG(int totalDistance, Position entityLocation, int damage, int travelTime, HitBoxFactory hitBoxFactory, Direction facingDirection){
         super(totalDistance, entityLocation, damage, travelTime, hitBoxFactory);
         this.facingDirection = facingDirection;
+
+        List<Position> pos = Position.drawArc(entityLocation, facingDirection, true, 3);
+        //List<Position> pos = Position.drawFan(entityLocation, facingDirection, true, 3,false);
+
+        for(Position p : pos){
+            System.out.println("HB POS: " + p.getQ() + " " + p.getR() + " " + p.getH());
+        }
     }
 
     @Override
     public List<Position> getEffectiveLocations(int radius, Position orignalPos) {
-        return Position.drawArc(orignalPos, facingDirection, false, radius);
+        return Position.drawArc(orignalPos, facingDirection, true, radius);
     }
 }

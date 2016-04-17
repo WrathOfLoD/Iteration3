@@ -3,6 +3,7 @@ package com.wrathOfLoD.GameLaunching;
 import com.wrathOfLoD.GameLaunching.Vendors.AEVendor;
 import com.wrathOfLoD.GameLaunching.Vendors.EntityVendor;
 import com.wrathOfLoD.GameLaunching.Vendors.ItemVendor;
+import com.wrathOfLoD.Models.Ability.Abilities.BlastAbilities.FanBlastAbility;
 import com.wrathOfLoD.Models.Ability.Abilities.BlastAbilities.FireballAbility;
 import com.wrathOfLoD.Models.Entity.Character.Avatar;
 import com.wrathOfLoD.Models.Entity.Character.NPC;
@@ -89,6 +90,7 @@ public class LevelFactory {
         //TODO: test can remove
         //Avatar.getInstance().getAbilityManager().addAbilities(new FireballAbility(Avatar.getInstance(),5,10,3,5));
         Avatar.getInstance().equipAbility1(new FireballAbility(Avatar.getInstance(),5,10,3,5));
+        Avatar.getInstance().equipAbility2(new FanBlastAbility(Avatar.getInstance(),5,10,3,5));
 
 //        ItemVendor.createHammer(mapAreaOne, new Position(1,2,9));
         EntityVendor.createEnemy(new Position(1,2,9), mapAreaOne);

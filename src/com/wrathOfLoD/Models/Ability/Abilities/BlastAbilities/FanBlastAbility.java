@@ -23,7 +23,7 @@ public class FanBlastAbility extends BlastAbility {
 
     @Override
     public void windUpHook(){
-        //TODO: CHECK WHETHER THERE IS TARGET. Char.getActiveTarget?
+
         RangedEffectGenerator reg = new FanREG(
                 getTotalDistance(),
                 getCharacter().getPosition(),

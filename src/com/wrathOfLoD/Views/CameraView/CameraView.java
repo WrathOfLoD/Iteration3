@@ -113,6 +113,6 @@ public class CameraView implements MovableVOObserver {
         //TODO: register new active CV with Avatar (MovingVOObservable) ... upon MapArea change
         tilePillarViewObjects.get(src.get2DProjection()).removeVOFromTile(src, mvo);
         tilePillarViewObjects.get(dest.get2DProjection()).addVOToTile(dest, mvo);
-        cameraCenter = dest;
+        //cameraCenter = dest;
     }
 }
