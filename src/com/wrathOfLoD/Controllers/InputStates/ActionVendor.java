@@ -2,8 +2,10 @@ package com.wrathOfLoD.Controllers.InputStates;
 
 import com.sun.glass.events.KeyEvent;
 import com.wrathOfLoD.Controllers.InputStates.Action.Action;
+import com.wrathOfLoD.Controllers.InputStates.Action.AvatarActions.CastAbilityAction;
 import com.wrathOfLoD.Controllers.InputStates.Action.AvatarActions.MoveAction;
 import com.wrathOfLoD.Controllers.InputStates.Action.InventoryActions.ChangeSelectionAction;
+import com.wrathOfLoD.Models.Ability.Abilities.Ability;
 import com.wrathOfLoD.Models.Commands.ActionCommand;
 import com.wrathOfLoD.Models.Commands.ActionCommandVendor;
 import com.wrathOfLoD.Models.Commands.EntityActionCommands.ChangeDirectionCommand;
@@ -57,6 +59,28 @@ public class ActionVendor {
         ChangeDirectionCommand look = ActionCommandVendor.createChangeDirectionCommand(a, Direction.SOUTH_WEST);
         return new MoveAction(KeyEvent.VK_A, move, look);
     }
+
+    /* Action related to Avatar Ability */
+    public static Action createFirstAbility(Ability ability){
+        ActionCommand firstAbilityCommand = ActionCommandVendor.createCastAbilityCommand(ability);
+        return new CastAbilityAction(KeyEvent.VK_1, firstAbilityCommand);
+    }
+
+    public static Action createSecondAbility(Ability ability){
+        ActionCommand secondAbilityCommand = ActionCommandVendor.createCastAbilityCommand(ability);
+        return new CastAbilityAction(KeyEvent.VK_2, secondAbilityCommand);
+    }
+
+    public static Action createThirdAbility(Ability ability){
+        ActionCommand thirdAbilityCommand = ActionCommandVendor.createCastAbilityCommand(ability);
+        return new CastAbilityAction(KeyEvent.VK_3, thirdAbilityCommand);
+    }
+
+    public static Action createFourthAbility(Ability ability){
+        ActionCommand fourthAbilityCommand = ActionCommandVendor.createCastAbilityCommand(ability);
+        return new CastAbilityAction(KeyEvent.VK_4, fourthAbilityCommand);
+    }
+
 
 
     /* Actions related to menu/inventory selection */

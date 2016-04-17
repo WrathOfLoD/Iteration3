@@ -1,5 +1,7 @@
 package com.wrathOfLoD.Models.Commands;
 
+import com.wrathOfLoD.Models.Ability.Abilities.Ability;
+import com.wrathOfLoD.Models.Commands.EntityActionCommands.CastAbilityCommand;
 import com.wrathOfLoD.Models.Commands.EntityActionCommands.ChangeDirectionCommand;
 import com.wrathOfLoD.Models.Commands.EntityActionCommands.MovementCommand;
 import com.wrathOfLoD.Models.Commands.SelectableActionCommands.*;
@@ -35,5 +37,9 @@ public class ActionCommandVendor {
     }
     public static ActionCommand createSelectItemCommand(Selectable selectable) {
         return new SelectItemCommand(selectable);
+    }
+
+    public static ActionCommand createCastAbilityCommand(Ability ability){
+        return new CastAbilityCommand(ability);
     }
 }

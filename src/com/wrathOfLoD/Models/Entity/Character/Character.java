@@ -1,5 +1,6 @@
 package com.wrathOfLoD.Models.Entity.Character;
 
+import com.wrathOfLoD.Models.Ability.Abilities.Ability;
 import com.wrathOfLoD.Models.Ability.AbilityManager;
 import com.wrathOfLoD.Models.Entity.Entity;
 import com.wrathOfLoD.Models.Entity.EntityCanMoveVisitor.CanMoveVisitor;
@@ -60,6 +61,10 @@ public abstract class Character extends Entity {
 
     protected void setEquipment(Equipment equipment){ this.equipment = equipment; }
 
+    protected void setSkillManager(SkillManager skillManager){
+        this.skillManager = skillManager;
+    }
+
     /********* END Getters and Setters *********/
 
     //NOTE: interact is only for dialog!!! attack() is for attacking
@@ -99,6 +104,10 @@ public abstract class Character extends Entity {
             abilityManager.doAbility(abilityNum);
         }
     }
+
+//    public void equipAbility(Ability ability, int abilityNum){
+//        abilityManager.setActiveAbility(ability, abilityNum);
+//    }
 
     public void accept(EntityVisitor ev){
         ev.visitCharacter(this);

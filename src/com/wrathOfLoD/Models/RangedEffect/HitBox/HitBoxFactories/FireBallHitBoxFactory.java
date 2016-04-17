@@ -11,6 +11,6 @@ import com.wrathOfLoD.Utility.Position;
 public class FireBallHitBoxFactory extends HitBoxFactory {
     @Override
     public HitBox createHitBox(int power, int accuracy, Position position) {
-        return new HitBox(power, accuracy, "FireBall", position, new HitBoxAttackEffect(power));
+        return new HitBox(power, accuracy, "Fireball", position, new HitBoxAttackEffect(power));
     }
 }
