@@ -46,21 +46,29 @@ public class ViewObjectFactory {
         //TODO: hook up with spriteMap
         List<Image> img = new ArrayList<>();
         img.add(ImageFactory.generateImage("resources/SpaceRockTile.png"));
-        //img.add(ImageFactory.generateImage(Config.instance().getInventoryIVOPath()+"hammer"+Config.instance().getImageExtension()));
 
         return new TileViewObject(pos, new ImageAnimation(img));
     }
 
     public AreaEffectViewObject createAEViewObject(Position pos, AreaEffect ae){
-        return null;
+        AreaEffectViewObject aevo = new AreaEffectViewObject(ae, null); //TODO: hook up to sprite map
+        areaView.addViewObject(pos, aevo);
+        return aevo;
     }
 
     public EntityViewObject createEntityViewObject(Position pos, Entity entity){
-        return null;
+        EntityViewObject evo = new EntityViewObject(entity, null);
+        areaView.addViewObject(pos, evo);
+        return evo;
     }
 
     public MapItemViewObject createMapItemViewObject(Position pos, Item item){
-        return null;
+        List<Image> img = new ArrayList<>();
+        img.add(ImageFactory.generateImage("resources/EquippedItems/hammer.png"));
+
+        MapItemViewObject mivo = new MapItemViewObject(item, new ImageAnimation(img));
+        areaView.addViewObject(pos, mivo);
+        return mivo;
     }
 
 }

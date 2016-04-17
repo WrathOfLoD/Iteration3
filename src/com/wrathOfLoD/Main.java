@@ -1,6 +1,7 @@
 package com.wrathOfLoD;
 
 import com.wrathOfLoD.Controllers.InputStates.InventoryState;
+import com.wrathOfLoD.GameLaunching.Vendors.ItemVendor;
 import com.wrathOfLoD.Models.Inventory.Equipment;
 import com.wrathOfLoD.Models.Inventory.Inventory;
 import com.wrathOfLoD.Models.Items.EquippableItems.Helm;
@@ -43,7 +44,9 @@ public class Main {
 
     public static void main(String[] args) throws InterruptedException {
 
+
         /*** Create Map *****/
+        ItemVendor itemVendor = new ItemVendor();
         MapArea mapArea1 = new MapArea();
 
         for(int i = 0; i < 1; i++){ //q
@@ -57,6 +60,8 @@ public class Main {
         }
         Map.getInstance().addMapArea(mapArea1);
         Map.getInstance().setActiveMapArea(mapArea1);
+
+        //mapArea1.addItem(new TwoHandWeapon("hammer"), new Position(0, 0, 9));
 
 
 
@@ -88,6 +93,7 @@ public class Main {
         cvm.addCameraView(mapArea1, cameraView1);
         areaView.setActiveCameraView(cameraView1);
         ViewObjectFactory.getInstance().initVOFactory(areaView);
+        cameraView1.populateCV();
 
 
 

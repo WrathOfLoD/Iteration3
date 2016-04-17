@@ -3,6 +3,7 @@ package com.wrathOfLoD.Views.ViewObjects;
 import com.wrathOfLoD.Models.Entity.Entity;
 import com.wrathOfLoD.Utility.Config;
 import com.wrathOfLoD.Views.ImageFactory.ImageFactory;
+import com.wrathOfLoD.Views.SpriteMap.ImageAnimation;
 
 import java.awt.*;
 
@@ -12,9 +13,10 @@ import java.awt.*;
 public class EntityViewObject extends ModelViewObject{
     private Entity entity;
 
-    public EntityViewObject(Entity entity) {
+    public EntityViewObject(Entity entity, ImageAnimation imageAnimation) {
         super(Config.getEntityZLevel());
-        setImage(ImageFactory.generateImage(Config.instance().getEntityVOPath()+entity.getName()+Config.instance().getImageExtension())); //edit: testing. shouldn't be using this path
+        setImage(imageAnimation.getFrame());
+        //setImage(ImageFactory.generateImage(Config.instance().getEntityVOPath()+entity.getName()+Config.instance().getImageExtension())); //edit: testing. shouldn't be using this path
         System.out.println("initalizeImage is getting called for : " + entity.getName() + "!!");
     }
 

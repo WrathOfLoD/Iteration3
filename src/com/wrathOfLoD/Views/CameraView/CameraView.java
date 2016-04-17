@@ -39,7 +39,7 @@ public class CameraView{
         this.tilePillarViewObjects = new HashMap<>();
         this.frameWidth = Config.getAreaViewWidth();
         this.frameHeight = Config.getAreaViewHeight();
-        populateCV();
+        //populateCV();
     }
 
     public void paintComponent(Graphics g){
@@ -66,30 +66,25 @@ public class CameraView{
 				Position tPos = new Position(pos.getQ(), pos.getR(), i);
                 TileViewObject tvo = vof.createTileViewObject(tPos, tiles[i]);
                 tpvo.addTileVO(tPos, tvo);
-                System.out.println("add TVO to TPVO: " + pos.getQ() + " " + pos.getR() + " " + i);
+                //System.out.println("add TVO to TPVO: " + pos.getQ() + " " + pos.getR() + " " + i);
+                populateTile(tiles[i], tvo);
             }
-
-    /*
-            for(Tile t : tilePillarHashMap.get(pos).getTiles()){
-                //TileViewObject tvo = vof.createTileViewObject(t);
-                //tpvo.addTileVO(tvo);
-                //populateTile(t, tvo);
-            }*/
         }
 
     }
 
     private void populateTile(Tile t, TileViewObject tvo){
         for(AreaEffect ae : t.getAreaEffects()){
-           //tvo.addMOVToTile(vof.createAEViewObject(ae));
+           vof.createAEViewObject(tvo.getPosition(), ae);
         }
 
         for (Item i : t.getItems()){
-            //tvo.addMOVToTile(vof.createMapItemViewObject(i));
+            vof.createMapItemViewObject(tvo.getPosition(), i);
+            System.out.println("CREATE ITEM GETTING CALLED?");
         }
 
         for (Entity e : t.getEntitiesArray()){
-            //tvo.addMOVToTile(vof.createEntityViewObject(e));
+            vof.createEntityViewObject(tvo.getPosition(), e);
         }
 
     }
@@ -100,8 +95,8 @@ public class CameraView{
     }
 
     public void addVOToTile(Position pos, ModelViewObject mvo){
-        //TilePillarViewObject tpvo = tilePillarViewObjects.get(pos.get2DProjection());
-
+        TilePillarViewObject tpvo = tilePillarViewObjects.get(pos.get2DProjection());
+        tpvo.addVOToTile(pos, mvo);
     }
 
 }
