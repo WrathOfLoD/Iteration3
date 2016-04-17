@@ -49,8 +49,8 @@ public class Main {
         ItemVendor itemVendor = new ItemVendor();
         MapArea mapArea1 = new MapArea();
 
-        for(int i = 0; i < 1; i++){ //q
-            for(int j = 0; j < 1; j++){ //r
+        for(int i = 0; i < 5; i++){ //q
+            for(int j = 0; j < 5; j++){ //r
                 TilePillar tilePillar = new TilePillar();
                 for(int k = 0; k < 10; k++){ //h
                     tilePillar.addTile(k, new Tile(new Ground()));
