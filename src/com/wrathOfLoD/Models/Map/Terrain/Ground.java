@@ -1,5 +1,6 @@
 package com.wrathOfLoD.Models.Map.Terrain;
 
+import com.wrathOfLoD.VisitorInterfaces.TerrainVisitor;
 import com.wrathOfLoD.VisitorInterfaces.TileVisitor;
 
 /**
@@ -11,7 +12,11 @@ public class Ground extends Terrain {
         this.setName("SpaceRockGrassTile");
     }
 
+
     public void accept(TileVisitor tv){
+        tv.visitGroundTerrain(this);
+    }
+    public void accept(TerrainVisitor tv){
         tv.visitGroundTerrain(this);
     }
 }

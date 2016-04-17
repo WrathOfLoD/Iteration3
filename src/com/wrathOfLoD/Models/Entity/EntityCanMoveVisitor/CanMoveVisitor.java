@@ -16,12 +16,13 @@ import com.wrathOfLoD.Models.Map.Terrain.*;
 import com.wrathOfLoD.Models.Map.Tile;
 import com.wrathOfLoD.Models.Map.Trap;
 import com.wrathOfLoD.VisitorInterfaces.ItemVisitor;
+import com.wrathOfLoD.VisitorInterfaces.TerrainVisitor;
 import com.wrathOfLoD.VisitorInterfaces.TileVisitor;
 
 /**
  * Created by luluding on 4/16/16.
  */
-public abstract class CanMoveVisitor implements TileVisitor, ItemVisitor{
+public abstract class CanMoveVisitor implements TileVisitor, ItemVisitor {
     private boolean canMove = true;
 
     public boolean canMove(){
@@ -40,6 +41,8 @@ public abstract class CanMoveVisitor implements TileVisitor, ItemVisitor{
         }
 
         tile.getTerrain().accept(this);
+
+        this.visitTerrain(tile.getTerrain());
 
         //trap, AE don't care here
 
