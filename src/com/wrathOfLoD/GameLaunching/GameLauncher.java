@@ -10,6 +10,8 @@ import com.wrathOfLoD.GameLaunching.Vendors.EntityVendor;
 import com.wrathOfLoD.Models.Ability.Abilities.BlastAbilities.FanBlastAbility;
 import com.wrathOfLoD.Models.Ability.Abilities.BlastAbilities.FireballAbility;
 import com.wrathOfLoD.Models.Entity.Character.Avatar;
+import com.wrathOfLoD.Models.Entity.Entity;
+import com.wrathOfLoD.Models.Entity.Mount;
 import com.wrathOfLoD.Models.Inventory.Equipment;
 import com.wrathOfLoD.Models.Inventory.Inventory;
 import com.wrathOfLoD.Models.Items.EquippableItems.Helm;
@@ -59,7 +61,9 @@ public class GameLauncher {
         ViewObjectFactory.getInstance().initVOFactory(gameLaunchHelper.getAreaView());
         ViewObjectFactory.getInstance().createAvatarViewObject(Map.getInstance().getActiveMapArea().getSpawnPoint(), Avatar.getInstance());
 
+
         Map.getInstance().registerObserver(gameLaunchHelper.getAreaView());
+
 
         ViewEngine viewEngine = ViewEngine.getInstance();
         viewEngine.registerView(gameLaunchHelper.getAreaView());

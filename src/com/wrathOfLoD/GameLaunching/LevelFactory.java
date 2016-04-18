@@ -111,6 +111,8 @@ public class LevelFactory {
 
         ItemVendor.createHammer(mapAreaOne, new Position(2,1,8));
 
+//        mapAreaOne.addEntity(new Mount("Mount", new Position(3, 3, 9)));
+
         mapAreaOne.addAE(new Flow(Direction.SOUTH_EAST, 10), new Position(0,3,9));
         mapAreaOne.addAE(new Flow(Direction.SOUTH_EAST, 10), new Position(1,3,9));
         mapAreaOne.addAE(new Flow(Direction.SOUTH_EAST, 10), new Position(2,3,9));
@@ -126,7 +128,7 @@ public class LevelFactory {
 
 
 
-        Map.getInstance().registerObserver(areaView);
+        //Map.getInstance().registerObserver(areaView);
     }
 
 
