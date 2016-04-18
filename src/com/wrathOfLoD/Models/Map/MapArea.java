@@ -5,7 +5,9 @@ import com.wrathOfLoD.Models.Items.Item;
 import com.wrathOfLoD.Models.Map.AreaEffect.AreaEffect;
 import com.wrathOfLoD.Utility.Position;
 import com.wrathOfLoD.VisitorInterfaces.MapVisitor;
+import javafx.geometry.Pos;
 
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -16,14 +18,25 @@ import java.util.List;
 public class MapArea{
     private HashMap<Position, TilePillar> tilePillarMap;
 	private String mapAreaName;
+	private Position spawnPoint;
 
-    public MapArea(){
+    public MapArea(Position spawnPoint){
         this.tilePillarMap = new HashMap<Position, TilePillar>();
+		this.spawnPoint = spawnPoint;
     }
 
-	public MapArea(String mapAreaName){
+	public MapArea(String mapAreaName, Position spawnPoint){
 		this.tilePillarMap = new HashMap<Position, TilePillar>();
 		this.mapAreaName = mapAreaName;
+		this.spawnPoint = spawnPoint;
+	}
+
+	public Position getSpawnPoint(){
+		return this.spawnPoint;
+	}
+
+	public void setSpawnPoint(Position pos){
+		this.spawnPoint = pos;
 	}
 
 	public boolean hasTilePillarAt(Position pos){
