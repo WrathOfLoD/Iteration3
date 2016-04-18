@@ -55,6 +55,11 @@ public class LevelFactory {
         return this.areaView;
     }
 
+    public void setActiveCV(MapArea mapArea){
+        cvm.setActiveCV(mapArea);
+        areaView.setActiveCameraView(cvm.getActiveCV());
+    }
+
     public void generateMap(){
         switch (levelName){
             case "test_map" :
@@ -84,18 +89,19 @@ public class LevelFactory {
     private void popolateTestMapAreaOne(){
         MapArea mapAreaOne =  Map.getInstance().getMapAreas()[0];
 
+        /*
         //ItemVendor.createHammer(mapAreaOne, new Position(1,2,9));
         EntityVendor.createNewSummonerPlayer("Dave",new Position(0,0,8), mapAreaOne);
 
         //TODO: test can remove
         //Avatar.getInstance().getAbilityManager().addAbilities(new FireballAbility(Avatar.getInstance(),5,10,3,5));
         Avatar.getInstance().equipAbility1(new FireballAbility(Avatar.getInstance(),5,10,3,5));
-        Avatar.getInstance().equipAbility2(new FanBlastAbility(Avatar.getInstance(),5,10,3,5));
+        Avatar.getInstance().equipAbility2(new FanBlastAbility(Avatar.getInstance(),5,10,3,5));*/
 
 //        ItemVendor.createHammer(mapAreaOne, new Position(1,2,9));
         EntityVendor.createEnemy(new Position(1,2,9), mapAreaOne);
 
-        EntityVendor.createNewSmasherPlayer("Dave",new Position(0,0,8), mapAreaOne);
+        //EntityVendor.createNewSmasherPlayer("Dave",new Position(0,0,8), mapAreaOne);
         //EntityVendor.createNewSmasherPlayer("Dave",new Position(0,0,8), mapAreaOne);
 
 
@@ -108,7 +114,7 @@ public class LevelFactory {
 
         CameraView cameraView1 = new CameraView(mapAreaOne);
         cvm.addCameraView(mapAreaOne, cameraView1);
-        areaView.setActiveCameraView(cameraView1);
+        //areaView.setActiveCameraView(cameraView1); //TODO: set active cv when avatar gets added
         cameraView1.populateCV();
     }
 

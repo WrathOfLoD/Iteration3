@@ -5,8 +5,12 @@ import com.wrathOfLoD.Controllers.InputStates.AvatarState;
 import com.wrathOfLoD.Controllers.InputStates.InputState;
 import com.wrathOfLoD.Controllers.InputStates.InventoryState;
 import com.wrathOfLoD.Controllers.MainController;
+import com.wrathOfLoD.GameLaunching.Vendors.EntityVendor;
+import com.wrathOfLoD.Models.Ability.Abilities.BlastAbilities.FanBlastAbility;
+import com.wrathOfLoD.Models.Ability.Abilities.BlastAbilities.FireballAbility;
 import com.wrathOfLoD.Models.Entity.Character.Avatar;
 import com.wrathOfLoD.Models.Inventory.Inventory;
+import com.wrathOfLoD.Models.Map.Map;
 import com.wrathOfLoD.Models.ModelEngine;
 import com.wrathOfLoD.Models.Occupation.Smasher;
 import com.wrathOfLoD.Utility.Position;
@@ -36,8 +40,18 @@ public class GameLauncher {
 
     public void launchGame() throws InterruptedException, IOException{
         gameLaunchHelper.createMap();
+        EntityVendor.createNewSummonerPlayer("Dave",new Position(0,0,8), Map.getInstance().getMapAreas()[0]);
         gameLaunchHelper.populateMap();
+
+        //TODO: test can remove
+        //Avatar.getInstance().getAbilityManager().addAbilities(new FireballAbility(Avatar.getInstance(),5,10,3,5));
+        Avatar.getInstance().equipAbility1(new FireballAbility(Avatar.getInstance(),5,10,3,5));
+        Avatar.getInstance().equipAbility2(new FanBlastAbility(Avatar.getInstance(),5,10,3,5));
+        gameLaunchHelper.setActiveCameraView(Map.getInstance().getActiveMapArea());
+
         ViewObjectFactory.getInstance().initVOFactory(gameLaunchHelper.getAreaView());
+        ViewObjectFactory.getInstance().createAvatarViewObject(new Position(0,0,8), Avatar.getInstance());
+
         ViewEngine viewEngine = ViewEngine.getInstance();
         viewEngine.registerView(gameLaunchHelper.getAreaView());
         ListStructure listStructure = new ListStructure(7,2, 15, 0);

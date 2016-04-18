@@ -31,18 +31,19 @@ public class CameraView implements MovableVOObserver {
 
     private HashMap<Position, TilePillarViewObject> tilePillarViewObjects;
     private MapArea mapArea;
-    private Position cameraCenter;
+    //private Position cameraCenter;
+    private CameraCenter cameraCenter;
     private ViewObjectFactory vof = ViewObjectFactory.getInstance();
     private int frameWidth;
     private int frameHeight;
 
     public CameraView(MapArea mapArea){
-        cameraCenter = Avatar.getInstance().getPosition();
+        //cameraCenter = Avatar.getInstance().getPosition();
         this.mapArea = mapArea;
         this.tilePillarViewObjects = new HashMap<>();
         this.frameWidth = Config.getAreaViewWidth();
         this.frameHeight = Config.getAreaViewHeight();
-        //populateCV();
+        this.cameraCenter = new CameraCenter();
     }
 
     public void paintComponent(Graphics g){
@@ -52,7 +53,7 @@ public class CameraView implements MovableVOObserver {
 
         for(Position pos: renderOrder){
             TilePillarViewObject tPVO = tilePillarViewObjects.get(pos);
-            tPVO.paintComponent(g, cameraCenter, new Point(this.frameWidth/2, this.frameHeight/2));
+            tPVO.paintComponent(g, cameraCenter.getCameraCenter(), new Point(this.frameWidth/2, this.frameHeight/2));
         }
     }
 
@@ -79,16 +80,16 @@ public class CameraView implements MovableVOObserver {
 
     private void populateTile(Tile t, TileViewObject tvo){
         for(AreaEffect ae : t.getAreaEffects()){
-           vof.createAEViewObject(tvo.getPosition(), ae);
+           vof.createAEViewObject(tvo.getPosition(), ae, mapArea);
         }
 
         for (Item i : t.getItems()){
-            vof.createMapItemViewObject(tvo.getPosition(), i);
+            vof.createMapItemViewObject(tvo.getPosition(), i, mapArea);
             System.out.println("CREATE ITEM GETTING CALLED?");
         }
 
         for (Entity e : t.getEntitiesArray()){
-            vof.createEntityViewObject(tvo.getPosition(), e);
+            vof.createEntityViewObject(tvo.getPosition(), e, mapArea);
         }
 
     }
@@ -108,11 +109,14 @@ public class CameraView implements MovableVOObserver {
         return tpvo.getTileVO(position);
     }
 
+    public CameraCenter getCameraCenter(){
+        return this.cameraCenter;
+    }
+
     @Override
     public void notifyOnMove(ModelViewObject mvo, Position src, Position dest, Direction dir, int ticks) {
         //TODO: register new active CV with Avatar (MovingVOObservable) ... upon MapArea change
         tilePillarViewObjects.get(src.get2DProjection()).removeVOFromTile(src, mvo);
         tilePillarViewObjects.get(dest.get2DProjection()).addVOToTile(dest, mvo);
-        //cameraCenter = dest;
     }
 }
