@@ -197,6 +197,11 @@ public abstract class Entity implements EntityObservable{
         }
     }
 
+    public void notifyObsersersOnDirectionChange(Direction dir) {
+        for (EntityObserver eo: entityObservers)
+            eo.notifyDirectionChange(dir);
+    }
+
     public void setAggroLevel(int aggro){
         this.aggroLevel = aggro;
     }

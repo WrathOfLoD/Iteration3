@@ -110,6 +110,9 @@ public class MovementCommand extends ActionCommand implements Fuseable {
         System.out.println("Entity src pos: " + entity.getPosition().getQ() + ", " + entity.getPosition().getR() + ", " + entity.getPosition().getH());
         System.out.println("Entity dest pos: " + destinationPosition.getQ() + ", " + destinationPosition.getR() + ", " + destinationPosition.getH());
         System.out.println("Entity dest direction: " + entity.getDirection());
+
+        entity.notifyObsersersOnDirectionChange(movingDirection);
+
         entity.notifyObserverOnMove(entity.getPosition(), destinationPosition, movingDirection, movementTicks);
         entity.setPosition(destinationPosition);
 
