@@ -54,7 +54,8 @@ public class AbilityManager {
     }
 
     public void addAbilities(Ability ability){
-        lockedAbilities.add(ability);
+        //lockedAbilities.add(ability);
+        unlockedAbilities.add(ability);
 
         //Notify observer
     }

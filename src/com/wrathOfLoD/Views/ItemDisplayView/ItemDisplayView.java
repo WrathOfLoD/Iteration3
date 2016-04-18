@@ -4,7 +4,6 @@ import com.wrathOfLoD.Models.Items.Item;
 import com.wrathOfLoD.Observers.Observer;
 import com.wrathOfLoD.Views.ContentDisplayStructure.ContentDisplayStructure;
 import com.wrathOfLoD.Views.ContentDisplayStructure.GridStructure;
-import com.wrathOfLoD.Views.ItemDisplayView.Slot.InventorySlot;
 import com.wrathOfLoD.Views.Selectable;
 import com.wrathOfLoD.Views.StaticView;
 import com.wrathOfLoD.Views.View;
@@ -130,7 +129,7 @@ public class ItemDisplayView extends StaticView implements Observer, Selectable 
         super.paintComponent(g);
         getContentDisplayStructure().getSlotList().stream().forEach(x -> x.setSelected(false));
         if(getContentDisplayStructure().getSlotList().size()>0) {
-            getContentDisplayStructure().getSlotList().get(currentIndex).setSelected(true);
+            getContentDisplayStructure().selectSlot(currentIndex);
         }
     }
 

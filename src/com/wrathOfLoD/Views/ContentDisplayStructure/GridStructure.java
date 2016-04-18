@@ -1,6 +1,8 @@
 package com.wrathOfLoD.Views.ContentDisplayStructure;
 
 import com.wrathOfLoD.Models.Items.Item;
+import com.wrathOfLoD.Views.ItemDisplayView.Slot.ItemSlot;
+import com.wrathOfLoD.Views.ItemDisplayView.Slot.Slot;
 import com.wrathOfLoD.Views.ViewObjects.StaticViewObject;
 
 import java.awt.*;
@@ -57,6 +59,18 @@ public class GridStructure extends ContentDisplayStructure { // TODO: 4/17/2016 
             int slotHeight = (int)((getDisplayHeight()) * (2.0/((3*getNumRows())+1)));
             return slotHeight;
         }
+
+
+    @Override
+    public void paintComponent(Graphics g, int initialX, int initialY, int displayWidth, int displayHeight) {
+        super.paintComponent(g, initialX, initialY, displayWidth, displayHeight);
+
+//        int index = 0;
+//        for (int i=0; i<getNumSlots(); i++) {
+//            g.drawRect(calculateXCoord(index, initialX - 15), calculateYCoord(index, initialY - 15), calculateSlotWidth() + 30, calculateSlotHeight() + 30);
+//            index++;
+//        }
+    }
 
 }
 
