@@ -350,6 +350,17 @@ public class Position{
 		return cylinder;
 	}
 
+	public static List<Position> drawTube(Position origin, int radius, int height){
+		List<Position> tube = new ArrayList<Position>();
+		Position pos = origin.get2DProjection();
+		for(int i = 0; i < height; i++){
+			Position sliceOrigin = vectorAdd(pos, scalarMultiply(Direction.UP.getPosVector(), i));
+			List<Position> ring  = drawRing(sliceOrigin, i);
+			tube.addAll(ring);
+		}
+		return tube;
+	}
+
 //	TODO: (hemi-)conical effects (e.g., shotgun blast) approximates an expanding 60° cone centered on the direction the unit is targeting
 //	TODO: (hemi)spherical (e.g., bomb blast) 360° expanding effect (targeting independent)
 
