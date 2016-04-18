@@ -8,6 +8,7 @@ import com.wrathOfLoD.Models.Map.Map;
 import com.wrathOfLoD.Models.Map.MapArea;
 import com.wrathOfLoD.Models.Map.Tile;
 import com.wrathOfLoD.Models.RangedEffect.HitBox.HitBox;
+import com.wrathOfLoD.Utility.Config;
 import com.wrathOfLoD.Utility.Direction;
 import com.wrathOfLoD.Utility.Position;
 import com.wrathOfLoD.Views.AreaView.AreaView;
@@ -77,14 +78,10 @@ public class ViewObjectFactory {
     }
 
     public EntityViewObject createEntityViewObject(Position pos, Entity entity, MapArea mapArea){
-
         List<Image> img = new ArrayList<>();
-//        Map<Direction, ImageAnimation> imageAnimationMap = new HashMap<>();
         img.add(ImageFactory.generateImage("resources/Entity/NPC/FoeNPC/South/Walk/walk.png"));
-//        img.add(ImageFactory.generateImage("resources/Entity/Avatar/Smasher/Walk/south.png"));
-//        img.add(ImageFactory.generateImage("resources/Entity/Avatar/Smasher/Walk/south_west.png"));
-
-        EntityViewObject evo = new EntityViewObject(entity, new ImageAnimation(img), createHealthBarViewObject(entity.getStats().getMaxHealth(), entity.getStats().getCurrentHealth()));
+        EntityViewObject evo = new EntityViewObject(entity, new ImageAnimation(img),
+                createHealthBarViewObject(entity.getStats().getMaxHealth(), entity.getStats().getCurrentHealth()), "resources/Entity/NPC/FoeNPC/");
         areaView.addVOToCV(pos, evo, mapArea);
         entity.registerObserver(evo);
 
@@ -99,15 +96,11 @@ public class ViewObjectFactory {
 
     public EntityViewObject createAvatarViewObject(Position pos, Avatar avatar){ //has to be added to the active one
         String occupationType = Avatar.getInstance().getOccupation().getName();
-
         List<Image> img = new ArrayList<>();
-
-//        img.add(ImageFactory.generateImage("resources/Entity/Avatar/Smasher/Walk/slice19_19.png"));
-       // img.add(ImageFactory.generateImage("resources/Entity/Avatar/Summoner/Unequipped/South_East/Walk/summoner1.png"));
         img.add(ImageFactory.generateImage("resources/Entity/Avatar/" + occupationType + "/Unequipped/South/Walk/walk.png"));
 
-
-        EntityViewObject evo = new EntityViewObject(avatar, new ImageAnimation(img), createHealthBarViewObject(avatar.getStats().getMaxHealth(), avatar.getStats().getCurrentHealth()));
+        EntityViewObject evo = new EntityViewObject(avatar, new ImageAnimation(img),
+                createHealthBarViewObject(avatar.getStats().getMaxHealth(), avatar.getStats().getCurrentHealth()), "resources/Entity/Avatar/" + occupationType + "/Unequipped/");
 
         areaView.addVOToCV(pos, evo, Map.getInstance().getActiveMapArea());
         avatar.registerObserver(evo);
