@@ -6,6 +6,9 @@ import com.wrathOfLoD.Models.Ability.Abilities.BlastAbilities.RadialBombBlastAbi
 import com.wrathOfLoD.Models.Ability.Abilities.BoonAbilites.BoonBoostDefenseAbility;
 import com.wrathOfLoD.Models.Ability.Abilities.BoonAbilites.BoonBoostSpeedAbility;
 import com.wrathOfLoD.Models.Ability.Abilities.BoonAbilites.BoonStrengthenAbility;
+import com.wrathOfLoD.Models.Ability.Abilities.EnchantmentAbilites.EnchantmentMakeFriendlyAbility;
+import com.wrathOfLoD.Models.Ability.Abilities.EnchantmentAbilites.EnchantmentMakeSlowAbility;
+import com.wrathOfLoD.Models.Ability.Abilities.EnchantmentAbilites.EnchantmentMakeWeakAbility;
 import com.wrathOfLoD.Models.Ability.AbilityManager;
 import com.wrathOfLoD.Models.Entity.Character.Character;
 import com.wrathOfLoD.Models.Items.EquippableItems.Weapons.SmasherWeapons.SmasherWeapon;
@@ -66,5 +69,8 @@ public class Summoner extends Occupation {
         abilityManager.addAbilities(new BoonStrengthenAbility(character, 10, 100));
         abilityManager.addAbilities(new BoonBoostSpeedAbility(3, character, 10, 100));
         abilityManager.addAbilities(new BoonBoostDefenseAbility(5, character, 10, 100));
+        abilityManager.addAbilities(new EnchantmentMakeFriendlyAbility(character, 10, 30));
+        abilityManager.addAbilities(new EnchantmentMakeWeakAbility(3, character, 10, 30));
+        abilityManager.addAbilities(new EnchantmentMakeSlowAbility(5, character, 10, 30));
     }
 }

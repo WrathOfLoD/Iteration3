@@ -130,8 +130,8 @@ public class LevelFactory {
     public void createTestMapAreaOne(){
         MapArea mapArea1 = new MapArea(new Position(0,0,8));
 
-        for(int i = 0; i < 12; i++){ //q
-            for(int j = 0; j < 8; j++){ //r
+        for(int i = 0; i < 120; i++){ //q
+            for(int j = 0; j < 80; j++){ //r
                 TilePillar tilePillar = new TilePillar();
                 for(int k = 0; k < 10; k++){ //h
                     if (k >= 9 && j < 2) {
