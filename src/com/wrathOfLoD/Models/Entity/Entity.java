@@ -124,7 +124,7 @@ public abstract class Entity implements EntityObservable{
     }
 
     public void takeDamage(int damageAmount){
-        stats.modifyStats(StatsModifiable.createHealthStatsModifiable(damageAmount));
+        stats.modifyStats(StatsModifiable.createHealthStatsModifiable(-damageAmount));
     }
 
     public void loseMana(int mana){

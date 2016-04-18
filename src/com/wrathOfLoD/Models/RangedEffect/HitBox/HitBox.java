@@ -40,9 +40,9 @@ public class HitBox implements DestroyableModelObservable{
     }
 
     public void apply(){
-        Iterator<Entity> entityIterator = Map.getInstance().getTile(location).getEntities();
+        List<Entity> entities = Map.getInstance().getTile(location).getEntitiesList();
         if(shouldDoEffect()){
-            hitBoxEffect.doEffect(entityIterator);
+            hitBoxEffect.doEffect(entities);
         }
     }
 

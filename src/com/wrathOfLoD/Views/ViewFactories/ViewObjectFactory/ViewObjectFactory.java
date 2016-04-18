@@ -70,7 +70,7 @@ public class ViewObjectFactory {
         List<Image> img = new ArrayList<>();
         img.add(ImageFactory.generateImage("resources/Entity/Avatar/Smasher/Walk/slice19_19.png"));
 
-        EntityViewObject evo = new EntityViewObject(entity, new ImageAnimation(img));
+        EntityViewObject evo = new EntityViewObject(entity, new ImageAnimation(img), createHealthBarViewObject(entity.getStats().getMaxHealth(), entity.getStats().getCurrentHealth()));
         //areaView.addViewObjectToActiveCV(pos, evo);
         areaView.addVOToCV(pos, evo, mapArea);
         entity.registerObserver(evo);
@@ -79,12 +79,17 @@ public class ViewObjectFactory {
         return evo;
     }
 
+    public HealthBarViewObject createHealthBarViewObject(int fullHealth, int currentHealth){
+        HealthBarViewObject hbvo = new HealthBarViewObject(fullHealth, currentHealth);
+        return hbvo;
+    }
+
     public EntityViewObject createAvatarViewObject(Position pos, Avatar avatar){ //has to be added to the active one
         List<Image> img = new ArrayList<>();
         img.add(ImageFactory.generateImage("resources/Entity/Avatar/Smasher/Walk/slice19_19.png"));
 
-        EntityViewObject evo = new EntityViewObject(avatar, new ImageAnimation(img));
-        //areaView.addViewObjectToActiveCV(pos, evo);
+        EntityViewObject evo = new EntityViewObject(avatar, new ImageAnimation(img), createHealthBarViewObject(avatar.getStats().getMaxHealth(), avatar.getStats().getCurrentHealth()));
+
         areaView.addVOToCV(pos, evo, Map.getInstance().getActiveMapArea());
         avatar.registerObserver(evo);
         evo.registerObserver(areaView.getActiveCameraView());

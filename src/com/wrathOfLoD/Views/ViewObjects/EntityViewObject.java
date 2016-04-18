@@ -19,10 +19,13 @@ import java.util.ArrayList;
 public class EntityViewObject extends ModelViewObject implements EntityObserver, MovableVOObservable{
     private Entity entity;
     private ArrayList<MovableVOObserver> movableVOObservers;
+    private HealthBarViewObject healthBarViewObject;
 
-    public EntityViewObject(Entity entity, ImageAnimation imageAnimation) {
+    public EntityViewObject(Entity entity, ImageAnimation imageAnimation, HealthBarViewObject healthBarViewObject) {
         super(Config.getEntityZLevel());
         setImage(imageAnimation.getFrame());
+        this.entity = entity;
+        this.healthBarViewObject = healthBarViewObject;
         movableVOObservers = new ArrayList<>();
         //setImage(ImageFactory.generateImage(Config.instance().getEntityVOPath()+entity.getName()+Config.instance().getImageExtension())); //edit: testing. shouldn't be using this path
         System.out.println("initalizeImage is getting called for : " + entity.getName() + "!!");
@@ -30,7 +33,8 @@ public class EntityViewObject extends ModelViewObject implements EntityObserver,
 
     public void paintComponent(Graphics g, int x, int y, int width, int height) {
         g.drawImage(this.getImage(), x, y, this.getImage().getWidth(null), this.getImage().getHeight(null), this);
-
+        //healthBarViewObject.paintComponent(g, x, y-20, width, height);
+        healthBarViewObject.paintHealthBar(g, x+15, y+10, width, height, entity.getStats().getMaxHealth(), entity.getStats().getCurrentHealth());
     }
 
 

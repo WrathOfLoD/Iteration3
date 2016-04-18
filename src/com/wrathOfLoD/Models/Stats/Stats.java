@@ -68,9 +68,9 @@ public class Stats implements Observable {
         setHardiness(1);
 
         setMovement(20);
-        setCurrentMana(maxMana);
-        setLivesLeft(maxLife);
-        setCurrentHealth(maxHealth);
+//        setCurrentMana(maxMana);
+//        setLivesLeft(maxLife);
+//        setCurrentHealth(maxHealth);
 
 
         setWeaponBonus(0);
@@ -78,6 +78,9 @@ public class Stats implements Observable {
         setLevel(1);
 
         calculateDerivedStats();
+        setCurrentMana(maxMana);
+        setLivesLeft(maxLife);
+        setCurrentHealth(maxHealth);
 
         setCurrentExperience(0);
 
@@ -100,7 +103,7 @@ public class Stats implements Observable {
     }
 
     private void calculateMaxHealth(){
-        maxHealth = level*2 + hardiness*3;
+        maxHealth = (level*2 + hardiness*3)*5;
     }
 
     private void calculateOffensiveRating(){
