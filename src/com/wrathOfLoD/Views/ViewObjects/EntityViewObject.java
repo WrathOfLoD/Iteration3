@@ -55,7 +55,7 @@ public class EntityViewObject extends ModelViewObject implements EntityObserver,
         if(!visible){
 			renderedImage = getGrayscaleImage(renderedImage);
 		}
-        g.drawImage(renderedImage, x, y, this.getImage().getWidth(null), this.getImage().getHeight(null), this);
+        g.drawImage(renderedImage, x+8, y+40, this.getImage().getWidth(null), this.getImage().getHeight(null), this);
         //healthBarViewObject.paintComponent(g, x, y-20, width, height);
         healthBarViewObject.paintHealthBar(g, x+15, y+10, width, height, entity.getStats().getMaxHealth(), entity.getStats().getCurrentHealth(), visible);
     }

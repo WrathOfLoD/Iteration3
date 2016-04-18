@@ -21,6 +21,7 @@ public class PrismREG extends RangedEffectGenerator {
 
     @Override
     public List<Position> getEffectiveLocations(int radius, Position orignalPos) {
+        //return Position.drawTube(orignalPos, radius, 12);
         return Position.drawCylinder(orignalPos, radius, 10, false);
     }
 }

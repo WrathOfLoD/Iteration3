@@ -103,9 +103,13 @@ public class LevelFactory {
 
 //        ItemVendor.createHammer(mapAreaOne, new Position(1,2,9));
 //        EntityVendor.createEnemy(new Position(1,2,9), mapAreaOne);
-        EntityVendor.createEnemy(new Position(1,0,9), mapAreaOne);
 
+
+        //EntityVendor.createEnemy(new Position(1,0,9), mapAreaOne);
         EntityVendor.createFlyingEnemy(new Position(2,4,4), mapAreaOne);
+        EntityVendor.createFlyingEnemy(new Position(17,5,9), mapAreaOne);
+
+
         //EntityVendor.createPet(new Position(0,1,8), mapAreaOne);
 
 
@@ -118,12 +122,19 @@ public class LevelFactory {
 
         //mapAreaOne.addEntity(new Mount("Mount", new Position(3, 3, 9), new FlyingCanMoveVisitor()), new Position(3,3,9));
 
-        mapAreaOne.addAE(new Flow(Direction.SOUTH_EAST, 10), new Position(0,3,8));
-        mapAreaOne.addAE(new Flow(Direction.SOUTH_EAST, 10), new Position(1,3,8));
-        mapAreaOne.addAE(new Flow(Direction.SOUTH_EAST, 10), new Position(2,3,8));
 
-        mapAreaOne.addAE(new TakeDamageAreaEffect("TakeDamageAE", 20), new Position(6,0,8));
-        mapAreaOne.addAE(new HealDamageAreaEffect("HealDamageAE", 20), new Position(7,0,8));
+
+        mapAreaOne.addAE(new Flow(Direction.SOUTH_EAST, 10), new Position(2,3,8));
+        mapAreaOne.addAE(new Flow(Direction.SOUTH_EAST, 10), new Position(3,3,8));
+        mapAreaOne.addAE(new Flow(Direction.SOUTH_EAST, 10), new Position(4,3,8));
+
+
+        mapAreaOne.addAE(new Flow(Direction.NORTH_WEST, 10), new Position(2,10,9));
+        mapAreaOne.addAE(new Flow(Direction.NORTH_WEST, 10), new Position(3,10,9));
+        mapAreaOne.addAE(new Flow(Direction.NORTH_WEST, 10), new Position(4,10,9));
+
+        mapAreaOne.addAE(new TakeDamageAreaEffect("TakeDamageAE", 40), new Position(6,0,8));
+        mapAreaOne.addAE(new HealDamageAreaEffect("HealDamageAE", 30), new Position(7,0,8));
         mapAreaOne.addAE(new InstantDeathAreaEffect("InstantDeathAE"), new Position(8,0,8));
 
 
