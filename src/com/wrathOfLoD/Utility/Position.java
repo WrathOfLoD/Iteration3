@@ -277,8 +277,10 @@ public class Position{
 		Position leftVector;
 
 		if(horizontal){
-			rightVector = dir.counterClockwise().inversePlanar().getPosVector();
-			leftVector = dir.clockwise().inversePlanar().getPosVector();
+			//rightVector = dir.counterClockwise().inversePlanar().getPosVector();
+			//leftVector = dir.clockwise().inversePlanar().getPosVector();
+			rightVector = dir.clockwise().clockwise().getPosVector();
+			leftVector = dir.counterClockwise().counterClockwise().getPosVector();
 		}
 		else{
 			rightVector = dir.above().getPosVector();

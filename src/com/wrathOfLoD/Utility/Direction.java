@@ -110,9 +110,9 @@ public enum Direction {
 	}
 
 	public Direction planar(){
-		int planarQ = this.sMod;
-		int planarR = this.qMod;
-		int planarS = this.rMod;
+		int planarQ = this.qMod;
+		int planarR = this.rMod;
+		int planarS = this.sMod;
 		int planarH = 0;
 		for(Direction dir : values()){
 			if(dir.matches(planarQ, planarR, planarS, planarH)){
