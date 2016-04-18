@@ -46,5 +46,4 @@ public abstract class BoonAbility extends TimedAbility {
             getCharacter().setInactive();
         }
     }
-
 }

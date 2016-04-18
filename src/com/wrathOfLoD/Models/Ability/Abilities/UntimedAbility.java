@@ -16,6 +16,4 @@ public abstract class UntimedAbility extends Ability {
     public UntimedAbility(int unlockLevel, Character character, int manaCost){
         super(unlockLevel, character, manaCost);
     }
-
-
 }

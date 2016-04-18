@@ -20,6 +20,7 @@ import com.wrathOfLoD.Models.Items.EquippableItems.Weapons.SmasherWeapons.TwoHan
 import com.wrathOfLoD.Models.Items.TakeableItem;
 import com.wrathOfLoD.Models.Map.Map;
 import com.wrathOfLoD.Models.ModelEngine;
+import com.wrathOfLoD.Models.Occupation.Occupation;
 import com.wrathOfLoD.Models.Occupation.Smasher;
 import com.wrathOfLoD.Models.Stats.StatsModifiable;
 import com.wrathOfLoD.Utility.Position;
@@ -47,15 +48,18 @@ public class GameLauncher {
     }
 
 
-    public void launchGame() throws InterruptedException, IOException{
+    public void launchGame(Occupation occupation) throws InterruptedException, IOException{
+    //public void launchGame() {
+
         gameLaunchHelper.createMap();
         gameLaunchHelper.populateMap();
 
-        EntityVendor.createNewSummonerPlayer("Dave",Map.getInstance().getMapAreas()[0].getSpawnPoint(), Map.getInstance().getMapAreas()[0]);
+        EntityVendor.createNewPlayer("Slothman", occupation, Map.getInstance().getMapAreas()[0].getSpawnPoint(), Map.getInstance().getMapAreas()[0]);
+        //EntityVendor.createNewSummonerPlayer("Dave",Map.getInstance().getMapAreas()[0].getSpawnPoint(), Map.getInstance().getMapAreas()[0]);
         //TODO: test can remove
         //Avatar.getInstance().getAbilityManager().addAbilities(new FireballAbility(Avatar.getInstance(),5,10,3,5));
-        Avatar.getInstance().equipAbility1(new FireballAbility(Avatar.getInstance(),5,10,3,20));
-        Avatar.getInstance().equipAbility2(new FanBlastAbility(Avatar.getInstance(),5,10,3,5));
+//        Avatar.getInstance().equipAbility1(new FireballAbility(Avatar.getInstance(),5,10,3,20));
+//        Avatar.getInstance().equipAbility2(new FanBlastAbility(Avatar.getInstance(),5,10,3,5));
         gameLaunchHelper.setActiveCameraView(Map.getInstance().getActiveMapArea());
 
         ViewObjectFactory.getInstance().initVOFactory(gameLaunchHelper.getAreaView());

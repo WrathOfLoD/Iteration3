@@ -18,9 +18,14 @@ public class Mount extends Entity {
     }
 
 	public void mount(Character rider) {
-        this.rider = rider;
-        ActionCommand mountCommand = new MountCommand(this, rider);
-        mountCommand.execute();
+        if (rider.equals(this.rider)) {
+            this.rider = null;
+        } else {
+            this.rider = rider;
+        }
+        System.out.println("MY rider is: " + this.rider);
+//        ActionCommand mountCommand = new MountCommand(this, rider);
+//        mountCommand.execute();
     }
 
     public void accept(EntityVisitor ev){

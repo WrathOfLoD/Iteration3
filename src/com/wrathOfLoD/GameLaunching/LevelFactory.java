@@ -7,7 +7,10 @@ import com.wrathOfLoD.Models.Ability.Abilities.BlastAbilities.FanBlastAbility;
 import com.wrathOfLoD.Models.Ability.Abilities.BlastAbilities.FireballAbility;
 import com.wrathOfLoD.Models.Entity.Character.Avatar;
 import com.wrathOfLoD.Models.Entity.Character.NPC;
+import com.wrathOfLoD.Models.Entity.EntityCanMoveVisitor.CanMoveVisitor;
+import com.wrathOfLoD.Models.Entity.EntityCanMoveVisitor.FlyingCanMoveVisitor;
 import com.wrathOfLoD.Models.Entity.EntityCanMoveVisitor.TerrestrialCanMoveVisitor;
+import com.wrathOfLoD.Models.Entity.Mount;
 import com.wrathOfLoD.Models.Items.EquippableItems.Weapons.SmasherWeapons.TwoHandWeapon;
 import com.wrathOfLoD.Models.Map.AreaEffect.Flow;
 import com.wrathOfLoD.Models.Map.AreaEffect.Teleport;
@@ -112,7 +115,7 @@ public class LevelFactory {
 
         ItemVendor.createHammer(mapAreaOne, new Position(2,1,8));
 
-//        mapAreaOne.addEntity(new Mount("Mount", new Position(3, 3, 9)));
+        mapAreaOne.addEntity(new Mount("Mount", new Position(3, 3, 9), new FlyingCanMoveVisitor()), new Position(3,3,9));
 
         mapAreaOne.addAE(new Flow(Direction.SOUTH_EAST, 10), new Position(0,3,9));
         mapAreaOne.addAE(new Flow(Direction.SOUTH_EAST, 10), new Position(1,3,9));
@@ -141,8 +144,8 @@ public class LevelFactory {
     public void createTestMapAreaOne(){
         MapArea mapArea1 = new MapArea(new Position(0,0,8));
 
-        for(int i = 0; i < 12; i++){ //q
-            for(int j = 0; j < 8; j++){ //r
+        for(int i = 0; i < 120; i++){ //q
+            for(int j = 0; j < 80; j++){ //r
                 TilePillar tilePillar = new TilePillar();
                 for(int k = 0; k < 10; k++){ //h
                     if (k >= 9 && j < 2) {
