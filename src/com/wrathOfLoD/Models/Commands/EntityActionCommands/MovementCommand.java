@@ -110,6 +110,9 @@ public class MovementCommand extends ActionCommand implements Fuseable {
         System.out.println("Entity src pos: " + entity.getPosition().getQ() + ", " + entity.getPosition().getR() + ", " + entity.getPosition().getH());
         System.out.println("Entity dest pos: " + destinationPosition.getQ() + ", " + destinationPosition.getR() + ", " + destinationPosition.getH());
         System.out.println("Entity dest direction: " + entity.getDirection());
+
+        entity.notifyObsersersOnDirectionChange(movingDirection);
+
         entity.notifyObserverOnMove(entity.getPosition(), destinationPosition, movingDirection, movementTicks);
         entity.setPosition(destinationPosition);
 
@@ -135,6 +138,10 @@ public class MovementCommand extends ActionCommand implements Fuseable {
         System.out.println("======= END OF MOVEMENT CMD =========");
     }
 
+    public void setMovementTicks(int movementTicks) {
+        this.movementTicks = movementTicks;
+    }
+
     public Direction getDirection() {
         return this.movingDirection;
     }
@@ -142,4 +149,35 @@ public class MovementCommand extends ActionCommand implements Fuseable {
         this.movingDirection = dir;
     }
 
+    public Entity getEntity() {
+        return entity;
+    }
+
+    public Position getCurrentPosition() {
+        return currentPosition;
+    }
+
+    public Position getDestinationPosition() {
+        return destinationPosition;
+    }
+
+    public Direction getMovingDirection() {
+        return movingDirection;
+    }
+
+    public int getMovementTicks() {
+        return movementTicks;
+    }
+
+    public CanMoveVisitor getCanMoveVisitor() {
+        return canMoveVisitor;
+    }
+
+    public void setDestinationPosition(Position destinationPosition) {
+        this.destinationPosition = destinationPosition;
+    }
+
+    public void setCurrentPosition(Position currentPosition) {
+        this.currentPosition = currentPosition;
+    }
 }

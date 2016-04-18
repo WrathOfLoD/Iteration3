@@ -8,6 +8,7 @@ import com.wrathOfLoD.Models.Map.Map;
 import com.wrathOfLoD.Models.Map.MapArea;
 import com.wrathOfLoD.Models.Map.Tile;
 import com.wrathOfLoD.Models.RangedEffect.HitBox.HitBox;
+import com.wrathOfLoD.Utility.Direction;
 import com.wrathOfLoD.Utility.Position;
 import com.wrathOfLoD.Views.AreaView.AreaView;
 import com.wrathOfLoD.Views.ImageFactory.ImageFactory;
@@ -68,9 +69,12 @@ public class ViewObjectFactory {
 
     public EntityViewObject createEntityViewObject(Position pos, Entity entity, MapArea mapArea){
         List<Image> img = new ArrayList<>();
-        img.add(ImageFactory.generateImage("resources/Entity/Avatar/Smasher/Walk/slice19_19.png"));
+//        Map<Direction, ImageAnimation> imageAnimationMap = new HashMap<>();
+//        imageAnimationMap.put.add(ImageFactory.generateImage("resources/Entity/Avatar/Smasher/Walk/north.png"));
+//        img.add(ImageFactory.generateImage("resources/Entity/Avatar/Smasher/Walk/south.png"));
+        img.add(ImageFactory.generateImage("resources/Entity/Avatar/Smasher/Walk/south_west.png"));
 
-        EntityViewObject evo = new EntityViewObject(entity, new ImageAnimation(img));
+        EntityViewObject evo = new EntityViewObject(entity, new ImageAnimation(img), createHealthBarViewObject(entity.getStats().getMaxHealth(), entity.getStats().getCurrentHealth()));
         //areaView.addViewObjectToActiveCV(pos, evo);
         areaView.addVOToCV(pos, evo, mapArea);
         entity.registerObserver(evo);
@@ -79,12 +83,18 @@ public class ViewObjectFactory {
         return evo;
     }
 
+    public HealthBarViewObject createHealthBarViewObject(int fullHealth, int currentHealth){
+        HealthBarViewObject hbvo = new HealthBarViewObject(fullHealth, currentHealth);
+        return hbvo;
+    }
+
     public EntityViewObject createAvatarViewObject(Position pos, Avatar avatar){ //has to be added to the active one
         List<Image> img = new ArrayList<>();
-        img.add(ImageFactory.generateImage("resources/Entity/Avatar/Smasher/Walk/slice19_19.png"));
+//        img.add(ImageFactory.generateImage("resources/Entity/Avatar/Smasher/Walk/slice19_19.png"));
+        img.add(ImageFactory.generateImage("resources/Abilities/DetectTrapAbility.png"));
 
-        EntityViewObject evo = new EntityViewObject(avatar, new ImageAnimation(img));
-        //areaView.addViewObjectToActiveCV(pos, evo);
+        EntityViewObject evo = new EntityViewObject(avatar, new ImageAnimation(img), createHealthBarViewObject(avatar.getStats().getMaxHealth(), avatar.getStats().getCurrentHealth()));
+
         areaView.addVOToCV(pos, evo, Map.getInstance().getActiveMapArea());
         avatar.registerObserver(evo);
         evo.registerObserver(areaView.getActiveCameraView());

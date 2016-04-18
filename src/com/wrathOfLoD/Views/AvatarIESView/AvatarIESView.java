@@ -19,7 +19,7 @@ public class AvatarIESView extends View {
     private InventoryView inventoryView;
     private StatsView statsView;
     private EquipmentView equipmentView;
-    private StaticView containerPanel;
+    private View containerPanel;
     private JPanel pushPanel;
 
     private static final int AVATARIES_VIEW_WIDTH =(int) Config.instance().getAvatarIESViewWidth();
@@ -59,7 +59,7 @@ public class AvatarIESView extends View {
         pushPanel.setBackground(new Color(0f, 0f, 0f, 0f)); //pushPanel needs to be invisible
         this.setBackground(new Color(0f, 0f, 0f, 0f));
         this.setLayout(new FlowLayout());
-        this.containerPanel = new StaticView();
+        this.containerPanel = new View();
         //this.containerPanel.setBackground(new Color(0f,0f,0f,0f));
         this.containerPanel.setBackgroundImageFileName("resources/Backgrounds/spaceSlothTrade.png");
         this.containerPanel.setPreferredSize(new Dimension(AVATARIES_VIEW_WIDTH, AVATARIES_VIEW_HEIGHT));

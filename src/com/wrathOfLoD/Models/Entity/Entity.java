@@ -100,14 +100,21 @@ public abstract class Entity implements EntityObservable{
     /********* END Getters and Setters *********/
 
     public void move(Direction movingDirection){
-		//hideTiles();
-		if(!isActive()){
+        if(!isActive()){
             setActive();
             ActionCommand acm = ActionCommandVendor.createMovementCommand(this, movingDirection);
             //TODO: may need command's execute to return ticks to set entity inActive and not to notify observer
             acm.execute();
         }
-		//showTiles();
+    }
+
+    public void fly(Direction movingDirection){
+        if(!isActive()){
+            setActive();
+            ActionCommand acm = ActionCommandVendor.createFlyCommand(this, movingDirection);
+            //TODO: may need command's execute to return ticks to set entity inActive and not to notify observer
+            acm.execute();
+        }
     }
 
 	public abstract void hideTiles();
@@ -132,7 +139,7 @@ public abstract class Entity implements EntityObservable{
     }
 
     public void takeDamage(int damageAmount){
-        stats.modifyStats(StatsModifiable.createHealthStatsModifiable(damageAmount));
+        stats.modifyStats(StatsModifiable.createHealthStatsModifiable(-damageAmount));
     }
 
     public void loseMana(int mana){
@@ -194,6 +201,11 @@ public abstract class Entity implements EntityObservable{
         for (EntityObserver eo : entityObservers) {
             eo.notifyMove(src, dest, dir, ticks);
         }
+    }
+
+    public void notifyObsersersOnDirectionChange(Direction dir) {
+        for (EntityObserver eo: entityObservers)
+            eo.notifyDirectionChange(dir);
     }
 
     public void setAggroLevel(int aggro){

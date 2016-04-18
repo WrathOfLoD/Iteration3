@@ -17,6 +17,6 @@ public class FallCommand extends ActionCommand {
 
     @Override
     public void execute() {
-        System.out.println("FALLLIING!!");
+        entity.takeDamage(fallDistance);
     }
 }
