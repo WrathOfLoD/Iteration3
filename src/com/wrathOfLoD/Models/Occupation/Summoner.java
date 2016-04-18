@@ -3,6 +3,7 @@ package com.wrathOfLoD.Models.Occupation;
 import com.wrathOfLoD.Models.Ability.Abilities.Ability;
 import com.wrathOfLoD.Models.Ability.Abilities.BlastAbilities.FanBlastAbility;
 import com.wrathOfLoD.Models.Ability.Abilities.BlastAbilities.FireballAbility;
+import com.wrathOfLoD.Models.Ability.Abilities.BlastAbilities.PrismBlastAbility;
 import com.wrathOfLoD.Models.Ability.Abilities.BlastAbilities.RadialBombBlastAbility;
 import com.wrathOfLoD.Models.Ability.Abilities.BoonAbilites.BoonBoostDefenseAbility;
 import com.wrathOfLoD.Models.Ability.Abilities.BoonAbilites.BoonBoostSpeedAbility;
@@ -74,6 +75,7 @@ public class Summoner extends Occupation {
         Ability enchantmentMakeFriendlyAbility = new EnchantmentMakeFriendlyAbility(character, 10, 30);
         Ability enchantmentMakeWeakAbility = new EnchantmentMakeWeakAbility(3, character, 10, 30);
         Ability enchantmentMakeSlowAbility = new EnchantmentMakeSlowAbility(5, character, 10, 30);
+        Ability prismBlastAbility = new PrismBlastAbility(character, 5, 10, 5, 10);
 
         abilityManager.addAbilities(fireBallAbility);
         abilityManager.addAbilities(fanBlastAbility);
@@ -84,11 +86,13 @@ public class Summoner extends Occupation {
         abilityManager.addAbilities(enchantmentMakeFriendlyAbility);
         abilityManager.addAbilities(enchantmentMakeWeakAbility);
         abilityManager.addAbilities(enchantmentMakeSlowAbility);
+        abilityManager.addAbilities(prismBlastAbility);
 
         character.equipAbility2(fireBallAbility);
         character.equipAbility3(fanBlastAbility);
         character.equipAbility4(boonStrengthenAbility);
         character.equipAbility5(enchantmentMakeFriendlyAbility);
-        character.equipAbility6(enchantmentMakeWeakAbility);
+        //character.equipAbility6(enchantmentMakeWeakAbility);
+        character.equipAbility6(prismBlastAbility);
     }
 }
