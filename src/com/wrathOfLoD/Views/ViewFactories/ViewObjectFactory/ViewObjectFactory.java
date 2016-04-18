@@ -74,7 +74,7 @@ public class ViewObjectFactory {
 
         List<Image> img = new ArrayList<>();
 //        Map<Direction, ImageAnimation> imageAnimationMap = new HashMap<>();
-        img.add(ImageFactory.generateImage("resources/Entity/Avatar/Smasher/Unequipped/South_East/Walk/walk0.png"));
+        img.add(ImageFactory.generateImage("resources/Entity/NPC/FoeNPC/South/Walk/walk.png"));
 //        img.add(ImageFactory.generateImage("resources/Entity/Avatar/Smasher/Walk/south.png"));
 //        img.add(ImageFactory.generateImage("resources/Entity/Avatar/Smasher/Walk/south_west.png"));
 
