@@ -40,7 +40,7 @@ public class MovementCommand extends ActionCommand implements Fuseable {
         entity.setActive();
 
         currentPosition = entity.getPosition();
-        movementTicks = 60 - entity.getStats().getMovement(); //TODO: MAX SPEED - movement speed??
+        movementTicks = entity.getStats().getMovement(); //TODO: MAX SPEED - movement speed??
         entity.setDirection(movingDirection);
 
     /* logic: check 1 tile above entity's direction (if can't move) -> check tile adjacent to entity (if can't move)-> check 1 tile below entity's direction (if can't move-> reject movement*/

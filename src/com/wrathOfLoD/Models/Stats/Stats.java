@@ -67,7 +67,7 @@ public class Stats implements Observable {
         setIntellect(1);
         setHardiness(1);
 
-        setMovement(55);
+        setMovement(5);
 //        setCurrentMana(maxMana);
 //        setLivesLeft(maxLife);
 //        setCurrentHealth(maxHealth);

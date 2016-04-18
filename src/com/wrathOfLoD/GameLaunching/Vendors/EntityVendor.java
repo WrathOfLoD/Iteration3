@@ -21,6 +21,7 @@ import com.wrathOfLoD.Models.Skill.SmasherSkillManager;
 import com.wrathOfLoD.Models.Skill.SneakSkillManager;
 import com.wrathOfLoD.Models.Skill.SummonerSkillManager;
 import com.wrathOfLoD.Models.Stats.Stats;
+import com.wrathOfLoD.Models.Stats.StatsModifiable;
 import com.wrathOfLoD.Utility.Position;
 
 
@@ -74,6 +75,9 @@ public class EntityVendor {
     public static NPC createEnemy(Position startingPosition, MapArea mapArea){
         NPC enemy = new NPC("SlothHater", startingPosition, new Smasher(), 1, 1, new TerrestrialCanMoveVisitor());
         enemy.setAggroLevel(1);
+        StatsModifiable move = StatsModifiable.createMovementStatsModifiable(30);
+        enemy.changeMovementSpeed(move);
+
         mapArea.addEntity(enemy, startingPosition);
         LocationTrackerManager.getInstance().registerEntity(enemy,mapArea);
         NPCController controller = new NotFlyingNPCController(enemy);
@@ -94,6 +98,9 @@ public class EntityVendor {
     public static NPC createFlyingEnemy(Position startingPosition, MapArea mapArea){
         NPC enemy = new NPC("FlyingSlothHater", startingPosition, new Smasher(), 1, 1, new FlyingCanMoveVisitor());
         enemy.setAggroLevel(1);
+        StatsModifiable move = StatsModifiable.createMovementStatsModifiable(30);
+        enemy.changeMovementSpeed(move);
+
         mapArea.addEntity(enemy, startingPosition);
         LocationTrackerManager.getInstance().registerEntity(enemy,mapArea);
         NPCController controller = new FlyingNPCController(enemy);

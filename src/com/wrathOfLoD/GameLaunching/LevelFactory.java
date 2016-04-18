@@ -105,9 +105,10 @@ public class LevelFactory {
 //        EntityVendor.createEnemy(new Position(1,2,9), mapAreaOne);
 
 
-        //EntityVendor.createEnemy(new Position(1,0,9), mapAreaOne);
+
         EntityVendor.createFlyingEnemy(new Position(2,4,4), mapAreaOne);
         EntityVendor.createFlyingEnemy(new Position(17,5,9), mapAreaOne);
+
 
 
         //EntityVendor.createPet(new Position(0,1,8), mapAreaOne);
@@ -138,7 +139,7 @@ public class LevelFactory {
         mapAreaOne.addAE(new InstantDeathAreaEffect("InstantDeathAE"), new Position(8,0,8));
 
 
-        mapAreaOne.addAE(new Teleport(new Position(4,3,8)), new Position(4,14,3));
+        mapAreaOne.addAE(new Teleport(new Position(3,6,9)), new Position(4,14,3));
 
 
         CameraView cameraView1 = new CameraView(mapAreaOne);
