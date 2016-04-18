@@ -11,5 +11,5 @@ public interface MapVisitor {
 
     public void visitMap(Map map);
     public void visitMapArea(MapArea mapArea);
-    public void visitTileColumn(TilePillar tilePillar);
+    public void visitTilePillar(TilePillar tilePillar);
 }
