@@ -1,7 +1,7 @@
 package com.wrathOfLoD.Views.AreaView;
 
 import com.wrathOfLoD.Models.Entity.Character.Avatar;
-import com.wrathOfLoD.Models.Map.MapArea;
+import com.wrathOfLoD.Models.Map.*;
 import com.wrathOfLoD.Observers.ModelObservers.MapObserver;
 import com.wrathOfLoD.Utility.Config;
 import com.wrathOfLoD.Utility.Direction;
@@ -10,6 +10,8 @@ import com.wrathOfLoD.Utility.RenderPositionComparator;
 import com.wrathOfLoD.Views.CameraView.CameraView;
 import com.wrathOfLoD.Views.CameraView.CameraViewManager;
 import com.wrathOfLoD.Views.StaticView;
+import com.wrathOfLoD.Views.ViewFactories.ViewObjectFactory.ViewObjectFactory;
+import com.wrathOfLoD.Views.ViewObjects.EntityViewObject;
 import com.wrathOfLoD.Views.ViewObjects.ModelViewObject;
 import com.wrathOfLoD.Views.ViewObjects.TilePillarViewObject;
 import com.wrathOfLoD.Views.ViewObjects.TileViewObject;
@@ -61,16 +63,6 @@ public class AreaView extends StaticView implements MapObserver{ //need to chang
 		activeCameraView.paintComponent(g);
 	}
 
-	/*
-	public void addViewObjectToActiveCV(Position pos, ModelViewObject mvo){
-		activeCameraView.addVOToTile(pos, mvo);
-	}
-
-	public TileViewObject getTileVOFromActiveCV(Position pos){
-		return activeCameraView.getTileVO(pos);
-	}*/
-
-
 	public void addVOToCV(Position pos, ModelViewObject mvo, MapArea mapArea){
 		cameraViewManager.getCV(mapArea).addVOToTile(pos, mvo);
 	}
@@ -87,5 +79,6 @@ public class AreaView extends StaticView implements MapObserver{ //need to chang
 	public void notifyMapAreaChange(MapArea ma) {
 		cameraViewManager.setActiveCV(ma);
 		setActiveCameraView(cameraViewManager.getActiveCV());
+		EntityViewObject avo = ViewObjectFactory.getInstance().createAvatarViewObject(Avatar.getInstance().getPosition(), Avatar.getInstance());
 	}
 }

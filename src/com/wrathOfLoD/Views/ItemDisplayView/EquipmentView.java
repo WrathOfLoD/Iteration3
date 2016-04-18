@@ -26,7 +26,7 @@ public class EquipmentView extends ItemDisplayView { // TODO: 4/12/2016 might ne
         System.out.println("ATTEMPTING AN Equipment change from equipment VIEW");
     }
 
-    private int currentIndex;
+//    private int currentIndex;
     private int numSlots = 4;
     private ContentDisplayStructure eds;
     private Equipment equipment;
@@ -47,13 +47,6 @@ public class EquipmentView extends ItemDisplayView { // TODO: 4/12/2016 might ne
     }
     public Slot getGreavesSlot() {
         return greavesSlot;
-    }
-
-    public int getCurrentIndex() {
-        return currentIndex;
-    }
-    public void setCurrentIndex(int currentIndex) {
-        this.currentIndex = currentIndex;
     }
 
     public Equipment getEquipment() {
@@ -102,6 +95,7 @@ public class EquipmentView extends ItemDisplayView { // TODO: 4/12/2016 might ne
             int initialY = 0;
             eds.paintComponent(g,initialX,initialY,getWidth(),getHeight());
 
+
 //            getHelmetSlot().paintComponent(g,eds.getHelmetX(),eds.getHelmetY(),eds.getSlotWidth(),eds.getslotHeight());
 //            getWeaponSlot().paintComponent(g,eds.getWeaponX(), eds.getWeaponY(), eds.getSlotWidth(), eds.getslotHeight());
 //            getChestSlot().paintComponent(g,eds.getChestX(),eds.getChestY(),eds.getSlotWidth(),eds.getslotHeight());
@@ -123,7 +117,7 @@ public class EquipmentView extends ItemDisplayView { // TODO: 4/12/2016 might ne
      */
     public void safeIncrementRight() {
         int nextIndex = getCurrentIndex()+1;
-        if (nextIndex<=eds.getNumSlots()) {
+        if (nextIndex<eds.getNumSlots()) {
             setCurrentIndex(nextIndex);
         }
     }
@@ -132,6 +126,7 @@ public class EquipmentView extends ItemDisplayView { // TODO: 4/12/2016 might ne
      * desc: Paint view with previous item in row selected
      */
     public void selectPrevItem() {
+
         this.safeDecrementLeft();
     }
 
@@ -166,7 +161,9 @@ public class EquipmentView extends ItemDisplayView { // TODO: 4/12/2016 might ne
      * desc: Paint view with next item in col selected
      */
     public void selectDownItem() {
+
         this.safeIncrementDown();
+
     }
 
     /**
@@ -174,7 +171,7 @@ public class EquipmentView extends ItemDisplayView { // TODO: 4/12/2016 might ne
      */
     public void safeIncrementDown() {
         int nextIndex = getCurrentIndex()+1;
-        if (nextIndex<=eds.getNumSlots()) {
+        if (nextIndex<eds.getNumSlots()) {
             setCurrentIndex(nextIndex);
         }
     }
@@ -184,7 +181,7 @@ public class EquipmentView extends ItemDisplayView { // TODO: 4/12/2016 might ne
      */
     public Object useSelectedItem() {
         //System.out.println(eds.getEquippedItemViewObjects().get(currentIndex).getObject());
-        return eds.getSlotList().get(currentIndex).getStaticViewObject().getObject();
+        return eds.getSlotList().get(getCurrentIndex()).getStaticViewObject().getObject();
     }
 
 

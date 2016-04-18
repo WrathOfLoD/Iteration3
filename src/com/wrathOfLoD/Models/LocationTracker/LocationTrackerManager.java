@@ -65,7 +65,7 @@ public class LocationTrackerManager {
     }
     public void registerEntity(Entity e, MapArea ma){
         LocationTracker locationTracker = locTrackerMap.get(ma);
-        if(locationTracker.equals(null)){
+        if(locationTracker == null){
             locationTracker = new LocationTracker();
             locTrackerMap.put(ma,locationTracker);
         }
@@ -76,8 +76,8 @@ public class LocationTrackerManager {
     }
 
     public void updateLocation(Entity e) {
-		System.out.println("num of location trackers in hash map: " + this.locTrackerMap.values().size());
-		System.out.println("is active location tracker null? " + (this.activeLocationTracker == null));
+//		System.out.println("num of location trackers in hash map: " + this.locTrackerMap.values().size());
+//		System.out.println("is active location tracker null? " + (this.activeLocationTracker == null));
 		this.activeLocationTracker.updateLocation(e);
     }
     public void updateLocation(Item i, Position position) {

@@ -15,7 +15,7 @@ import java.util.Comparator;
 /**
  * Created by Mitchell on 4/12/2016.
  */
-public class TileViewObject extends ViewObject implements DestroyableVOObserver{
+public class TileViewObject extends ViewObject{
 
 	private Tile tile;
 	private Position pos;
@@ -64,8 +64,4 @@ public class TileViewObject extends ViewObject implements DestroyableVOObserver{
 		return this.pos;
 	}
 
-	@Override
-	public void notifyDestroy(ModelViewObject vo) {
-		removeMOVFromTile(vo);
-	}
 }

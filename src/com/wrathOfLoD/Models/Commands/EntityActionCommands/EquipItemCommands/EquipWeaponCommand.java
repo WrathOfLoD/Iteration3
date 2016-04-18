@@ -17,5 +17,6 @@ public class EquipWeaponCommand extends EquipItemCommand {
     protected void equipHook(Equipment equipment){
         EquippableItem item = getItem();
         equipment.equip((Weapon)item);
+
     }
 }

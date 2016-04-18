@@ -1,6 +1,7 @@
 package com.wrathOfLoD.Views.SpriteMap;
 
 
+import com.wrathOfLoD.Utility.Config;
 import com.wrathOfLoD.Utility.Direction;
 import com.wrathOfLoD.Utility.FileExtensionExtractor;
 
@@ -19,7 +20,7 @@ import java.util.List;
 public class SpriteMap {
     private  HashMap<String, ImageAnimation> aoeMap;
     private  HashMap<EntityKey, ImageAnimation> entityMap;
-    //includes hitbox
+    private  HashMap<AvatarKey, ImageAnimation> avatarMap = new HashMap<>();
     private  HashMap<String, ImageAnimation> effectsMap;
     private  HashMap<String, ImageAnimation> itemMap;
     private Set<String> stateSet;
@@ -27,10 +28,26 @@ public class SpriteMap {
     public class EntityKey{
         private String entityType;
         private String action;
-        private Direction direction;
+        private String state;
+        private String direction;
 
-        EntityKey(String entityType, String action, Direction direction){
+        EntityKey(String entityType, String state, String direction,  String action){
             this.entityType = entityType;
+            this.state = state;
+            this.direction = direction;
+            this.action = action;
+        }
+    }
+
+    public class AvatarKey{
+        private String occupation;
+        private String action;
+        private String state;
+        private String direction;
+
+        AvatarKey(String occupation, String state, String action, String direction){
+            this.occupation = occupation;
+            this.state = state;
             this.action = action;
             this.direction = direction;
         }
@@ -47,11 +64,14 @@ public class SpriteMap {
         generateItemMap();
         generateEffectsMap();
         generateAOEMap();
-        generateEntityMap();
+//        generateEntityMap();
+//        generateAvatarMap();
     }
 
     /***** getter & setter for SpriteMap *******/
     public  HashMap<String, ImageAnimation> getAoeMap() { return aoeMap; }
+
+    public  HashMap<AvatarKey, ImageAnimation>  getAvatarMapMap(){ return avatarMap; }
 
     public  HashMap<EntityKey, ImageAnimation>  getEntityMap(){ return entityMap; }
 
@@ -75,7 +95,7 @@ public class SpriteMap {
     }
 
     /***** End of Reusable Methods for all maps *******/
-    private void entityImageFramesGenerator(File folder) throws IOException{
+    private void entityRenameImageFiles(File folder) throws IOException{
         File[] listOfFiles = folder.listFiles();
         int counter = 0;
         for (File file : listOfFiles) {
@@ -85,6 +105,34 @@ public class SpriteMap {
             }
         }
     }
+
+    private void entityImageFramesGenerator(File folder) throws IOException{
+        int startStringLength = Config.getEntityVOPath().length();
+
+        String stringKey = folder.getPath().substring(startStringLength);
+        String[] keyVals = stringKey.split("/");
+        for (String s : keyVals)
+            System.out.println(s);
+        AvatarKey key = new AvatarKey(keyVals[0], keyVals[1], keyVals[2], keyVals[3]);
+
+        File[] listOfFiles = folder.listFiles();
+
+        List<Image> sprites = new ArrayList<>();
+        for (File file : listOfFiles) {
+            if (file.isFile() && FileExtensionExtractor.getFileExtension(file.getName()).equals("png")) {
+                sprites.add(ImageIO.read(file));
+            }
+        }
+        if(sprites.size() > 0){
+            ImageAnimation imgAnimation = new ImageAnimation(sprites);
+            System.out.println("At key: " + key);
+            for (Image f : sprites)
+                System.out.println("\tinserting " + f);
+
+            avatarMap.put(key, imgAnimation);
+        }
+    }
+
 
     private  void generateItemMap() throws IOException{
         imageAnimationGenerator("./resources/MapItems", itemMap);
@@ -98,8 +146,12 @@ public class SpriteMap {
         imageAnimationGenerator("./resources/AOE", aoeMap);
     }
 
+    public void generateAvatarMap() throws IOException{
+        entityAnimationGenerator(Config.getEntityVOPath() + "/Avatar/Smasher");
+    }
+
     public void generateEntityMap() throws IOException{
-        entityAnimationGenerator("./resources/Entity/Avatar/Smasher");
+        entityAnimationGenerator(Config.getEntityVOPath());
     }
 
     private void entityAnimationGenerator(String path) throws IOException {

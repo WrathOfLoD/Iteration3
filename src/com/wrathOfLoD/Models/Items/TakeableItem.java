@@ -18,7 +18,7 @@ public abstract class TakeableItem extends Item{
         pickUpItemCommand.execute();
         System.out.println("PICK UP CALLED?");
         for(DestroyableModelObserver mio : getDestroyableModelObservers()){
-            mio.notifyDestroy();
+            mio.notifyDestroy(entity.getPosition());
         }
     }
 

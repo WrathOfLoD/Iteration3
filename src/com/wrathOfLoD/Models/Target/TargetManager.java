@@ -139,17 +139,29 @@ public abstract class TargetManager {
          * the following remove all the targets that reference the entity or item from the list if they exist
          * @param e
          */
-        public void remove(Entity e){
-            for(Target t : targetList){
-                if(t.getTarget().equals(e)){
-                    targetList.remove(t);
+        public void remove(Entity e) {
+            for (int i = 0; i < targetList.size(); i++) {
+                if (targetList.get(i).getTarget().equals(e)) {
+                    targetList.remove(targetList.get(i));
                 }
             }
         }
-        public void remove(Item i){
-            for(Target t : targetList){
-                if(t.getTarget().equals(i)){
-                    targetList.remove(t);
+
+//            for(Target t : targetList){
+//                if(t.getTarget().equals(e)){
+//                    targetList.remove(t);
+//                }
+//            }
+
+        public void remove(Item i){ //TODO: copy on write array?
+//            for(Target t : targetList){
+//                if(t.getTarget().equals(i)){
+//                    targetList.remove(t);
+//                }
+//            }
+            for(int k = 0; k < targetList.size(); k++){
+                if(targetList.get(k).getTarget().equals(i)){
+                    targetList.remove(targetList.get(k));
                 }
             }
         }

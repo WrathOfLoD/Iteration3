@@ -46,7 +46,6 @@ public abstract class TimedAbility extends Ability implements Tickable{
         if(currentTick == windup){
             windUpHook();
         }else if(currentTick == coolDown){
-            //coolDownHook();
             TimeModel.getInstance().deregisterTickable(this);
             getCharacter().setInactive();
         }
@@ -66,7 +65,10 @@ public abstract class TimedAbility extends Ability implements Tickable{
         return coolDown;
     }
 
+    protected int getCurrentTick(){ return this.currentTick; }
+
     public void setCoolDown(int coolDown) {
         this.coolDown = coolDown;
     }
+
 }
