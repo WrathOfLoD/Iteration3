@@ -45,6 +45,17 @@ public class Avatar extends Character implements ActionsHolder {
         return avatar;
     }
 
+    public void configureAvatar(String name, Position position, Occupation occupation){
+        this.setName(name);
+        this.setPosition(position);
+        this.setOccupation(occupation);
+        SkillManager skillManager = occupation.createSkillManager();
+        this.setSkillManager(skillManager);
+        Weapon defaultWeapon = occupation.createWeapon();
+        this.setEquipment(new Equipment(defaultWeapon));
+        setCanMoveVisitor(new TerrestrialCanMoveVisitor());
+    }
+
     public void configureAvatar(String name, Position position, Occupation occupation, SkillManager skillManager){
         this.setName(name);
         this.setPosition(position);

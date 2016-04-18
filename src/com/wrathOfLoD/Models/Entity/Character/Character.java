@@ -23,6 +23,8 @@ public abstract class Character extends Entity {
     private AbilityManager abilityManager;
     private SkillManager skillManager;
 
+
+
     public Character(){
         super();
         this.occupation = new Smasher();

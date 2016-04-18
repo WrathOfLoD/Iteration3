@@ -1,5 +1,6 @@
 package com.wrathOfLoD.GameLaunching.Vendors;
 
+import com.sun.xml.internal.ws.dump.LoggingDumpTube;
 import com.wrathOfLoD.Controllers.NPCControllers.FlyingNPCController;
 import com.wrathOfLoD.Controllers.NPCControllers.NPCController;
 import com.wrathOfLoD.Controllers.NPCControllers.NotFlyingNPCController;
@@ -27,6 +28,16 @@ import javafx.geometry.Pos;
  * Created by luluding on 4/15/16.
  */
 public class EntityVendor {
+
+    public static Avatar createNewPlayer(String name, Occupation occupation, Position startingPosition, MapArea mapArea){
+        Avatar avatar = Avatar.getInstance();
+        Stats stats = new Stats(avatar);
+        avatar.configureAvatar(name, startingPosition, occupation, occupation.createSkillManager());
+        mapArea.addEntity(avatar, startingPosition);
+        Map.getInstance().setActiveMapArea(mapArea);
+        LocationTrackerManager.getInstance().registerEntity(avatar,mapArea);
+        return avatar;
+    }
 
     public static Avatar createNewSmasherPlayer(String name, Position startingPosition, MapArea mapArea){
         Avatar avatar = Avatar.getInstance();
