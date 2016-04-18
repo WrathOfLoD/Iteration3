@@ -1,5 +1,7 @@
 package com.wrathOfLoD.Models.Commands.EntityActionCommands;
 
+import com.wrathOfLoD.GameClock.Fuseable;
+import com.wrathOfLoD.GameClock.TimeModel;
 import com.wrathOfLoD.Models.Commands.ActionCommand;
 import com.wrathOfLoD.Models.Entity.Entity;
 import com.wrathOfLoD.Models.Items.TakeableItem;
@@ -11,7 +13,7 @@ import com.wrathOfLoD.Utility.Position;
 /**
  * Created by matthewdiaz on 4/9/16.
  */
-public class PickUpItemCommand extends ActionCommand {
+public class PickUpItemCommand extends ActionCommand implements Fuseable{
     private TakeableItem item;
     private Entity entity;
 
@@ -22,6 +24,11 @@ public class PickUpItemCommand extends ActionCommand {
 
     @Override
     public void execute(){
+        TimeModel.getInstance().registerFuseable(this, 2);
+    }
+
+    @Override
+    public void explode() {
         Map.getInstance().removeItem(item, entity.getPosition());
         LocationTrackerManager.getInstance().deregisterItem(item);
 

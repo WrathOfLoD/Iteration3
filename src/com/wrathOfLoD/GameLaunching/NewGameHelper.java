@@ -2,6 +2,7 @@ package com.wrathOfLoD.GameLaunching;
 
 import com.wrathOfLoD.Models.Entity.Character.Avatar;
 import com.wrathOfLoD.Models.Map.Map;
+import com.wrathOfLoD.Models.Map.MapArea;
 import com.wrathOfLoD.Views.AreaView.AreaView;
 
 import java.io.IOException;
@@ -35,6 +36,11 @@ public class NewGameHelper extends GameLaunchHelper{
         try {
             getLevelFactory().populateMap();
         }catch (IOException e){}
+    }
+
+    @Override
+    public void setActiveCameraView(MapArea mapArea) {
+        getLevelFactory().setActiveCV(mapArea);
     }
 
 }

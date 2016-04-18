@@ -147,115 +147,15 @@ public class Position{
 	}
 
 	public int getHorizontalDist(Position pos){
-		return Math.abs((this.getQ() - pos.getQ()) +
-				(this.getR() - pos.getR()) + (this.getS() - pos.getS()));
+		return (Math.abs(this.getQ() - pos.getQ()) + Math.abs(this.getR() - pos.getR()) + Math.abs(this.getS() - pos.getS()))/2;
 	}
+
 	public Position getPosInDir(Direction dir){
 		return vectorAdd(this, dir.getPosVector());
 	}
 
-	public Position get2DProjection(){
-		return new Position(this.getQ(), this.getR(), this.getS(), 0);
-	}
-
-	//drawing shapes :D
-
-	//drawing a line in a straight direction
-	//spatial
-	public static List<Position> drawLine(Position origin, Direction dir, int range, boolean includeOrigin){
-
-		Position deltaVector = scalarMultiply(dir.getPosVector(), range);
-		Position target = vectorAdd(origin, deltaVector);
-
-		return drawline(origin, target, range, includeOrigin);
-	}
-
-	//drawing a line to a target
-	//spatial
-	public static List<Position> drawline(Position origin, Position target, int range, boolean includeOrigin){
-		List<Position> line = new ArrayList<Position>();
-
-		if(includeOrigin){
-			line.add(origin);
-		}
-		int totalDist = origin.getDistance(target);
-		for(float f = 1; f <= range; f++){
-			float deltaQ = (target.getQ() - origin.getQ()) * f;
-			float deltaR = (target.getR() - origin.getR()) * f;
-			float deltaS = (target.getS() - origin.getS()) * f;
-			float deltaH = (target.getH() - origin.getH()) * f;
-			Position deltaPos = roundPosition(deltaQ, deltaR, deltaS, deltaH);
-			line.add(vectorAdd(origin, deltaPos));
-		}
-
-		return line;
-	}
-
-	//drawing a fan (can be horizontal or vertical)
-	//planar (horizontal or vertical)
-	public static List<Position> drawFan(Position origin, Direction dir, boolean horizontal, int range, boolean includeOrigin){
-		List<Position> fan = new ArrayList<Position>();
-
-		if(includeOrigin){
-			fan.add(origin);
-		}
-
-		for(int i = 1; i < range; i++){
-			List<Position> wave  = drawArc(origin, dir, horizontal, i);
-			fan.addAll(wave);
-		}
-
-		return fan;
-	}
-
-	//drawing an arc (slice of a fan )
-	//planar (horizontal or vertical)
-	public static List<Position> drawArc(Position origin, Direction dir, boolean horizontal, int range){
-		List<Position> arc = new ArrayList<Position>();
-
-		dir = dir.planar(); //REVIEW, do I need this?
-		Position rightVector;
-		Position leftVector;
-
-		if(horizontal){
-			rightVector = dir.counterClockwise().inversePlanar().getPosVector();
-			leftVector = dir.clockwise().inversePlanar().getPosVector();
-		}
-		else{
-			rightVector = dir.above().getPosVector();
-			leftVector = dir.below().getPosVector();
-		}
-
-		Position arcCenter = vectorAdd(origin, scalarMultiply(dir.getPosVector(), range));
-		arc.add(arcCenter);
-
-		for(int i = 1; i <= range/2; i++){
-			Position arcRight = vectorAdd(arcCenter, scalarMultiply(rightVector, i));
-			arc.add(arcRight);
-
-			Position arcLeft = vectorAdd(arcCenter, scalarMultiply(leftVector, i));
-			arc.add(arcLeft);
-
-		}
-
-		return arc;
-	}
-
-//	TODO: prism effects one or more concentric vertical columns of hextiles.
-//	TODO: (hemi-)conical effects (e.g., shotgun blast) approximates an expanding 60° cone centered on the direction the unit is targeting
-//	TODO: (hemi)spherical (e.g., bomb blast) 360° expanding effect (targeting independent)
-
-	public Point positionToXY(){
-		double x = (3.0/2.0) * this.getQ() + (0 * this.getR());
-		x *= 43;
-		double y = ((Math.sqrt(3)/2.0) * this.getQ()) + (Math.sqrt(3) * this.getR());
-		y *= 23;
-		y -= ((20.0) * this.getH());
-		return new Point((int) x, (int) y);
-	}
-
-    public static Direction getDirectionFromPostoPos(Position source, Position dest){
-        Position vector = vectorSubtract(dest, source);
+	public static Direction getDirectionFromPostoPos(Position source, Position dest){
+		Position vector = vectorSubtract(dest, source);
 		int unitQ = vector.getQ();
 		int unitR = vector.getR();
 		int unitS = vector.getS();
@@ -299,8 +199,144 @@ public class Position{
 				return dir;
 			}
 		}
-//		System.out.println("Can't find a direction that matches, wtf?!?!");
-		return Direction.SOUTH;
-    }
+		System.out.println("Can't find a direction that matches, wtf?!?!");
+		return Direction.CENTER;
+	}
+
+	public Position get2DProjection(){
+		return new Position(this.getQ(), this.getR(), this.getS(), 0);
+	}
+
+	public Point positionToXY(){
+		double x = (3.0/2.0) * this.getQ() + (0 * this.getR());
+		x *= 43;
+		double y = ((Math.sqrt(3)/2.0) * this.getQ()) + (Math.sqrt(3) * this.getR());
+		y *= 23;
+		y -= ((20.0) * this.getH());
+		return new Point((int) x, (int) y);
+	}
+
+	//drawing shapes :D
+
+	//drawing a line in a straight direction
+	//spatial
+	public static List<Position> drawLine(Position origin, Direction dir, int range, boolean includeOrigin){
+
+		Position deltaVector = scalarMultiply(dir.getPosVector(), range);
+		Position target = vectorAdd(origin, deltaVector);
+
+		return drawline(origin, target, range, includeOrigin);
+	}
+
+	//drawing a line to a target
+	//spatial
+	public static List<Position> drawline(Position origin, Position target, int range, boolean includeOrigin){
+		List<Position> line = new ArrayList<Position>();
+
+		if(includeOrigin){
+			line.add(origin);
+		}
+		int totalDist = origin.getDistance(target);
+		for(float f = 1; f <= range; f++){
+			float delta = f / range;
+			float deltaQ = (target.getQ() - origin.getQ()) * delta;
+			float deltaR = (target.getR() - origin.getR()) * delta;
+			float deltaS = (target.getS() - origin.getS()) * delta;
+			float deltaH = (target.getH() - origin.getH()) * delta;
+			Position deltaPos = roundPosition(deltaQ, deltaR, deltaS, deltaH);
+			line.add(vectorAdd(origin, deltaPos));
+		}
+
+		return line;
+	}
+
+	//drawing a fan (can be horizontal or vertical)
+	//planar (horizontal or vertical)
+	public static List<Position> drawFan(Position origin, Direction dir, boolean horizontal, int range, boolean includeOrigin){
+		List<Position> fan = new ArrayList<Position>();
+
+		if(includeOrigin){
+			fan.add(origin);
+		}
+
+		for(int i = 1; i < range; i++){
+			List<Position> arc  = drawArc(origin, dir, horizontal, i);
+			fan.addAll(arc);
+		}
+
+		return fan;
+	}
+
+	//drawing an arc (slice of a fan )
+	//planar (horizontal or vertical)
+	public static List<Position> drawArc(Position origin, Direction dir, boolean horizontal, int range){
+		List<Position> arc = new ArrayList<Position>();
+
+		dir = dir.planar(); //REVIEW, do I need this?
+		Position rightVector;
+		Position leftVector;
+
+		if(horizontal){
+			rightVector = dir.counterClockwise().inversePlanar().getPosVector();
+			leftVector = dir.clockwise().inversePlanar().getPosVector();
+		}
+		else{
+			rightVector = dir.above().getPosVector();
+			leftVector = dir.below().getPosVector();
+		}
+
+		Position arcCenter = vectorAdd(origin, scalarMultiply(dir.getPosVector(), range));
+		arc.add(arcCenter);
+
+		for(int i = 1; i <= range/2; i++){
+			Position arcRight = vectorAdd(arcCenter, scalarMultiply(rightVector, i));
+			arc.add(arcRight);
+
+			Position arcLeft = vectorAdd(arcCenter, scalarMultiply(leftVector, i));
+			arc.add(arcLeft);
+
+		}
+
+		return arc;
+	}
+
+	//drawing a solid circle
+	//planar
+	public static List<Position> drawCircle(Position origin, int range, boolean includeOrigin){
+		List<Position> circle = new ArrayList<Position>();
+
+		if(includeOrigin){
+			circle.add(origin);
+		}
+
+		for(int i = 1; i < range; i++){
+			List<Position> ring  = drawRing(origin, i);
+			circle.addAll(ring);
+		}
+
+		return circle;
+	}
+
+	//drawing a ring
+	//planar
+	public static List<Position> drawRing(Position origin, int range){
+		List<Position> ring = new ArrayList<Position>();
+
+		Position pos = vectorAdd(origin, scalarMultiply(Direction.NORTH.getPosVector(), range));
+		Direction dir = Direction.NORTH.counterClockwise().inversePlanar();
+		for(int i = 0; i < 6; i++){
+			for(int j = 0; j < range; j++){
+				ring.add(pos);
+				pos = pos.getPosInDir(dir);
+			}
+			dir = dir.clockwise();
+		}
+
+		return ring;
+	}
+
+//	TODO: prism effects one or more concentric vertical columns of hextiles.
+//	TODO: (hemi-)conical effects (e.g., shotgun blast) approximates an expanding 60° cone centered on the direction the unit is targeting
+//	TODO: (hemi)spherical (e.g., bomb blast) 360° expanding effect (targeting independent)
 
 }

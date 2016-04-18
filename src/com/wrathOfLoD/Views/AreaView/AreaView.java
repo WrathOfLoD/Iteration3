@@ -10,10 +10,10 @@ import com.wrathOfLoD.Utility.RenderPositionComparator;
 import com.wrathOfLoD.Views.CameraView.CameraView;
 import com.wrathOfLoD.Views.CameraView.CameraViewManager;
 import com.wrathOfLoD.Views.StaticView;
-import com.wrathOfLoD.Views.View;
 import com.wrathOfLoD.Views.ViewObjects.ModelViewObject;
 import com.wrathOfLoD.Views.ViewObjects.TilePillarViewObject;
 import com.wrathOfLoD.Views.ViewObjects.TileViewObject;
+import javafx.geometry.Pos;
 
 import java.awt.*;
 import java.util.*;
@@ -22,7 +22,7 @@ import java.util.List;
 /**
  * Created by echristiansen on 4/8/2016.
  */
-public class AreaView extends View implements MapObserver{ //need to change to just extending View, perhaps
+public class AreaView extends StaticView implements MapObserver{ //need to change to just extending View, perhaps
 
     public static final int WIDTH = Config.instance().getAreaViewWidth();
     public static final int HEIGHT = Config.instance().getAreaViewHeight();
@@ -60,12 +60,26 @@ public class AreaView extends View implements MapObserver{ //need to change to j
 		activeCameraView.paintComponent(g);
 	}
 
+	/*
 	public void addViewObjectToActiveCV(Position pos, ModelViewObject mvo){
 		activeCameraView.addVOToTile(pos, mvo);
 	}
 
 	public TileViewObject getTileVOFromActiveCV(Position pos){
 		return activeCameraView.getTileVO(pos);
+	}*/
+
+
+	public void addVOToCV(Position pos, ModelViewObject mvo, MapArea mapArea){
+		cameraViewManager.getCV(mapArea).addVOToTile(pos, mvo);
+	}
+
+	public TileViewObject getTileVOFromCV(Position pos, MapArea mapArea){
+		return cameraViewManager.getCV(mapArea).getTileVO(pos);
+	}
+
+	public CameraView getCV(MapArea mapArea){
+		return cameraViewManager.getCV(mapArea);
 	}
 
 	@Override

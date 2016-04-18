@@ -25,6 +25,13 @@ public class LineREG extends RangedEffectGenerator{
         super(totalDistance, entityLocation, damage, travelTime, hitBoxFactory);
         this.facingDirection = facingDirection;
         this.targetPositions = Position.drawLine(entityLocation, facingDirection, totalDistance, false);
+
+        System.out.println("FIREBALL: ENTITY LOC: " + entityLocation.getQ() + " " + entityLocation.getR() + " " + entityLocation.getH());
+        System.out.println("FIREBALL: ENTITY DIR: " + facingDirection);
+
+        for(Position p : targetPositions){
+            System.out.println("INIT FB POS: " + p.getQ() + " " + p.getR() + " " + p.getH());
+        }
     }
 
 

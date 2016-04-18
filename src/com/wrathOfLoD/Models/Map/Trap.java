@@ -27,6 +27,10 @@ public class Trap {
         return visible;
     }
 
+    public void detected(){
+        this.visible = true;
+    }
+
     public void accept(TileVisitor tv){
         tv.visitTrap(this);
     }

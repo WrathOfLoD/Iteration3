@@ -101,6 +101,10 @@ public class Map implements MapObservable{
 		mapObservers.remove(mo);
 	}
 
+	public MapArea getActiveMapArea(){
+		return this.activeMapArea;
+	}
+
 
 	/********* Forward to tile ************/
 	public void addEntity(Entity entity, Position pos){

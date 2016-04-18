@@ -14,9 +14,8 @@ public class CircularREG extends RangedEffectGenerator {
         super(totalDistance, entityLocation, damage, travelTime, hitBoxFactory);
     }
 
-
     @Override
     public List<Position> getEffectiveLocations(int radius, Position orignalPos) {
-        return null;
+        return Position.drawRing(orignalPos, radius);
     }
 }

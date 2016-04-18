@@ -32,7 +32,7 @@ public class TimeModel {
         Iterator<Map.Entry<Fuseable, Integer>> fuseableIterator = this.fuseableList.entrySet().iterator();
         while(fuseableIterator.hasNext()){
             Map.Entry<Fuseable, Integer> entry = fuseableIterator.next();
-            System.out.print("FUSEABLEEE: " + entry.getKey() + " .... " + entry.getValue());
+            entry.setValue(entry.getValue()-1);
             if(entry.getValue() <= 0){
                 deregisterFuseable(entry.getKey());
                 entry.getKey().explode();
@@ -51,12 +51,10 @@ public class TimeModel {
 
     public void registerFuseable(Fuseable fuseable, int ticks){
         this.fuseableList.put(fuseable, ticks);
-        System.out.println("REGISTER FUSEABLE???");
     }
 
     private void deregisterFuseable(Fuseable fuseable){
         this.fuseableList.remove(fuseable);
-        System.out.println("DEREG FUSEABLE????????");
     }
 
 

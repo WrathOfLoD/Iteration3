@@ -34,5 +34,8 @@ public class FlowMovementCommand extends ActionCommand implements Fuseable{
         Position nextPos = entity.getPosition().getPosInDir(flowDirection);
         Map.getInstance().removeEntity(entity, entity.getPosition());
         Map.getInstance().addEntity(entity, nextPos);
+        entity.notifyObserverOnMove(entity.getPosition(), nextPos, flowDirection, flowStrength);
+        entity.setPosition(nextPos);
+
     }
 }

@@ -32,15 +32,15 @@ public abstract class Character extends Entity {
         this.occupation = new Smasher();
         Weapon defaultWeapon = this.occupation.createWeapon();
         this.equipment = new Equipment(defaultWeapon);
-        this.abilityManager = new AbilityManager(getOccupation());
+        this.abilityManager = new AbilityManager(this);
         this.skillManager = this.occupation.createSkillManager();
         this.abilityManager.unlockAbilities(getStats().getLevel());
     }
 
     public Character(String name, Position position, Occupation occupation, CanMoveVisitor canMoveVisitor){
         super(name,position,canMoveVisitor);
-        this.abilityManager = new AbilityManager(getOccupation());
         this.occupation = occupation;
+        this.abilityManager = new AbilityManager(this);
         Weapon defaultWeapon = this.occupation.createWeapon();
         this.equipment = new Equipment(defaultWeapon);
         this.abilityManager.unlockAbilities(getStats().getLevel());
@@ -95,6 +95,7 @@ public abstract class Character extends Entity {
     public void levelUp(){
         super.levelUp();
         abilityManager.unlockAbilities(getStats().getLevel());
+        //occupation.levelUp();
     }
 
     public void doAbility(int abilityNum){
