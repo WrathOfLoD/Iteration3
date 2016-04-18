@@ -1,11 +1,13 @@
 package com.wrathOfLoD.GameLaunching.Vendors;
 
+import com.wrathOfLoD.Controllers.NPCControllers.FlyingNPCController;
 import com.wrathOfLoD.Controllers.NPCControllers.NPCController;
 import com.wrathOfLoD.Controllers.NPCControllers.NotFlyingNPCController;
 import com.wrathOfLoD.GameClock.TimeModel;
 import com.wrathOfLoD.Models.Entity.Character.Avatar;
 import com.wrathOfLoD.Models.Entity.Character.NPC;
 import com.wrathOfLoD.Models.Entity.EntityCanMoveVisitor.CanMoveVisitor;
+import com.wrathOfLoD.Models.Entity.EntityCanMoveVisitor.FlyingCanMoveVisitor;
 import com.wrathOfLoD.Models.Entity.EntityCanMoveVisitor.TerrestrialCanMoveVisitor;
 import com.wrathOfLoD.Models.LocationTracker.LocationTrackerManager;
 import com.wrathOfLoD.Models.Map.Map;
@@ -64,6 +66,14 @@ public class EntityVendor {
         return enemy;
     }
 
-
+    public static NPC createFlyingEnemy(Position startingPosition, MapArea mapArea){
+        NPC enemy = new NPC("FlyingSlothHater", startingPosition, new Smasher(), 1, 1, new FlyingCanMoveVisitor());
+        enemy.setAggroLevel(1);
+        mapArea.addEntity(enemy, startingPosition);
+        LocationTrackerManager.getInstance().registerEntity(enemy,mapArea);
+        NPCController controller = new FlyingNPCController(enemy);
+        TimeModel.getInstance().registerTickable(controller);
+        return enemy;
+    }
 
 }

@@ -14,7 +14,7 @@ public class AreaEffectViewObject extends ModelViewObject{
 
     public AreaEffectViewObject(AreaEffect ae, ImageAnimation imageAnimation){
         super(Config.getAreaEffectZLevel());
-        this.areaEffect = areaEffect;
+        this.areaEffect = ae;
         setImage(imageAnimation.getFrame());
     }
 

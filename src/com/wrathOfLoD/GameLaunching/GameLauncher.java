@@ -69,7 +69,7 @@ public class GameLauncher {
         InputState avatarState = new AvatarState();
 
 
-        // TODO: 4/17/16 Do same for Equipment 
+        // TODO: 4/17/16 Do same for Equipment
         inventory.addToActionSet(ActionVendor.createSelectUpAction(inventoryView));
         inventory.addToActionSet(ActionVendor.createSelectRightAction(inventoryView));
         inventory.addToActionSet(ActionVendor.createSelectLeftAction(inventoryView));

@@ -2,6 +2,7 @@ package com.wrathOfLoD.Views.SpriteMap;
 
 
 import com.wrathOfLoD.Utility.Direction;
+import com.wrathOfLoD.Utility.FileExtensionExtractor;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -41,6 +42,7 @@ public class SpriteMap {
         generateItemMap();
         generateEffectsMap();
         generateAOEMap();
+        generateEntityMap();
     }
 
     /***** getter & setter for SpriteMap *******/
@@ -60,7 +62,7 @@ public class SpriteMap {
 
         List<Image> sprites = new ArrayList<>();
         for (File file : listOfFiles) {
-            if (file.isFile()) {
+            if (file.isFile() && FileExtensionExtractor.getFileExtension(file.getName()).equals("png")) {
                 sprites.add(ImageIO.read(file));
             }
         }
@@ -82,6 +84,26 @@ public class SpriteMap {
         imageAnimationGenerator("./resources/AOE", aoeMap);
     }
 
+    public void generateEntityMap() throws IOException{
+        entityAnimationGenerator("./resources/Entity");
+    }
+
+    private void entityAnimationGenerator(String path) throws IOException {
+        File directory = new File(path);
+
+        if (directory.isFile()) {
+            String fileName = directory.getName();
+            if(fileName.endsWith(".png")) {
+                System.out.println(directory.getName());
+            }
+            return;
+        }
+        File[] paths = directory.listFiles();
+
+        for (int i = 0; i < paths.length; i++) {
+            entityAnimationGenerator(paths[i].getPath());
+        }
+    }
 
     /***** Reusable Methods for  aoeMap, imageMap, and effectsMap *******/
     private void imageAnimationGenerator(String path, HashMap<String, ImageAnimation> hash) throws IOException {

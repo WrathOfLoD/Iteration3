@@ -58,8 +58,7 @@ public class GridStructure extends ContentDisplayStructure { // TODO: 4/17/2016 
             return slotHeight;
         }
 
-
-    }
+}
 
 
 

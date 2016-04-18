@@ -10,7 +10,7 @@ import java.util.HashMap;
 public class SpriteTestOutPut {
     public static void main(String args[]) throws IOException {
         SpriteMap sm = new SpriteMap();
-        //sm.generateItemMap();
+        sm.generateEntityMap();
         HashMap<String, ImageAnimation> h = sm.getItemMap();
         for(String str: h.keySet()){
             System.out.println(h.get(str));

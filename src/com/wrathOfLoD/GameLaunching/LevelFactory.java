@@ -99,7 +99,8 @@ public class LevelFactory {
 
 //        ItemVendor.createHammer(mapAreaOne, new Position(1,2,9));
 //        EntityVendor.createEnemy(new Position(1,2,9), mapAreaOne);
-        EntityVendor.createEnemy(new Position(1,0,9), mapAreaOne);
+//        EntityVendor.createEnemy(new Position(1,0,9), mapAreaOne);
+        EntityVendor.createFlyingEnemy(new Position(2,4,4), mapAreaOne);
 
 
 //        NPC myNPC = new NPC("Hehe",new Position(1,1,8), new Smasher(), new TerrestrialCanMoveVisitor());
@@ -114,7 +115,7 @@ public class LevelFactory {
         CameraView cameraView1 = new CameraView(mapAreaOne);
         cameraView1.setCameraCenter(mapAreaOne.getSpawnPoint());
         cvm.addCameraView(mapAreaOne, cameraView1);
-        //areaView.setActiveCameraView(cameraView1); //TODO: set active cv when avatar gets added
+        areaView.setActiveCameraView(cameraView1); //TODO: set active cv when avatar gets added
         cameraView1.populateCV();
 
         //TODO: Can store spawn point in map area

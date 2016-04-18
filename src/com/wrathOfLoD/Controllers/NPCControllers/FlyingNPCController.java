@@ -41,11 +41,13 @@ public class FlyingNPCController extends NPCController {
     @Override
     protected void moveTowardsTarget(Position position) {
         Direction dir  = Position.getDirectionFromPostoPos(getControlledEntity().getPosition(), position);
+//        dir = Direction.UP;
         Position myPos = getControlledEntity().getPosition();
-        while((myPos.getH() - getControlledEntity().getPosition().getH() + myPos.getS() - getControlledEntity().getPosition().getS()
-        + myPos.getQ()  - getControlledEntity().getPosition().getQ() + myPos.getR() - getControlledEntity().getPosition().getR()) == 0){
-            getControlledEntity().move(dir);
+        int dist = myPos.getDistance(myPos);
+        while(dist == 0 && !getControlledEntity().isActive()){
+            getControlledEntity().fly(dir);
             dir = adjustDirection(dir, myPos);
+            dist = myPos.getDistance(getControlledEntity().getPosition());
         }
     }
 
