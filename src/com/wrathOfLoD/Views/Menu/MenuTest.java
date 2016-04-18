@@ -30,24 +30,15 @@ public class MenuTest {
 
             InputState avatarState = new AvatarState();
 
-            InputState menuState = new MenuState(characterCreationMenu);
+            //InputState menuState = new MenuState(characterCreationMenu);
+            InputState menuState = new MenuState(mainMenu);
             mainController.setActiveState(menuState);
 
-            /*
-            JFrame testFrame = new JFrame();
-            mainMenu.setPreferredSize(new Dimension(800,900));
-            testFrame.setContentPane(mainMenu);
-            testFrame.setLocationRelativeTo(null);
-            testFrame.setResizable(false);
-            testFrame.pack();
-            testFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-            testFrame.setVisible(true);
-*/
 
             ViewEngine window = ViewEngine.getInstance();
-//            window.registerView(mainMenu);
+            window.registerView(mainMenu);
 //            window.registerView(pauseMenu);
-            window.registerView(characterCreationMenu);
+            //window.registerView(characterCreationMenu);
 //
 
             //ScrollableMenu menu = new MainScrollableMenu(120);

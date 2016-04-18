@@ -7,6 +7,7 @@ import com.wrathOfLoD.Models.Commands.MenuActionCommands.*;
 import javax.swing.*;
 import javax.swing.border.Border;
 import java.awt.*;
+import java.io.IOException;
 
 /**
  * Created by Mistiansen on 4/15/16.
@@ -57,7 +58,7 @@ public class MenuItem extends JPanel {
         }
     }
 
-    public void execute() {
+    public void execute() throws IOException, InterruptedException{
 
     }
 

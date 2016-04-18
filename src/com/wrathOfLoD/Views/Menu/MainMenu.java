@@ -24,7 +24,8 @@ public class MainMenu extends Menu {
 
 
     public void initMenuItems() {
-        this.addMenuItem(new MenuItem("New Game"));
+        //this.addMenuItem(new MenuItem("New Game"));
+        this.addMenuItem(new NewGameMenuItem("New Game"));
         this.addMenuItem(new MenuItem("Load Game"));
     }
 

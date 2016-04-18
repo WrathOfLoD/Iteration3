@@ -39,6 +39,8 @@ public class GameLauncher {
 
 
     public void launchGame() throws InterruptedException, IOException{
+    //public void launchGame() {
+
         gameLaunchHelper.createMap();
         gameLaunchHelper.populateMap();
 
