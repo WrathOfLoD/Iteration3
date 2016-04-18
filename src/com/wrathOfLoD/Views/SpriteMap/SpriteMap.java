@@ -90,7 +90,9 @@ public class SpriteMap {
         List<Image> itemImage;
         ImageAnimation itemImageAnimation;
         for(File subdirectories: directory.listFiles()){
+
             if(subdirectories.isDirectory()){
+                System.out.println(subdirectories);
                 itemImage = imageFramesGenerator(subdirectories);
                 itemImageAnimation = new ImageAnimation(itemImage);
                 insertToHash(subdirectories.getName(), itemImageAnimation, hash);

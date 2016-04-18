@@ -40,9 +40,9 @@ public class GameLauncher {
 
     public void launchGame() throws InterruptedException, IOException{
         gameLaunchHelper.createMap();
-        EntityVendor.createNewSummonerPlayer("Dave",new Position(0,0,8), Map.getInstance().getMapAreas()[0]);
         gameLaunchHelper.populateMap();
 
+        EntityVendor.createNewSummonerPlayer("Dave",new Position(0,0,8), Map.getInstance().getMapAreas()[0]);
         //TODO: test can remove
         //Avatar.getInstance().getAbilityManager().addAbilities(new FireballAbility(Avatar.getInstance(),5,10,3,5));
         Avatar.getInstance().equipAbility1(new FireballAbility(Avatar.getInstance(),5,10,3,5));

@@ -85,7 +85,6 @@ public class CameraView implements MovableVOObserver {
 
         for (Item i : t.getItems()){
             vof.createMapItemViewObject(tvo.getPosition(), i, mapArea);
-            System.out.println("CREATE ITEM GETTING CALLED?");
         }
 
         for (Entity e : t.getEntitiesArray()){
@@ -111,6 +110,10 @@ public class CameraView implements MovableVOObserver {
 
     public CameraCenter getCameraCenter(){
         return this.cameraCenter;
+    }
+
+    public void setCameraCenter(Position position){
+        cameraCenter.setCameraCenter(position);
     }
 
     @Override

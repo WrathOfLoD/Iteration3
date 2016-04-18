@@ -18,7 +18,7 @@ public class CameraCenter implements MovableVOObserver{
         this.cameraCenter = Avatar.getInstance().getPosition();
     }
 
-    private void setCameraCenter(Position pos){
+    public void setCameraCenter(Position pos){
         this.cameraCenter = pos;
     }
 

@@ -38,6 +38,7 @@ public class LevelFactory {
     private ItemVendor itemVendor;
     private EntityVendor entityVendor;
     private AEVendor aeVendor;
+    private Position initialSpawnPoint = new Position(0,0,8);
 
     public LevelFactory(String levelName){
         this.levelName = levelName;
@@ -51,6 +52,11 @@ public class LevelFactory {
     public CameraViewManager getCameraViewManager(){
         return this.cvm;
     }
+
+    public Position getInitialSpawnPoint(){
+        return this.initialSpawnPoint;
+    }
+
     public AreaView getAreaView(){
         return this.areaView;
     }
@@ -89,33 +95,33 @@ public class LevelFactory {
     private void popolateTestMapAreaOne(){
         MapArea mapAreaOne =  Map.getInstance().getMapAreas()[0];
 
-        /*
-        //ItemVendor.createHammer(mapAreaOne, new Position(1,2,9));
-        EntityVendor.createNewSummonerPlayer("Dave",new Position(0,0,8), mapAreaOne);
 
-        //TODO: test can remove
-        //Avatar.getInstance().getAbilityManager().addAbilities(new FireballAbility(Avatar.getInstance(),5,10,3,5));
-        Avatar.getInstance().equipAbility1(new FireballAbility(Avatar.getInstance(),5,10,3,5));
-        Avatar.getInstance().equipAbility2(new FanBlastAbility(Avatar.getInstance(),5,10,3,5));*/
+
+        //ItemVendor.createHammer(mapAreaOne, new Position(1,2,9));
+        //EntityVendor.createNewSummonerPlayer("Dave",new Position(0,0,8), mapAreaOne);
+
 
 //        ItemVendor.createHammer(mapAreaOne, new Position(1,2,9));
-        EntityVendor.createEnemy(new Position(1,2,9), mapAreaOne);
-
-        //EntityVendor.createNewSmasherPlayer("Dave",new Position(0,0,8), mapAreaOne);
-        //EntityVendor.createNewSmasherPlayer("Dave",new Position(0,0,8), mapAreaOne);
+//        EntityVendor.createEnemy(new Position(1,2,9), mapAreaOne);
+        EntityVendor.createEnemy(new Position(1,0,9), mapAreaOne);
 
 
 //        NPC myNPC = new NPC("Hehe",new Position(1,1,8), new Smasher(), new TerrestrialCanMoveVisitor());
 //        mapAreaOne.addEntity(myNPC, new Position(1,1,8));
 //
-        mapAreaOne.addAE(new Flow("spaceRockEffect", Direction.SOUTH_EAST, 10), new Position(0,3,9));
-        mapAreaOne.addAE(new Flow("spaceRockEffect", Direction.SOUTH_EAST, 10), new Position(1,3,9));
-        mapAreaOne.addAE(new Flow("spaceRockEffect", Direction.SOUTH_EAST, 10), new Position(2,3,9));
+        ItemVendor.createHammer(mapAreaOne, new Position(2,1,8));
+
+        mapAreaOne.addAE(new Flow(Direction.SOUTH_EAST, 10), new Position(0,3,9));
+        mapAreaOne.addAE(new Flow(Direction.SOUTH_EAST, 10), new Position(1,3,9));
+        mapAreaOne.addAE(new Flow(Direction.SOUTH_EAST, 10), new Position(2,3,9));
 
         CameraView cameraView1 = new CameraView(mapAreaOne);
+        cameraView1.setCameraCenter(initialSpawnPoint);
         cvm.addCameraView(mapAreaOne, cameraView1);
         //areaView.setActiveCameraView(cameraView1); //TODO: set active cv when avatar gets added
         cameraView1.populateCV();
+
+        //TODO: Can store spawn point in map area
     }
 
 
@@ -128,8 +134,8 @@ public class LevelFactory {
     public void createTestMapAreaOne(){
         MapArea mapArea1 = new MapArea();
 
-        for(int i = 0; i < 4; i++){ //q
-            for(int j = 0; j < 5; j++){ //r
+        for(int i = 0; i < 7; i++){ //q
+            for(int j = 0; j < 4; j++){ //r
                 TilePillar tilePillar = new TilePillar();
                 for(int k = 0; k < 10; k++){ //h
                     if (k >= 9 && j < 2) {
