@@ -38,9 +38,10 @@ public class SpriteMap {
         this.entityMap = new HashMap<>();
         this.effectsMap = new HashMap<>();
         this.itemMap = new HashMap<>();
-        generateItemMap();
-        generateEffectsMap();
-        generateAOEMap();
+        //generateItemMap();
+        //generateEffectsMap();
+        //generateAOEMap();
+        //generateEntityMap();
     }
 
     /***** getter & setter for SpriteMap *******/
@@ -82,6 +83,26 @@ public class SpriteMap {
         imageAnimationGenerator("./resources/AOE", aoeMap);
     }
 
+    public void generateEntityMap() throws IOException{
+        entityAnimationGenerator("./resources/Entity");
+    }
+
+    private void entityAnimationGenerator(String path) throws IOException {
+        File directory = new File(path);
+
+        if (directory.isFile()) {
+            String fileName = directory.getName();
+            if(fileName.endsWith(".png")) {
+                System.out.println(directory.getName());
+            }
+            return;
+        }
+        File[] paths = directory.listFiles();
+
+        for (int i = 0; i < paths.length; i++) {
+            entityAnimationGenerator(paths[i].getPath());
+        }
+    }
 
     /***** Reusable Methods for  aoeMap, imageMap, and effectsMap *******/
     private void imageAnimationGenerator(String path, HashMap<String, ImageAnimation> hash) throws IOException {
