@@ -19,18 +19,10 @@ public class ItemViewObject extends GraphicViewObject {
 
     public ItemViewObject(Item item) { //todo change this constructor to take in Object object in accordance with PTC?
         setObject(item);
-        setImageFilePath(Config.instance().getInventoryIVOPath()+item.getName()+Config.instance().getImageExtension());
-        initializeImage(item);
-    }
-
-    public void initializeImage(Item item) {
-        setImage(ImageFactory.generateImage(getImageFilePath())); //edit: testing. shouldn't be using this path
-    }
-
-    @Override
-    public void paintComponent(Graphics g, int x, int y, int width, int height) {
-        super.paintComponent(g);
-        g.drawImage(this.getImage(),x,y,width,height,this);
+        if(item!=null) {
+            setImageFilePath(Config.instance().getInventoryIVOPath()+item.getName()+Config.instance().getImageExtension());
+            initializeImage();
+        }
     }
 
 }

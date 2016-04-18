@@ -4,7 +4,6 @@ import com.wrathOfLoD.Models.Items.Item;
 import com.wrathOfLoD.Observers.Observer;
 import com.wrathOfLoD.Views.ContentDisplayStructure.ContentDisplayStructure;
 import com.wrathOfLoD.Views.ContentDisplayStructure.GridStructure;
-import com.wrathOfLoD.Views.ItemDisplayView.Slot.InventorySlot;
 import com.wrathOfLoD.Views.Selectable;
 import com.wrathOfLoD.Views.StaticView;
 import com.wrathOfLoD.Views.View;
@@ -35,12 +34,14 @@ public class ItemDisplayView extends StaticView implements Observer, Selectable 
     }
 
 
+    public int getCurrentIndex() { return currentIndex; }
+    public void setCurrentIndex(int i) { currentIndex = i; }
+
     /**
      * desc: Paint view with next item in row selected
      */
     public void selectNextItem() {
 
-        System.out.println("next!");
         this.safeIncrementRight();
     }
 
@@ -63,7 +64,6 @@ public class ItemDisplayView extends StaticView implements Observer, Selectable 
      * desc: Paint view with previous item in row selected
      */
     public void selectPrevItem() {
-        System.out.println("prev!");
 
         this.safeDecrementLeft();
     }
@@ -84,7 +84,6 @@ public class ItemDisplayView extends StaticView implements Observer, Selectable 
      * desc: Paint view with prev item in col selected
      */
     public void selectUpItem() {
-        System.out.println("up!");
         this.safeDecrementUp();
     }
 
@@ -102,7 +101,6 @@ public class ItemDisplayView extends StaticView implements Observer, Selectable 
      * desc: Paint view with next item in col selected
      */
     public void selectDownItem() {
-        System.out.println("down!");
         this.safeIncrementDown();
     }
 
@@ -130,7 +128,7 @@ public class ItemDisplayView extends StaticView implements Observer, Selectable 
         super.paintComponent(g);
         getContentDisplayStructure().getSlotList().stream().forEach(x -> x.setSelected(false));
         if(getContentDisplayStructure().getSlotList().size()>0) {
-            getContentDisplayStructure().getSlotList().get(currentIndex).setSelected(true);
+            getContentDisplayStructure().selectSlot(currentIndex);
         }
     }
 

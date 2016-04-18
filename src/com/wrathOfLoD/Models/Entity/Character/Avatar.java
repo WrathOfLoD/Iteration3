@@ -10,6 +10,7 @@ import com.wrathOfLoD.Models.Commands.FogOfWarActionCommands.InvisibleTilesComma
 import com.wrathOfLoD.Models.Commands.FogOfWarActionCommands.VisibleTilesCommand;
 import com.wrathOfLoD.Models.Entity.EntityCanMoveVisitor.TerrestrialCanMoveVisitor;
 import com.wrathOfLoD.Models.Inventory.Equipment;
+import com.wrathOfLoD.Models.Items.EquippableItems.Weapons.SmasherWeapons.TwoHandWeapon;
 import com.wrathOfLoD.Models.Items.EquippableItems.Weapons.Weapon;
 import com.wrathOfLoD.Models.Occupation.Occupation;
 import com.wrathOfLoD.Models.Skill.SkillManager;
@@ -51,22 +52,21 @@ public class Avatar extends Character implements ActionsHolder {
         this.setSkillManager(skillManager);
         Weapon defaultWeapon = occupation.createWeapon();
         this.setEquipment(new Equipment(defaultWeapon));
+
         setCanMoveVisitor(new TerrestrialCanMoveVisitor());
     }
 
 	@Override
-    public void move(Direction movingDirection){
-        if(!isActive()){
-            setActive();
-			InvisibleTilesCommand invisibleTilesCommand = new InvisibleTilesCommand(getPosition());
-			invisibleTilesCommand.execute();
-            ActionCommand acm = ActionCommandVendor.createMovementCommand(this, movingDirection);
-            //TODO: may need command's execute to return ticks to set entity inActive and not to notify observer
-            acm.execute();
-			VisibleTilesCommand visibleTilesCommand = new VisibleTilesCommand(getPosition());
-			visibleTilesCommand.execute();
-        }
-    }
+	public void hideTiles(){
+		InvisibleTilesCommand iTC = new InvisibleTilesCommand(getPosition());
+		iTC.execute();
+	}
+
+	@Override
+	public void showTiles(){
+		VisibleTilesCommand vTC = new VisibleTilesCommand(getPosition());
+		vTC.execute();
+	}
 
     @Override
     public Set<Action> getActionSet() {
@@ -83,6 +83,8 @@ public class Avatar extends Character implements ActionsHolder {
         this.addToActionSet(ActionVendor.createMoveSouthAction());
         this.addToActionSet(ActionVendor.createMoveSouthEastAction());
         this.addToActionSet(ActionVendor.createMoveSouthWestAction());
+        // open inventory
+        this.addToActionSet(ActionVendor.createOpenInventoryAction(this));
     }
 
     @Override

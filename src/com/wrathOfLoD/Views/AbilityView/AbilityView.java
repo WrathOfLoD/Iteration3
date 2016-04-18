@@ -42,7 +42,8 @@ public class AbilityView extends StaticView implements Observer {
         for(Ability ability: getAbilityManager().getUnlockedAbilities()) {
             AbilityViewObject abilityViewObject = new AbilityViewObject(ability);
             Slot slot = new AbilitySlot(abilityViewObject);
-            getContentDisplayStructure().getSlotList().add(slot);
+            getContentDisplayStructure().addSlot(slot);
+            System.out.println("ATTEMTPING TO ADD ABILITY TO SLOT" + slot.getStaticViewObject().getObject());
         }
     }
 

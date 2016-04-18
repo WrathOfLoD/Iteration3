@@ -64,6 +64,7 @@ public class FlyingCommand extends MovementCommand implements Fuseable {
             int adjacentGroundLevel = Map.getInstance().getTilePillar(adjacentPos).getGroundLevel();
 
             if (adjacentGroundLevel == (entityGroundLevel + 1) && !(entityGroundLevel + 1 > 10)) {
+                if (!Map.getInstance().hasTileAt(abovePos)) return;
                 Map.getInstance().getTile(abovePos).accept(getCanMoveVisitor());
                 canMoveAbove = getCanMoveVisitor().canMove();
                 System.out.println("CANT MOVE UP!");
@@ -112,10 +113,10 @@ public class FlyingCommand extends MovementCommand implements Fuseable {
         if(getDestinationPosition().getH() < adjacentGroundLevel){
             setDestinationPosition(new Position(getDestinationPosition().getQ(), getDestinationPosition().getR(), getDestinationPosition().getH()+1));
         }
-        System.out.println("======= BEGINNING OF MOVEMENT CMD =========");
-        System.out.println("Entity src pos: " + getEntity().getPosition().getQ() + ", " + getEntity().getPosition().getR() + ", " + getEntity().getPosition().getH());
-        System.out.println("Entity dest pos: " + getDestinationPosition().getQ() + ", " + getDestinationPosition().getR() + ", " + getDestinationPosition().getH());
-        System.out.println("Entity dest direction: " + getEntity().getDirection());
+//        System.out.println("======= BEGINNING OF MOVEMENT CMD =========");
+//        System.out.println("Entity src pos: " + getEntity().getPosition().getQ() + ", " + getEntity().getPosition().getR() + ", " + getEntity().getPosition().getH());
+//        System.out.println("Entity dest pos: " + getDestinationPosition().getQ() + ", " + getDestinationPosition().getR() + ", " + getDestinationPosition().getH());
+//        System.out.println("Entity dest direction: " + getEntity().getDirection());
         getEntity().notifyObserverOnMove(getEntity().getPosition(), getDestinationPosition(), getMovingDirection(), getMovementTicks());
         getEntity().setPosition(getDestinationPosition());
 

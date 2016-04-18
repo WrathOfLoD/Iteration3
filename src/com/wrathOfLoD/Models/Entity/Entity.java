@@ -83,7 +83,9 @@ public abstract class Entity implements EntityObservable{
     }
 
     public void setPosition(Position newPosition){
-        this.position = newPosition;
+        hideTiles();
+		this.position = newPosition;
+		showTiles();
     }
 
     protected void setName(String name){ this.name = name; }
@@ -115,6 +117,10 @@ public abstract class Entity implements EntityObservable{
             acm.execute();
         }
     }
+
+	public abstract void hideTiles();
+
+	public abstract void showTiles();
 
     public void insertItemToInventory(TakeableItem item){
         this.inventory.addItem(item);
@@ -196,6 +202,11 @@ public abstract class Entity implements EntityObservable{
         for (EntityObserver eo : entityObservers) {
             eo.notifyMove(src, dest, dir, ticks);
         }
+    }
+
+    public void notifyObsersersOnDirectionChange(Direction dir) {
+        for (EntityObserver eo: entityObservers)
+            eo.notifyDirectionChange(dir);
     }
 
 
