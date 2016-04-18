@@ -4,9 +4,11 @@ import com.sun.xml.internal.ws.dump.LoggingDumpTube;
 import com.wrathOfLoD.Controllers.NPCControllers.FlyingNPCController;
 import com.wrathOfLoD.Controllers.NPCControllers.NPCController;
 import com.wrathOfLoD.Controllers.NPCControllers.NotFlyingNPCController;
+import com.wrathOfLoD.Controllers.NPCControllers.PetController;
 import com.wrathOfLoD.GameClock.TimeModel;
 import com.wrathOfLoD.Models.Entity.Character.Avatar;
 import com.wrathOfLoD.Models.Entity.Character.NPC;
+import com.wrathOfLoD.Models.Entity.Character.Pet;
 import com.wrathOfLoD.Models.Entity.EntityCanMoveVisitor.CanMoveVisitor;
 import com.wrathOfLoD.Models.Entity.EntityCanMoveVisitor.FlyingCanMoveVisitor;
 import com.wrathOfLoD.Models.Entity.EntityCanMoveVisitor.TerrestrialCanMoveVisitor;
@@ -75,6 +77,16 @@ public class EntityVendor {
         NPCController controller = new NotFlyingNPCController(enemy);
         TimeModel.getInstance().registerTickable(controller);
         return enemy;
+    }
+
+    public static Pet createPet(Position position, MapArea mapArea){
+        Pet pet = new Pet("SlothHater", position, new Smasher(), new TerrestrialCanMoveVisitor());
+        pet.setAggroLevel(0);
+        mapArea.addEntity(pet, position);
+        LocationTrackerManager.getInstance().registerEntity(pet, mapArea);
+        NPCController controller = new PetController(pet);
+        TimeModel.getInstance().registerTickable(controller);
+        return pet;
     }
 
     public static NPC createFlyingEnemy(Position startingPosition, MapArea mapArea){

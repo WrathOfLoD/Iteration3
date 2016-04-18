@@ -105,6 +105,7 @@ public class LevelFactory {
 //        EntityVendor.createEnemy(new Position(1,2,9), mapAreaOne);
 //        EntityVendor.createEnemy(new Position(1,0,9), mapAreaOne);
         EntityVendor.createFlyingEnemy(new Position(2,4,4), mapAreaOne);
+        //EntityVendor.createPet(new Position(0,1,8), mapAreaOne);
 
 
 //        NPC myNPC = new NPC("Hehe",new Position(1,1,8), new Smasher(), new TerrestrialCanMoveVisitor());

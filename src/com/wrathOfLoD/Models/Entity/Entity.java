@@ -9,6 +9,8 @@ import com.wrathOfLoD.Models.Entity.EntityCanMoveVisitor.TerrestrialCanMoveVisit
 import com.wrathOfLoD.Models.Entity.EntityCanMoveVisitor.CanMoveVisitor;
 import com.wrathOfLoD.Models.Inventory.Inventory;
 import com.wrathOfLoD.Models.Items.TakeableItem;
+import com.wrathOfLoD.Models.LocationTracker.LocationTrackerManager;
+import com.wrathOfLoD.Models.Map.Map;
 import com.wrathOfLoD.Models.Map.MapArea;
 import com.wrathOfLoD.Models.Stats.Stats;
 import com.wrathOfLoD.Models.Stats.StatsModifiable;
@@ -46,6 +48,7 @@ public abstract class Entity implements EntityObservable{
     //TODO: change the default can move visitor to an instance of DefaultCanMoveVisitor or something
     public Entity(){
         this("Master Chief", new Position(0,0,0,0), new TerrestrialCanMoveVisitor());
+
     }
 
     public Entity(String name, Position position, CanMoveVisitor canMoveVisitor){
@@ -56,6 +59,7 @@ public abstract class Entity implements EntityObservable{
         this.direction = Direction.DOWN_SOUTH;
         entityObservers = new ArrayList<>();
         this.canMoveVisitor = canMoveVisitor;
+
     }
 
     /***** getter & setter for Entity *******/
@@ -165,6 +169,11 @@ public abstract class Entity implements EntityObservable{
     public void die(){
         ActionCommand dieCommand = new DieCommand(this);
         dieCommand.execute();
+        notifyObserversOnDie(this.getPosition());
+        System.out.println("LIFES LIVE: "+ getStats().getLivesLeft());
+        if(getStats().getLivesLeft() > 0) {
+            respawn();
+        }
     }
 
     public boolean isActive() {
@@ -210,6 +219,12 @@ public abstract class Entity implements EntityObservable{
     }
 
 
+    public void notifyObserversOnDie(Position position){
+        for(int i = 0; i < entityObservers.size(); i++){
+            entityObservers.get(i).notifyDie(position);
+        }
+    }
+
     public void setAggroLevel(int aggro){
         this.aggroLevel = aggro;
     }
@@ -217,5 +232,18 @@ public abstract class Entity implements EntityObservable{
     public int getAggroLevel(){
         return aggroLevel;
     }
+
+    public void respawn(){
+        StatsModifiable modifiable = StatsModifiable.createHealthManaStatsModifiable(getStats().getMaxMana(), getStats().getMaxHealth());
+        getStats().modifyStats(modifiable);
+
+        notifyObserverOnMove(this.getPosition(), Map.getInstance().getActiveMapArea().getSpawnPoint(), direction, 0);
+        this.setPosition(Map.getInstance().getActiveMapArea().getSpawnPoint());
+
+        //LocationTrackerManager.getInstance().registerEntity(this);
+
+        System.out.println("GESTS CLLLAFED??");
+    }
+
 }
 

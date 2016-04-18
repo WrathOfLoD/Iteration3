@@ -9,6 +9,8 @@ import com.wrathOfLoD.Controllers.MainController;
 import com.wrathOfLoD.GameLaunching.Vendors.EntityVendor;
 import com.wrathOfLoD.Models.Ability.Abilities.BlastAbilities.FanBlastAbility;
 import com.wrathOfLoD.Models.Ability.Abilities.BlastAbilities.FireballAbility;
+import com.wrathOfLoD.Models.Ability.Abilities.BoonAbilites.BoonBoostDefenseAbility;
+import com.wrathOfLoD.Models.Ability.Abilities.EnchantmentAbilites.EnchantmentMakeWeakAbility;
 import com.wrathOfLoD.Models.Entity.Character.Avatar;
 import com.wrathOfLoD.Models.Entity.Entity;
 import com.wrathOfLoD.Models.Entity.Mount;
@@ -53,6 +55,7 @@ public class GameLauncher {
         gameLaunchHelper.populateMap();
 
         EntityVendor.createNewPlayer("Slothman", occupation, Map.getInstance().getMapAreas()[0].getSpawnPoint(), Map.getInstance().getMapAreas()[0]);
+
 
         gameLaunchHelper.setActiveCameraView(Map.getInstance().getActiveMapArea());
 

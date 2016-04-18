@@ -120,23 +120,24 @@ public class Avatar extends Character implements ActionsHolder {
     }
 
     //TODO: need a way to swap ability when equip
+    @Override
     public void equipAbility1(Ability ability){
-        getAbilityManager().setActiveAbility(ability, 1);
+        super.equipAbility1(ability);
         this.addToActionSet(ActionVendor.createFirstAbility(ability));
     }
 
     public void equipAbility2(Ability ability){
-        getAbilityManager().setActiveAbility(ability, 2);
+        super.equipAbility2(ability);
         this.addToActionSet(ActionVendor.createSecondAbility(ability));
     }
 
     public void equipAbility3(Ability ability){
-        getAbilityManager().setActiveAbility(ability, 3);
+        super.equipAbility3(ability);
         this.addToActionSet(ActionVendor.createThirdAbility(ability));
     }
 
     public void equipAbility4(Ability ability){
-        getAbilityManager().setActiveAbility(ability, 4);
+        super.equipAbility4(ability);
         this.addToActionSet(ActionVendor.createFourthAbility(ability));
     }
 }
