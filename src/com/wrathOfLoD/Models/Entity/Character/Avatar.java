@@ -56,14 +56,12 @@ public class Avatar extends Character implements ActionsHolder {
 
 	@Override
 	public void hideTiles(){
-		System.out.println("The Avatar, you can hide tiles");
 		InvisibleTilesCommand iTC = new InvisibleTilesCommand(getPosition());
 		iTC.execute();
 	}
 
 	@Override
 	public void showTiles(){
-		System.out.println("The Avatar, you can show tiles");
 		VisibleTilesCommand vTC = new VisibleTilesCommand(getPosition());
 		vTC.execute();
 	}

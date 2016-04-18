@@ -29,12 +29,12 @@ public class Mount extends Entity {
 
 	@Override
 	public void hideTiles(){
-
+		//mixed-instance can be icky, but necessary
 	}
 
 	@Override
 	public void showTiles(){
-
+		//mixed-instance can be icky, but necessary
 	}
 
 }

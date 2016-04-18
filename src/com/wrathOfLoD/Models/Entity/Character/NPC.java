@@ -57,12 +57,12 @@ public class NPC extends Character {
 
 	@Override
 	public void hideTiles(){
-		System.out.println("Silly NPC, you can't hide tiles");
+		//mixed-instance can be icky, but necessary
 	}
 
 	@Override
 	public void showTiles(){
-		System.out.println("Silly NPC, you can't show tiles");
+		//mixed-instance can be icky, but necessary
 	}
 
 }

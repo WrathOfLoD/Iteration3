@@ -314,10 +314,6 @@ public class Position{
 			circle.addAll(ring);
 		}
 
-		System.out.printf("Number of positions in this circle: %d%n", circle.size());
-		for(Position pos: circle){
-			System.out.printf("Position (%d, %d, %d, %d)%n", pos.getQ(), pos.getR(), pos.getS(), pos.getH());
-		}
 		return circle;
 	}
 
