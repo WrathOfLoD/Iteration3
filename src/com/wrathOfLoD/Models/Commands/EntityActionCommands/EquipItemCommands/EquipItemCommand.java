@@ -5,6 +5,7 @@ import com.wrathOfLoD.Models.Entity.Character.Character;
 import com.wrathOfLoD.Models.Inventory.Equipment;
 import com.wrathOfLoD.Models.Inventory.Inventory;
 import com.wrathOfLoD.Models.Items.EquippableItems.EquippableItem;
+import com.wrathOfLoD.Models.Items.TakeableItem;
 import com.wrathOfLoD.Models.Stats.Stats;
 
 
@@ -34,6 +35,7 @@ public abstract class EquipItemCommand extends ActionCommand {
         if(inventory.hasItem(item)){
             inventory.removeItem(item);
             Equipment equipment = character.getEquipment();
+            //equipment.registerEquipmentObserver(inventory); //testing
             equipHook(equipment);
             Stats characterStats = character.getStats();
             characterStats.addTemporaryStats(item.getStatsModifiable());

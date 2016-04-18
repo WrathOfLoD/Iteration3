@@ -16,6 +16,7 @@ import com.wrathOfLoD.Models.Entity.Entity;
 import com.wrathOfLoD.Models.Entity.Mount;
 import com.wrathOfLoD.Models.Inventory.Equipment;
 import com.wrathOfLoD.Models.Inventory.Inventory;
+import com.wrathOfLoD.Models.Items.ConsumableItems.TemporaryConsumable;
 import com.wrathOfLoD.Models.Items.EquippableItems.Helm;
 import com.wrathOfLoD.Models.Items.EquippableItems.Weapons.SmasherWeapons.FistWeapon;
 import com.wrathOfLoD.Models.Items.EquippableItems.Weapons.SmasherWeapons.TwoHandWeapon;
@@ -49,32 +50,27 @@ public class GameLauncher {
         this.gameLaunchHelper = gameLaunchHelper;
     }
 
-
     public void launchGame(Occupation occupation) throws InterruptedException, IOException{
-    //public void launchGame() {
 
         gameLaunchHelper.createMap();
         gameLaunchHelper.populateMap();
 
         EntityVendor.createNewPlayer("Slothman", occupation, Map.getInstance().getMapAreas()[0].getSpawnPoint(), Map.getInstance().getMapAreas()[0]);
-        //EntityVendor.createNewSummonerPlayer("Dave",Map.getInstance().getMapAreas()[0].getSpawnPoint(), Map.getInstance().getMapAreas()[0]);
-        //TODO: test can remove
+
 
         gameLaunchHelper.setActiveCameraView(Map.getInstance().getActiveMapArea());
 
         ViewObjectFactory.getInstance().initVOFactory(gameLaunchHelper.getAreaView());
         ViewObjectFactory.getInstance().createAvatarViewObject(Map.getInstance().getActiveMapArea().getSpawnPoint(), Avatar.getInstance());
 
-
         Map.getInstance().registerObserver(gameLaunchHelper.getAreaView());
-
 
         ViewEngine viewEngine = ViewEngine.getInstance();
         viewEngine.registerView(gameLaunchHelper.getAreaView());
         ListStructure listStructure = new ListStructure(7,2, 15, 0);
         StatsView statsView = new StatsView(Avatar.getInstance().getStats(),listStructure);
         Inventory inventory = Avatar.getInstance().getInventory();
-        InventoryView inventoryView = new InventoryView(inventory, new GridStructure(6,4));
+        InventoryView inventoryView = new InventoryView(inventory, new GridStructure(5,5));
         EquipmentView equipmentView = new EquipmentView(Avatar.getInstance().getEquipment());
         AvatarIESView avatarIESView = new AvatarIESView(inventoryView, statsView, equipmentView);
         ViewManager vm = ViewManager.getInstance();
@@ -105,10 +101,19 @@ public class GameLauncher {
         inventory.addItem(helmet);
         Avatar.getInstance().use(helmet);
 
-        for (int i = 0; i < 10; i++) {
-            inventory.addItem(new TwoHandWeapon("hammer"));
+        inventory.addItem(new TwoHandWeapon("Dragon 2H"));
+        inventory.addItem(new Helm("helm2"));
+
+
+        for (int i = 0; i < 2; i++) {
+            //inventory.addItem(new TwoHandWeapon("hammer"));
+            inventory.addItem(new TemporaryConsumable("Blue Potion", StatsModifiable.createHealthStatsModifiable(10), 5));
+            inventory.addItem(new TwoHandWeapon("Mystical 2H"));
+            inventory.addItem(new TemporaryConsumable("Red Potion", StatsModifiable.createHealthStatsModifiable(10),5));
+
         }
 
+        inventory.addItem(new Helm("helm"));
 
         InputState inventoryState = new InventoryState(inventory);
         mainController.setActiveState(avatarState);

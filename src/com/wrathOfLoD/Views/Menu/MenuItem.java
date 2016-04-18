@@ -53,7 +53,7 @@ public class MenuItem extends JPanel {
         g.drawString(getText(), textXCoord, textYCoord);
 
         if (this.isSelected()) {
-            g.setColor(new Color(0f,0f,1.0f,0.2f));
+            g.setColor(new Color(0.0f,0.0f,1.0f,0.2f));
             g.fillRect(x,y,width,height);
         }
     }

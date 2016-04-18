@@ -44,6 +44,7 @@ public abstract class Character extends Entity {
 
         Weapon defaultWeapon = this.occupation.createWeapon();
         this.equipment = new Equipment(defaultWeapon);
+        getEquipment().registerEquipmentObserver(getInventory()); //todo testing this!
         this.abilityManager.unlockAbilities(getStats().getLevel());
         this.skillManager = this.occupation.createSkillManager();
     }

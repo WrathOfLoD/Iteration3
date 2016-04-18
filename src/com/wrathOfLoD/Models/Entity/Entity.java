@@ -40,6 +40,8 @@ public abstract class Entity implements EntityObservable{
     private CanMoveVisitor canMoveVisitor;
     private boolean isDead;
 
+
+
     /**
      * aggroLevel is 0 for non aggressive entities
      * 1 for aggressive ones

@@ -41,6 +41,16 @@ public class TileViewObject extends ViewObject{
 		g.drawImage(this.getImage(), this.getOffsetX() + screenCenter.x, this.getOffsetY() + screenCenter.y, 80, 140, null);
 		//Image renderedImage = this.getImage();
 		if(!visible){
+//<<<<<<< HEAD
+//			//ImageFilter filter = new GrayFilter(true, 50);
+//			//ImageProducer producer = new FilteredImageSource(this.getImage().getSource(), filter);
+//			//renderedImage = Toolkit.getDefaultToolkit().createImage(producer);
+//			BufferedImage image = new BufferedImage(renderedImage.getWidth(null), renderedImage.getHeight(null), BufferedImage.TYPE_INT_ARGB);
+//			Graphics g2 = image.getGraphics();
+//			g2.drawImage(renderedImage, renderedImage.getWidth(null), renderedImage.getHeight(null), null);
+//			//g2.drawImage(renderedImage,renderedImage.getWidth(null),renderedImage.getHeight(null),new Color(0f,0f,0.7f,0.3f),null);
+//			renderedImage = image;
+//=======
 			g.drawImage(fog, this.getOffsetX() + screenCenter.x, this.getOffsetY() + screenCenter.y, 80, 140, null);
 			/*ImageFilter filter = new RGBImageFilter(){
 				@Override

@@ -5,6 +5,7 @@ import com.wrathOfLoD.Controllers.InputStates.Action.Action;
 import com.wrathOfLoD.Controllers.InputStates.ActionVendor;
 import com.wrathOfLoD.Models.ActionsHolder;
 import com.wrathOfLoD.Models.Items.TakeableItem;
+import com.wrathOfLoD.Observers.ModelObservers.EquipmentObserver;
 import com.wrathOfLoD.Observers.Observable;
 import com.wrathOfLoD.Observers.Observer;
 
@@ -16,12 +17,20 @@ import java.util.Set;
 /**
  * Created by zach on 4/7/16.
  */
-public class Inventory implements ActionsHolder, Observable {
+public class Inventory implements ActionsHolder, Observable, EquipmentObserver {
 
 
     private List<TakeableItem> itemList;
     private Set<Action> actionSet = new HashSet<>();
     private ArrayList<Observer> observers = new ArrayList<Observer>();
+
+    @Override
+    public void equipmentAlertResponse(TakeableItem item) {
+        if (item!=null) {
+            this.addItem(item);
+        }
+        System.out.println("Responding to equipmet alert in inventory for " + item);
+    }
 
     @Override
     public void notifyObservers() {

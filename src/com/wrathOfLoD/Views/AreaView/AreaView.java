@@ -34,8 +34,11 @@ public class AreaView extends StaticView implements MapObserver{ //need to chang
 
     public AreaView() {
         setPreferredSize(new Dimension(WIDTH, HEIGHT));
-        setBackgroundImageFileName("resources/Backgrounds/spaceSloth.png");
-    }
+        //setBackgroundImageFileName("resources/Backgrounds/spaceSloth.png");
+		setBackgroundImageFileName("resources/Backgrounds/spaceSlothEternal.png");
+		//setBackgroundImageFileName("resources/Backgrounds/spaceSlothDefault.png");
+
+	}
 
 	public AreaView(CameraViewManager cvm){
 		this();
