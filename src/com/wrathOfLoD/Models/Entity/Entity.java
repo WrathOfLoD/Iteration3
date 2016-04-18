@@ -272,6 +272,10 @@ public abstract class Entity implements EntityObservable{
         isDead = dead;
     }
 
+    public void changeMovementSpeed(StatsModifiable mooveModifiable){
+        getStats().modifyStats(mooveModifiable);
+    }
+
 
 
 }
