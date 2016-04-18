@@ -4,6 +4,7 @@ import com.wrathOfLoD.Models.Map.Map;
 import com.wrathOfLoD.Models.Map.Tile;
 import com.wrathOfLoD.Observers.ViewObjectObservers.DestroyableVOObserver;
 import com.wrathOfLoD.Utility.Position;
+import com.wrathOfLoD.Views.ImageFactory.ImageFactory;
 import com.wrathOfLoD.Views.SpriteMap.ImageAnimation;
 import javafx.geometry.Pos;
 
@@ -22,6 +23,7 @@ public class TileViewObject extends ViewObject{
 	private Tile tile;
 	private Position pos;
 	private ArrayList<ModelViewObject> modelVOList;
+	private static Image fog = ImageFactory.generateImage("resources/FogOfWar.png");
 
 	public TileViewObject(Position pos, ImageAnimation animation){
 		this.pos = pos;
@@ -36,9 +38,11 @@ public class TileViewObject extends ViewObject{
 		this.setOffsetX(offset.x-40);
 		this.setOffsetY(offset.y-90);
 
-		Image renderedImage = this.getImage();
+		g.drawImage(this.getImage(), this.getOffsetX() + screenCenter.x, this.getOffsetY() + screenCenter.y, 80, 140, null);
+		//Image renderedImage = this.getImage();
 		if(!visible){
-			ImageFilter filter = new RGBImageFilter(){
+			g.drawImage(fog, this.getOffsetX() + screenCenter.x, this.getOffsetY() + screenCenter.y, 80, 140, null);
+			/*ImageFilter filter = new RGBImageFilter(){
 				@Override
 				public int filterRGB(int x, int y, int rgb){
 					// Find the average of red, green, and blue.
@@ -65,8 +69,9 @@ public class TileViewObject extends ViewObject{
 			//g2.drawImage(renderedImage, 0, 0, null);
 			////g2.dispose();
 			//renderedImage = image;
+			*/
 		}
-		g.drawImage(renderedImage, this.getOffsetX() + screenCenter.x, this.getOffsetY() + screenCenter.y, 80, 140, null);
+
 
 		Collections.sort(modelVOList, new Comparator<ModelViewObject>() {
 			@Override
