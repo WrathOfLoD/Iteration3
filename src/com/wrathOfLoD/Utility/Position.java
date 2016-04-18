@@ -344,7 +344,9 @@ public class Position{
 			List<Position> ring  = drawCircle(sliceOrigin, i, true);
 			cylinder.addAll(ring);
 		}
-
+		if(!includeOrigin){
+			cylinder.remove(origin);
+		}
 		return cylinder;
 	}
 
