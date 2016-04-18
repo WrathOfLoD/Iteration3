@@ -9,6 +9,8 @@ import com.wrathOfLoD.Controllers.MainController;
 import com.wrathOfLoD.GameLaunching.Vendors.EntityVendor;
 import com.wrathOfLoD.Models.Ability.Abilities.BlastAbilities.FanBlastAbility;
 import com.wrathOfLoD.Models.Ability.Abilities.BlastAbilities.FireballAbility;
+import com.wrathOfLoD.Models.Ability.Abilities.BoonAbilites.BoonBoostDefenseAbility;
+import com.wrathOfLoD.Models.Ability.Abilities.EnchantmentAbilites.EnchantmentMakeWeakAbility;
 import com.wrathOfLoD.Models.Entity.Character.Avatar;
 import com.wrathOfLoD.Models.Entity.Entity;
 import com.wrathOfLoD.Models.Entity.Mount;
@@ -58,6 +60,8 @@ public class GameLauncher {
         //Avatar.getInstance().getAbilityManager().addAbilities(new FireballAbility(Avatar.getInstance(),5,10,3,5));
         Avatar.getInstance().equipAbility1(new FireballAbility(Avatar.getInstance(),5,10,3,20));
         Avatar.getInstance().equipAbility2(new FanBlastAbility(Avatar.getInstance(),5,10,3,5));
+        Avatar.getInstance().equipAbility3(new BoonBoostDefenseAbility(Avatar.getInstance(), 10, 200));
+        Avatar.getInstance().equipAbility3(new EnchantmentMakeWeakAbility(Avatar.getInstance(), 10, 200));
         gameLaunchHelper.setActiveCameraView(Map.getInstance().getActiveMapArea());
 
         ViewObjectFactory.getInstance().initVOFactory(gameLaunchHelper.getAreaView());
