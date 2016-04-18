@@ -60,9 +60,12 @@ public class ViewObjectFactory {
         HashMap<String, ImageAnimation> aoeSprites = spriteMap.getAoeMap();
         ImageAnimation img = aoeSprites.get(ae.getName());
 
+        //List<Image> img = new ArrayList<>();
+        //String aeName = ae.getName();
+        //img.add(ImageFactory.generateImage("resources/AOE" + aeName + "/" + aeName + ".png"));
+
 
         AreaEffectViewObject aevo = new AreaEffectViewObject(ae, img);
-        //areaView.addViewObjectToActiveCV(pos, aevo);
         areaView.addVOToCV(pos, aevo, mapArea);
         return aevo;
     }
@@ -89,8 +92,8 @@ public class ViewObjectFactory {
 
     public EntityViewObject createAvatarViewObject(Position pos, Avatar avatar){ //has to be added to the active one
         List<Image> img = new ArrayList<>();
-//        img.add(ImageFactory.generateImage("resources/Entity/Avatar/Smasher/Walk/slice19_19.png"));
-        img.add(ImageFactory.generateImage("resources/Entity/Avatar/Summoner/Unequipped/South_East/Walk/summoner1.png"));
+        img.add(ImageFactory.generateImage("resources/Entity/Avatar/Smasher/Unequipped/South_East/Walk/walk0.png"));
+        //img.add(ImageFactory.generateImage("resources/Entity/Avatar/Summoner/Unequipped/South_East/Walk/summoner1.png"));
 
         EntityViewObject evo = new EntityViewObject(avatar, new ImageAnimation(img), createHealthBarViewObject(avatar.getStats().getMaxHealth(), avatar.getStats().getCurrentHealth()));
 

@@ -35,7 +35,7 @@ public class Flow extends AreaEffect {
     @Override
     public void interact(Entity entity) {
         createFlowMovementCommand(entity);
-
+        System.out.println("FLOW FLOW");
 
     }
 }
