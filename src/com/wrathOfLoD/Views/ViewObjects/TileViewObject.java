@@ -9,10 +9,7 @@ import javafx.geometry.Pos;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.image.BufferedImage;
-import java.awt.image.FilteredImageSource;
-import java.awt.image.ImageFilter;
-import java.awt.image.ImageProducer;
+import java.awt.image.*;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -41,7 +38,25 @@ public class TileViewObject extends ViewObject{
 
 		Image renderedImage = this.getImage();
 		if(!visible){
-			ImageFilter filter = new GrayFilter(true, 50);
+			ImageFilter filter = new RGBImageFilter(){
+				@Override
+				public int filterRGB(int x, int y, int rgb){
+					// Find the average of red, green, and blue.
+					float avg = (((rgb >> 16) & 0xff) / 255f +
+							((rgb >>  8) & 0xff) / 255f +
+							(rgb        & 0xff) / 255f) / 3;
+					// Pull out the alpha channel.
+					float alpha = (((rgb >> 24) & 0xff) / 255f);
+
+					// Calculate the average.
+					// Sun's formula: Math.min(1.0f, (1f - avg) / (100.0f / 35.0f) + avg);
+					// The following formula uses less operations and hence is faster.
+					avg = Math.min(1.0f, 0.35f + 0.65f * avg);
+					// Convert back into RGB.
+					return (int) (alpha * 255f) << 24 | (int) (avg   * 255f) << 16 |
+							(int) (avg   * 255f) << 8  | (int) (avg   * 255f);
+				}
+			};
 			ImageProducer producer = new FilteredImageSource(this.getImage().getSource(), filter);
 			renderedImage = Toolkit.getDefaultToolkit().createImage(producer);
 			//BufferedImage image = new BufferedImage(renderedImage.getWidth(null), renderedImage.getHeight(null), BufferedImage.TYPE_BYTE_GRAY);
