@@ -64,8 +64,8 @@ public class SpriteMap {
         generateItemMap();
         generateEffectsMap();
         generateAOEMap();
-        generateEntityMap();
-        generateAvatarMap();
+//        generateEntityMap();
+//        generateAvatarMap();
     }
 
     /***** getter & setter for SpriteMap *******/

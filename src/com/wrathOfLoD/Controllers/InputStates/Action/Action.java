@@ -8,7 +8,7 @@ import java.awt.event.KeyListener;
 /**
  * Created by icavitt on 4/7/2016.
  */
-public abstract class Action implements KeyListener{
+public class Action implements KeyListener{
     private boolean isActive = false;
     private boolean isListening = false;
     private int currKeyCode;

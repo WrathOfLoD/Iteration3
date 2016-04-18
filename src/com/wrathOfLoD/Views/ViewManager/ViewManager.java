@@ -14,6 +14,7 @@ import java.awt.*;
 public class ViewManager extends StaticView { //edit: extend View or extend StaticView?
 
     //TODO: how to swap b\w area view in viewManager when game starts?
+    private static ViewManager instance = null;
 
     private AreaView av;
     private AvatarIESView avatarIESView;
@@ -34,8 +35,26 @@ public class ViewManager extends StaticView { //edit: extend View or extend Stat
         this.avatarIESView = avatarIESView;
     }
 
+    public static ViewManager getInstance() {
+        if (instance == null) {
+            instance = new ViewManager();
+        }
+        
+        return instance;
+    }
 
-    public ViewManager(AreaView av, AvatarIESView ies) {
+    public void init(AreaView av, AvatarIESView ies) {
+        setLayout(new BorderLayout());
+        setAreaView(av);
+        setAvatarIESView(ies);
+        this.add(getAreaView(), BorderLayout.CENTER);
+    }
+
+    private ViewManager() {
+
+    }
+
+    private ViewManager(AreaView av, AvatarIESView ies) {
         setLayout(new BorderLayout());
         setAreaView(av);
         setAvatarIESView(ies);

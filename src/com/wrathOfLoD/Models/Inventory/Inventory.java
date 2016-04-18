@@ -69,6 +69,7 @@ public class Inventory implements ActionsHolder, Observable {
 
     @Override
     public void initializeActionSet() {
+        this.addToActionSet(ActionVendor.createRevertToAvatarStateAction());
     }
 
     @Override

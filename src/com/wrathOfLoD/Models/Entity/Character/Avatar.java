@@ -10,6 +10,7 @@ import com.wrathOfLoD.Models.Commands.FogOfWarActionCommands.InvisibleTilesComma
 import com.wrathOfLoD.Models.Commands.FogOfWarActionCommands.VisibleTilesCommand;
 import com.wrathOfLoD.Models.Entity.EntityCanMoveVisitor.TerrestrialCanMoveVisitor;
 import com.wrathOfLoD.Models.Inventory.Equipment;
+import com.wrathOfLoD.Models.Items.EquippableItems.Weapons.SmasherWeapons.TwoHandWeapon;
 import com.wrathOfLoD.Models.Items.EquippableItems.Weapons.Weapon;
 import com.wrathOfLoD.Models.Occupation.Occupation;
 import com.wrathOfLoD.Models.Skill.SkillManager;
@@ -51,6 +52,7 @@ public class Avatar extends Character implements ActionsHolder {
         this.setSkillManager(skillManager);
         Weapon defaultWeapon = occupation.createWeapon();
         this.setEquipment(new Equipment(defaultWeapon));
+
         setCanMoveVisitor(new TerrestrialCanMoveVisitor());
     }
 
@@ -81,6 +83,8 @@ public class Avatar extends Character implements ActionsHolder {
         this.addToActionSet(ActionVendor.createMoveSouthAction());
         this.addToActionSet(ActionVendor.createMoveSouthEastAction());
         this.addToActionSet(ActionVendor.createMoveSouthWestAction());
+        // open inventory
+        this.addToActionSet(ActionVendor.createOpenInventoryAction(this));
     }
 
     @Override

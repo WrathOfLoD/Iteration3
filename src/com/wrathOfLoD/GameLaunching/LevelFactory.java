@@ -68,7 +68,7 @@ public class LevelFactory {
                 createTestMap();
                 break;
             default:
-                System.out.println("The map you are requesting doesnt exist");
+                System.out.println("The map you are requesting doesn't exist");
         }
     }
 

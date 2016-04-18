@@ -10,6 +10,8 @@ import com.wrathOfLoD.Models.Commands.ActionCommand;
 import com.wrathOfLoD.Models.Commands.ActionCommandVendor;
 import com.wrathOfLoD.Models.Commands.EntityActionCommands.ChangeDirectionCommand;
 import com.wrathOfLoD.Models.Entity.Character.Avatar;
+import com.wrathOfLoD.Models.Entity.Character.Character;
+import com.wrathOfLoD.Models.Entity.Entity;
 import com.wrathOfLoD.Utility.Direction;
 import com.wrathOfLoD.Views.ItemDisplayView.InventoryView;
 import com.wrathOfLoD.Views.Selectable;
@@ -106,5 +108,20 @@ public class ActionVendor {
     public static Action createSelectItemAction(Selectable selectable) {
         ActionCommand selectItemCommand = ActionCommandVendor.createSelectItemCommand(selectable);
         return new ChangeSelectionAction(KeyEvent.VK_ENTER, selectItemCommand);
+    }
+
+    public static Action createOpenInventoryAction(Entity entity) {
+        ActionCommand openInventoryCommand = ActionCommandVendor.createOpenInventoryCommand(entity);
+        return new Action(KeyEvent.VK_I, openInventoryCommand);
+    }
+
+    public static Action createRevertToAvatarStateAction() {
+        ActionCommand revertToAvatarStateCommand= ActionCommandVendor.createRevertToAvatarStateCommand();
+        return new Action(KeyEvent.VK_ESCAPE, revertToAvatarStateCommand);
+    }
+
+    public static Action createSwitchToEquipmentStateAction(Character c) {
+        ActionCommand switchToEquipmentStateAction = ActionCommandVendor.createSwitchToEquipmentStateAction(c);
+        return new Action(KeyEvent.VK_SPACE, switchToEquipmentStateAction);
     }
 }

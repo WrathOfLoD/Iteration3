@@ -14,7 +14,5 @@ public class SelectUpCommand extends SelectCommand {
     @Override
     public void execute(){
         this.getSelectable().selectUpItem();
-        System.out.println("Selecting UP ");
-
     }
 }

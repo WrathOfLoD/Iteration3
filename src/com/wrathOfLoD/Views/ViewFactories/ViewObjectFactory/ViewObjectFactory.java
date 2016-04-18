@@ -70,9 +70,9 @@ public class ViewObjectFactory {
     public EntityViewObject createEntityViewObject(Position pos, Entity entity, MapArea mapArea){
         List<Image> img = new ArrayList<>();
 //        Map<Direction, ImageAnimation> imageAnimationMap = new HashMap<>();
-//        imageAnimationMap.put.add(ImageFactory.generateImage("resources/Entity/Avatar/Smasher/Walk/north.png"));
+        img.add(ImageFactory.generateImage("resources/Entity/Avatar/Smasher/Unequipped/South_East/Walk/walk0.png"));
 //        img.add(ImageFactory.generateImage("resources/Entity/Avatar/Smasher/Walk/south.png"));
-        img.add(ImageFactory.generateImage("resources/Entity/Avatar/Smasher/Walk/south_west.png"));
+//        img.add(ImageFactory.generateImage("resources/Entity/Avatar/Smasher/Walk/south_west.png"));
 
         EntityViewObject evo = new EntityViewObject(entity, new ImageAnimation(img), createHealthBarViewObject(entity.getStats().getMaxHealth(), entity.getStats().getCurrentHealth()));
         //areaView.addViewObjectToActiveCV(pos, evo);
@@ -91,7 +91,7 @@ public class ViewObjectFactory {
     public EntityViewObject createAvatarViewObject(Position pos, Avatar avatar){ //has to be added to the active one
         List<Image> img = new ArrayList<>();
 //        img.add(ImageFactory.generateImage("resources/Entity/Avatar/Smasher/Walk/slice19_19.png"));
-        img.add(ImageFactory.generateImage("resources/Abilities/DetectTrapAbility.png"));
+        img.add(ImageFactory.generateImage("resources/Abilities/Detect Trap.png"));
 
         EntityViewObject evo = new EntityViewObject(avatar, new ImageAnimation(img), createHealthBarViewObject(avatar.getStats().getMaxHealth(), avatar.getStats().getCurrentHealth()));
 
