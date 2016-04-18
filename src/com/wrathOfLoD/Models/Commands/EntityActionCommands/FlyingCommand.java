@@ -125,6 +125,7 @@ public class FlyingCommand extends MovementCommand implements Fuseable {
 
         // Update Entity's location in LocationTrackerManager
         LocationTrackerManager.getInstance().updateLocation(getEntity());
+        //TODO: COMMENT OUT
 
         TimeModel.getInstance().registerFuseable(this, getMovementTicks());
     }

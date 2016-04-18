@@ -65,7 +65,7 @@ public class LocationTrackerManager {
     }
     public void registerEntity(Entity e, MapArea ma){
         LocationTracker locationTracker = locTrackerMap.get(ma);
-        if(locationTracker.equals(null)){
+        if(locationTracker == null){
             locationTracker = new LocationTracker();
             locTrackerMap.put(ma,locationTracker);
         }

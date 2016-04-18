@@ -71,10 +71,9 @@ public class ViewObjectFactory {
         img.add(ImageFactory.generateImage("resources/Entity/Avatar/Smasher/Walk/slice19_19.png"));
 
         EntityViewObject evo = new EntityViewObject(entity, new ImageAnimation(img), createHealthBarViewObject(entity.getStats().getMaxHealth(), entity.getStats().getCurrentHealth()));
-        //areaView.addViewObjectToActiveCV(pos, evo);
         areaView.addVOToCV(pos, evo, mapArea);
         entity.registerObserver(evo);
-        //evo.registerObserver(areaView.getActiveCameraView()); //TODO: gonna cause problem because all map areas are populated at once
+
         evo.registerObserver(areaView.getCV(mapArea));
         return evo;
     }
@@ -108,7 +107,8 @@ public class ViewObjectFactory {
 
         item.registerObserver(mivo);
         //mivo.registerObserver(areaView.getTileVOFromActiveCV(pos));
-        mivo.registerObserver(areaView.getTileVOFromCV(pos, mapArea));
+        //mivo.registerObserver(areaView.getTileVOFromCV(pos, mapArea));
+        mivo.registerObserver(areaView.getActiveCameraView());
 
         //areaView.addViewObjectToActiveCV(pos, mivo);
         areaView.addVOToCV(pos, mivo, mapArea);
@@ -123,7 +123,8 @@ public class ViewObjectFactory {
 
         hitBox.registerObserver(hitBoxViewObject);
         //hitBoxViewObject.registerObserver(areaView.getTileVOFromActiveCV(position));
-        hitBoxViewObject.registerObserver(areaView.getTileVOFromCV(position, mapArea));
+        //hitBoxViewObject.registerObserver(areaView.getTileVOFromCV(position, mapArea));
+        hitBoxViewObject.registerObserver(areaView.getActiveCameraView());
 
         //areaView.addViewObjectToActiveCV(position, hitBoxViewObject);
         areaView.addVOToCV(position, hitBoxViewObject, mapArea);

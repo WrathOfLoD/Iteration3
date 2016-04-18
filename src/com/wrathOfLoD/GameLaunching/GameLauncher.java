@@ -52,6 +52,8 @@ public class GameLauncher {
         ViewObjectFactory.getInstance().initVOFactory(gameLaunchHelper.getAreaView());
         ViewObjectFactory.getInstance().createAvatarViewObject(Map.getInstance().getActiveMapArea().getSpawnPoint(), Avatar.getInstance());
 
+        Map.getInstance().registerObserver(gameLaunchHelper.getAreaView());
+
         ViewEngine viewEngine = ViewEngine.getInstance();
         viewEngine.registerView(gameLaunchHelper.getAreaView());
         ListStructure listStructure = new ListStructure(7,2, 15, 0);

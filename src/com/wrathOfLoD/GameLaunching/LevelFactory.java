@@ -10,6 +10,7 @@ import com.wrathOfLoD.Models.Entity.Character.NPC;
 import com.wrathOfLoD.Models.Entity.EntityCanMoveVisitor.TerrestrialCanMoveVisitor;
 import com.wrathOfLoD.Models.Items.EquippableItems.Weapons.SmasherWeapons.TwoHandWeapon;
 import com.wrathOfLoD.Models.Map.AreaEffect.Flow;
+import com.wrathOfLoD.Models.Map.AreaEffect.Teleport;
 import com.wrathOfLoD.Models.Map.Map;
 import com.wrathOfLoD.Models.Map.MapArea;
 import com.wrathOfLoD.Models.Map.Terrain.Ground;
@@ -46,6 +47,7 @@ public class LevelFactory {
         entityVendor = new EntityVendor();
         aeVendor = new AEVendor();
         areaView = new AreaView(cvm);
+
     }
 
     public CameraViewManager getCameraViewManager(){
@@ -92,7 +94,6 @@ public class LevelFactory {
         MapArea mapAreaOne =  Map.getInstance().getMapAreas()[0];
 
 
-
         //ItemVendor.createHammer(mapAreaOne, new Position(1,2,9));
         //EntityVendor.createNewSummonerPlayer("Dave",new Position(0,0,8), mapAreaOne);
 
@@ -106,19 +107,26 @@ public class LevelFactory {
 //        NPC myNPC = new NPC("Hehe",new Position(1,1,8), new Smasher(), new TerrestrialCanMoveVisitor());
 //        mapAreaOne.addEntity(myNPC, new Position(1,1,8));
 //
+
+
         ItemVendor.createHammer(mapAreaOne, new Position(2,1,8));
 
         mapAreaOne.addAE(new Flow(Direction.SOUTH_EAST, 10), new Position(0,3,9));
         mapAreaOne.addAE(new Flow(Direction.SOUTH_EAST, 10), new Position(1,3,9));
         mapAreaOne.addAE(new Flow(Direction.SOUTH_EAST, 10), new Position(2,3,9));
 
+        mapAreaOne.addAE(new Teleport(new Position(0,1,8)), new Position(0,4,4));
+
         CameraView cameraView1 = new CameraView(mapAreaOne);
+        cameraView1.setInitialCameraCenter(mapAreaOne.getSpawnPoint());
         cameraView1.setCameraCenter(mapAreaOne.getSpawnPoint());
         cvm.addCameraView(mapAreaOne, cameraView1);
         areaView.setActiveCameraView(cameraView1); //TODO: set active cv when avatar gets added
         cameraView1.populateCV();
 
-        //TODO: Can store spawn point in map area
+
+
+        Map.getInstance().registerObserver(areaView);
     }
 
 
@@ -166,6 +174,7 @@ public class LevelFactory {
 
         Map.getInstance().addMapArea(mapArea1);
         Map.getInstance().setActiveMapArea(mapArea1);
+
     }
 
 
