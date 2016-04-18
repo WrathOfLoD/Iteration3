@@ -125,7 +125,7 @@ public class LevelFactory {
         MapArea mapArea1 = new MapArea();
 
         for(int i = 0; i < 7; i++){ //q
-            for(int j = 0; j < 4; j++){ //r
+            for(int j = 0; j < 5; j++){ //r
                 TilePillar tilePillar = new TilePillar();
                 for(int k = 0; k < 10; k++){ //h
                     if (k >= 9 && j < 2) {
