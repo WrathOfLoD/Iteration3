@@ -29,6 +29,7 @@ public class ViewObjectFactory {
     private static ViewObjectFactory instance;
     private AreaView areaView;
     private SpriteMap spriteMap;
+    private HashMap<String, ImageAnimation> terrainMap;
 
     public static ViewObjectFactory getInstance(){
         if(instance == null)
@@ -41,6 +42,7 @@ public class ViewObjectFactory {
     public void initVOFactory(AreaView areaView) throws IOException{
         this.areaView = areaView;
         this.spriteMap = new SpriteMap();
+        //terrainMap = spriteMap.getTerrainMap();
     }
 
     public TilePillarViewObject createTilePillarViewObject(Position pos){
@@ -48,12 +50,16 @@ public class ViewObjectFactory {
     }
 
     public TileViewObject createTileViewObject(Position pos, Tile tile){
-        //TODO: hook up with spriteMap
-        List<Image> img = new ArrayList<>();
-        String terrainName = tile.getTerrain().getName();
-        img.add(ImageFactory.generateImage("resources/" + terrainName + ".png"));
 
-        return new TileViewObject(pos, new ImageAnimation(img));
+//        List<Image> img = new ArrayList<>();
+//        String terrainName = tile.getTerrain().getName();
+//        img.add(ImageFactory.generateImage("resources/" + terrainName + ".png"));
+
+        HashMap<String, ImageAnimation> terrainMap = spriteMap.getTerrainMap();
+        ImageAnimation img = terrainMap.get(tile.getTerrain().getName());
+
+        return new TileViewObject(pos, terrainMap.get(tile.getTerrain().getName()));
+        //return new TileViewObject(pos, new ImageAnimation(img));
     }
 
     public AreaEffectViewObject createAEViewObject(Position pos, AreaEffect ae, MapArea mapArea){
