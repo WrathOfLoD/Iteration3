@@ -59,6 +59,9 @@ public abstract class ContentDisplayStructure extends JPanel /* implements Selec
     public void addSlot(Slot slot) {
         getSlotList().add(slot);
     }
+    public void resetSlots() {
+        getSlotList().clear();
+    }
 
     public ContentDisplayStructure(int numRows, int numCols) {
         if(numRows<1 || numCols<1) {

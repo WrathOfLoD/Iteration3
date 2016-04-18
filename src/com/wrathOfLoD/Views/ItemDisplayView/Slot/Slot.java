@@ -38,13 +38,10 @@ public abstract class Slot extends StaticViewObject {
 
     public void paintComponent(Graphics g, int x, int y, int width, int height) {
         g.setColor(Color.WHITE);
-        int slotPadding = 15;
         if(getStaticViewObject()!=null) {
             getStaticViewObject().paintComponent(g,x,y,width,height);
-            g.drawRect(x-slotPadding,y-slotPadding,width+(2*slotPadding),height+(2*slotPadding));
             if (isSelected()) {
                 g.setColor(Color.GREEN);
-                //g.drawRect(x,y,width,height);
             }
         }
     }

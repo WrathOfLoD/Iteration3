@@ -1,7 +1,7 @@
 package com.wrathOfLoD.Views.ContentDisplayStructure;
 
 import com.sun.prism.image.Coords;
-import com.wrathOfLoD.Views.ViewObjects.EquippedItemViewObject;
+import com.wrathOfLoD.Views.ItemDisplayView.Slot.Slot;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -9,10 +9,8 @@ import java.util.ArrayList;
 /**
  * Created by echristiansen on 4/9/2016.
  */
-public class EquipmentDisplayStructure {
+public class EquipmentDisplayStructure extends ContentDisplayStructure {
 
-    private int structureWidth; //this is really the width of the view in which the structure is found
-    private int structureHeight; //this is reallly the height of the view in which the structure is found
     private int slotWidth;
     private int slotHeight;
     private int widthDivisor = 7; //used to determine how wide a slot should be relative to the overall width of the structure
@@ -30,14 +28,14 @@ public class EquipmentDisplayStructure {
     private int numSlots = 4;
     private int[] xArray = new int[numSlots];
     private int[] yArray = new int[numSlots];
-    private ArrayList<EquippedItemViewObject> equippedItemViewObjects = new ArrayList<>();
+    private ArrayList<Slot> equipmentSlotList = new ArrayList<>();
 
 
-    public ArrayList<EquippedItemViewObject> getEquippedItemViewObjects() {
-        return equippedItemViewObjects;
+    public ArrayList<Slot> getEquipmentSlotList() {
+        return equipmentSlotList;
     }
-    public void setEquippedItemViewObjects(ArrayList<EquippedItemViewObject> equippedItemViewObjects) {
-        this.equippedItemViewObjects = equippedItemViewObjects;
+    public void setEquipmentSlotList(ArrayList<Slot> equipmentSlotList) {
+        this.equipmentSlotList = equipmentSlotList;
     }
     public int getNumSlots() {
         return numSlots;
@@ -57,19 +55,6 @@ public class EquipmentDisplayStructure {
     public void setSlotHeight(int boxHeight) {
         this.slotHeight = boxHeight;
     }
-    public int getStructureWidth() {
-        return structureWidth;
-    }
-    public void setStructureWidth(int structureWidth) {
-        this.structureWidth = structureWidth;
-    }
-    public int getStructureHeight() {
-        return structureHeight;
-    }
-    public void setStructureHeight(int structureHeight) {
-        this.structureHeight = structureHeight;
-    }
-
 
     public int getHelmetX() {
         return helmetX;
@@ -133,18 +118,24 @@ public class EquipmentDisplayStructure {
     }
 
 
-    public EquipmentDisplayStructure(int viewWidth, int viewHeight) {
-        setStructureWidth(viewWidth);
-        setStructureHeight(viewHeight);
-        setSlotWidth(getStructureWidth()/widthDivisor);
-        setSlotHeight(getStructureHeight()/heightDivisor);
-        calculateCoords();
+//    public EquipmentDisplayStructure(int viewWidth, int viewHeight) {
+//        setStructureWidth(viewWidth);
+//        setStructureHeight(viewHeight);
+//        setSlotWidthgetDisplayWidth ()()/widthDivisor);
+//        setSlotHeight(getDisplayHeight()()/heightDivisor);
+//        calculateCoords();
+//    }
+
+    public EquipmentDisplayStructure(int numRows, int numCols) {
+        super(numRows,numCols);
     }
 
 
-    public void calculateCoords() {
-        int horlineLength = getStructureWidth()/4;
-        int vertLineLength = getStructureHeight()/4;
+    public void calculateCoords(int displayWidth, int displayHeight) {
+        int horlineLength = displayWidth/4;
+        int vertLineLength = displayHeight/4;
+        setSlotWidth(displayWidth/widthDivisor);
+        setSlotHeight(displayHeight/heightDivisor);
         setHelmetX(2*horlineLength-getSlotWidth()/2);
         setWeaponX(horlineLength-getSlotWidth()/2 - getSlotWidth()/2);
         setChestX(2*horlineLength-getSlotWidth()/2);
@@ -153,6 +144,7 @@ public class EquipmentDisplayStructure {
 
         setHelmetY(vertLineLength-getslotHeight()/2 - vertLineLength/4);
         setWeaponY(2*vertLineLength-getslotHeight()/2);
+        //setWeaponY((int)(1.5*vertLineLength) - getslotHeight()/2);
         setChestY(2*vertLineLength-getslotHeight()/2);
         setShieldY(2*vertLineLength-getslotHeight()/2);
         setLegsY(3*vertLineLength-getslotHeight()/2 + vertLineLength/4);
@@ -189,6 +181,33 @@ public class EquipmentDisplayStructure {
     }
 
 
+    @Override
+    public int determineColumn(int index) {
+        return 0;
+    }
+
+    @Override
+    public int determineRow(int index) {
+        return 0;
+    }
+
+    @Override
+    public int calculateSlotWidth() {
+        int slotWidth = getDisplayWidth()/widthDivisor;
+        return slotWidth;
+    }
+
+    @Override
+    public int calculateSlotHeight() {
+        int slotHeight = getDisplayHeight()/heightDivisor;
+        return slotHeight;
+    }
+
+    @Override
+    public void paintComponent(Graphics g, int initialX, int initialY, int displayWidth, int displayHeight) {
+        calculateCoords(displayWidth, displayHeight);
+        super.paintComponent(g, initialX, initialY, displayWidth, displayHeight);
 
 
+    }
 }

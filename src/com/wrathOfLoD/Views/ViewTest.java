@@ -1,6 +1,7 @@
 package com.wrathOfLoD.Views;
 
 import com.wrathOfLoD.Controllers.InputStates.ActionVendor;
+import com.wrathOfLoD.Controllers.InputStates.EquipmentState;
 import com.wrathOfLoD.Controllers.InputStates.InputState;
 import com.wrathOfLoD.Controllers.InputStates.InventoryState;
 import com.wrathOfLoD.Controllers.MainController;
@@ -65,6 +66,7 @@ public class ViewTest {
         inventory.addToActionSet(ActionVendor.createSelectItemAction(inventoryView));
 
         InputState inventoryState = new InventoryState(inventory);
+        InputState equipmentState = new EquipmentState(equipment);
 
         MainController mainController = MainController.getInstance();
 //
@@ -97,11 +99,15 @@ public class ViewTest {
 
         Thread.sleep(2000);
         Helm helm2 = new Helm("helm");
+        Helm helm3 = new Helm("helm2");
         inventory.addItem(helm2);
+        equipment.equip(helm2);
+        mainController.setActiveState(equipmentState);
         //viewEngine.registerView(inventoryView);
         //viewEngine.registerView(avatarIESView);
         //vm.addView(avatarIESView);
         //vm.addView(areaView);
+        //mainController.setActiveState(equipmentState);
 //
 
     }

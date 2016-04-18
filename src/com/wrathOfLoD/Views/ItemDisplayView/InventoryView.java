@@ -4,6 +4,7 @@ import com.wrathOfLoD.Models.Inventory.Inventory;
 import com.wrathOfLoD.Models.Items.TakeableItem;
 import com.wrathOfLoD.Views.ContentDisplayStructure.ContentDisplayStructure;
 import com.wrathOfLoD.Views.ItemDisplayView.Slot.InventorySlot;
+import com.wrathOfLoD.Views.ItemDisplayView.Slot.ItemSlot;
 import com.wrathOfLoD.Views.ItemDisplayView.Slot.Slot;
 import com.wrathOfLoD.Views.ViewObjects.ItemViewObject;
 
@@ -59,7 +60,7 @@ public class InventoryView extends ItemDisplayView /*implements Selectable*/ { /
         getContentDisplayStructure().getSlotList().clear();
         while (itemIterator.hasNext()) {
             itemViewObject = new ItemViewObject(itemIterator.next());
-            Slot slot = new InventorySlot(itemViewObject);
+            Slot slot = new ItemSlot(itemViewObject);
             getContentDisplayStructure().addSlot(slot);
         }
     }

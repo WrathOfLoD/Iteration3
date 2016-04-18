@@ -19,8 +19,10 @@ public class ItemViewObject extends GraphicViewObject {
 
     public ItemViewObject(Item item) { //todo change this constructor to take in Object object in accordance with PTC?
         setObject(item);
-        setImageFilePath(Config.instance().getInventoryIVOPath()+item.getName()+Config.instance().getImageExtension());
-        initializeImage(item);
+        if(item!=null) {
+            setImageFilePath(Config.instance().getInventoryIVOPath()+item.getName()+Config.instance().getImageExtension());
+            initializeImage(item);
+        }
     }
 
     public void initializeImage(Item item) {
