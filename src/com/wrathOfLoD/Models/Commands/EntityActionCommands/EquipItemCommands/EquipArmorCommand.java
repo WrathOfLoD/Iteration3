@@ -4,6 +4,7 @@ import com.wrathOfLoD.Models.Entity.Character.Character;
 import com.wrathOfLoD.Models.Inventory.Equipment;
 import com.wrathOfLoD.Models.Items.EquippableItems.Armor;
 import com.wrathOfLoD.Models.Items.EquippableItems.EquippableItem;
+import com.wrathOfLoD.Models.Items.TakeableItem;
 
 
 /**
@@ -15,8 +16,8 @@ public class EquipArmorCommand extends EquipItemCommand {
     }
 
     @Override
-    protected void equipHook(Equipment equipment){
+    protected TakeableItem equipHook(Equipment equipment){
         EquippableItem item = getItem();
-        equipment.equip((Armor) item);
+        return equipment.equip((Armor) item);
     }
 }

@@ -2,6 +2,7 @@ package com.wrathOfLoD.Models.Commands;
 
 import com.wrathOfLoD.Models.Ability.Abilities.Ability;
 import com.wrathOfLoD.Models.Commands.EntityActionCommands.*;
+import com.wrathOfLoD.Models.Commands.EntityActionCommands.AttackCommands.MeleeAttackCommand;
 import com.wrathOfLoD.Models.Commands.SelectableActionCommands.*;
 import com.wrathOfLoD.Models.Entity.Character.Character;
 import com.wrathOfLoD.Models.Entity.Entity;
@@ -61,4 +62,6 @@ public class ActionCommandVendor {
     public static ActionCommand createMountCommand(Character c) {
         return new MountCommand(c);
     }
+
+    public static void createAttackCommand(Character c) { c.attack(); }
 }

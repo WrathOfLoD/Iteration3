@@ -27,7 +27,7 @@ public abstract class EquipItemCommand extends ActionCommand {
 
     /********* END Getters and Setters *********/
 
-    protected abstract void equipHook(Equipment equipment);
+    protected abstract TakeableItem equipHook(Equipment equipment);
 
     @Override
     public void execute(){
@@ -35,10 +35,10 @@ public abstract class EquipItemCommand extends ActionCommand {
         if(inventory.hasItem(item)){
             inventory.removeItem(item);
             Equipment equipment = character.getEquipment();
-            //equipment.registerEquipmentObserver(inventory); //testing
-            equipHook(equipment);
+            TakeableItem returnitem = equipHook(equipment);
             Stats characterStats = character.getStats();
             characterStats.addTemporaryStats(item.getStatsModifiable());
+            inventory.addItem(returnitem);
         }
     }
 }

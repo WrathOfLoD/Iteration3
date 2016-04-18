@@ -101,31 +101,44 @@ public class Equipment implements Observable, ActionsHolder, EquipmentObservable
     /***** END of getter & setter *******/
 
 
-    public void equip(Armor armor){
+    public TakeableItem equip(Armor armor){
+        TakeableItem ri = null;
+        if (this.armor != null) ri = this.armor;
         alertEquipmentChange(getArmor());
         this.armor = armor;
         notifyObservers();
+        return ri;
+
 
     }
 
-    public void equip(Greaves greaves) {
+    public TakeableItem equip(Greaves greaves) {
+        TakeableItem ri = null;
+        if (this.greaves != null) ri = this.greaves;
         alertEquipmentChange(getGreaves());
         this.greaves = greaves;
         notifyObservers();
+        return ri;
     }
 
-    public void equip(Helm helm){
+    public TakeableItem equip(Helm helm){
+        TakeableItem ri = null;
+        if (this.helm != null) ri = this.helm;
         alertEquipmentChange(getHelm());
         this.helm = helm;
         notifyObservers();
+        return ri;
     }
 
-    public void equip(Weapon weapon) {
+    public TakeableItem equip(Weapon weapon) {
+        TakeableItem ri = null;
+        if (this.weapon != null) ri = this.weapon;
         alertEquipmentChange(getWeapon());
         this.weapon = weapon;
         notifyObservers();
         // TODO: 4/9/16 do the below for the view
         // alertWeaponEquipped(weapon);
+        return ri;
 
     }
 
