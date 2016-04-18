@@ -30,6 +30,7 @@ public class TilePillarViewObject extends ViewObject{
 	}
 
 	public void paintComponent(Graphics g, Position cameraCenter, Point screenCenter){
+		//System.out.printf("Tile Pillar (%d, %d, %d, H) discovered " + tilePillar.isDiscovered() + "%n", this.pos.getQ(), this.pos.getR(), this.pos.getS());
 		if(!tilePillar.isDiscovered()){
 			return;
 		}
@@ -41,7 +42,7 @@ public class TilePillarViewObject extends ViewObject{
 		Collections.sort(renderOrder, new RenderPositionComparator());
 		for(Position pos: renderOrder){
 			TileViewObject tvo = tileViewObjects.get(pos);
-			tvo.paintComponent(g, cameraCenter, screenCenter);
+			tvo.paintComponent(g, cameraCenter, screenCenter, tilePillar.isVisible());
 		}
 		//paintComponent(g);
 	}

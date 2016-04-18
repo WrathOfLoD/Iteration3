@@ -45,12 +45,16 @@ public class EntityViewObject extends ModelViewObject implements EntityObserver,
         System.out.println("initalizeImage is getting called for : " + entity.getName() + "!!");
     }
 
-    public void paintComponent(Graphics g, int x, int y, int width, int height) {
+    public void paintComponent(Graphics g, int x, int y, int width, int height, boolean visible) {
 //        Image image = this.imageAnimationMap.get(this.facingDirection).getFrame();
 
-        g.drawImage(this.getImage(), x, y, this.getImage().getWidth(null), this.getImage().getHeight(null), this);
+		Image renderedImage = this.getImage();
+        if(!visible){
+			renderedImage = getGrayscaleImage(renderedImage);
+		}
+        g.drawImage(renderedImage, x, y, this.getImage().getWidth(null), this.getImage().getHeight(null), this);
         //healthBarViewObject.paintComponent(g, x, y-20, width, height);
-        healthBarViewObject.paintHealthBar(g, x+15, y+10, width, height, entity.getStats().getMaxHealth(), entity.getStats().getCurrentHealth());
+        healthBarViewObject.paintHealthBar(g, x+15, y+10, width, height, entity.getStats().getMaxHealth(), entity.getStats().getCurrentHealth(), visible);
     }
 
     @Override

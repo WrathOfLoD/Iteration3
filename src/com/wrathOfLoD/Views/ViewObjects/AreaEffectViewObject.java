@@ -20,7 +20,11 @@ public class AreaEffectViewObject extends ModelViewObject{
 
 
     @Override
-    public void paintComponent(Graphics g, int x, int y, int width, int height) {
-        g.drawImage(this.getImage(), x, y, this.getImage().getWidth(null), this.getImage().getHeight(null), this);
+    public void paintComponent(Graphics g, int x, int y, int width, int height, boolean visible) {
+        Image renderedImage = this.getImage();
+        if(!visible){
+            renderedImage = getGrayscaleImage(renderedImage);
+        }
+        g.drawImage(renderedImage, x, y, this.getImage().getWidth(null), this.getImage().getHeight(null), this);
     }
 }
