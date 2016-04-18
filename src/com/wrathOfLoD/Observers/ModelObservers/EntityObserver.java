@@ -11,4 +11,5 @@ import javafx.geometry.Pos;
 public interface EntityObserver {
     public void notifyMove(Position src, Position dest, Direction dir, int ticks);
     public void notifyDirectionChange(Direction dir);
+    public void notifyDie(Position position);
 }

@@ -63,6 +63,15 @@ public class EntityViewObject extends ModelViewObject implements EntityObserver,
         this.facingDirection = dir;
     }
 
+    @Override
+    public void notifyDie(Position position) {
+        for(VOObserver voo : voObservers){
+            voo.notifyDestroy(this, position);
+        }
+
+        //entity.deregisterObserver(this);
+    }
+
 
     @Override
     public void registerObserver(VOObserver voo) {

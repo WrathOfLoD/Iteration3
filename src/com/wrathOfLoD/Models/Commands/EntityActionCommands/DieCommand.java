@@ -16,10 +16,12 @@ public class DieCommand  extends ActionCommand {
     }
     @Override
     public void execute() {
-        Map.getInstance().removeEntity(entity,entity.getPosition());
-
         // Remove entity from the LTM
-       // LocationTrackerManager.getInstance().deregisterEntity(entity);
-        //todo: notify the view!!
+
+        Map.getInstance().removeEntity(entity,entity.getPosition());
+        //LocationTrackerManager.getInstance().deregisterEntity(entity);
+
+        entity.setInactive();
+
     }
 }
