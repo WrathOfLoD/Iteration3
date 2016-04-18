@@ -4,12 +4,17 @@ import com.wrathOfLoD.Controllers.InputStates.Action.Action;
 import com.wrathOfLoD.Controllers.InputStates.ActionVendor;
 import com.wrathOfLoD.Models.Ability.Abilities.Ability;
 import com.wrathOfLoD.Models.ActionsHolder;
+import com.wrathOfLoD.Models.Commands.ActionCommand;
+import com.wrathOfLoD.Models.Commands.ActionCommandVendor;
+import com.wrathOfLoD.Models.Commands.FogOfWarActionCommands.InvisibleTilesCommand;
+import com.wrathOfLoD.Models.Commands.FogOfWarActionCommands.VisibleTilesCommand;
 import com.wrathOfLoD.Models.Entity.EntityCanMoveVisitor.TerrestrialCanMoveVisitor;
 import com.wrathOfLoD.Models.Inventory.Equipment;
 import com.wrathOfLoD.Models.Items.EquippableItems.Weapons.Weapon;
 import com.wrathOfLoD.Models.Occupation.Occupation;
 import com.wrathOfLoD.Models.Skill.SkillManager;
 import com.wrathOfLoD.Models.Target.AvatarTargetManager;
+import com.wrathOfLoD.Utility.Direction;
 import com.wrathOfLoD.Utility.Position;
 import com.wrathOfLoD.VisitorInterfaces.EntityVisitor;
 
@@ -47,6 +52,20 @@ public class Avatar extends Character implements ActionsHolder {
         Weapon defaultWeapon = occupation.createWeapon();
         this.setEquipment(new Equipment(defaultWeapon));
         setCanMoveVisitor(new TerrestrialCanMoveVisitor());
+    }
+
+	@Override
+    public void move(Direction movingDirection){
+        if(!isActive()){
+            setActive();
+			InvisibleTilesCommand invisibleTilesCommand = new InvisibleTilesCommand(getPosition());
+			invisibleTilesCommand.execute();
+            ActionCommand acm = ActionCommandVendor.createMovementCommand(this, movingDirection);
+            //TODO: may need command's execute to return ticks to set entity inActive and not to notify observer
+            acm.execute();
+			VisibleTilesCommand visibleTilesCommand = new VisibleTilesCommand(getPosition());
+			visibleTilesCommand.execute();
+        }
     }
 
     @Override

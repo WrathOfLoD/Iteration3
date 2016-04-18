@@ -44,8 +44,16 @@ public class TilePillar{
 		return discovered;
 	}
 
+	public void discover(){
+		this.discovered = true;
+	}
+
 	public boolean isVisible(){
 		return visible;
+	}
+
+	public void setVisible(boolean currentlyVisible){
+		this.visible = currentlyVisible;
 	}
 
 	public boolean hasTileAt(Position pos){
@@ -95,9 +103,8 @@ public class TilePillar{
 //		this.groundLevel = groundLevel;
     }
 
-
 	public void accept(MapVisitor mv){
-		mv.visitTileColumn(this);
+		mv.visitTilePillar(this);
 	}
 
 

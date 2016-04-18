@@ -299,6 +299,7 @@ public class Position{
 
 		return arc;
 	}
+
 	//drawing a solid circle
 	//planar
 	public static List<Position> drawCircle(Position origin, int range, boolean includeOrigin){
