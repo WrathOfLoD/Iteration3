@@ -83,6 +83,16 @@ public class ActionVendor {
         return new CastAbilityAction(KeyEvent.VK_4, fourthAbilityCommand);
     }
 
+    public static Action createFifthAbility(Ability ability){
+        ActionCommand fifthAbilityCommand = ActionCommandVendor.createCastAbilityCommand(ability);
+        return new CastAbilityAction(KeyEvent.VK_5, fifthAbilityCommand);
+    }
+
+    public static Action createSixthAbility(Ability ability){
+        ActionCommand sixthAbilityCommand = ActionCommandVendor.createCastAbilityCommand(ability);
+        return new CastAbilityAction(KeyEvent.VK_6, sixthAbilityCommand);
+    }
+
 
 
     /* Actions related to menu/inventory selection */

@@ -18,7 +18,7 @@ public class FlyingNPCController extends NPCController {
 
     @Override
     protected void think(Target target) {
-        if(target != null){
+        if(target != null && !getControlledEntity().isDead()){
             if( (getControlledEntity().getAggroLevel() == 0 && target instanceof EntityTarget)){
                 //idle
             }

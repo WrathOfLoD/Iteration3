@@ -4,6 +4,7 @@ import com.wrathOfLoD.Models.Map.Map;
 import com.wrathOfLoD.Models.Map.Tile;
 import com.wrathOfLoD.Observers.ViewObjectObservers.DestroyableVOObserver;
 import com.wrathOfLoD.Utility.Position;
+import com.wrathOfLoD.Views.ImageFactory.ImageFactory;
 import com.wrathOfLoD.Views.SpriteMap.ImageAnimation;
 import javafx.geometry.Pos;
 
@@ -22,6 +23,7 @@ public class TileViewObject extends ViewObject{
 	private Tile tile;
 	private Position pos;
 	private ArrayList<ModelViewObject> modelVOList;
+	private static Image fog = ImageFactory.generateImage("resources/FogOfWar.png");
 
 	public TileViewObject(Position pos, ImageAnimation animation){
 		this.pos = pos;
@@ -36,18 +38,50 @@ public class TileViewObject extends ViewObject{
 		this.setOffsetX(offset.x-40);
 		this.setOffsetY(offset.y-90);
 
-		Image renderedImage = this.getImage();
+		g.drawImage(this.getImage(), this.getOffsetX() + screenCenter.x, this.getOffsetY() + screenCenter.y, 80, 140, null);
+		//Image renderedImage = this.getImage();
 		if(!visible){
-			//ImageFilter filter = new GrayFilter(true, 50);
-			//ImageProducer producer = new FilteredImageSource(this.getImage().getSource(), filter);
-			//renderedImage = Toolkit.getDefaultToolkit().createImage(producer);
-			BufferedImage image = new BufferedImage(renderedImage.getWidth(null), renderedImage.getHeight(null), BufferedImage.TYPE_INT_ARGB);
-			Graphics g2 = image.getGraphics();
-			g2.drawImage(renderedImage, renderedImage.getWidth(null), renderedImage.getHeight(null), null);
-			//g2.drawImage(renderedImage,renderedImage.getWidth(null),renderedImage.getHeight(null),new Color(0f,0f,0.7f,0.3f),null);
-			renderedImage = image;
+//<<<<<<< HEAD
+//			//ImageFilter filter = new GrayFilter(true, 50);
+//			//ImageProducer producer = new FilteredImageSource(this.getImage().getSource(), filter);
+//			//renderedImage = Toolkit.getDefaultToolkit().createImage(producer);
+//			BufferedImage image = new BufferedImage(renderedImage.getWidth(null), renderedImage.getHeight(null), BufferedImage.TYPE_INT_ARGB);
+//			Graphics g2 = image.getGraphics();
+//			g2.drawImage(renderedImage, renderedImage.getWidth(null), renderedImage.getHeight(null), null);
+//			//g2.drawImage(renderedImage,renderedImage.getWidth(null),renderedImage.getHeight(null),new Color(0f,0f,0.7f,0.3f),null);
+//			renderedImage = image;
+//=======
+			g.drawImage(fog, this.getOffsetX() + screenCenter.x, this.getOffsetY() + screenCenter.y, 80, 140, null);
+			/*ImageFilter filter = new RGBImageFilter(){
+				@Override
+				public int filterRGB(int x, int y, int rgb){
+					// Find the average of red, green, and blue.
+					float avg = (((rgb >> 16) & 0xff) / 255f +
+							((rgb >>  8) & 0xff) / 255f +
+							(rgb        & 0xff) / 255f) / 3;
+					// Pull out the alpha channel.
+					float alpha = (((rgb >> 24) & 0xff) / 255f);
+
+					// Calculate the average.
+					// Sun's formula: Math.min(1.0f, (1f - avg) / (100.0f / 35.0f) + avg);
+					// The following formula uses less operations and hence is faster.
+					avg = Math.min(1.0f, 0.35f + 0.65f * avg);
+					// Convert back into RGB.
+					return (int) (alpha * 255f) << 24 | (int) (avg   * 255f) << 16 |
+							(int) (avg   * 255f) << 8  | (int) (avg   * 255f);
+				}
+			};
+			ImageProducer producer = new FilteredImageSource(this.getImage().getSource(), filter);
+			renderedImage = Toolkit.getDefaultToolkit().createImage(producer);
+			//BufferedImage image = new BufferedImage(renderedImage.getWidth(null), renderedImage.getHeight(null), BufferedImage.TYPE_BYTE_GRAY);
+			//Graphics g2 = image.getGraphics();
+			//g2.setColor(new Color(0f,0f,0f,0.4f));
+			//g2.drawImage(renderedImage, 0, 0, null);
+			////g2.dispose();
+			//renderedImage = image;
+			*/
 		}
-		g.drawImage(renderedImage, this.getOffsetX() + screenCenter.x, this.getOffsetY() + screenCenter.y, 80, 140, null);
+
 
 		Collections.sort(modelVOList, new Comparator<ModelViewObject>() {
 			@Override

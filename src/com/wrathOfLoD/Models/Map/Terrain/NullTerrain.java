@@ -9,7 +9,7 @@ import com.wrathOfLoD.VisitorInterfaces.TileVisitor;
 public class NullTerrain extends Terrain{
     public NullTerrain() {
         super();
-        this.setName("");
+        this.setName("SkyTile");
     }
 
     public void accept(TileVisitor tv){

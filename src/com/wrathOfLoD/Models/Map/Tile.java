@@ -80,8 +80,10 @@ public class Tile {
             i.encounter(e);
         }
 
-        for (AreaEffect ae : areaEffects)
+        for (AreaEffect ae : areaEffects) {
             ae.interact(e);
+            System.out.println("AE INTERAC");
+        }
 
         if(trap != null){
             trap.interact(e);

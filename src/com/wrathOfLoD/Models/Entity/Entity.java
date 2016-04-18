@@ -38,6 +38,7 @@ public abstract class Entity implements EntityObservable{
     private boolean isActive = false;
     private ArrayList<EntityObserver> entityObservers;
     private CanMoveVisitor canMoveVisitor;
+    private boolean isDead;
 
 
 
@@ -172,10 +173,16 @@ public abstract class Entity implements EntityObservable{
         ActionCommand dieCommand = new DieCommand(this);
         dieCommand.execute();
         notifyObserversOnDie(this.getPosition());
-        System.out.println("LIFES LIVE: "+ getStats().getLivesLeft());
-        if(getStats().getLivesLeft() > 0) {
-            respawn();
-        }
+
+        this.setActive();
+
+//        System.out.println("LIFES LIVE: "+ getStats().getLivesLeft());
+//        if(getStats().getLivesLeft() > 0) {
+//            respawn();
+//        }
+        entityObservers.clear();
+
+
     }
 
     public boolean isActive() {
@@ -227,6 +234,18 @@ public abstract class Entity implements EntityObservable{
         }
     }
 
+    public void notifyObserverOnAtt(){
+        for(int i = 0; i < entityObservers.size(); i++){
+            entityObservers.get(i).notifyAttack();
+        }
+    }
+
+    public void notifyObserverDoneAtt(){
+        for(int i = 0; i < entityObservers.size(); i++){
+            entityObservers.get(i).notifyDoneAttack();
+        }
+    }
+
     public void setAggroLevel(int aggro){
         this.aggroLevel = aggro;
     }
@@ -246,6 +265,16 @@ public abstract class Entity implements EntityObservable{
 
         System.out.println("GESTS CLLLAFED??");
     }
+
+    public boolean isDead() {
+        return isDead;
+    }
+
+    public void setDead(boolean dead) {
+        isDead = dead;
+    }
+
+
 
 }
 

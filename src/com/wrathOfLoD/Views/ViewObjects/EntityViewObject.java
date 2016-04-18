@@ -14,8 +14,7 @@ import com.wrathOfLoD.Views.SpriteMap.ImageAnimation;
 import com.wrathOfLoD.Views.ViewFactories.ViewObjectFactory.ViewObjectFactory;
 
 import java.awt.*;
-import java.util.ArrayList;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Created by luluding on 4/15/16.
@@ -25,10 +24,13 @@ public class EntityViewObject extends ModelViewObject implements EntityObserver,
     private ArrayList<VOObserver> voObservers;
     private Direction facingDirection;
     private ArrayList<MovableVOObserver> movableVOObservers;
+    private String spritePath;
+
     private Map<Direction, ImageAnimation> imageAnimationMap;
+
     private HealthBarViewObject healthBarViewObject;
 
-    public EntityViewObject(Entity entity, ImageAnimation imageAnimation, HealthBarViewObject healthBarViewObject) {
+    public EntityViewObject(Entity entity, ImageAnimation imageAnimation, HealthBarViewObject healthBarViewObject, String spritePath) {
         super(Config.getEntityZLevel());
 //        this.imageAnimationMap = imageMap;
         this.facingDirection = Direction.SOUTH;
@@ -36,6 +38,7 @@ public class EntityViewObject extends ModelViewObject implements EntityObserver,
 //        setImage(this.imageAnimationMap.get(this.facingDirection).getFrame());
         this.entity = entity;
         this.healthBarViewObject = healthBarViewObject;
+        this.spritePath = spritePath;
 
         voObservers = new ArrayList<>();
 
@@ -52,9 +55,59 @@ public class EntityViewObject extends ModelViewObject implements EntityObserver,
         if(!visible){
 			renderedImage = getGrayscaleImage(renderedImage);
 		}
-        g.drawImage(renderedImage, x, y, this.getImage().getWidth(null), this.getImage().getHeight(null), this);
+        g.drawImage(renderedImage, x+8, y+40, this.getImage().getWidth(null), this.getImage().getHeight(null), this);
         //healthBarViewObject.paintComponent(g, x, y-20, width, height);
         healthBarViewObject.paintHealthBar(g, x+15, y+10, width, height, entity.getStats().getMaxHealth(), entity.getStats().getCurrentHealth(), visible);
+    }
+
+    public void changeEntityDirections(){
+        Direction direction = facingDirection;
+        String pathDirection;
+        switch (direction){
+            case NORTH : pathDirection = "North";
+                break;
+            case NORTH_EAST : pathDirection = "East";
+                break;
+            case NORTH_WEST : pathDirection = "West";
+                break;
+            case SOUTH_EAST : pathDirection = "East";
+                break;
+            case SOUTH_WEST : pathDirection = "West";
+                break;
+            case SOUTH : pathDirection = "South";
+                break;
+            default: pathDirection = "South";
+                break;
+        }
+
+        java.util.List<Image> img = new ArrayList<>();
+        img.add(ImageFactory.generateImage(spritePath + pathDirection + "/Walk/walk.png"));
+        setImage(img.get(0));
+    }
+
+    public void attackEntityDirections(){
+        Direction direction = facingDirection;
+        String pathDirection;
+        switch (direction){
+            case NORTH : pathDirection = "North";
+                break;
+            case NORTH_EAST : pathDirection = "East";
+                break;
+            case NORTH_WEST : pathDirection = "West";
+                break;
+            case SOUTH_EAST : pathDirection = "East";
+                break;
+            case SOUTH_WEST : pathDirection = "West";
+                break;
+            case SOUTH : pathDirection = "South";
+                break;
+            default: pathDirection = "South";
+                break;
+        }
+
+        java.util.List<Image> img = new ArrayList<>();
+        img.add(ImageFactory.generateImage(spritePath + pathDirection + "/Attack/attack.png"));
+        setImage(img.get(0));
     }
 
     @Override
@@ -66,6 +119,7 @@ public class EntityViewObject extends ModelViewObject implements EntityObserver,
 
     public void notifyDirectionChange(Direction dir) {
         this.facingDirection = dir;
+        changeEntityDirections();
     }
 
 
@@ -76,6 +130,16 @@ public class EntityViewObject extends ModelViewObject implements EntityObserver,
         }
 
         //entity.deregisterObserver(this);
+    }
+
+    @Override
+    public void notifyAttack() {
+        attackEntityDirections();
+    }
+
+    @Override
+    public void notifyDoneAttack() {
+        changeEntityDirections();
     }
 
 

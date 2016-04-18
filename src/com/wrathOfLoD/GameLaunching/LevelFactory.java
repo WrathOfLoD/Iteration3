@@ -12,13 +12,13 @@ import com.wrathOfLoD.Models.Entity.EntityCanMoveVisitor.FlyingCanMoveVisitor;
 import com.wrathOfLoD.Models.Entity.EntityCanMoveVisitor.TerrestrialCanMoveVisitor;
 import com.wrathOfLoD.Models.Entity.Mount;
 import com.wrathOfLoD.Models.Items.EquippableItems.Weapons.SmasherWeapons.TwoHandWeapon;
-import com.wrathOfLoD.Models.Map.AreaEffect.Flow;
-import com.wrathOfLoD.Models.Map.AreaEffect.Teleport;
+import com.wrathOfLoD.Models.Map.AreaEffect.*;
 import com.wrathOfLoD.Models.Map.Map;
 import com.wrathOfLoD.Models.Map.MapArea;
 import com.wrathOfLoD.Models.Map.Terrain.Ground;
 import com.wrathOfLoD.Models.Map.Terrain.NullTerrain;
 import com.wrathOfLoD.Models.Map.Terrain.Sky;
+import com.wrathOfLoD.Models.Map.Terrain.Water;
 import com.wrathOfLoD.Models.Map.Tile;
 import com.wrathOfLoD.Models.Map.TilePillar;
 import com.wrathOfLoD.Models.Occupation.Smasher;
@@ -103,8 +103,13 @@ public class LevelFactory {
 
 //        ItemVendor.createHammer(mapAreaOne, new Position(1,2,9));
 //        EntityVendor.createEnemy(new Position(1,2,9), mapAreaOne);
-//        EntityVendor.createEnemy(new Position(1,0,9), mapAreaOne);
+
+
+        //EntityVendor.createEnemy(new Position(1,0,9), mapAreaOne);
         EntityVendor.createFlyingEnemy(new Position(2,4,4), mapAreaOne);
+        EntityVendor.createFlyingEnemy(new Position(17,5,9), mapAreaOne);
+
+
         //EntityVendor.createPet(new Position(0,1,8), mapAreaOne);
 
 
@@ -113,15 +118,28 @@ public class LevelFactory {
 //
 
 
-        ItemVendor.createHammer(mapAreaOne, new Position(2,1,8));
+        ItemVendor.createHammer(mapAreaOne, new Position(8,14,3));
 
-        mapAreaOne.addEntity(new Mount("Mount", new Position(3, 3, 9), new FlyingCanMoveVisitor()), new Position(3,3,9));
+        //mapAreaOne.addEntity(new Mount("Mount", new Position(3, 3, 9), new FlyingCanMoveVisitor()), new Position(3,3,9));
 
-        mapAreaOne.addAE(new Flow(Direction.SOUTH_EAST, 10), new Position(0,3,9));
-        mapAreaOne.addAE(new Flow(Direction.SOUTH_EAST, 10), new Position(1,3,9));
-        mapAreaOne.addAE(new Flow(Direction.SOUTH_EAST, 10), new Position(2,3,9));
 
-        mapAreaOne.addAE(new Teleport(new Position(0,1,8)), new Position(0,7,3));
+
+        mapAreaOne.addAE(new Flow(Direction.SOUTH_EAST, 10), new Position(2,3,8));
+        mapAreaOne.addAE(new Flow(Direction.SOUTH_EAST, 10), new Position(3,3,8));
+        mapAreaOne.addAE(new Flow(Direction.SOUTH_EAST, 10), new Position(4,3,8));
+
+
+        mapAreaOne.addAE(new Flow(Direction.NORTH_WEST, 10), new Position(2,10,9));
+        mapAreaOne.addAE(new Flow(Direction.NORTH_WEST, 10), new Position(3,10,9));
+        mapAreaOne.addAE(new Flow(Direction.NORTH_WEST, 10), new Position(4,10,9));
+
+        mapAreaOne.addAE(new TakeDamageAreaEffect("TakeDamageAE", 40), new Position(6,0,8));
+        mapAreaOne.addAE(new HealDamageAreaEffect("HealDamageAE", 30), new Position(7,0,8));
+        mapAreaOne.addAE(new InstantDeathAreaEffect("InstantDeathAE"), new Position(8,0,8));
+
+
+        mapAreaOne.addAE(new Teleport(new Position(4,3,8)), new Position(4,14,3));
+
 
         CameraView cameraView1 = new CameraView(mapAreaOne);
         cameraView1.setInitialCameraCenter(mapAreaOne.getSpawnPoint());
@@ -144,8 +162,8 @@ public class LevelFactory {
     public void createTestMapAreaOne(){
         MapArea mapArea1 = new MapArea(new Position(0,0,8));
 
-        for(int i = 0; i < 120; i++){ //q
-            for(int j = 0; j < 80; j++){ //r
+        for(int i = 0; i < 20; i++){ //q
+            for(int j = 0; j < 15; j++){ //r
                 TilePillar tilePillar = new TilePillar();
                 for(int k = 0; k < 10; k++){ //h
                     if (k >= 9 && j < 2) {
@@ -156,41 +174,75 @@ public class LevelFactory {
                 }
                 mapArea1.addTilePillar(new Position(i,j,0), tilePillar);
 
-                if(j == 4){
+                if(j == 11){
                     for(int k = 7; k < 10; k++){ //h
                         tilePillar.addTile(k, new Tile(new Sky()));
                     }
                 }
-                if(j == 5){
+                if(j == 12){
                     for(int k = 6; k < 10; k++){ //h
                         tilePillar.addTile(k, new Tile(new Sky()));
                     }
                 }
-                if(j == 6){
+                if(j == 13){
                     for(int k = 5; k < 10; k++){ //h
                         tilePillar.addTile(k, new Tile(new Sky()));
                     }
                 }
-                if(j == 7){
+                if(j == 14){
                     for(int k = 4; k < 10; k++){ //h
                         tilePillar.addTile(k, new Tile(new Sky()));
                     }
                 }
+
+                if(j == 3){
+
+                    if(i == 10 || i == 11 || i == 12){
+                        for(int k = 8; k < 10; k++){ //h
+                            tilePillar.addTile(k, new Tile(new Water()));
+                        }
+                    }else{
+                        for(int k = 9; k < 10; k++){ //h
+                            tilePillar.addTile(k, new Tile(new Sky()));
+                        }
+
+                    }
+
+                }
+
+                if(j == 4){
+
+                    if(i == 10 || i == 11 || i == 12){
+                        for(int k = 8; k < 10; k++){ //h
+                            tilePillar.addTile(k, new Tile(new Water()));
+                        }
+                    }
+                }
+
+                if(j == 5){
+
+                    if(i == 10 || i == 11 || i == 12){
+                        for(int k = 8; k < 10; k++){ //h
+                            tilePillar.addTile(k, new Tile(new Water()));
+                        }
+                    }
+                }
+
 
 
 
             }
         }
 
-//        for(int i = 5; i < 6; i++){
-//            for(int j = 5; j < 6; j++){ //r
-//                TilePillar tilePillar = new TilePillar();
-//                for(int k = 0; k < 10; k++){ //h
-//                    tilePillar.addTile(k, new Tile(new NullTerrain()));
-//                }
-//                mapArea1.addTilePillar(new Position(i,j,0), tilePillar);
-//            }
-//        }
+        for(int i = 20; i < 21; i++){
+            for(int j = 15; j < 16; j++){ //r
+                TilePillar tilePillar = new TilePillar();
+                for(int k = 0; k < 10; k++){ //h
+                    tilePillar.addTile(k, new Tile(new NullTerrain()));
+                }
+                mapArea1.addTilePillar(new Position(i,j,0), tilePillar);
+            }
+        }
         //TODO: need to find a better way to fill NullTile around the maparea
 
 

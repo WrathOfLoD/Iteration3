@@ -6,6 +6,7 @@ import com.wrathOfLoD.Models.Ability.Abilities.Ability;
 import com.wrathOfLoD.Models.ActionsHolder;
 import com.wrathOfLoD.Models.Commands.ActionCommand;
 import com.wrathOfLoD.Models.Commands.ActionCommandVendor;
+import com.wrathOfLoD.Models.Commands.EntityActionCommands.DieCommand;
 import com.wrathOfLoD.Models.Commands.FogOfWarActionCommands.InvisibleTilesCommand;
 import com.wrathOfLoD.Models.Commands.FogOfWarActionCommands.VisibleTilesCommand;
 import com.wrathOfLoD.Models.Entity.EntityCanMoveVisitor.TerrestrialCanMoveVisitor;
@@ -14,6 +15,7 @@ import com.wrathOfLoD.Models.Items.EquippableItems.Weapons.SmasherWeapons.TwoHan
 import com.wrathOfLoD.Models.Items.EquippableItems.Weapons.Weapon;
 import com.wrathOfLoD.Models.Occupation.Occupation;
 import com.wrathOfLoD.Models.Skill.SkillManager;
+import com.wrathOfLoD.Models.Stats.StatsModifiable;
 import com.wrathOfLoD.Models.Target.AvatarTargetManager;
 import com.wrathOfLoD.Utility.Direction;
 import com.wrathOfLoD.Utility.Position;
@@ -54,6 +56,16 @@ public class Avatar extends Character implements ActionsHolder {
         Weapon defaultWeapon = occupation.createWeapon();
         this.setEquipment(new Equipment(defaultWeapon));
         setCanMoveVisitor(new TerrestrialCanMoveVisitor());
+
+        StatsModifiable hardinessStatsModifiable = StatsModifiable.createHardinessStatsModifiable(30);
+        getStats().modifyStats(hardinessStatsModifiable);
+        StatsModifiable healthModifiable = StatsModifiable.createHealthStatsModifiable(getStats().getMaxHealth());
+        getStats().modifyStats(healthModifiable);
+
+        StatsModifiable intellect = StatsModifiable.createIntellectStatsModifiable(100);
+        getStats().modifyStats(intellect);
+        StatsModifiable mana = StatsModifiable.createManaStatsModifiable(getStats().getMaxMana());
+        getStats().modifyStats(mana);
     }
 
     public void configureAvatar(String name, Position position, Occupation occupation, SkillManager skillManager){
@@ -63,8 +75,17 @@ public class Avatar extends Character implements ActionsHolder {
         this.setSkillManager(skillManager);
         Weapon defaultWeapon = occupation.createWeapon();
         this.setEquipment(new Equipment(defaultWeapon));
-
         setCanMoveVisitor(new TerrestrialCanMoveVisitor());
+
+        StatsModifiable hardinessStatsModifiable = StatsModifiable.createHardinessStatsModifiable(30);
+        getStats().modifyStats(hardinessStatsModifiable);
+        StatsModifiable healthModifiable = StatsModifiable.createHealthStatsModifiable(getStats().getMaxHealth());
+        getStats().modifyStats(healthModifiable);
+
+        StatsModifiable intellect = StatsModifiable.createIntellectStatsModifiable(100);
+        getStats().modifyStats(intellect);
+        StatsModifiable mana = StatsModifiable.createManaStatsModifiable(getStats().getMaxMana());
+        getStats().modifyStats(mana);
     }
 
 	@Override
@@ -115,7 +136,15 @@ public class Avatar extends Character implements ActionsHolder {
 
     @Override
     public void die(){
-        super.die();
+        ActionCommand dieCommand = new DieCommand(this);
+        dieCommand.execute();
+        notifyObserversOnDie(this.getPosition());
+
+        System.out.println("LIFES LIVE: "+ getStats().getLivesLeft());
+        if(getStats().getLivesLeft() > 0) {
+            respawn();
+        }
+
         //todo: Notify GameOver!
     }
 
@@ -140,4 +169,16 @@ public class Avatar extends Character implements ActionsHolder {
         super.equipAbility4(ability);
         this.addToActionSet(ActionVendor.createFourthAbility(ability));
     }
+
+    public void equipAbility5(Ability ability){
+        super.equipAbility5(ability);
+        this.addToActionSet(ActionVendor.createFifthAbility(ability));
+    }
+
+    public void equipAbility6(Ability ability){
+        super.equipAbility6(ability);
+        this.addToActionSet(ActionVendor.createSixthAbility(ability));
+    }
+
+
 }
