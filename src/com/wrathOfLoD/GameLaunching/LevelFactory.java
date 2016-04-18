@@ -130,8 +130,8 @@ public class LevelFactory {
     public void createTestMapAreaOne(){
         MapArea mapArea1 = new MapArea(new Position(0,0,8));
 
-        for(int i = 0; i < 7; i++){ //q
-            for(int j = 0; j < 5; j++){ //r
+        for(int i = 0; i < 12; i++){ //q
+            for(int j = 0; j < 8; j++){ //r
                 TilePillar tilePillar = new TilePillar();
                 for(int k = 0; k < 10; k++){ //h
                     if (k >= 9 && j < 2) {
@@ -143,24 +143,40 @@ public class LevelFactory {
                 mapArea1.addTilePillar(new Position(i,j,0), tilePillar);
 
                 if(j == 4){
+                    for(int k = 7; k < 10; k++){ //h
+                        tilePillar.addTile(k, new Tile(new Sky()));
+                    }
+                }
+                if(j == 5){
+                    for(int k = 6; k < 10; k++){ //h
+                        tilePillar.addTile(k, new Tile(new Sky()));
+                    }
+                }
+                if(j == 6){
                     for(int k = 5; k < 10; k++){ //h
+                        tilePillar.addTile(k, new Tile(new Sky()));
+                    }
+                }
+                if(j == 7){
+                    for(int k = 4; k < 10; k++){ //h
                         tilePillar.addTile(k, new Tile(new Sky()));
                     }
                 }
 
 
+
             }
         }
 
-        for(int i = 5; i < 6; i++){
-            for(int j = 5; j < 6; j++){ //r
-                TilePillar tilePillar = new TilePillar();
-                for(int k = 0; k < 10; k++){ //h
-                    tilePillar.addTile(k, new Tile(new NullTerrain()));
-                }
-                mapArea1.addTilePillar(new Position(i,j,0), tilePillar);
-            }
-        }
+//        for(int i = 5; i < 6; i++){
+//            for(int j = 5; j < 6; j++){ //r
+//                TilePillar tilePillar = new TilePillar();
+//                for(int k = 0; k < 10; k++){ //h
+//                    tilePillar.addTile(k, new Tile(new NullTerrain()));
+//                }
+//                mapArea1.addTilePillar(new Position(i,j,0), tilePillar);
+//            }
+//        }
         //TODO: need to find a better way to fill NullTile around the maparea
 
 
