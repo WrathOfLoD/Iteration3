@@ -33,7 +33,6 @@ public class EntityViewObject extends ModelViewObject implements EntityObserver,
 
     }
 
-
     @Override
     public void notifyMove(Position src, Position dest, Direction dir, int ticks) {
         for(MovableVOObserver mvoo : movableVOObservers){

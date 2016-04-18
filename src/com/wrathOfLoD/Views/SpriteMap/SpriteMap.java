@@ -8,8 +8,9 @@ import javax.imageio.ImageIO;
 import java.awt.*;
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.*;
 import java.util.List;
 
 /**
@@ -21,6 +22,7 @@ public class SpriteMap {
     //includes hitbox
     private  HashMap<String, ImageAnimation> effectsMap;
     private  HashMap<String, ImageAnimation> itemMap;
+    private Set<String> stateSet;
 
     public class EntityKey{
         private String entityType;
@@ -39,9 +41,18 @@ public class SpriteMap {
         this.entityMap = new HashMap<>();
         this.effectsMap = new HashMap<>();
         this.itemMap = new HashMap<>();
-        //generateItemMap();
-        //generateEffectsMap();
-        //generateAOEMap();
+        stateSet = new HashSet<>();
+        stateSet.add("Attack");
+        stateSet.add("Walk");
+//        dSet.add("North_West");
+//        dSet.add("South");
+//        dSet.add("South_East");
+//        dSet.add("South_West");
+
+
+        generateItemMap();
+        generateEffectsMap();
+        generateAOEMap();
         //generateEntityMap();
     }
 
@@ -68,9 +79,18 @@ public class SpriteMap {
         }
         return sprites;
     }
+
     /***** End of Reusable Methods for all maps *******/
-
-
+    private void entityImageFramesGenerator(File folder) throws IOException{
+        File[] listOfFiles = folder.listFiles();
+        int counter = 0;
+        for (File file : listOfFiles) {
+            if (file.isFile() && FileExtensionExtractor.getFileExtension(file.getName()).equals("png")) {
+                Files.move(file.toPath(), file.toPath().resolveSibling(folder.getName() + counter +".png"));
+                counter++;
+            }
+        }
+    }
 
     private  void generateItemMap() throws IOException{
         imageAnimationGenerator("./resources/MapItems", itemMap);
@@ -85,23 +105,24 @@ public class SpriteMap {
     }
 
     public void generateEntityMap() throws IOException{
-        entityAnimationGenerator("./resources/Entity");
+        entityAnimationGenerator("./resources/Entity/Avatar/Smasher");
     }
 
     private void entityAnimationGenerator(String path) throws IOException {
         File directory = new File(path);
-
-        if (directory.isFile()) {
-            String fileName = directory.getName();
-            if(fileName.endsWith(".png")) {
-                System.out.println(directory.getName());
-            }
+        if (stateSet.contains(directory.getName())) {
+            //System.out.println("The hash contains me" + directory.getPath());
+            entityImageFramesGenerator(directory);
             return;
         }
+
         File[] paths = directory.listFiles();
 
-        for (int i = 0; i < paths.length; i++) {
-            entityAnimationGenerator(paths[i].getPath());
+        if (paths != null) {
+            for (int i = 0; i < paths.length; i++) {
+                entityAnimationGenerator(paths[i].getPath());
+                //System.out.println(paths[i].getPath());
+            }
         }
     }
 
