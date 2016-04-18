@@ -12,6 +12,4 @@ public class ChangeSelectionAction extends Action {
     public ChangeSelectionAction(int currKeyCode, ActionCommand myAction) {
         super(currKeyCode, myAction);
     }
-
-
 }
