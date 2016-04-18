@@ -9,6 +9,7 @@ import com.wrathOfLoD.Models.Commands.ActionCommand;
 import com.wrathOfLoD.Models.Commands.ActionCommandVendor;
 import com.wrathOfLoD.Models.Entity.Entity;
 import com.wrathOfLoD.Models.Entity.EntityCanMoveVisitor.CanMoveVisitor;
+import com.wrathOfLoD.Models.Entity.EntityCanMoveVisitor.FlyingCanMoveVisitor;
 import com.wrathOfLoD.Models.LocationTracker.LocationTrackerManager;
 import com.wrathOfLoD.Models.Map.Map;
 import com.wrathOfLoD.Utility.Direction;
@@ -62,15 +63,15 @@ public class MovementCommand extends ActionCommand implements Fuseable {
 
         int adjacentGroundLevel = Map.getInstance().getTilePillar(adjacentPos).getGroundLevel();
 
-        if (adjacentGroundLevel == (entityGroundLevel + 1) && !(entityGroundLevel + 1 > 10)) {
+        if ((adjacentGroundLevel == (entityGroundLevel + 1) && !(entityGroundLevel + 1 > 10)) || ((abovePos.getH() != 10) && canMoveVisitor instanceof FlyingCanMoveVisitor)) {
             Map.getInstance().getTile(abovePos).accept(canMoveVisitor);
             canMoveAbove = canMoveVisitor.canMove();
             System.out.println("CANT MOVE UP!");
-        } else if (adjacentGroundLevel == entityGroundLevel) {
+        } if (adjacentGroundLevel == entityGroundLevel) {
             Map.getInstance().getTile(adjacentPos).accept(canMoveVisitor);
             canMoveAdjacent = canMoveVisitor.canMove();
 
-        } else if (adjacentGroundLevel == entityGroundLevel - 1 && entityGroundLevel - 1 >= 0) {
+        } if (adjacentGroundLevel == entityGroundLevel - 1 && entityGroundLevel - 1 >= 0) {
             Map.getInstance().getTile(belowPos).accept(canMoveVisitor);  //TODO: make sure this is not TDAAAAAA!!!!!
             canMoveBelow = canMoveVisitor.canMove();
         }
@@ -79,8 +80,8 @@ public class MovementCommand extends ActionCommand implements Fuseable {
         // Will contain the fallCommand (if the entity is going to fall)
         ActionCommand fallCommand = null;
 
-        if(canMoveAbove) {
-            if(abovePos.getH() > (entity.getPosition().getH()+1)){
+        if(canMoveAbove && !Direction.DOWN.equals(getDirection())) {
+            if(abovePos.getH() > (entity.getPosition().getH()+1) && !(canMoveVisitor instanceof FlyingCanMoveVisitor)){
                 entity.setInactive();
                 return;
             }

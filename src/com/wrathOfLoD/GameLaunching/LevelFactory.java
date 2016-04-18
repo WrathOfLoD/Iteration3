@@ -94,6 +94,7 @@ public class LevelFactory {
 //        ItemVendor.createHammer(mapAreaOne, new Position(1,2,9));
 //        EntityVendor.createEnemy(new Position(1,2,9), mapAreaOne);
 //        EntityVendor.createEnemy(new Position(1,0,9), mapAreaOne);
+        EntityVendor.createFlyingEnemy(new Position(2,4,4), mapAreaOne);
 
 //        EntityVendor.createNewSmasherPlayer("Dave",new Position(0,0,8), mapAreaOne);
         EntityVendor.createNewSmasherPlayer("Dave",new Position(0,0,8), mapAreaOne);
