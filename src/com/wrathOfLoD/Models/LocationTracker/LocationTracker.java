@@ -44,7 +44,7 @@ public class LocationTracker {
         this.itemPositionMap.put(item, pos);
 //        this.itemList.add(item);
         for(Entity e : entityList){
-            if(pos.getHorizontalDist(e.getPosition()) < 3){
+            if(pos.getHorizontalDist(e.getPosition()) < 5){
                 TargetManager targManager = entityTargetManagerMap.get(e);
                 targManager.updateMyList(new ItemTarget(item, pos));
             }
@@ -54,7 +54,7 @@ public class LocationTracker {
     public void deregisterItem(Item item) {
         Position currentItemPos = itemPositionMap.get(item);
         for(Entity e : entityList){
-            if(currentItemPos.getHorizontalDist(e.getPosition()) < 3){
+            if(currentItemPos.getHorizontalDist(e.getPosition()) < 5){
                 TargetManager targMngr = entityTargetManagerMap.get(e);
                 targMngr.deregisterItem(item);
             }
@@ -75,7 +75,7 @@ public class LocationTracker {
     public void deregisterEntity(Entity entity) {
         Position pos = entity.getPosition();
         for(Entity e : entityList){
-            if(pos.getHorizontalDist(e.getPosition()) < 3){
+            if(pos.getHorizontalDist(e.getPosition()) < 5){
                 TargetManager targMngr = entityTargetManagerMap.get(e);
                 targMngr.deregisterEntity(entity);
             }
@@ -104,7 +104,7 @@ public class LocationTracker {
         for (Entity e : this.entityList) {
             if(!e.equals(entity)){
                 int dist = current.getHorizontalDist(e.getPosition());
-                if(dist < 3){
+                if(dist < 5){
                     TargetManager targManger = entityTargetManagerMap.get(e);
                     targManger.updateMyList(movingEntity);
                     entityTargetManager.updateMyList(new EntityTarget(e));
@@ -116,7 +116,7 @@ public class LocationTracker {
             Map.Entry pair = (Map.Entry) it.next();
             Item curr = (Item) pair.getKey();
             Position itemPos = (Position) pair.getValue();
-            if(current.getHorizontalDist(itemPos) < 3){
+            if(current.getHorizontalDist(itemPos) < 5){
                 entityTargetManager.updateMyList(new ItemTarget(curr, itemPos));
             }
         }
