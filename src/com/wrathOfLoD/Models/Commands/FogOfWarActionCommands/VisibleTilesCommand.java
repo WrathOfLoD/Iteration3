@@ -3,6 +3,8 @@ package com.wrathOfLoD.Models.Commands.FogOfWarActionCommands;
 import com.wrathOfLoD.Models.Commands.ActionCommand;
 import com.wrathOfLoD.Models.Map.Map;
 import com.wrathOfLoD.Models.Map.TilePillar;
+import com.wrathOfLoD.Utility.Config;
+import com.wrathOfLoD.Utility.ModelConfig;
 import com.wrathOfLoD.Utility.Position;
 
 import java.util.List;
@@ -12,14 +14,21 @@ import java.util.List;
  */
 public class VisibleTilesCommand extends ActionCommand{
 
-	public VisibleTilesCommand(Position origin, int radius){
+	List<Position> positions;
 
-		//List<Position> positions = Position.drawCircle(.....);
+	public VisibleTilesCommand(Position origin){
+		List<Position> positions = Position.drawCircle(origin, ModelConfig.getAvatarVisibleRadius(), true);
+		DiscoverTilesCommand discoverTilesCommand = new DiscoverTilesCommand(positions);
 
 	}
 
 	@Override
 	public void execute(){
-
+		DiscoverTilesCommand discoverTilesCommand = new DiscoverTilesCommand(positions);
+		discoverTilesCommand.execute();
+		for(Position pos: positions){
+			TilePillar pillar = Map.getInstance().getTilePillar(pos);
+			pillar.setVisible(true);
+		}
 	}
 }
