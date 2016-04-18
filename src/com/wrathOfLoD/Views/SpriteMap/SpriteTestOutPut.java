@@ -11,10 +11,12 @@ public class SpriteTestOutPut {
     public static void main(String args[]) throws IOException {
         SpriteMap sm = new SpriteMap();
         sm.generateEntityMap();
-        HashMap<String, ImageAnimation> h = sm.getItemMap();
-        for(String str: h.keySet()){
+        HashMap<SpriteMap.AvatarKey, ImageAnimation> h = sm.getAvatarMapMap();
+        for(SpriteMap.AvatarKey str: h.keySet()){
             System.out.println(h.get(str));
-            System.out.println(str);
+            System.out.println("------------------------");
+            System.out.println("The key is " + str.toString());
+            System.out.println("---------------------");
             System.out.println("");
         }
     }

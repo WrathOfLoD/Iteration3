@@ -71,6 +71,7 @@ public class ViewObjectFactory {
     }
 
     public EntityViewObject createEntityViewObject(Position pos, Entity entity, MapArea mapArea){
+
         List<Image> img = new ArrayList<>();
 //        Map<Direction, ImageAnimation> imageAnimationMap = new HashMap<>();
         img.add(ImageFactory.generateImage("resources/Entity/Avatar/Smasher/Unequipped/South_East/Walk/walk0.png"));
@@ -91,9 +92,14 @@ public class ViewObjectFactory {
     }
 
     public EntityViewObject createAvatarViewObject(Position pos, Avatar avatar){ //has to be added to the active one
+        String occupationType = Avatar.getInstance().getOccupation().getName();
+
         List<Image> img = new ArrayList<>();
-        img.add(ImageFactory.generateImage("resources/Entity/Avatar/Smasher/Unequipped/South_East/Walk/walk0.png"));
-        //img.add(ImageFactory.generateImage("resources/Entity/Avatar/Summoner/Unequipped/South_East/Walk/summoner1.png"));
+
+//        img.add(ImageFactory.generateImage("resources/Entity/Avatar/Smasher/Walk/slice19_19.png"));
+       // img.add(ImageFactory.generateImage("resources/Entity/Avatar/Summoner/Unequipped/South_East/Walk/summoner1.png"));
+        img.add(ImageFactory.generateImage("resources/Entity/Avatar/" + occupationType + "/Unequipped/South/Walk/walk.png"));
+
 
         EntityViewObject evo = new EntityViewObject(avatar, new ImageAnimation(img), createHealthBarViewObject(avatar.getStats().getMaxHealth(), avatar.getStats().getCurrentHealth()));
 

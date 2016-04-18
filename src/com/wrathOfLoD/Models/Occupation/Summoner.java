@@ -56,6 +56,9 @@ public class Summoner extends Occupation {
     }
 
     @Override
+    public String getName(){ return "Summoner"; }
+
+    @Override
     public Weapon createWeapon(){
         return new StaffWeapon();
     }
