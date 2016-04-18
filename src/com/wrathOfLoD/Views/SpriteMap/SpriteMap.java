@@ -39,10 +39,10 @@ public class SpriteMap {
         this.entityMap = new HashMap<>();
         this.effectsMap = new HashMap<>();
         this.itemMap = new HashMap<>();
-        //generateItemMap();
-        //generateEffectsMap();
-        //generateAOEMap();
-        //generateEntityMap();
+        generateItemMap();
+        generateEffectsMap();
+        generateAOEMap();
+        generateEntityMap();
     }
 
     /***** getter & setter for SpriteMap *******/

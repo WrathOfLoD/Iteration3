@@ -114,7 +114,7 @@ public class LevelFactory {
         CameraView cameraView1 = new CameraView(mapAreaOne);
         cameraView1.setCameraCenter(mapAreaOne.getSpawnPoint());
         cvm.addCameraView(mapAreaOne, cameraView1);
-        //areaView.setActiveCameraView(cameraView1); //TODO: set active cv when avatar gets added
+        areaView.setActiveCameraView(cameraView1); //TODO: set active cv when avatar gets added
         cameraView1.populateCV();
 
         //TODO: Can store spawn point in map area
