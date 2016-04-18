@@ -140,4 +140,14 @@ public class Avatar extends Character implements ActionsHolder {
         super.equipAbility4(ability);
         this.addToActionSet(ActionVendor.createFourthAbility(ability));
     }
+
+    public void equipAbility5(Ability ability){
+        super.equipAbility5(ability);
+        this.addToActionSet(ActionVendor.createFifthAbility(ability));
+    }
+
+    public void equipAbility6(Ability ability){
+        super.equipAbility6(ability);
+        this.addToActionSet(ActionVendor.createSixthAbility(ability));
+    }
 }

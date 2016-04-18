@@ -1,5 +1,6 @@
 package com.wrathOfLoD.Models.Occupation;
 
+import com.wrathOfLoD.Models.Ability.Abilities.Ability;
 import com.wrathOfLoD.Models.Ability.Abilities.BlastAbilities.FanBlastAbility;
 import com.wrathOfLoD.Models.Ability.Abilities.BlastAbilities.FireballAbility;
 import com.wrathOfLoD.Models.Ability.Abilities.BlastAbilities.RadialBombBlastAbility;
@@ -59,18 +60,32 @@ public class Summoner extends Occupation {
         return new StaffWeapon();
     }
 
-    public void addAbilities(AbilityManager abilityManager){
-        super.addAbilities(abilityManager);
-        Character character = abilityManager.getCharacter();
+    public void addAbilities(AbilityManager abilityManager, Character character){
+        super.addAbilities(abilityManager, character);
+        Ability fireBallAbility = new FireballAbility(character, 5, 10, 5, 10);
+        Ability fanBlastAbility = new FanBlastAbility(3, character, 5, 10, 5, 10);
+        Ability radialBombBlastAbility  = new RadialBombBlastAbility(5, character, 5, 10,5, 10);
+        Ability boonStrengthenAbility = new BoonStrengthenAbility(character, 10, 100);
+        Ability boonBoostSpeedAbility = new BoonBoostSpeedAbility(3, character, 10, 100);
+        Ability boonBoostDefenseAbility = new BoonBoostDefenseAbility(5, character, 10, 100);
+        Ability enchantmentMakeFriendlyAbility = new EnchantmentMakeFriendlyAbility(character, 10, 30);
+        Ability enchantmentMakeWeakAbility = new EnchantmentMakeWeakAbility(3, character, 10, 30);
+        Ability enchantmentMakeSlowAbility = new EnchantmentMakeSlowAbility(5, character, 10, 30);
 
-        abilityManager.addAbilities(new FireballAbility(character, 5, 10, 5, 10));
-        abilityManager.addAbilities(new FanBlastAbility(3, character, 5, 10, 5, 10));
-        abilityManager.addAbilities(new RadialBombBlastAbility(5, character, 5, 10,5, 10));
-        abilityManager.addAbilities(new BoonStrengthenAbility(character, 10, 100));
-        abilityManager.addAbilities(new BoonBoostSpeedAbility(3, character, 10, 100));
-        abilityManager.addAbilities(new BoonBoostDefenseAbility(5, character, 10, 100));
-        abilityManager.addAbilities(new EnchantmentMakeFriendlyAbility(character, 10, 30));
-        abilityManager.addAbilities(new EnchantmentMakeWeakAbility(3, character, 10, 30));
-        abilityManager.addAbilities(new EnchantmentMakeSlowAbility(5, character, 10, 30));
+        abilityManager.addAbilities(fireBallAbility);
+        abilityManager.addAbilities(fanBlastAbility);
+        abilityManager.addAbilities(radialBombBlastAbility);
+        abilityManager.addAbilities(boonStrengthenAbility);
+        abilityManager.addAbilities(boonBoostSpeedAbility);
+        abilityManager.addAbilities(boonBoostDefenseAbility);
+        abilityManager.addAbilities(enchantmentMakeFriendlyAbility);
+        abilityManager.addAbilities(enchantmentMakeWeakAbility);
+        abilityManager.addAbilities(enchantmentMakeSlowAbility);
+
+        character.equipAbility2(fireBallAbility);
+        character.equipAbility3(fanBlastAbility);
+        character.equipAbility4(boonStrengthenAbility);
+        character.equipAbility5(enchantmentMakeFriendlyAbility);
+        character.equipAbility6(enchantmentMakeWeakAbility);
     }
 }

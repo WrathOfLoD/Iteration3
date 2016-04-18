@@ -41,6 +41,7 @@ public abstract class Character extends Entity {
         super(name,position,canMoveVisitor);
         this.occupation = occupation;
         this.abilityManager = new AbilityManager(this);
+
         Weapon defaultWeapon = this.occupation.createWeapon();
         this.equipment = new Equipment(defaultWeapon);
         this.abilityManager.unlockAbilities(getStats().getLevel());
@@ -48,6 +49,10 @@ public abstract class Character extends Entity {
     }
 
     /***** getter & setter for Character *******/
+
+    public void populateAbilities(){
+        occupation.addAbilities(abilityManager, this);
+    }
 
     public Equipment getEquipment(){ return this.equipment; }
 
@@ -127,6 +132,14 @@ public abstract class Character extends Entity {
 
     public void equipAbility4(Ability ability){
         getAbilityManager().setActiveAbility(ability, 4);
+    }
+
+    public void equipAbility5(Ability ability){
+        getAbilityManager().setActiveAbility(ability, 5);
+    }
+
+    public void equipAbility6(Ability ability){
+        getAbilityManager().setActiveAbility(ability, 6);
     }
 
 }

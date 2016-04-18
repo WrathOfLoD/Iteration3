@@ -35,6 +35,7 @@ public class EntityVendor {
         Avatar avatar = Avatar.getInstance();
         Stats stats = new Stats(avatar);
         avatar.configureAvatar(name, startingPosition, occupation, occupation.createSkillManager());
+        avatar.populateAbilities();
         mapArea.addEntity(avatar, startingPosition);
         Map.getInstance().setActiveMapArea(mapArea);
         LocationTrackerManager.getInstance().registerEntity(avatar,mapArea);
@@ -45,6 +46,7 @@ public class EntityVendor {
         Avatar avatar = Avatar.getInstance();
         Stats stats = new Stats(avatar);
         avatar.configureAvatar(name, startingPosition, new Smasher(), new SmasherSkillManager());
+        avatar.populateAbilities();
         mapArea.addEntity(avatar, startingPosition);
         Map.getInstance().setActiveMapArea(mapArea);
         LocationTrackerManager.getInstance().registerEntity(avatar,mapArea);
@@ -54,6 +56,7 @@ public class EntityVendor {
         Avatar avatar = Avatar.getInstance();
         Stats stats = new Stats(avatar);
         avatar.configureAvatar(name, startingPosition, new Summoner(), new SummonerSkillManager());
+        avatar.populateAbilities();
         mapArea.addEntity(avatar, startingPosition);
         Map.getInstance().setActiveMapArea(mapArea);
         LocationTrackerManager.getInstance().registerEntity(avatar,mapArea);
@@ -63,6 +66,7 @@ public class EntityVendor {
         Avatar avatar = Avatar.getInstance();
         Stats stats = new Stats(avatar);
         avatar.configureAvatar(name, startingPosition, new Sneak(), new SneakSkillManager());
+        avatar.populateAbilities();
         mapArea.addEntity(avatar, startingPosition);
         Map.getInstance().setActiveMapArea(mapArea);
         LocationTrackerManager.getInstance().registerEntity(avatar,mapArea);
