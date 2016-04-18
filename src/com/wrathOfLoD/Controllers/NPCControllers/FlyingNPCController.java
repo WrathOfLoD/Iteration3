@@ -43,11 +43,11 @@ public class FlyingNPCController extends NPCController {
         Direction dir  = Position.getDirectionFromPostoPos(getControlledEntity().getPosition(), position);
 //        dir = Direction.UP;
         Position myPos = getControlledEntity().getPosition();
-        getControlledEntity().move(dir);
-        int dist = myPos.getDistance(getControlledEntity().getPosition());
-        if(dist == 0){
-            dir = Direction.UP;
-            getControlledEntity().move(dir);
+        int dist = myPos.getDistance(myPos);
+        while(dist == 0 && !getControlledEntity().isActive()){
+            getControlledEntity().fly(dir);
+            dir = adjustDirection(dir, myPos);
+            dist = myPos.getDistance(getControlledEntity().getPosition());
         }
     }
 

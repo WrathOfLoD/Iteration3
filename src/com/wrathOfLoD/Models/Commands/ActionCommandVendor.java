@@ -1,10 +1,7 @@
 package com.wrathOfLoD.Models.Commands;
 
 import com.wrathOfLoD.Models.Ability.Abilities.Ability;
-import com.wrathOfLoD.Models.Commands.EntityActionCommands.CastAbilityCommand;
-import com.wrathOfLoD.Models.Commands.EntityActionCommands.ChangeDirectionCommand;
-import com.wrathOfLoD.Models.Commands.EntityActionCommands.FallCommand;
-import com.wrathOfLoD.Models.Commands.EntityActionCommands.MovementCommand;
+import com.wrathOfLoD.Models.Commands.EntityActionCommands.*;
 import com.wrathOfLoD.Models.Commands.SelectableActionCommands.*;
 import com.wrathOfLoD.Models.Entity.Entity;
 import com.wrathOfLoD.Utility.Direction;
@@ -26,6 +23,7 @@ public class ActionCommandVendor {
     public static ActionCommand createFallCommand(Entity e, int distToFall){
         return new FallCommand(e, distToFall);
     }
+    public static ActionCommand createFlyCommand(Entity e, Direction dir){return new FlyingCommand(e,dir);}
 
     public static ActionCommand createSelectUpCommand(Selectable selectable) {
         return new SelectUpCommand(selectable);
