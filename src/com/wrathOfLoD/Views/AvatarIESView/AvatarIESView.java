@@ -14,7 +14,7 @@ import java.awt.*;
 /**
  * Created by echristiansen on 4/8/2016.
  */
-public class AvatarIESView extends StaticView {
+public class AvatarIESView extends View {
 
     private InventoryView inventoryView;
     private StatsView statsView;

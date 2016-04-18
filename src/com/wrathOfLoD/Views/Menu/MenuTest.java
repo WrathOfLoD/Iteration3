@@ -45,8 +45,8 @@ public class MenuTest {
 */
 
             ViewEngine window = ViewEngine.getInstance();
-            window.registerView(mainMenu);
-            //window.registerView(pauseMenu);
+            //window.registerView(mainMenu);
+            window.registerView(pauseMenu);
 //            window.registerView(characterCreationMenu);
 //
 

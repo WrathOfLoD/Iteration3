@@ -20,9 +20,18 @@ public class EquippedItemViewObject extends ItemViewObject {
 
     }
 
-    public void initializeImage() {
-        setImage(ImageFactory.generateImage(Config.instance().getEquippedIVOPath()+getItem().getName()+Config.instance().getImageExtension()));
-        System.out.println("The proper initializeImage is getting called InventoryItemViewObject!");
+//    public void initializeImage() {
+//        setImage(ImageFactory.generateImage(Config.instance().getEquippedIVOPath()+getItem().getName()+Config.instance().getImageExtension()));
+//        System.out.println("The proper initializeImage is getting called EQUIPMENTItemViewObject!" + getItem().getName());
+//    }
+
+    public void paintComponent(Graphics g, int x, int y, int width, int height) {
+        super.paintComponent(g,x,y,width,height);
+
+//        if (this.getIsSelected()) {
+//            Border b = BorderFactory.createLineBorder(Color.CYAN, 1);
+//            b.paintBorder(this, g, x, y, width, height);
+//        }
     }
 
 

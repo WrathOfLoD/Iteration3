@@ -17,7 +17,7 @@ public class VisibleTilesCommand extends ActionCommand{
 	List<Position> positions;
 
 	public VisibleTilesCommand(Position origin){
-		List<Position> positions = Position.drawCircle(origin, ModelConfig.getAvatarVisibleRadius(), true);
+		//List<Position> positions = Position.drawCircle(origin, ModelConfig.getAvatarVisibleRadius(), true);
 		DiscoverTilesCommand discoverTilesCommand = new DiscoverTilesCommand(positions);
 
 	}
