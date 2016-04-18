@@ -9,10 +9,7 @@ import javafx.geometry.Pos;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.image.BufferedImage;
-import java.awt.image.FilteredImageSource;
-import java.awt.image.ImageFilter;
-import java.awt.image.ImageProducer;
+import java.awt.image.*;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -44,11 +41,10 @@ public class TileViewObject extends ViewObject{
 			//ImageFilter filter = new GrayFilter(true, 50);
 			//ImageProducer producer = new FilteredImageSource(this.getImage().getSource(), filter);
 			//renderedImage = Toolkit.getDefaultToolkit().createImage(producer);
-			BufferedImage image = new BufferedImage(renderedImage.getWidth(null), renderedImage.getHeight(null), BufferedImage.TYPE_BYTE_GRAY);
+			BufferedImage image = new BufferedImage(renderedImage.getWidth(null), renderedImage.getHeight(null), BufferedImage.TYPE_INT_ARGB);
 			Graphics g2 = image.getGraphics();
-			g2.setColor(new Color(0f,0f,0f,0.4f));
-			g2.drawImage(renderedImage, 0, 0, null);
-			//g2.dispose();
+			g2.drawImage(renderedImage, renderedImage.getWidth(null), renderedImage.getHeight(null), null);
+			//g2.drawImage(renderedImage,renderedImage.getWidth(null),renderedImage.getHeight(null),new Color(0f,0f,0.7f,0.3f),null);
 			renderedImage = image;
 		}
 		g.drawImage(renderedImage, this.getOffsetX() + screenCenter.x, this.getOffsetY() + screenCenter.y, 80, 140, null);

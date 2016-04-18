@@ -85,7 +85,9 @@ public abstract class ContentDisplayStructure extends JPanel /* implements Selec
     public abstract int calculateSlotHeight();
 
     public void selectSlot(int index) {
-        getSlotList().get(index).select();
+        if(index<getSlotList().size()) {
+            getSlotList().get(index).select();
+        }
     }
 
 

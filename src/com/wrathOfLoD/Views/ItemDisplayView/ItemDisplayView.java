@@ -1,6 +1,8 @@
 package com.wrathOfLoD.Views.ItemDisplayView;
 
+import com.wrathOfLoD.Models.Entity.Character.Avatar;
 import com.wrathOfLoD.Models.Items.Item;
+import com.wrathOfLoD.Models.Items.TakeableItem;
 import com.wrathOfLoD.Observers.Observer;
 import com.wrathOfLoD.Views.ContentDisplayStructure.ContentDisplayStructure;
 import com.wrathOfLoD.Views.ContentDisplayStructure.GridStructure;
@@ -121,7 +123,12 @@ public class ItemDisplayView extends StaticView implements Observer, Selectable 
      */
     public Object useSelectedItem() {
         System.out.println(getContentDisplayStructure().getSlotList().get(currentIndex).getStaticViewObject().getObject());
-        return getContentDisplayStructure().getSlotList().get(currentIndex).getStaticViewObject().getObject();
+        TakeableItem item = (TakeableItem)getContentDisplayStructure().getSlotList().get(currentIndex).getStaticViewObject().getObject();
+        Avatar.getInstance().use(item);
+        return item;
+        //return getContentDisplayStructure().getSlotList().get(currentIndex).getStaticViewObject().getObject();
+        //return getContentDisplayStructure().getSlotList().get(currentIndex).getStaticViewObject().getObject();
+
     }
 
     public void paintComponent(Graphics g) {

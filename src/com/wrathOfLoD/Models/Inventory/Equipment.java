@@ -6,6 +6,9 @@ import com.wrathOfLoD.Models.Items.EquippableItems.Armor;
 import com.wrathOfLoD.Models.Items.EquippableItems.Greaves;
 import com.wrathOfLoD.Models.Items.EquippableItems.Helm;
 import com.wrathOfLoD.Models.Items.EquippableItems.Weapons.Weapon;
+import com.wrathOfLoD.Models.Items.TakeableItem;
+import com.wrathOfLoD.Observers.ModelObservers.EquipmentObservable;
+import com.wrathOfLoD.Observers.ModelObservers.EquipmentObserver;
 import com.wrathOfLoD.Observers.Observable;
 import com.wrathOfLoD.Observers.Observer;
 import java.util.ArrayList;
@@ -15,7 +18,7 @@ import java.util.Set;
 /**
  * Created by zach on 4/7/16.
  */
-public class Equipment implements Observable, ActionsHolder {
+public class Equipment implements Observable, ActionsHolder, EquipmentObservable {
     private final Weapon defaultWeapon;
     private Set<Action> actionSet = new HashSet<>();
     private Armor armor;
@@ -23,10 +26,29 @@ public class Equipment implements Observable, ActionsHolder {
     private Greaves greaves;
     private Helm helm;
     private ArrayList<Observer> observers = new ArrayList<Observer>();
+    private ArrayList<EquipmentObserver> equipmentObservers = new ArrayList<>();
 
     public Equipment(Weapon defaultWeapon){
         this.defaultWeapon = defaultWeapon;
         setWeapon(this.defaultWeapon);
+    }
+
+    @Override
+    public void alertEquipmentChange(TakeableItem item) {
+        for (EquipmentObserver eo: equipmentObservers) {
+            eo.equipmentAlertResponse(item);
+        }
+    }
+
+    @Override
+    public void registerEquipmentObserver(EquipmentObserver eo) {
+        System.out.println("Registering equpment observsder");
+        equipmentObservers.add(eo);
+    }
+
+    @Override
+    public void removeEquipmentObserver(EquipmentObserver eo) {
+        equipmentObservers.remove(eo);
     }
 
     @Override
@@ -80,21 +102,26 @@ public class Equipment implements Observable, ActionsHolder {
 
 
     public void equip(Armor armor){
+        alertEquipmentChange(getArmor());
         this.armor = armor;
         notifyObservers();
+
     }
 
     public void equip(Greaves greaves) {
+        alertEquipmentChange(getGreaves());
         this.greaves = greaves;
         notifyObservers();
     }
 
     public void equip(Helm helm){
+        alertEquipmentChange(getHelm());
         this.helm = helm;
         notifyObservers();
     }
 
     public void equip(Weapon weapon) {
+        alertEquipmentChange(getWeapon());
         this.weapon = weapon;
         notifyObservers();
         // TODO: 4/9/16 do the below for the view
@@ -113,7 +140,7 @@ public class Equipment implements Observable, ActionsHolder {
 
     public boolean unequip(Greaves greaves){
         if(this.greaves == greaves){
-            this.armor = null;
+            this.greaves = null;
             notifyObservers();
             return true;
         }
@@ -122,7 +149,7 @@ public class Equipment implements Observable, ActionsHolder {
 
     public boolean unequip(Helm helm){
         if(this.helm == helm){
-            this.armor = null;
+            this.helm = null;
             notifyObservers();
             return true;
         }
