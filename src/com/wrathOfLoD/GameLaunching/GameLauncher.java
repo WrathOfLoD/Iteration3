@@ -42,15 +42,15 @@ public class GameLauncher {
         gameLaunchHelper.createMap();
         gameLaunchHelper.populateMap();
 
-        EntityVendor.createNewSummonerPlayer("Dave",new Position(0,0,8), Map.getInstance().getMapAreas()[0]);
+        EntityVendor.createNewSummonerPlayer("Dave",Map.getInstance().getMapAreas()[0].getSpawnPoint(), Map.getInstance().getMapAreas()[0]);
         //TODO: test can remove
         //Avatar.getInstance().getAbilityManager().addAbilities(new FireballAbility(Avatar.getInstance(),5,10,3,5));
-        Avatar.getInstance().equipAbility1(new FireballAbility(Avatar.getInstance(),5,10,3,5));
+        Avatar.getInstance().equipAbility1(new FireballAbility(Avatar.getInstance(),5,10,3,20));
         Avatar.getInstance().equipAbility2(new FanBlastAbility(Avatar.getInstance(),5,10,3,5));
         gameLaunchHelper.setActiveCameraView(Map.getInstance().getActiveMapArea());
 
         ViewObjectFactory.getInstance().initVOFactory(gameLaunchHelper.getAreaView());
-        ViewObjectFactory.getInstance().createAvatarViewObject(new Position(0,0,8), Avatar.getInstance());
+        ViewObjectFactory.getInstance().createAvatarViewObject(Map.getInstance().getActiveMapArea().getSpawnPoint(), Avatar.getInstance());
 
         ViewEngine viewEngine = ViewEngine.getInstance();
         viewEngine.registerView(gameLaunchHelper.getAreaView());

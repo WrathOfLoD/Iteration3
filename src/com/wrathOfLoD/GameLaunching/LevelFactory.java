@@ -38,7 +38,6 @@ public class LevelFactory {
     private ItemVendor itemVendor;
     private EntityVendor entityVendor;
     private AEVendor aeVendor;
-    private Position initialSpawnPoint = new Position(0,0,8);
 
     public LevelFactory(String levelName){
         this.levelName = levelName;
@@ -53,9 +52,6 @@ public class LevelFactory {
         return this.cvm;
     }
 
-    public Position getInitialSpawnPoint(){
-        return this.initialSpawnPoint;
-    }
 
     public AreaView getAreaView(){
         return this.areaView;
@@ -117,7 +113,7 @@ public class LevelFactory {
         mapAreaOne.addAE(new Flow(Direction.SOUTH_EAST, 10), new Position(2,3,9));
 
         CameraView cameraView1 = new CameraView(mapAreaOne);
-        cameraView1.setCameraCenter(initialSpawnPoint);
+        cameraView1.setCameraCenter(mapAreaOne.getSpawnPoint());
         cvm.addCameraView(mapAreaOne, cameraView1);
         //areaView.setActiveCameraView(cameraView1); //TODO: set active cv when avatar gets added
         cameraView1.populateCV();
@@ -126,14 +122,13 @@ public class LevelFactory {
     }
 
 
-
     private void createTestMap() {
         createTestMapAreaOne();
 
     }
 
     public void createTestMapAreaOne(){
-        MapArea mapArea1 = new MapArea();
+        MapArea mapArea1 = new MapArea(new Position(0,0,8));
 
         for(int i = 0; i < 7; i++){ //q
             for(int j = 0; j < 5; j++){ //r
