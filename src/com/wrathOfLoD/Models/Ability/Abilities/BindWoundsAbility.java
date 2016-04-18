@@ -36,6 +36,6 @@ public class BindWoundsAbility extends TimedAbility{
 
     private int calculateHealAmount(){
         //TODO: Balance later
-        return 2 * ssm.getBindWoundsLevel();
+        return 5 * ssm.getBindWoundsLevel();
     }
 }
