@@ -65,9 +65,10 @@ public class StatsView extends StaticView implements Observer {
         int index = 0;
         g.setColor(Color.WHITE);
         for (StatsViewObject s: svoList) {
-            x = getCds().calculateXCoord(this.getWidth(), index);
-            y = getCds().calculateYCoord(this.getHeight(), index);
-            s.paintComponent(g,x,y);
+//            x = getCds().calculateXCoord(this.getWidth(), index);
+//            y = getCds().calculateYCoord(this.getHeight(), index);
+
+            //s.paintComponent(g,x,y);
             index++;
         }
     }

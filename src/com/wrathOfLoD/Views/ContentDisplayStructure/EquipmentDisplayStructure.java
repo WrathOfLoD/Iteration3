@@ -1,8 +1,10 @@
 package com.wrathOfLoD.Views.ContentDisplayStructure;
 
 import com.sun.prism.image.Coords;
+import com.wrathOfLoD.Views.ViewObjects.EquippedItemViewObject;
 
 import java.awt.*;
+import java.util.ArrayList;
 
 /**
  * Created by echristiansen on 4/9/2016.
@@ -25,7 +27,24 @@ public class EquipmentDisplayStructure {
     private int shieldY;
     private int legsX;
     private int legsY;
+    private int numSlots = 4;
+    private int[] xArray = new int[numSlots];
+    private int[] yArray = new int[numSlots];
+    private ArrayList<EquippedItemViewObject> equippedItemViewObjects = new ArrayList<>();
 
+
+    public ArrayList<EquippedItemViewObject> getEquippedItemViewObjects() {
+        return equippedItemViewObjects;
+    }
+    public void setEquippedItemViewObjects(ArrayList<EquippedItemViewObject> equippedItemViewObjects) {
+        this.equippedItemViewObjects = equippedItemViewObjects;
+    }
+    public int getNumSlots() {
+        return numSlots;
+    }
+    public void setNumSlots(int numSlots) {
+        this.numSlots = numSlots;
+    }
     public int getSlotWidth() {
         return slotWidth;
     }
@@ -137,6 +156,36 @@ public class EquipmentDisplayStructure {
         setChestY(2*vertLineLength-getslotHeight()/2);
         setShieldY(2*vertLineLength-getslotHeight()/2);
         setLegsY(3*vertLineLength-getslotHeight()/2 + vertLineLength/4);
+
+        xArray[0] = getHelmetX();
+        xArray[1] = getWeaponX();
+        xArray[2] = getChestX();
+        xArray[3] = getLegsX();
+
+        yArray[0] = getHelmetY();
+        yArray[1] = getWeaponY();
+        yArray[2] = getChestY();
+        yArray[3] = getLegsY();
+
+    }
+
+
+    //@Override
+    public int calculateXCoord(int index, int initialX) {
+        if (index<numSlots) {
+            return xArray[index] + initialX;
+        } else {
+            return 0;
+        }
+    }
+
+    //@Override
+    public int calculateYCoord(int index, int initialY) {
+        if (index<numSlots) {
+            return yArray[index] + initialY;
+        } else {
+            return 0;
+        }
     }
 
 

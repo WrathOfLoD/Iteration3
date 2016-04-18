@@ -1,5 +1,6 @@
 package com.wrathOfLoD.Views.ViewObjects;
 
+
 import java.awt.*;
 
 /**
@@ -7,6 +8,10 @@ import java.awt.*;
  */
 public abstract class ModelViewObject extends ViewObject{
     private int zOrder; //smaller zOrder gets drawn at the bottom
+
+    public ModelViewObject() {
+
+    }
 
     public ModelViewObject(int zOrder){
         this.zOrder = zOrder;

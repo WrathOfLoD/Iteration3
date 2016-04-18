@@ -50,7 +50,7 @@ public abstract class RangedEffectGenerator implements Fuseable{
                 //System.out.println("HB POS: " + p.getQ() + " " + p.getR() + " " + p.getH());
                 if(Map.getInstance().hasTileAt(p)){
                     HitBox hb = hitBoxFactory.createHitBox(damage, accuracy, p);
-                    ViewObjectFactory.getInstance().createHitBoxViewObject(p, hb);
+                    ViewObjectFactory.getInstance().createHitBoxViewObject(p, hb, Map.getInstance().getActiveMapArea());
 
                     effectiveHB.add(hb);
                     hb.apply();

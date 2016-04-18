@@ -17,7 +17,6 @@ public class FanREG extends RangedEffectGenerator {
         this.facingDirection = facingDirection;
 
         List<Position> pos = Position.drawArc(entityLocation, facingDirection, true, 3);
-        //List<Position> pos = Position.drawFan(entityLocation, facingDirection, true, 3,false);
 
         for(Position p : pos){
             System.out.println("HB POS: " + p.getQ() + " " + p.getR() + " " + p.getH());

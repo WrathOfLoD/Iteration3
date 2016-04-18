@@ -13,6 +13,7 @@ import com.wrathOfLoD.Views.StaticView;
 import com.wrathOfLoD.Views.ViewObjects.ModelViewObject;
 import com.wrathOfLoD.Views.ViewObjects.TilePillarViewObject;
 import com.wrathOfLoD.Views.ViewObjects.TileViewObject;
+import javafx.geometry.Pos;
 
 import java.awt.*;
 import java.util.*;
@@ -59,12 +60,26 @@ public class AreaView extends StaticView implements MapObserver{ //need to chang
 		activeCameraView.paintComponent(g);
 	}
 
+	/*
 	public void addViewObjectToActiveCV(Position pos, ModelViewObject mvo){
 		activeCameraView.addVOToTile(pos, mvo);
 	}
 
 	public TileViewObject getTileVOFromActiveCV(Position pos){
 		return activeCameraView.getTileVO(pos);
+	}*/
+
+
+	public void addVOToCV(Position pos, ModelViewObject mvo, MapArea mapArea){
+		cameraViewManager.getCV(mapArea).addVOToTile(pos, mvo);
+	}
+
+	public TileViewObject getTileVOFromCV(Position pos, MapArea mapArea){
+		return cameraViewManager.getCV(mapArea).getTileVO(pos);
+	}
+
+	public CameraView getCV(MapArea mapArea){
+		return cameraViewManager.getCV(mapArea);
 	}
 
 	@Override

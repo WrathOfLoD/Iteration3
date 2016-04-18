@@ -12,10 +12,10 @@ import java.util.ArrayList;
 /**
  * Created by echristiansen on 4/9/2016.
  */
-public class DestroyableModelViewObject extends ItemViewObject implements DestroyableModelObserver, DestroyableVOObservable{
+public class MapItemViewObject extends ItemViewObject implements DestroyableModelObserver, DestroyableVOObservable{
     private ArrayList<DestroyableVOObserver> destroyableVOObservers;
 
-    public DestroyableModelViewObject(Item item, ImageAnimation imageAnimation) {
+    public MapItemViewObject(Item item, ImageAnimation imageAnimation) {
         super(item);
         setImage(imageAnimation.getFrame());
         destroyableVOObservers = new ArrayList<>();

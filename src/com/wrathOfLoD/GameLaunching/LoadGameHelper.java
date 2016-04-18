@@ -2,6 +2,7 @@ package com.wrathOfLoD.GameLaunching;
 
 import com.wrathOfLoD.Models.Entity.Character.Avatar;
 import com.wrathOfLoD.Models.Map.Map;
+import com.wrathOfLoD.Models.Map.MapArea;
 import com.wrathOfLoD.SaveLoad.Loader;
 import com.wrathOfLoD.Views.AreaView.AreaView;
 
@@ -37,5 +38,10 @@ public class LoadGameHelper extends GameLaunchHelper {
     @Override
     public void populateMap() {
         loader.load(Map.getInstance());
+    }
+
+    @Override
+    public void setActiveCameraView(MapArea mapArea) {
+        getLevelFactory().setActiveCV(mapArea); //TODO: is this right for load?
     }
 }
