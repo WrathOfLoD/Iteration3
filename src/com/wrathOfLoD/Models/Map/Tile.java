@@ -74,8 +74,11 @@ public class Tile {
     }
 
     public void interact(Entity e){
-        for (Item i : items)
+        Iterator<Item> itemIterator = items.listIterator();
+        while(itemIterator.hasNext()){
+            Item i = itemIterator.next();
             i.encounter(e);
+        }
 
         for (AreaEffect ae : areaEffects)
             ae.interact(e);

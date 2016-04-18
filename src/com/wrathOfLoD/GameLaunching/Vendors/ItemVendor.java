@@ -18,7 +18,7 @@ public class ItemVendor {
     }
 
     public static TwoHandWeapon createHammer(MapArea ma, Position position){
-        TwoHandWeapon hammer = new TwoHandWeapon("hammer");
+        TwoHandWeapon hammer = new TwoHandWeapon("Hammer");
         ma.addItem(hammer, position);
         LocationTrackerManager.getInstance().registerItem(hammer,ma,position);
         return hammer;
