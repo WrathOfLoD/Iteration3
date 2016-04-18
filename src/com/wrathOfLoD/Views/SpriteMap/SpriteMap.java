@@ -2,6 +2,7 @@ package com.wrathOfLoD.Views.SpriteMap;
 
 
 import com.wrathOfLoD.Utility.Direction;
+import com.wrathOfLoD.Utility.FileExtensionExtractor;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -60,7 +61,7 @@ public class SpriteMap {
 
         List<Image> sprites = new ArrayList<>();
         for (File file : listOfFiles) {
-            if (file.isFile()) {
+            if (file.isFile() && FileExtensionExtractor.getFileExtension(file.getName()).equals("png")) {
                 sprites.add(ImageIO.read(file));
             }
         }

@@ -81,7 +81,8 @@ public class ViewObjectFactory {
 
     public EntityViewObject createAvatarViewObject(Position pos, Avatar avatar){ //has to be added to the active one
         List<Image> img = new ArrayList<>();
-        img.add(ImageFactory.generateImage("resources/Entity/Avatar/Smasher/Walk/slice19_19.png"));
+//        img.add(ImageFactory.generateImage("resources/Entity/Avatar/Smasher/Walk/slice19_19.png"));
+        img.add(ImageFactory.generateImage("resources/Abilities/DetectTrapAbility.png"));
 
         EntityViewObject evo = new EntityViewObject(avatar, new ImageAnimation(img));
         //areaView.addViewObjectToActiveCV(pos, evo);
