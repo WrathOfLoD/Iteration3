@@ -55,18 +55,18 @@ public class Avatar extends Character implements ActionsHolder {
     }
 
 	@Override
-    public void move(Direction movingDirection){
-        if(!isActive()){
-            setActive();
-			InvisibleTilesCommand invisibleTilesCommand = new InvisibleTilesCommand(getPosition());
-			invisibleTilesCommand.execute();
-            ActionCommand acm = ActionCommandVendor.createMovementCommand(this, movingDirection);
-            //TODO: may need command's execute to return ticks to set entity inActive and not to notify observer
-            acm.execute();
-			VisibleTilesCommand visibleTilesCommand = new VisibleTilesCommand(getPosition());
-			visibleTilesCommand.execute();
-        }
-    }
+	public void hideTiles(){
+		System.out.println("The Avatar, you can hide tiles");
+		InvisibleTilesCommand iTC = new InvisibleTilesCommand(getPosition());
+		iTC.execute();
+	}
+
+	@Override
+	public void showTiles(){
+		System.out.println("The Avatar, you can show tiles");
+		VisibleTilesCommand vTC = new VisibleTilesCommand(getPosition());
+		vTC.execute();
+	}
 
     @Override
     public Set<Action> getActionSet() {

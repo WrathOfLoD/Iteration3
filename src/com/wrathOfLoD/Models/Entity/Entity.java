@@ -82,7 +82,9 @@ public abstract class Entity implements EntityObservable{
     }
 
     public void setPosition(Position newPosition){
-        this.position = newPosition;
+        hideTiles();
+		this.position = newPosition;
+		showTiles();
     }
 
     protected void setName(String name){ this.name = name; }
@@ -98,13 +100,19 @@ public abstract class Entity implements EntityObservable{
     /********* END Getters and Setters *********/
 
     public void move(Direction movingDirection){
-        if(!isActive()){
+		//hideTiles();
+		if(!isActive()){
             setActive();
             ActionCommand acm = ActionCommandVendor.createMovementCommand(this, movingDirection);
             //TODO: may need command's execute to return ticks to set entity inActive and not to notify observer
             acm.execute();
         }
+		//showTiles();
     }
+
+	public abstract void hideTiles();
+
+	public abstract void showTiles();
 
     public void insertItemToInventory(TakeableItem item){
         this.inventory.addItem(item);

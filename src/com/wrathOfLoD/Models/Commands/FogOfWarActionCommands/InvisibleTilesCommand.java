@@ -16,14 +16,16 @@ public class InvisibleTilesCommand extends ActionCommand{
 	List<Position> positions;
 
 	public InvisibleTilesCommand(Position origin){
-		//List<Position> positions = Position.drawCircle(origin, ModelConfig.getAvatarVisibleRadius(), true);
+		this.positions = Position.drawCircle(origin, ModelConfig.getAvatarVisibleRadius(), true);
 	}
 
 	@Override
 	public void execute(){
 		for(Position pos: positions){
 			TilePillar pillar = Map.getInstance().getTilePillar(pos);
-			pillar.setVisible(false);
+			if(pillar != null){
+				pillar.setVisible(false);
+			}
 		}
 	}
 }

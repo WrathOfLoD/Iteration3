@@ -17,9 +17,7 @@ public class VisibleTilesCommand extends ActionCommand{
 	List<Position> positions;
 
 	public VisibleTilesCommand(Position origin){
-		//List<Position> positions = Position.drawCircle(origin, ModelConfig.getAvatarVisibleRadius(), true);
-		DiscoverTilesCommand discoverTilesCommand = new DiscoverTilesCommand(positions);
-
+		this.positions = Position.drawCircle(origin, ModelConfig.getAvatarVisibleRadius(), true);
 	}
 
 	@Override
@@ -28,7 +26,9 @@ public class VisibleTilesCommand extends ActionCommand{
 		discoverTilesCommand.execute();
 		for(Position pos: positions){
 			TilePillar pillar = Map.getInstance().getTilePillar(pos);
-			pillar.setVisible(true);
+			if(pillar != null){
+				pillar.setVisible(true);
+			}
 		}
 	}
 }

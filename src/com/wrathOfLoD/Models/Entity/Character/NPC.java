@@ -49,10 +49,20 @@ public class NPC extends Character {
         this.aggression = newGreed;
     }
 
-    /********* END Getters and Setters *********/
+	/********* END Getters and Setters *********/
 
     public void accept(EntityVisitor ev){
         ev.visitNPC(this);
     }
+
+	@Override
+	public void hideTiles(){
+		System.out.println("Silly NPC, you can't hide tiles");
+	}
+
+	@Override
+	public void showTiles(){
+		System.out.println("Silly NPC, you can't show tiles");
+	}
 
 }
