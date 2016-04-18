@@ -170,10 +170,14 @@ public abstract class Entity implements EntityObservable{
         ActionCommand dieCommand = new DieCommand(this);
         dieCommand.execute();
         notifyObserversOnDie(this.getPosition());
-        System.out.println("LIFES LIVE: "+ getStats().getLivesLeft());
-        if(getStats().getLivesLeft() > 0) {
-            respawn();
-        }
+
+//        System.out.println("LIFES LIVE: "+ getStats().getLivesLeft());
+//        if(getStats().getLivesLeft() > 0) {
+//            respawn();
+//        }
+        entityObservers.clear();
+
+
     }
 
     public boolean isActive() {
