@@ -61,7 +61,6 @@ public class EntityViewObject extends ModelViewObject implements EntityObserver,
     }
 
     public void changeEntityDirections(){
-        String occupationType = Avatar.getInstance().getOccupation().getName();
         Direction direction = facingDirection;
         String pathDirection;
         switch (direction){
@@ -84,9 +83,32 @@ public class EntityViewObject extends ModelViewObject implements EntityObserver,
         java.util.List<Image> img = new ArrayList<>();
         img.add(ImageFactory.generateImage(spritePath + pathDirection + "/Walk/walk.png"));
         setImage(img.get(0));
-        //EntityViewObject evo = new EntityViewObject(avatar, new ImageAnimation(img), createHealthBarViewObject(avatar.getStats().getMaxHealth(), avatar.getStats().getCurrentHealth()));
     }
 
+    public void attackEntityDirections(){
+        Direction direction = facingDirection;
+        String pathDirection;
+        switch (direction){
+            case NORTH : pathDirection = "North";
+                break;
+            case NORTH_EAST : pathDirection = "East";
+                break;
+            case NORTH_WEST : pathDirection = "West";
+                break;
+            case SOUTH_EAST : pathDirection = "East";
+                break;
+            case SOUTH_WEST : pathDirection = "West";
+                break;
+            case SOUTH : pathDirection = "South";
+                break;
+            default: pathDirection = "South";
+                break;
+        }
+
+        java.util.List<Image> img = new ArrayList<>();
+        img.add(ImageFactory.generateImage(spritePath + pathDirection + "/Attack/attack.png"));
+        setImage(img.get(0));
+    }
 
     @Override
     public void notifyMove(Position src, Position dest, Direction dir, int ticks) {
@@ -108,6 +130,16 @@ public class EntityViewObject extends ModelViewObject implements EntityObserver,
         }
 
         //entity.deregisterObserver(this);
+    }
+
+    @Override
+    public void notifyAttack() {
+        attackEntityDirections();
+    }
+
+    @Override
+    public void notifyDoneAttack() {
+        changeEntityDirections();
     }
 
 

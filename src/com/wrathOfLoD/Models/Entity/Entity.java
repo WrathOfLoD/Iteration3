@@ -231,6 +231,18 @@ public abstract class Entity implements EntityObservable{
         }
     }
 
+    public void notifyObserverOnAtt(){
+        for(int i = 0; i < entityObservers.size(); i++){
+            entityObservers.get(i).notifyAttack();
+        }
+    }
+
+    public void notifyObserverDoneAtt(){
+        for(int i = 0; i < entityObservers.size(); i++){
+            entityObservers.get(i).notifyDoneAttack();
+        }
+    }
+
     public void setAggroLevel(int aggro){
         this.aggroLevel = aggro;
     }

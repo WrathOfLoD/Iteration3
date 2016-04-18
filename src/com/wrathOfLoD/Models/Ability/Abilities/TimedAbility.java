@@ -44,10 +44,12 @@ public abstract class TimedAbility extends Ability implements Tickable{
     public void tick(){
         currentTick++;
         if(currentTick == windup){
+            getCharacter().notifyObserverOnAtt();
             windUpHook();
         }else if(currentTick == coolDown){
             TimeModel.getInstance().deregisterTickable(this);
             getCharacter().setInactive();
+            getCharacter().notifyObserverDoneAtt();
         }
     }
 
