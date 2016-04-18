@@ -114,7 +114,7 @@ public class LevelFactory {
 //
 
 
-        ItemVendor.createHammer(mapAreaOne, new Position(2,1,8));
+        ItemVendor.createHammer(mapAreaOne, new Position(8,14,3));
 
         //mapAreaOne.addEntity(new Mount("Mount", new Position(3, 3, 9), new FlyingCanMoveVisitor()), new Position(3,3,9));
 

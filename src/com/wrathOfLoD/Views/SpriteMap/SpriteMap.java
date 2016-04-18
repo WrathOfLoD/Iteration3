@@ -23,6 +23,7 @@ public class SpriteMap {
     private  HashMap<AvatarKey, ImageAnimation> avatarMap = new HashMap<>();
     private  HashMap<String, ImageAnimation> effectsMap;
     private  HashMap<String, ImageAnimation> itemMap;
+    private HashMap<String, ImageAnimation> terrainMap;
     private Set<String> stateSet;
 
     public class EntityKey{
@@ -63,12 +64,14 @@ public class SpriteMap {
         this.entityMap = new HashMap<>();
         this.effectsMap = new HashMap<>();
         this.itemMap = new HashMap<>();
+        this.terrainMap = new HashMap<>();
         stateSet = new HashSet<>();
         stateSet.add("Attack");
         stateSet.add("Walk");
         generateItemMap();
         generateEffectsMap();
         generateAOEMap();
+        generateTerrainMap();
 //        generateEntityMap();
 //        generateAvatarMap();
     }
@@ -83,6 +86,8 @@ public class SpriteMap {
     public  HashMap<String, ImageAnimation>  getEffectsMap(){ return effectsMap; }
 
     public  HashMap<String, ImageAnimation>  getItemMap(){ return itemMap; }
+
+    public HashMap<String, ImageAnimation> getTerrainMap(){return terrainMap;}
 
     /********* END Getters *********/
 
@@ -141,6 +146,10 @@ public class SpriteMap {
 
     private  void generateItemMap() throws IOException{
         imageAnimationGenerator("./resources/MapItems", itemMap);
+    }
+
+    private  void generateTerrainMap() throws IOException{
+        imageAnimationGenerator("./resources/Terrain", terrainMap);
     }
 
     private  void generateEffectsMap() throws IOException{
