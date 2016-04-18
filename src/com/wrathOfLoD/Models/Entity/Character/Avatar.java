@@ -6,13 +6,16 @@ import com.wrathOfLoD.Models.Ability.Abilities.Ability;
 import com.wrathOfLoD.Models.ActionsHolder;
 import com.wrathOfLoD.Models.Commands.ActionCommand;
 import com.wrathOfLoD.Models.Commands.ActionCommandVendor;
+import com.wrathOfLoD.Models.Commands.EntityActionCommands.DieCommand;
 import com.wrathOfLoD.Models.Commands.FogOfWarActionCommands.InvisibleTilesCommand;
 import com.wrathOfLoD.Models.Commands.FogOfWarActionCommands.VisibleTilesCommand;
 import com.wrathOfLoD.Models.Entity.EntityCanMoveVisitor.TerrestrialCanMoveVisitor;
 import com.wrathOfLoD.Models.Inventory.Equipment;
+import com.wrathOfLoD.Models.Items.EquippableItems.Weapons.SmasherWeapons.TwoHandWeapon;
 import com.wrathOfLoD.Models.Items.EquippableItems.Weapons.Weapon;
 import com.wrathOfLoD.Models.Occupation.Occupation;
 import com.wrathOfLoD.Models.Skill.SkillManager;
+import com.wrathOfLoD.Models.Stats.StatsModifiable;
 import com.wrathOfLoD.Models.Target.AvatarTargetManager;
 import com.wrathOfLoD.Utility.Direction;
 import com.wrathOfLoD.Utility.Position;
@@ -44,6 +47,27 @@ public class Avatar extends Character implements ActionsHolder {
         return avatar;
     }
 
+    public void configureAvatar(String name, Position position, Occupation occupation){
+        this.setName(name);
+        this.setPosition(position);
+        this.setOccupation(occupation);
+        SkillManager skillManager = occupation.createSkillManager();
+        this.setSkillManager(skillManager);
+        Weapon defaultWeapon = occupation.createWeapon();
+        this.setEquipment(new Equipment(defaultWeapon));
+        setCanMoveVisitor(new TerrestrialCanMoveVisitor());
+
+        StatsModifiable hardinessStatsModifiable = StatsModifiable.createHardinessStatsModifiable(30);
+        getStats().modifyStats(hardinessStatsModifiable);
+        StatsModifiable healthModifiable = StatsModifiable.createHealthStatsModifiable(getStats().getMaxHealth());
+        getStats().modifyStats(healthModifiable);
+
+        StatsModifiable intellect = StatsModifiable.createIntellectStatsModifiable(100);
+        getStats().modifyStats(intellect);
+        StatsModifiable mana = StatsModifiable.createManaStatsModifiable(getStats().getMaxMana());
+        getStats().modifyStats(mana);
+    }
+
     public void configureAvatar(String name, Position position, Occupation occupation, SkillManager skillManager){
         this.setName(name);
         this.setPosition(position);
@@ -52,21 +76,29 @@ public class Avatar extends Character implements ActionsHolder {
         Weapon defaultWeapon = occupation.createWeapon();
         this.setEquipment(new Equipment(defaultWeapon));
         setCanMoveVisitor(new TerrestrialCanMoveVisitor());
+
+        StatsModifiable hardinessStatsModifiable = StatsModifiable.createHardinessStatsModifiable(30);
+        getStats().modifyStats(hardinessStatsModifiable);
+        StatsModifiable healthModifiable = StatsModifiable.createHealthStatsModifiable(getStats().getMaxHealth());
+        getStats().modifyStats(healthModifiable);
+
+        StatsModifiable intellect = StatsModifiable.createIntellectStatsModifiable(100);
+        getStats().modifyStats(intellect);
+        StatsModifiable mana = StatsModifiable.createManaStatsModifiable(getStats().getMaxMana());
+        getStats().modifyStats(mana);
     }
 
 	@Override
-    public void move(Direction movingDirection){
-        if(!isActive()){
-            setActive();
-			InvisibleTilesCommand invisibleTilesCommand = new InvisibleTilesCommand(getPosition());
-			invisibleTilesCommand.execute();
-            ActionCommand acm = ActionCommandVendor.createMovementCommand(this, movingDirection);
-            //TODO: may need command's execute to return ticks to set entity inActive and not to notify observer
-            acm.execute();
-			VisibleTilesCommand visibleTilesCommand = new VisibleTilesCommand(getPosition());
-			visibleTilesCommand.execute();
-        }
-    }
+	public void hideTiles(){
+		InvisibleTilesCommand iTC = new InvisibleTilesCommand(getPosition());
+		iTC.execute();
+	}
+
+	@Override
+	public void showTiles(){
+		VisibleTilesCommand vTC = new VisibleTilesCommand(getPosition());
+		vTC.execute();
+	}
 
     @Override
     public Set<Action> getActionSet() {
@@ -83,6 +115,9 @@ public class Avatar extends Character implements ActionsHolder {
         this.addToActionSet(ActionVendor.createMoveSouthAction());
         this.addToActionSet(ActionVendor.createMoveSouthEastAction());
         this.addToActionSet(ActionVendor.createMoveSouthWestAction());
+        // open inventory
+        this.addToActionSet(ActionVendor.createOpenInventoryAction(this));
+        this.addToActionSet(ActionVendor.createMountAction(this));
     }
 
     @Override
@@ -101,28 +136,49 @@ public class Avatar extends Character implements ActionsHolder {
 
     @Override
     public void die(){
-        super.die();
+        ActionCommand dieCommand = new DieCommand(this);
+        dieCommand.execute();
+        notifyObserversOnDie(this.getPosition());
+
+        System.out.println("LIFES LIVE: "+ getStats().getLivesLeft());
+        if(getStats().getLivesLeft() > 0) {
+            respawn();
+        }
+
         //todo: Notify GameOver!
     }
 
     //TODO: need a way to swap ability when equip
+    @Override
     public void equipAbility1(Ability ability){
-        getAbilityManager().setActiveAbility(ability, 1);
+        super.equipAbility1(ability);
         this.addToActionSet(ActionVendor.createFirstAbility(ability));
     }
 
     public void equipAbility2(Ability ability){
-        getAbilityManager().setActiveAbility(ability, 2);
+        super.equipAbility2(ability);
         this.addToActionSet(ActionVendor.createSecondAbility(ability));
     }
 
     public void equipAbility3(Ability ability){
-        getAbilityManager().setActiveAbility(ability, 3);
+        super.equipAbility3(ability);
         this.addToActionSet(ActionVendor.createThirdAbility(ability));
     }
 
     public void equipAbility4(Ability ability){
-        getAbilityManager().setActiveAbility(ability, 4);
+        super.equipAbility4(ability);
         this.addToActionSet(ActionVendor.createFourthAbility(ability));
     }
+
+    public void equipAbility5(Ability ability){
+        super.equipAbility5(ability);
+        this.addToActionSet(ActionVendor.createFifthAbility(ability));
+    }
+
+    public void equipAbility6(Ability ability){
+        super.equipAbility6(ability);
+        this.addToActionSet(ActionVendor.createSixthAbility(ability));
+    }
+
+
 }

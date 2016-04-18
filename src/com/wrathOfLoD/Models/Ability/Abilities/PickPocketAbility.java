@@ -12,11 +12,13 @@ public class PickPocketAbility extends UntimedAbility{
     public PickPocketAbility(Character character, int manaCost) {
         super(character, manaCost);
         ssm = (SneakSkillManager)getCharacter().getSkillManager();
+        setName("Pickpocket");
     }
 
     public PickPocketAbility(int unlockLevel, Character character, int manaCost){
         super(unlockLevel, character, manaCost);
         ssm = (SneakSkillManager)getCharacter().getSkillManager();
+        setName("Pickpocket");
     }
 
 

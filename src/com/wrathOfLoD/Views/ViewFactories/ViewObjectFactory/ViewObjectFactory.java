@@ -8,6 +8,8 @@ import com.wrathOfLoD.Models.Map.Map;
 import com.wrathOfLoD.Models.Map.MapArea;
 import com.wrathOfLoD.Models.Map.Tile;
 import com.wrathOfLoD.Models.RangedEffect.HitBox.HitBox;
+import com.wrathOfLoD.Utility.Config;
+import com.wrathOfLoD.Utility.Direction;
 import com.wrathOfLoD.Utility.Position;
 import com.wrathOfLoD.Views.AreaView.AreaView;
 import com.wrathOfLoD.Views.ImageFactory.ImageFactory;
@@ -28,6 +30,7 @@ public class ViewObjectFactory {
     private static ViewObjectFactory instance;
     private AreaView areaView;
     private SpriteMap spriteMap;
+    private HashMap<String, ImageAnimation> terrainMap;
 
     public static ViewObjectFactory getInstance(){
         if(instance == null)
@@ -40,6 +43,7 @@ public class ViewObjectFactory {
     public void initVOFactory(AreaView areaView) throws IOException{
         this.areaView = areaView;
         this.spriteMap = new SpriteMap();
+        //terrainMap = spriteMap.getTerrainMap();
     }
 
     public TilePillarViewObject createTilePillarViewObject(Position pos){
@@ -47,45 +51,57 @@ public class ViewObjectFactory {
     }
 
     public TileViewObject createTileViewObject(Position pos, Tile tile){
-        //TODO: hook up with spriteMap
-        List<Image> img = new ArrayList<>();
-        String terrainName = tile.getTerrain().getName();
-        img.add(ImageFactory.generateImage("resources/" + terrainName + ".png"));
 
-        return new TileViewObject(pos, new ImageAnimation(img));
+//        List<Image> img = new ArrayList<>();
+//        String terrainName = tile.getTerrain().getName();
+//        img.add(ImageFactory.generateImage("resources/" + terrainName + ".png"));
+
+        HashMap<String, ImageAnimation> terrainMap = spriteMap.getTerrainMap();
+        ImageAnimation img = terrainMap.get(tile.getTerrain().getName());
+
+        return new TileViewObject(pos, terrainMap.get(tile.getTerrain().getName()));
+        //return new TileViewObject(pos, new ImageAnimation(img));
     }
 
     public AreaEffectViewObject createAEViewObject(Position pos, AreaEffect ae, MapArea mapArea){
         HashMap<String, ImageAnimation> aoeSprites = spriteMap.getAoeMap();
         ImageAnimation img = aoeSprites.get(ae.getName());
 
+        //List<Image> img = new ArrayList<>();
+        //String aeName = ae.getName();
+        //img.add(ImageFactory.generateImage("resources/AOE" + aeName + "/" + aeName + ".png"));
+
 
         AreaEffectViewObject aevo = new AreaEffectViewObject(ae, img);
-        //areaView.addViewObjectToActiveCV(pos, aevo);
         areaView.addVOToCV(pos, aevo, mapArea);
         return aevo;
     }
 
     public EntityViewObject createEntityViewObject(Position pos, Entity entity, MapArea mapArea){
         List<Image> img = new ArrayList<>();
-        img.add(ImageFactory.generateImage("resources/Entity/Avatar/Smasher/Walk/slice19_19.png"));
-
-        EntityViewObject evo = new EntityViewObject(entity, new ImageAnimation(img));
-        //areaView.addViewObjectToActiveCV(pos, evo);
+        img.add(ImageFactory.generateImage("resources/Entity/NPC/FoeNPC/South/Walk/walk.png"));
+        EntityViewObject evo = new EntityViewObject(entity, new ImageAnimation(img),
+                createHealthBarViewObject(entity.getStats().getMaxHealth(), entity.getStats().getCurrentHealth()), "resources/Entity/NPC/FoeNPC/");
         areaView.addVOToCV(pos, evo, mapArea);
         entity.registerObserver(evo);
-        //evo.registerObserver(areaView.getActiveCameraView()); //TODO: gonna cause problem because all map areas are populated at once
+
         evo.registerObserver(areaView.getCV(mapArea));
         return evo;
     }
 
-    public EntityViewObject createAvatarViewObject(Position pos, Avatar avatar){ //has to be added to the active one
-        List<Image> img = new ArrayList<>();
-//        img.add(ImageFactory.generateImage("resources/Entity/Avatar/Smasher/Walk/slice19_19.png"));
-        img.add(ImageFactory.generateImage("resources/Abilities/DetectTrapAbility.png"));
+    public HealthBarViewObject createHealthBarViewObject(int fullHealth, int currentHealth){
+        HealthBarViewObject hbvo = new HealthBarViewObject(fullHealth, currentHealth);
+        return hbvo;
+    }
 
-        EntityViewObject evo = new EntityViewObject(avatar, new ImageAnimation(img));
-        //areaView.addViewObjectToActiveCV(pos, evo);
+    public EntityViewObject createAvatarViewObject(Position pos, Avatar avatar){ //has to be added to the active one
+        String occupationType = Avatar.getInstance().getOccupation().getName();
+        List<Image> img = new ArrayList<>();
+        img.add(ImageFactory.generateImage("resources/Entity/Avatar/" + occupationType + "/Unequipped/South/Walk/walk.png"));
+
+        EntityViewObject evo = new EntityViewObject(avatar, new ImageAnimation(img),
+                createHealthBarViewObject(avatar.getStats().getMaxHealth(), avatar.getStats().getCurrentHealth()), "resources/Entity/Avatar/" + occupationType + "/Unequipped/");
+
         areaView.addVOToCV(pos, evo, Map.getInstance().getActiveMapArea());
         avatar.registerObserver(evo);
         evo.registerObserver(areaView.getActiveCameraView());
@@ -103,7 +119,8 @@ public class ViewObjectFactory {
 
         item.registerObserver(mivo);
         //mivo.registerObserver(areaView.getTileVOFromActiveCV(pos));
-        mivo.registerObserver(areaView.getTileVOFromCV(pos, mapArea));
+        //mivo.registerObserver(areaView.getTileVOFromCV(pos, mapArea));
+        mivo.registerObserver(areaView.getActiveCameraView());
 
         //areaView.addViewObjectToActiveCV(pos, mivo);
         areaView.addVOToCV(pos, mivo, mapArea);
@@ -118,7 +135,8 @@ public class ViewObjectFactory {
 
         hitBox.registerObserver(hitBoxViewObject);
         //hitBoxViewObject.registerObserver(areaView.getTileVOFromActiveCV(position));
-        hitBoxViewObject.registerObserver(areaView.getTileVOFromCV(position, mapArea));
+        //hitBoxViewObject.registerObserver(areaView.getTileVOFromCV(position, mapArea));
+        hitBoxViewObject.registerObserver(areaView.getActiveCameraView());
 
         //areaView.addViewObjectToActiveCV(position, hitBoxViewObject);
         areaView.addVOToCV(position, hitBoxViewObject, mapArea);

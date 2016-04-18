@@ -80,9 +80,13 @@ public abstract class Menu extends JPanel implements ActionsHolder, Selectable {
      * desc: Return the currently selected item
      */
     public Object useSelectedItem() {
-        System.out.println(this.getMenuItems().get(currentIndex));
+        System.out.println(this.getMenuItems().get(currentIndex).getName());
 
-        this.getMenuItems().get(currentIndex).execute();
+        try {
+            this.getMenuItems().get(currentIndex).execute();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
 
         return this.getMenuItems().get(currentIndex);
     }

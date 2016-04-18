@@ -9,6 +9,9 @@ import com.wrathOfLoD.Models.Entity.EntityCanMoveVisitor.TerrestrialCanMoveVisit
 import com.wrathOfLoD.Models.Entity.EntityCanMoveVisitor.CanMoveVisitor;
 import com.wrathOfLoD.Models.Inventory.Inventory;
 import com.wrathOfLoD.Models.Items.TakeableItem;
+import com.wrathOfLoD.Models.LocationTracker.LocationTrackerManager;
+import com.wrathOfLoD.Models.Map.Map;
+import com.wrathOfLoD.Models.Map.MapArea;
 import com.wrathOfLoD.Models.Stats.Stats;
 import com.wrathOfLoD.Models.Stats.StatsModifiable;
 import com.wrathOfLoD.Models.Target.NPCTargetManager;
@@ -45,6 +48,7 @@ public abstract class Entity implements EntityObservable{
     //TODO: change the default can move visitor to an instance of DefaultCanMoveVisitor or something
     public Entity(){
         this("Master Chief", new Position(0,0,0,0), new TerrestrialCanMoveVisitor());
+
     }
 
     public Entity(String name, Position position, CanMoveVisitor canMoveVisitor){
@@ -55,6 +59,7 @@ public abstract class Entity implements EntityObservable{
         this.direction = Direction.DOWN_SOUTH;
         entityObservers = new ArrayList<>();
         this.canMoveVisitor = canMoveVisitor;
+
     }
 
     /***** getter & setter for Entity *******/
@@ -82,7 +87,9 @@ public abstract class Entity implements EntityObservable{
     }
 
     public void setPosition(Position newPosition){
-        this.position = newPosition;
+        hideTiles();
+		this.position = newPosition;
+		showTiles();
     }
 
     protected void setName(String name){ this.name = name; }
@@ -115,6 +122,10 @@ public abstract class Entity implements EntityObservable{
         }
     }
 
+	public abstract void hideTiles();
+
+	public abstract void showTiles();
+
     public void insertItemToInventory(TakeableItem item){
         this.inventory.addItem(item);
     }
@@ -133,7 +144,7 @@ public abstract class Entity implements EntityObservable{
     }
 
     public void takeDamage(int damageAmount){
-        stats.modifyStats(StatsModifiable.createHealthStatsModifiable(damageAmount));
+        stats.modifyStats(StatsModifiable.createHealthStatsModifiable(-damageAmount));
     }
 
     public void loseMana(int mana){
@@ -158,6 +169,17 @@ public abstract class Entity implements EntityObservable{
     public void die(){
         ActionCommand dieCommand = new DieCommand(this);
         dieCommand.execute();
+        notifyObserversOnDie(this.getPosition());
+
+        this.setActive();
+
+//        System.out.println("LIFES LIVE: "+ getStats().getLivesLeft());
+//        if(getStats().getLivesLeft() > 0) {
+//            respawn();
+//        }
+        entityObservers.clear();
+
+
     }
 
     public boolean isActive() {
@@ -197,6 +219,18 @@ public abstract class Entity implements EntityObservable{
         }
     }
 
+    public void notifyObsersersOnDirectionChange(Direction dir) {
+        for (EntityObserver eo: entityObservers)
+            eo.notifyDirectionChange(dir);
+    }
+
+
+    public void notifyObserversOnDie(Position position){
+        for(int i = 0; i < entityObservers.size(); i++){
+            entityObservers.get(i).notifyDie(position);
+        }
+    }
+
     public void setAggroLevel(int aggro){
         this.aggroLevel = aggro;
     }
@@ -204,5 +238,18 @@ public abstract class Entity implements EntityObservable{
     public int getAggroLevel(){
         return aggroLevel;
     }
+
+    public void respawn(){
+        StatsModifiable modifiable = StatsModifiable.createHealthManaStatsModifiable(getStats().getMaxMana(), getStats().getMaxHealth());
+        getStats().modifyStats(modifiable);
+
+        notifyObserverOnMove(this.getPosition(), Map.getInstance().getActiveMapArea().getSpawnPoint(), direction, 0);
+        this.setPosition(Map.getInstance().getActiveMapArea().getSpawnPoint());
+
+        //LocationTrackerManager.getInstance().registerEntity(this);
+
+        System.out.println("GESTS CLLLAFED??");
+    }
+
 }
 

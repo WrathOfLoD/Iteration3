@@ -112,10 +112,10 @@ public class FlyingCommand extends MovementCommand implements Fuseable {
         if(getDestinationPosition().getH() < adjacentGroundLevel){
             setDestinationPosition(new Position(getDestinationPosition().getQ(), getDestinationPosition().getR(), getDestinationPosition().getH()+1));
         }
-        System.out.println("======= BEGINNING OF MOVEMENT CMD =========");
-        System.out.println("Entity src pos: " + getEntity().getPosition().getQ() + ", " + getEntity().getPosition().getR() + ", " + getEntity().getPosition().getH());
-        System.out.println("Entity dest pos: " + getDestinationPosition().getQ() + ", " + getDestinationPosition().getR() + ", " + getDestinationPosition().getH());
-        System.out.println("Entity dest direction: " + getEntity().getDirection());
+//        System.out.println("======= BEGINNING OF MOVEMENT CMD =========");
+//        System.out.println("Entity src pos: " + getEntity().getPosition().getQ() + ", " + getEntity().getPosition().getR() + ", " + getEntity().getPosition().getH());
+//        System.out.println("Entity dest pos: " + getDestinationPosition().getQ() + ", " + getDestinationPosition().getR() + ", " + getDestinationPosition().getH());
+//        System.out.println("Entity dest direction: " + getEntity().getDirection());
         getEntity().notifyObserverOnMove(getEntity().getPosition(), getDestinationPosition(), getMovingDirection(), getMovementTicks());
         getEntity().setPosition(getDestinationPosition());
 
@@ -125,6 +125,7 @@ public class FlyingCommand extends MovementCommand implements Fuseable {
 
         // Update Entity's location in LocationTrackerManager
         LocationTrackerManager.getInstance().updateLocation(getEntity());
+        //TODO: COMMENT OUT
 
         TimeModel.getInstance().registerFuseable(this, getMovementTicks());
     }

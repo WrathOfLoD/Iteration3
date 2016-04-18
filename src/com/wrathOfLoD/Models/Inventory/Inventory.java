@@ -46,6 +46,7 @@ public class Inventory implements ActionsHolder, Observable {
 
     public void addItem(TakeableItem item) {
         itemList.add(item);
+        notifyObservers();
     }
 
     public boolean hasItem(TakeableItem item){ return itemList.contains(item); }
@@ -53,6 +54,7 @@ public class Inventory implements ActionsHolder, Observable {
     public void removeItem(TakeableItem item) {
         if(hasItem(item))
             itemList.remove(item);
+            notifyObservers();
     }
 
     public List<TakeableItem> getItemList(){
@@ -67,6 +69,7 @@ public class Inventory implements ActionsHolder, Observable {
 
     @Override
     public void initializeActionSet() {
+        this.addToActionSet(ActionVendor.createRevertToAvatarStateAction());
     }
 
     @Override

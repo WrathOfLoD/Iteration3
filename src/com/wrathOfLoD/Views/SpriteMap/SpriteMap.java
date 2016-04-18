@@ -1,6 +1,7 @@
 package com.wrathOfLoD.Views.SpriteMap;
 
 
+import com.wrathOfLoD.Utility.Config;
 import com.wrathOfLoD.Utility.Direction;
 import com.wrathOfLoD.Utility.FileExtensionExtractor;
 
@@ -8,8 +9,9 @@ import javax.imageio.ImageIO;
 import java.awt.*;
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.*;
 import java.util.List;
 
 /**
@@ -18,19 +20,42 @@ import java.util.List;
 public class SpriteMap {
     private  HashMap<String, ImageAnimation> aoeMap;
     private  HashMap<EntityKey, ImageAnimation> entityMap;
-    //includes hitbox
+    private  HashMap<AvatarKey, ImageAnimation> avatarMap = new HashMap<>();
     private  HashMap<String, ImageAnimation> effectsMap;
     private  HashMap<String, ImageAnimation> itemMap;
+    private HashMap<String, ImageAnimation> terrainMap;
+    private Set<String> stateSet;
 
     public class EntityKey{
         private String entityType;
         private String action;
-        private Direction direction;
+        private String state;
+        private String direction;
 
-        EntityKey(String entityType, String action, Direction direction){
+        EntityKey(String entityType, String state, String direction,  String action){
             this.entityType = entityType;
+            this.state = state;
+            this.direction = direction;
+            this.action = action;
+        }
+    }
+
+    public class AvatarKey{
+        private String occupation;
+        private String action;
+        private String state;
+        private String direction;
+
+        AvatarKey(String occupation, String state, String action, String direction){
+            this.occupation = occupation;
+            this.state = state;
             this.action = action;
             this.direction = direction;
+        }
+
+        @Override
+        public String toString(){
+            return occupation + " " + state + " " + action + " " + direction;
         }
     }
 
@@ -39,20 +64,30 @@ public class SpriteMap {
         this.entityMap = new HashMap<>();
         this.effectsMap = new HashMap<>();
         this.itemMap = new HashMap<>();
+        this.terrainMap = new HashMap<>();
+        stateSet = new HashSet<>();
+        stateSet.add("Attack");
+        stateSet.add("Walk");
         generateItemMap();
         generateEffectsMap();
         generateAOEMap();
-        generateEntityMap();
+        generateTerrainMap();
+//        generateEntityMap();
+//        generateAvatarMap();
     }
 
     /***** getter & setter for SpriteMap *******/
     public  HashMap<String, ImageAnimation> getAoeMap() { return aoeMap; }
+
+    public  HashMap<AvatarKey, ImageAnimation>  getAvatarMapMap(){ return avatarMap; }
 
     public  HashMap<EntityKey, ImageAnimation>  getEntityMap(){ return entityMap; }
 
     public  HashMap<String, ImageAnimation>  getEffectsMap(){ return effectsMap; }
 
     public  HashMap<String, ImageAnimation>  getItemMap(){ return itemMap; }
+
+    public HashMap<String, ImageAnimation> getTerrainMap(){return terrainMap;}
 
     /********* END Getters *********/
 
@@ -68,12 +103,53 @@ public class SpriteMap {
         }
         return sprites;
     }
-    /***** End of Reusable Methods for all maps *******/
 
+    /***** End of Reusable Methods for all maps *******/
+    private void entityRenameImageFiles(File folder) throws IOException{
+        File[] listOfFiles = folder.listFiles();
+        int counter = 0;
+        for (File file : listOfFiles) {
+            if (file.isFile() && FileExtensionExtractor.getFileExtension(file.getName()).equals("png")) {
+                Files.move(file.toPath(), file.toPath().resolveSibling(folder.getName() + counter +".png"));
+                counter++;
+            }
+        }
+    }
+
+    private void entityImageFramesGenerator(File folder) throws IOException{
+        int startStringLength = Config.getEntityVOPath().length();
+
+        String stringKey = folder.getPath().substring(startStringLength);
+        String[] keyVals = stringKey.split("/");
+        for (String s : keyVals)
+            System.out.println(s);
+        AvatarKey key = new AvatarKey(keyVals[0], keyVals[1], keyVals[2], keyVals[3]);
+
+        File[] listOfFiles = folder.listFiles();
+
+        List<Image> sprites = new ArrayList<>();
+        for (File file : listOfFiles) {
+            if (file.isFile() && FileExtensionExtractor.getFileExtension(file.getName()).equals("png")) {
+                sprites.add(ImageIO.read(file));
+            }
+        }
+        if(sprites.size() > 0){
+            ImageAnimation imgAnimation = new ImageAnimation(sprites);
+            System.out.println("At key: " + key);
+            for (Image f : sprites)
+                System.out.println("\tinserting " + f);
+
+            avatarMap.put(key, imgAnimation);
+        }
+    }
 
 
     private  void generateItemMap() throws IOException{
         imageAnimationGenerator("./resources/MapItems", itemMap);
+    }
+
+    private  void generateTerrainMap() throws IOException{
+        imageAnimationGenerator("./resources/Terrain", terrainMap);
     }
 
     private  void generateEffectsMap() throws IOException{
@@ -84,24 +160,29 @@ public class SpriteMap {
         imageAnimationGenerator("./resources/AOE", aoeMap);
     }
 
+    public void generateAvatarMap() throws IOException{
+        entityAnimationGenerator(Config.getEntityVOPath() + "/Avatar/Smasher");
+    }
+
     public void generateEntityMap() throws IOException{
-        entityAnimationGenerator("./resources/Entity");
+        entityAnimationGenerator(Config.getEntityVOPath());
     }
 
     private void entityAnimationGenerator(String path) throws IOException {
         File directory = new File(path);
-
-        if (directory.isFile()) {
-            String fileName = directory.getName();
-            if(fileName.endsWith(".png")) {
-                System.out.println(directory.getName());
-            }
+        if (stateSet.contains(directory.getName())) {
+            //System.out.println("The hash contains me" + directory.getPath());
+            entityImageFramesGenerator(directory);
             return;
         }
+
         File[] paths = directory.listFiles();
 
-        for (int i = 0; i < paths.length; i++) {
-            entityAnimationGenerator(paths[i].getPath());
+        if (paths != null) {
+            for (int i = 0; i < paths.length; i++) {
+                entityAnimationGenerator(paths[i].getPath());
+                //System.out.println(paths[i].getPath());
+            }
         }
     }
 

@@ -31,7 +31,7 @@ public class Stats implements Observable {
 
 
     //Derived Stats
-    private int maxLife = 5; //default 5 - doesn't need to be calculated
+    private int maxLife = 3; //default 5 - doesn't need to be calculated
     private int level; //doesn't need to be calculated
 
     private int maxMana;
@@ -67,10 +67,10 @@ public class Stats implements Observable {
         setIntellect(1);
         setHardiness(1);
 
-        setMovement(20);
-        setCurrentMana(maxMana);
-        setLivesLeft(maxLife);
-        setCurrentHealth(maxHealth);
+        setMovement(55);
+//        setCurrentMana(maxMana);
+//        setLivesLeft(maxLife);
+//        setCurrentHealth(maxHealth);
 
 
         setWeaponBonus(0);
@@ -78,6 +78,9 @@ public class Stats implements Observable {
         setLevel(1);
 
         calculateDerivedStats();
+        setCurrentMana(maxMana);
+        setLivesLeft(maxLife);
+        setCurrentHealth(maxHealth);
 
         setCurrentExperience(0);
 
@@ -100,7 +103,7 @@ public class Stats implements Observable {
     }
 
     private void calculateMaxHealth(){
-        maxHealth = level*2 + hardiness*3;
+        maxHealth = (level*2 + hardiness*3)*5;
     }
 
     private void calculateOffensiveRating(){
@@ -254,11 +257,17 @@ public class Stats implements Observable {
     }
 
     private void setCurrentHealth(int currentHealth) {
+        //System.out.println("STATSSSSS HEALTH: " +currentHealth);
+        //System.out.println("STATSSSSS MAX HEALTH: " +maxHealth);
         if(currentHealth <= 0){
             this.currentHealth = 0;
             setLivesLeft(getLivesLeft()-1);
+            owner.die();
         }else{
-            this.currentHealth = currentHealth;
+            if(currentHealth > maxHealth)
+                this.currentHealth = maxHealth;
+            else
+                this.currentHealth = currentHealth;
         }
     }
 

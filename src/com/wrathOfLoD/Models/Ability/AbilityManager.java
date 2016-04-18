@@ -15,7 +15,7 @@ public class AbilityManager {
     private Occupation occupation;
     private ArrayList<Ability> unlockedAbilities; //TODO: view should know both unlocked and locked, Controller should only know unlocked
     private ArrayList<Ability> lockedAbilities;
-    private int maxNumActiveAbilities = 4;
+    private int maxNumActiveAbilities = 6;
     private Ability[] activeAbilities = new Ability[maxNumActiveAbilities];
     public Ability[] getActiveAbilities() {
         return activeAbilities;
@@ -32,7 +32,7 @@ public class AbilityManager {
         this.occupation = character.getOccupation();
         unlockedAbilities = new ArrayList<>();
         lockedAbilities = new ArrayList<>();
-        occupation.addAbilities(this);
+        //occupation.addAbilities(this, character);
         //In Character, after AbilityManager is created, call unlockAbilities on AbilityManager
     }
 
@@ -54,7 +54,8 @@ public class AbilityManager {
     }
 
     public void addAbilities(Ability ability){
-        lockedAbilities.add(ability);
+        //lockedAbilities.add(ability);
+        unlockedAbilities.add(ability);
 
         //Notify observer
     }

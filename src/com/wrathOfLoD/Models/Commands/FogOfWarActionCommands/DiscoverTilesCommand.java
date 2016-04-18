@@ -22,7 +22,9 @@ public class DiscoverTilesCommand extends ActionCommand{
 	public void execute(){
 		for(Position pos: positions){
 			TilePillar pillar = Map.getInstance().getTilePillar(pos);
-			pillar.discover();
+			if(pillar != null){
+				pillar.discover();
+			}
 		}
 	}
 }

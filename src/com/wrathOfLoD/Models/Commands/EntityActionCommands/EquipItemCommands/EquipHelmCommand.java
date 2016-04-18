@@ -17,6 +17,8 @@ public class EquipHelmCommand extends EquipItemCommand {
     @Override
     protected void equipHook(Equipment equipment){
         EquippableItem item = getItem();
+        System.out.println("ADDING " + item.getName() + " to equipment:");
+        System.out.println(equipment);
         equipment.equip((Helm) item);
     }
 }

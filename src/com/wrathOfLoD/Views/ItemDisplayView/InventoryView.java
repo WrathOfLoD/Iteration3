@@ -1,14 +1,11 @@
 package com.wrathOfLoD.Views.ItemDisplayView;
 
 import com.wrathOfLoD.Models.Inventory.Inventory;
-import com.wrathOfLoD.Models.Items.Item;
 import com.wrathOfLoD.Models.Items.TakeableItem;
 import com.wrathOfLoD.Views.ContentDisplayStructure.ContentDisplayStructure;
-import com.wrathOfLoD.Views.ItemDisplayView.Slot.InventorySlot;
+import com.wrathOfLoD.Views.ItemDisplayView.Slot.ItemSlot;
 import com.wrathOfLoD.Views.ItemDisplayView.Slot.Slot;
-import com.wrathOfLoD.Views.ViewFactories.ViewObjectFactory.InventoryIVOFactory;
-import com.wrathOfLoD.Views.Selectable;
-import com.wrathOfLoD.Views.ViewObjects.InventoryItemViewObject;
+import com.wrathOfLoD.Views.ViewObjects.ItemViewObject;
 
 import java.awt.*;
 import java.util.Iterator;
@@ -18,8 +15,6 @@ import java.util.Iterator;
  */
 public class InventoryView extends ItemDisplayView /*implements Selectable*/ { // TODO: 4/12/2016 segregate the inventory into a content area and description area
 
-    /* Need to enforce the invariant that the numRows and numCols do not exceed the max Inventory size? */
-    private int currentIndex;
     private Inventory inventory;
 
     /**
@@ -40,7 +35,9 @@ public class InventoryView extends ItemDisplayView /*implements Selectable*/ { /
 
     @Override
     public void update() {
+
         fillInventoryView();
+        System.out.println("ADDING TO THE INVENTORY!!");
     }
 
 
@@ -55,24 +52,14 @@ public class InventoryView extends ItemDisplayView /*implements Selectable*/ { /
 
     }
 
-    private void initializeInventoryView() { //may need to edit...only works if we maintain the idea that an inventory view must be initialized with an inventory
-        InventoryItemViewObject itemViewObject;
-        Iterator<TakeableItem> itemIterator = this.getInventory().getItemList().iterator();
-
-        while (itemIterator.hasNext()) {
-            itemViewObject = InventoryIVOFactory.generateInventoryIVO(itemIterator.next());
-            Slot slot = new InventorySlot(itemViewObject);
-            getContentDisplayStructure().addSlot(slot);
-        }
-    }
 
     public void fillInventoryView() {
-        InventoryItemViewObject itemViewObject;
+        ItemViewObject itemViewObject;
         Iterator<TakeableItem> itemIterator = this.getInventory().getItemList().iterator();
-
+        getContentDisplayStructure().getSlotList().clear();
         while (itemIterator.hasNext()) {
-            itemViewObject = InventoryIVOFactory.generateInventoryIVO(itemIterator.next());
-            Slot slot = new InventorySlot(itemViewObject);
+            itemViewObject = new ItemViewObject(itemIterator.next());
+            Slot slot = new ItemSlot(itemViewObject);
             getContentDisplayStructure().addSlot(slot);
         }
     }

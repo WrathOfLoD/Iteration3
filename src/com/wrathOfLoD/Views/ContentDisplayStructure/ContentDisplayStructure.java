@@ -1,11 +1,7 @@
 package com.wrathOfLoD.Views.ContentDisplayStructure;
 
-import com.wrathOfLoD.Models.Items.Item;
 import com.wrathOfLoD.Views.ItemDisplayView.Slot.Slot;
-import com.wrathOfLoD.Views.Selectable;
-import com.wrathOfLoD.Views.ViewObjects.InventoryItemViewObject;
-import com.wrathOfLoD.Views.ViewObjects.ItemViewObject;
-import com.wrathOfLoD.Views.ViewObjects.StaticViewObject;
+
 
 import javax.swing.*;
 import java.awt.*;
@@ -61,7 +57,11 @@ public abstract class ContentDisplayStructure extends JPanel /* implements Selec
         this.slotList = slotList;
     }
     public void addSlot(Slot slot) {
-        getSlotList().add(slot);
+        //getSlotList().add(slot);
+        slotList.add(slot);
+    }
+    public void resetSlots() {
+        getSlotList().clear();
     }
 
     public ContentDisplayStructure(int numRows, int numCols) {
@@ -83,6 +83,12 @@ public abstract class ContentDisplayStructure extends JPanel /* implements Selec
     public abstract int determineRow(int index);
     public abstract int calculateSlotWidth();
     public abstract int calculateSlotHeight();
+
+    public void selectSlot(int index) {
+        getSlotList().get(index).select();
+    }
+
+
 
 //    public void paintComponent(Graphics g, int displayWidth, int displayHeight){
     public void paintComponent(Graphics g, int initialX, int initialY, int displayWidth, int displayHeight){

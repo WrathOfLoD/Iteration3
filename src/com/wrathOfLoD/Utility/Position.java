@@ -277,8 +277,10 @@ public class Position{
 		Position leftVector;
 
 		if(horizontal){
-			rightVector = dir.counterClockwise().inversePlanar().getPosVector();
-			leftVector = dir.clockwise().inversePlanar().getPosVector();
+			//rightVector = dir.counterClockwise().inversePlanar().getPosVector();
+			//leftVector = dir.clockwise().inversePlanar().getPosVector();
+			rightVector = dir.clockwise().clockwise().getPosVector();
+			leftVector = dir.counterClockwise().counterClockwise().getPosVector();
 		}
 		else{
 			rightVector = dir.above().getPosVector();
@@ -322,20 +324,45 @@ public class Position{
 	public static List<Position> drawRing(Position origin, int range){
 		List<Position> ring = new ArrayList<Position>();
 
-		Position pos = vectorAdd(origin, scalarMultiply(Direction.NORTH.getPosVector(), range));
-		Direction dir = Direction.NORTH.counterClockwise().inversePlanar();
-		for(int i = 0; i < 6; i++){
-			for(int j = 0; j < range; j++){
-				ring.add(pos);
-				pos = pos.getPosInDir(dir);
+		for(int i = -range; i <= range; i++){
+			for(int j = -range; j <= range; j++){
+				Position pos = new Position(origin.getQ() + i, origin.getR() + j, origin.getH());
+				if(origin.getDistance(pos) == range){
+					ring.add(pos);
+				}
 			}
-			dir = dir.clockwise();
 		}
 
 		return ring;
 	}
 
 //	TODO: prism effects one or more concentric vertical columns of hextiles.
+
+	public static List<Position> drawCylinder(Position origin, int radius, int height, boolean includeOrigin){
+		List<Position> cylinder = new ArrayList<Position>();
+		Position pos = origin.get2DProjection();
+		for(int i = 0; i < height; i++){
+			Position sliceOrigin = vectorAdd(pos, scalarMultiply(Direction.UP.getPosVector(), i));
+			List<Position> ring  = drawCircle(sliceOrigin, i, true);
+			cylinder.addAll(ring);
+		}
+		if(!includeOrigin){
+			cylinder.remove(origin);
+		}
+		return cylinder;
+	}
+
+	public static List<Position> drawTube(Position origin, int radius, int height){
+		List<Position> tube = new ArrayList<Position>();
+		Position pos = origin.get2DProjection();
+		for(int i = 0; i < height; i++){
+			Position sliceOrigin = vectorAdd(pos, scalarMultiply(Direction.UP.getPosVector(), i));
+			List<Position> ring  = drawRing(sliceOrigin, i);
+			tube.addAll(ring);
+		}
+		return tube;
+	}
+
 //	TODO: (hemi-)conical effects (e.g., shotgun blast) approximates an expanding 60° cone centered on the direction the unit is targeting
 //	TODO: (hemi)spherical (e.g., bomb blast) 360° expanding effect (targeting independent)
 

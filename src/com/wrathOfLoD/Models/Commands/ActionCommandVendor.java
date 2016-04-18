@@ -3,6 +3,7 @@ package com.wrathOfLoD.Models.Commands;
 import com.wrathOfLoD.Models.Ability.Abilities.Ability;
 import com.wrathOfLoD.Models.Commands.EntityActionCommands.*;
 import com.wrathOfLoD.Models.Commands.SelectableActionCommands.*;
+import com.wrathOfLoD.Models.Entity.Character.Character;
 import com.wrathOfLoD.Models.Entity.Entity;
 import com.wrathOfLoD.Utility.Direction;
 import com.wrathOfLoD.Views.Selectable;
@@ -43,5 +44,21 @@ public class ActionCommandVendor {
 
     public static ActionCommand createCastAbilityCommand(Ability ability){
         return new CastAbilityCommand(ability);
+    }
+
+    public static ActionCommand createOpenInventoryCommand(Entity e) {
+        return new OpenInventoryCommand(e);
+    }
+
+    public static ActionCommand createRevertToAvatarStateCommand() {
+        return new RevertToAvatarStateCommand();
+    }
+
+    public static ActionCommand createSwitchToEquipmentStateAction(Character c) {
+        return new SwitchToEquipmentStateCommand(c);
+    }
+
+    public static ActionCommand createMountCommand(Character c) {
+        return new MountCommand(c);
     }
 }

@@ -17,14 +17,29 @@ public class Mount extends Entity {
         super(name, position, canMoveVisitor);
     }
 
-    public void mount(Character rider) {
-        this.rider = rider;
-        ActionCommand mountCommand = new MountCommand(this, rider);
-        mountCommand.execute();
+	public void mount(Character rider) {
+        if (rider.equals(this.rider)) {
+            this.rider = null;
+        } else {
+            this.rider = rider;
+        }
+        System.out.println("MY rider is: " + this.rider);
+//        ActionCommand mountCommand = new MountCommand(this, rider);
+//        mountCommand.execute();
     }
 
     public void accept(EntityVisitor ev){
         ev.visitMount(this);
     }
+
+	@Override
+	public void hideTiles(){
+		//mixed-instance can be icky, but necessary
+	}
+
+	@Override
+	public void showTiles(){
+		//mixed-instance can be icky, but necessary
+	}
 
 }

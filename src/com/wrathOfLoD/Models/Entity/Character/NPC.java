@@ -49,10 +49,20 @@ public class NPC extends Character {
         this.aggression = newGreed;
     }
 
-    /********* END Getters and Setters *********/
+	/********* END Getters and Setters *********/
 
     public void accept(EntityVisitor ev){
         ev.visitNPC(this);
     }
+
+	@Override
+	public void hideTiles(){
+		//mixed-instance can be icky, but necessary
+	}
+
+	@Override
+	public void showTiles(){
+		//mixed-instance can be icky, but necessary
+	}
 
 }

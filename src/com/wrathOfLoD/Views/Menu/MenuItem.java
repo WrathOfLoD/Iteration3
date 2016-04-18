@@ -7,6 +7,7 @@ import com.wrathOfLoD.Models.Commands.MenuActionCommands.*;
 import javax.swing.*;
 import javax.swing.border.Border;
 import java.awt.*;
+import java.io.IOException;
 
 /**
  * Created by Mistiansen on 4/15/16.
@@ -50,13 +51,14 @@ public class MenuItem extends JPanel {
 
         g.setColor(Color.RED);
         g.drawString(getText(), textXCoord, textYCoord);
+
         if (this.isSelected()) {
             g.setColor(new Color(0f,0f,1.0f,0.2f));
             g.fillRect(x,y,width,height);
         }
     }
 
-    public void execute() {
+    public void execute() throws IOException, InterruptedException{
 
     }
 

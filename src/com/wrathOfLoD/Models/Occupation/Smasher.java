@@ -1,6 +1,7 @@
 package com.wrathOfLoD.Models.Occupation;
 
 import com.wrathOfLoD.Models.Ability.AbilityManager;
+import com.wrathOfLoD.Models.Entity.Character.Character;
 import com.wrathOfLoD.Models.Items.EquippableItems.Weapons.SmasherWeapons.FistWeapon;
 import com.wrathOfLoD.Models.Items.EquippableItems.Weapons.SmasherWeapons.SmasherWeapon;
 import com.wrathOfLoD.Models.Items.EquippableItems.Weapons.SneakWeapons.SneakWeapon;
@@ -39,6 +40,9 @@ public class Smasher extends Occupation {
     }
 
     @Override
+    public String getName(){ return "Smasher"; }
+
+    @Override
     public SkillManager createSkillManager() {
         return new SmasherSkillManager();
     }
@@ -48,8 +52,7 @@ public class Smasher extends Occupation {
         return new FistWeapon();
     }
 
-    public void addAbilities(AbilityManager abilityManager){
-        super.addAbilities(abilityManager);
-        //TODO: ADD ABILITIES, CALL SUPER
+    public void addAbilities(AbilityManager abilityManager, Character character){
+        super.addAbilities(abilityManager, character);
     }
 }

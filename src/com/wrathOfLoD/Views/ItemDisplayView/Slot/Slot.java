@@ -27,9 +27,13 @@ public abstract class Slot extends StaticViewObject {
         isSelected = selected;
     }
 
+    public void select(){
+        setSelected(true);
+    }
 
     public void addToSlot(StaticViewObject staticViewObject) {
         setStaticViewObject(staticViewObject);
+
     }
 
     public void removeFromSlot() {
@@ -41,7 +45,7 @@ public abstract class Slot extends StaticViewObject {
         if(getStaticViewObject()!=null) {
             getStaticViewObject().paintComponent(g,x,y,width,height);
             if (isSelected()) {
-                g.drawRect(x,y,width,height);
+                g.setColor(Color.GREEN);
             }
         }
     }

@@ -10,8 +10,12 @@ public class Config {
     private static final String MapIVOPath = "resources/MapItems/";
     private static final String InventoryIVOPath = "resources/InventoryItems/";
     private static final String EquippedIVOPath = "resources/EquippedItems/";
+    private static final String AbilityVOPath = "resources/Abilities/";
     private static final String ImageExtension = ".png";
 
+    public static String getAbilityVOPath() {
+        return AbilityVOPath;
+    }
     public static String getIVOPath() {
         return IVOPath;
     }
@@ -38,7 +42,7 @@ public class Config {
     private static final int ObstacleZLevel = 15;
     private static final int InteractiveItemZLevel = 15;
     private static final int AreaEffectZLevel = 25;
-    private static final int HitBoxZLevel = 30;
+    private static final int HitBoxZLevel = 55;
 
     public static int getHitBoxZLevel() {
         return HitBoxZLevel;

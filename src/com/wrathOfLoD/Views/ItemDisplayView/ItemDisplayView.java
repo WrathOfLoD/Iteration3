@@ -4,7 +4,6 @@ import com.wrathOfLoD.Models.Items.Item;
 import com.wrathOfLoD.Observers.Observer;
 import com.wrathOfLoD.Views.ContentDisplayStructure.ContentDisplayStructure;
 import com.wrathOfLoD.Views.ContentDisplayStructure.GridStructure;
-import com.wrathOfLoD.Views.ItemDisplayView.Slot.InventorySlot;
 import com.wrathOfLoD.Views.Selectable;
 import com.wrathOfLoD.Views.StaticView;
 import com.wrathOfLoD.Views.View;
@@ -35,10 +34,14 @@ public class ItemDisplayView extends StaticView implements Observer, Selectable 
     }
 
 
+    public int getCurrentIndex() { return currentIndex; }
+    public void setCurrentIndex(int i) { currentIndex = i; }
+
     /**
      * desc: Paint view with next item in row selected
      */
     public void selectNextItem() {
+
         this.safeIncrementRight();
     }
 
@@ -61,6 +64,7 @@ public class ItemDisplayView extends StaticView implements Observer, Selectable 
      * desc: Paint view with previous item in row selected
      */
     public void selectPrevItem() {
+
         this.safeDecrementLeft();
     }
 
@@ -123,7 +127,9 @@ public class ItemDisplayView extends StaticView implements Observer, Selectable 
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         getContentDisplayStructure().getSlotList().stream().forEach(x -> x.setSelected(false));
-        getContentDisplayStructure().getSlotList().get(currentIndex).setSelected(true);
+        if(getContentDisplayStructure().getSlotList().size()>0) {
+            getContentDisplayStructure().selectSlot(currentIndex);
+        }
     }
 
 

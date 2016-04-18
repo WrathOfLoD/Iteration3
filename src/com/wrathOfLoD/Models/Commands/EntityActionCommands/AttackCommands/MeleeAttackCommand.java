@@ -7,7 +7,9 @@ import com.wrathOfLoD.Models.Map.Tile;
 import com.wrathOfLoD.Utility.Direction;
 import com.wrathOfLoD.Utility.Position;
 
+import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 
 /**
  * Created by matthewdiaz on 4/13/16.
@@ -19,12 +21,18 @@ public class MeleeAttackCommand extends AttackCommand {
 
     @Override
     protected void windUpHook(Position characterPosition, Direction characterFacingDirection, int attackDamage) {
+        if(getCharacter().isActive())
+            return;
+
+        getCharacter().setActive();
         Position attackedPosition = characterPosition.getPosInDir(characterFacingDirection);
         Tile attackedTile = Map.getInstance().getTile(attackedPosition);
-        Iterator<Entity> listOfEntities = attackedTile.getEntities();
-        while(listOfEntities.hasNext()){
-            Entity entity = listOfEntities.next();
-            entity.takeDamage(attackDamage);
+        System.out.println("ATT");
+
+        List<Entity> entities = attackedTile.getEntitiesList();
+        for (int i = 0; i < entities.size(); i++){
+            entities.get(i).takeDamage(attackDamage);
         }
+
     }
 }
