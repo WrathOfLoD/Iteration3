@@ -57,6 +57,7 @@ public class StaticView extends View {
         this.setLayout(new BorderLayout());
         generateTitle();
         this.add(getTitlePanel(), BorderLayout.NORTH);
+        this.setBackground(new Color(0f,0f,0f,0f));
     }
 
 

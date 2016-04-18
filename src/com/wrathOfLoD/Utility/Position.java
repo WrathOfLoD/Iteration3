@@ -322,14 +322,13 @@ public class Position{
 	public static List<Position> drawRing(Position origin, int range){
 		List<Position> ring = new ArrayList<Position>();
 
-		Position pos = vectorAdd(origin, scalarMultiply(Direction.NORTH.getPosVector(), range));
-		Direction dir = Direction.NORTH.counterClockwise().inversePlanar();
-		for(int i = 0; i < 6; i++){
-			for(int j = 0; j < range; j++){
-				ring.add(pos);
-				pos = pos.getPosInDir(dir);
+		for(int i = -range; i <= range; i++){
+			for(int j = -range; j <= range; j++){
+				Position pos = new Position(origin.getQ() + i, origin.getR() + j, origin.getH());
+				if(origin.getDistance(pos) == range){
+					ring.add(pos);
+				}
 			}
-			dir = dir.clockwise();
 		}
 
 		return ring;

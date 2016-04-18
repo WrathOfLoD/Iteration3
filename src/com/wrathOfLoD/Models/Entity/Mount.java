@@ -17,7 +17,7 @@ public class Mount extends Entity {
         super(name, position, canMoveVisitor);
     }
 
-    public void mount(Character rider) {
+	public void mount(Character rider) {
         this.rider = rider;
         ActionCommand mountCommand = new MountCommand(this, rider);
         mountCommand.execute();
@@ -26,5 +26,15 @@ public class Mount extends Entity {
     public void accept(EntityVisitor ev){
         ev.visitMount(this);
     }
+
+	@Override
+	public void hideTiles(){
+		//mixed-instance can be icky, but necessary
+	}
+
+	@Override
+	public void showTiles(){
+		//mixed-instance can be icky, but necessary
+	}
 
 }

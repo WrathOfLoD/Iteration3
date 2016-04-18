@@ -13,6 +13,8 @@ public class DetectTrapAbility extends Ability {
     public DetectTrapAbility(Character character, int manaCost) {
         super(character, manaCost);
         ssm = (SneakSkillManager) character.getSkillManager();
+        setName("Detect trap");
+
     }
 
     public boolean shouldDoAbility(){

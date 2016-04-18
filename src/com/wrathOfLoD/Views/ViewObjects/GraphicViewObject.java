@@ -3,24 +3,28 @@ package com.wrathOfLoD.Views.ViewObjects;
 import com.wrathOfLoD.Models.Items.Item;
 import com.wrathOfLoD.Utility.Config;
 import com.wrathOfLoD.Views.ImageFactory.ImageFactory;
-import com.wrathOfLoD.Views.StatsView.StatsViewObject;
 
-import javax.swing.*;
-import javax.swing.border.Border;
 import java.awt.*;
 
 /**
- * Created by erik on 4/7/2016.
+ * Created by echristiansen on 4/17/2016.
  */
-public class ItemViewObject extends GraphicViewObject {
+public class GraphicViewObject extends StaticViewObject  {
 
-    public ItemViewObject() {
+    private Image image;
+    private String imageFilePath;
+
+    public String getImageFilePath() {
+        return imageFilePath;
     }
-
-    public ItemViewObject(Item item) { //todo change this constructor to take in Object object in accordance with PTC?
-        setObject(item);
-        setImageFilePath(Config.instance().getInventoryIVOPath()+item.getName()+Config.instance().getImageExtension());
-        initializeImage(item);
+    public void setImageFilePath(String imageFilePath) {
+        this.imageFilePath = imageFilePath;
+    }
+    public Image getImage() {
+        return image;
+    }
+    public void setImage(Image image) {
+        this.image = image;
     }
 
     public void initializeImage(Item item) {
@@ -31,6 +35,6 @@ public class ItemViewObject extends GraphicViewObject {
     public void paintComponent(Graphics g, int x, int y, int width, int height) {
         super.paintComponent(g);
         g.drawImage(this.getImage(),x,y,width,height,this);
-    }
 
+    }
 }

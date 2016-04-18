@@ -82,7 +82,9 @@ public abstract class Entity implements EntityObservable{
     }
 
     public void setPosition(Position newPosition){
-        this.position = newPosition;
+        hideTiles();
+		this.position = newPosition;
+		showTiles();
     }
 
     protected void setName(String name){ this.name = name; }
@@ -106,6 +108,19 @@ public abstract class Entity implements EntityObservable{
         }
     }
 
+    public void fly(Direction movingDirection){
+        if(!isActive()){
+            setActive();
+            ActionCommand acm = ActionCommandVendor.createFlyCommand(this, movingDirection);
+            //TODO: may need command's execute to return ticks to set entity inActive and not to notify observer
+            acm.execute();
+        }
+    }
+
+	public abstract void hideTiles();
+
+	public abstract void showTiles();
+
     public void insertItemToInventory(TakeableItem item){
         this.inventory.addItem(item);
     }
@@ -124,7 +139,7 @@ public abstract class Entity implements EntityObservable{
     }
 
     public void takeDamage(int damageAmount){
-        stats.modifyStats(StatsModifiable.createHealthStatsModifiable(damageAmount));
+        stats.modifyStats(StatsModifiable.createHealthStatsModifiable(-damageAmount));
     }
 
     public void loseMana(int mana){
@@ -186,6 +201,11 @@ public abstract class Entity implements EntityObservable{
         for (EntityObserver eo : entityObservers) {
             eo.notifyMove(src, dest, dir, ticks);
         }
+    }
+
+    public void notifyObsersersOnDirectionChange(Direction dir) {
+        for (EntityObserver eo: entityObservers)
+            eo.notifyDirectionChange(dir);
     }
 
     public void setAggroLevel(int aggro){

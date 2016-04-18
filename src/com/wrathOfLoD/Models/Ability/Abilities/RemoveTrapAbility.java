@@ -14,6 +14,7 @@ public class RemoveTrapAbility extends Ability {
     public RemoveTrapAbility(Character character, int manaCost) {
         super(character, manaCost);
         ssm = (SneakSkillManager) character.getSkillManager();
+        setName("Remove trap");
     }
 
     public boolean shouldDoAbility(){

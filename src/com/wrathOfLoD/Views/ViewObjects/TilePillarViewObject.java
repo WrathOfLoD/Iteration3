@@ -30,9 +30,9 @@ public class TilePillarViewObject extends ViewObject{
 	}
 
 	public void paintComponent(Graphics g, Position cameraCenter, Point screenCenter){
-		//if(!tilePillar.isDiscovered()){
-		//	return;
-		//}
+		if(!tilePillar.isDiscovered()){
+			return;
+		}
 		Point point = Position.vectorSubtract(this.pos, cameraCenter).positionToXY();
 		this.setOffsetX(point.x);
 		this.setOffsetY(point.y);
@@ -44,14 +44,6 @@ public class TilePillarViewObject extends ViewObject{
 			tvo.paintComponent(g, cameraCenter, screenCenter);
 		}
 		//paintComponent(g);
-	}
-
-	@Override
-	public void paintComponent(Graphics g){
-		//TODO
-		if(!tilePillar.isVisible()){
-			//TODO draw a big-ass translucent grey rectangle
-		}
 	}
 
 	public Position getPosition(){

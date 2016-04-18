@@ -44,16 +44,10 @@ public class SpriteMap {
         stateSet = new HashSet<>();
         stateSet.add("Attack");
         stateSet.add("Walk");
-//        dSet.add("North_West");
-//        dSet.add("South");
-//        dSet.add("South_East");
-//        dSet.add("South_West");
-
-
         generateItemMap();
         generateEffectsMap();
         generateAOEMap();
-        //generateEntityMap();
+        generateEntityMap();
     }
 
     /***** getter & setter for SpriteMap *******/

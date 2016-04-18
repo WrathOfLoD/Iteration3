@@ -42,9 +42,14 @@ public class TileViewObject extends ViewObject implements DestroyableVOObserver{
 			}
 		});
 
-		for(ModelViewObject mvo : modelVOList){
+		for (int i = 0; i < modelVOList.size(); i++){
+			ModelViewObject mvo = modelVOList.get(i);
 			mvo.paintComponent(g, this.getOffsetX() + screenCenter.x, this.getOffsetY() + screenCenter.y, mvo.getImage().getWidth(null), mvo.getImage().getHeight(null));
 		}
+
+//		for(ModelViewObject mvo : modelVOList){
+//			mvo.paintComponent(g, this.getOffsetX() + screenCenter.x, this.getOffsetY() + screenCenter.y, mvo.getImage().getWidth(null), mvo.getImage().getHeight(null));
+//		}
 	}
 
 	public void addMOVToTile(ModelViewObject mvo){

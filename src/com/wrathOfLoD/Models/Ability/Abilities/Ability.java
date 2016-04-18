@@ -11,6 +11,14 @@ public abstract class Ability {
     private int unlockLevel;
     private int manaCost;
     private Character character;
+    private String name;
+
+    public String getName() {
+        return name;
+    }
+    public void setName(String name) {
+        this.name = name;
+    }
 
     public Ability(Character character, int manaCost) {
         setUnlockLevel(0);
