@@ -17,17 +17,19 @@ public class HealthBarViewObject extends ModelViewObject {
         this.currentHealth = currentHealth;
     }
 
-    public void paintHealthBar(Graphics g, int x, int y, int width, int height, int maxHealth, int currentHealth){
+    public void paintHealthBar(Graphics g, int x, int y, int width, int height, int maxHealth, int currentHealth, boolean visible){
         this.fullHealth = maxHealth;
         this.currentHealth = currentHealth;
-        this.paintComponent(g, x, y, width, height);
+        this.paintComponent(g, x, y, width, height, visible);
     }
 
     @Override
-    public void paintComponent(Graphics g, int x, int y, int width, int height) {
+    public void paintComponent(Graphics g, int x, int y, int width, int height, boolean visible) {
         //System.out.println("FULL: "+ fullHealth);
         //System.out.println("NOW: "+ currentHealth);
-
+        if(!visible){
+            return;
+        }
         int maxHealthBarWidth = 50;
         int currentHealthBarWidth = (int)((double)currentHealth / (double)fullHealth * maxHealthBarWidth);
 

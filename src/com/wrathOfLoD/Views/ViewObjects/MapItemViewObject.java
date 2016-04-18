@@ -51,8 +51,12 @@ public class MapItemViewObject extends ModelViewObject implements DestroyableMod
     }
 
     @Override
-    public void paintComponent(Graphics g, int x, int y, int width, int height) {
-        g.drawImage(this.getImage(), x, y - 20, width, height, this);
+    public void paintComponent(Graphics g, int x, int y, int width, int height, boolean visible) {
+        Image renderedImage = this.getImage();
+        if(!visible){
+            renderedImage = getGrayscaleImage(renderedImage);
+        }
+        g.drawImage(renderedImage, x, y - 20, width, height, this);
     }
 
 
