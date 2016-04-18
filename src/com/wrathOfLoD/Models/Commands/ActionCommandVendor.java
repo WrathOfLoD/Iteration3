@@ -57,4 +57,8 @@ public class ActionCommandVendor {
     public static ActionCommand createSwitchToEquipmentStateAction(Character c) {
         return new SwitchToEquipmentStateCommand(c);
     }
+
+    public static ActionCommand createMountCommand(Character c) {
+        return new MountCommand(c);
+    }
 }

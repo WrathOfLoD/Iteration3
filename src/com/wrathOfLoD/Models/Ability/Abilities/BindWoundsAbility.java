@@ -24,7 +24,6 @@ public class BindWoundsAbility extends TimedAbility{
         setName("Bind Wounds");
     }
 
-
     @Override
     public void windUpHook() {
         getCharacter().heal(calculateHealAmount());

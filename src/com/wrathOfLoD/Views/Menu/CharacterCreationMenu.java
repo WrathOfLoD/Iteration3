@@ -10,7 +10,7 @@ import java.awt.*;
 public class CharacterCreationMenu extends Menu {
 
     //private String titleString = "Choose your Destiny";
-    private String titleString = "Sloth your sloth";
+    private String titleString = "Choose your Destiny";
     private MenuListStructure mls;
 
     public CharacterCreationMenu() {
@@ -21,9 +21,9 @@ public class CharacterCreationMenu extends Menu {
     }
 
     public void initMenuItems() {
-        this.addMenuItem(new MenuItem("Smasher"));
-        this.addMenuItem(new MenuItem("Sneak"));
-        this.addMenuItem(new MenuItem("Summoner"));
+        this.addMenuItem(new SmasherCreationMenuItem("Smasher"));
+        this.addMenuItem(new SneakCreationMenuItem("Sneak"));
+        this.addMenuItem(new SummonerCreationMenuItem("Summoner"));
     }
 
     public void initDefaultUI() {

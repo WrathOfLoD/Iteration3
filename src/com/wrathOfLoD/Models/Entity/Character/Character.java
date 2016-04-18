@@ -1,5 +1,7 @@
 package com.wrathOfLoD.Models.Entity.Character;
 
+import com.wrathOfLoD.Controllers.InputStates.ActionVendor;
+import com.wrathOfLoD.Models.Ability.Abilities.Ability;
 import com.wrathOfLoD.Models.Ability.AbilityManager;
 import com.wrathOfLoD.Models.Entity.Entity;
 import com.wrathOfLoD.Models.Entity.EntityCanMoveVisitor.CanMoveVisitor;
@@ -22,6 +24,8 @@ public abstract class Character extends Entity {
     private Equipment equipment;
     private AbilityManager abilityManager;
     private SkillManager skillManager;
+
+
 
     public Character(){
         super();
@@ -107,6 +111,22 @@ public abstract class Character extends Entity {
 
     public void accept(EntityVisitor ev){
         ev.visitCharacter(this);
+    }
+
+    public void equipAbility1(Ability ability){
+        getAbilityManager().setActiveAbility(ability, 1);
+    }
+
+    public void equipAbility2(Ability ability){
+        getAbilityManager().setActiveAbility(ability, 2);
+    }
+
+    public void equipAbility3(Ability ability){
+        getAbilityManager().setActiveAbility(ability, 3);
+    }
+
+    public void equipAbility4(Ability ability){
+        getAbilityManager().setActiveAbility(ability, 4);
     }
 
 }

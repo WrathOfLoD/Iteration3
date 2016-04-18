@@ -31,7 +31,7 @@ public class Stats implements Observable {
 
 
     //Derived Stats
-    private int maxLife = 5; //default 5 - doesn't need to be calculated
+    private int maxLife = 3; //default 5 - doesn't need to be calculated
     private int level; //doesn't need to be calculated
 
     private int maxMana;
@@ -257,11 +257,17 @@ public class Stats implements Observable {
     }
 
     private void setCurrentHealth(int currentHealth) {
+        //System.out.println("STATSSSSS HEALTH: " +currentHealth);
+        //System.out.println("STATSSSSS MAX HEALTH: " +maxHealth);
         if(currentHealth <= 0){
             this.currentHealth = 0;
             setLivesLeft(getLivesLeft()-1);
+            owner.die();
         }else{
-            this.currentHealth = currentHealth;
+            if(currentHealth > maxHealth)
+                this.currentHealth = maxHealth;
+            else
+                this.currentHealth = currentHealth;
         }
     }
 

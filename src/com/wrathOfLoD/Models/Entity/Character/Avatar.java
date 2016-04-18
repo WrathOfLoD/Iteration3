@@ -45,6 +45,17 @@ public class Avatar extends Character implements ActionsHolder {
         return avatar;
     }
 
+    public void configureAvatar(String name, Position position, Occupation occupation){
+        this.setName(name);
+        this.setPosition(position);
+        this.setOccupation(occupation);
+        SkillManager skillManager = occupation.createSkillManager();
+        this.setSkillManager(skillManager);
+        Weapon defaultWeapon = occupation.createWeapon();
+        this.setEquipment(new Equipment(defaultWeapon));
+        setCanMoveVisitor(new TerrestrialCanMoveVisitor());
+    }
+
     public void configureAvatar(String name, Position position, Occupation occupation, SkillManager skillManager){
         this.setName(name);
         this.setPosition(position);
@@ -85,6 +96,7 @@ public class Avatar extends Character implements ActionsHolder {
         this.addToActionSet(ActionVendor.createMoveSouthWestAction());
         // open inventory
         this.addToActionSet(ActionVendor.createOpenInventoryAction(this));
+        this.addToActionSet(ActionVendor.createMountAction(this));
     }
 
     @Override
@@ -108,23 +120,24 @@ public class Avatar extends Character implements ActionsHolder {
     }
 
     //TODO: need a way to swap ability when equip
+    @Override
     public void equipAbility1(Ability ability){
-        getAbilityManager().setActiveAbility(ability, 1);
+        super.equipAbility1(ability);
         this.addToActionSet(ActionVendor.createFirstAbility(ability));
     }
 
     public void equipAbility2(Ability ability){
-        getAbilityManager().setActiveAbility(ability, 2);
+        super.equipAbility2(ability);
         this.addToActionSet(ActionVendor.createSecondAbility(ability));
     }
 
     public void equipAbility3(Ability ability){
-        getAbilityManager().setActiveAbility(ability, 3);
+        super.equipAbility3(ability);
         this.addToActionSet(ActionVendor.createThirdAbility(ability));
     }
 
     public void equipAbility4(Ability ability){
-        getAbilityManager().setActiveAbility(ability, 4);
+        super.equipAbility4(ability);
         this.addToActionSet(ActionVendor.createFourthAbility(ability));
     }
 }
