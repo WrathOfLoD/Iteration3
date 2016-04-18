@@ -75,7 +75,7 @@ public class Summoner extends Occupation {
         Ability enchantmentMakeFriendlyAbility = new EnchantmentMakeFriendlyAbility(character, 10, 30);
         Ability enchantmentMakeWeakAbility = new EnchantmentMakeWeakAbility(3, character, 10, 30);
         Ability enchantmentMakeSlowAbility = new EnchantmentMakeSlowAbility(5, character, 10, 30);
-        Ability prismBlastAbility = new PrismBlastAbility(character, 5, 10, 5, 10);
+        Ability prismBlastAbility = new PrismBlastAbility(character, 5, 10, 1, 15);
 
         abilityManager.addAbilities(fireBallAbility);
         abilityManager.addAbilities(fanBlastAbility);

@@ -34,6 +34,11 @@ public class MovementCommand extends ActionCommand implements Fuseable {
 
     @Override
     public void execute() {
+        if(entity.isActive())
+            return;
+
+        entity.setActive();
+
         currentPosition = entity.getPosition();
         movementTicks = 60 - entity.getStats().getMovement(); //TODO: MAX SPEED - movement speed??
         entity.setDirection(movingDirection);
