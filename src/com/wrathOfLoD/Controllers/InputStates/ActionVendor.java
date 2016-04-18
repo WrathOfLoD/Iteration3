@@ -124,4 +124,9 @@ public class ActionVendor {
         ActionCommand switchToEquipmentStateAction = ActionCommandVendor.createSwitchToEquipmentStateAction(c);
         return new Action(KeyEvent.VK_SPACE, switchToEquipmentStateAction);
     }
+
+    public static Action createMountAction(Character c) {
+        ActionCommand mountCommand = ActionCommandVendor.createMountCommand(c);
+        return new Action(KeyEvent.VK_M, mountCommand);
+    }
 }
