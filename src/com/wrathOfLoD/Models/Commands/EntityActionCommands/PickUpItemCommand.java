@@ -30,6 +30,7 @@ public class PickUpItemCommand extends ActionCommand implements Fuseable{
     @Override
     public void explode() {
         Map.getInstance().removeItem(item, entity.getPosition());
+        LocationTrackerManager.getInstance().deregisterItem(item);
 
         // Remove item from the LTM
         //LocationTrackerManager.getInstance().deregisterItem(item); //TODO: comment back, this is break things
