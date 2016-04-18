@@ -39,6 +39,8 @@ public class ItemDisplayView extends StaticView implements Observer, Selectable 
      * desc: Paint view with next item in row selected
      */
     public void selectNextItem() {
+
+        System.out.println("next!");
         this.safeIncrementRight();
     }
 
@@ -61,6 +63,8 @@ public class ItemDisplayView extends StaticView implements Observer, Selectable 
      * desc: Paint view with previous item in row selected
      */
     public void selectPrevItem() {
+        System.out.println("prev!");
+
         this.safeDecrementLeft();
     }
 
@@ -80,6 +84,7 @@ public class ItemDisplayView extends StaticView implements Observer, Selectable 
      * desc: Paint view with prev item in col selected
      */
     public void selectUpItem() {
+        System.out.println("up!");
         this.safeDecrementUp();
     }
 
@@ -97,6 +102,7 @@ public class ItemDisplayView extends StaticView implements Observer, Selectable 
      * desc: Paint view with next item in col selected
      */
     public void selectDownItem() {
+        System.out.println("down!");
         this.safeIncrementDown();
     }
 
@@ -123,7 +129,9 @@ public class ItemDisplayView extends StaticView implements Observer, Selectable 
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         getContentDisplayStructure().getSlotList().stream().forEach(x -> x.setSelected(false));
-        getContentDisplayStructure().getSlotList().get(currentIndex).setSelected(true);
+        if(getContentDisplayStructure().getSlotList().size()>0) {
+            getContentDisplayStructure().getSlotList().get(currentIndex).setSelected(true);
+        }
     }
 
 

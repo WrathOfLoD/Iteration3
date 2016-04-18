@@ -10,8 +10,12 @@ public class Config {
     private static final String MapIVOPath = "resources/MapItems/";
     private static final String InventoryIVOPath = "resources/InventoryItems/";
     private static final String EquippedIVOPath = "resources/EquippedItems/";
+    private static final String AbilityVOPath = "resources/Abilities/";
     private static final String ImageExtension = ".png";
 
+    public static String getAbilityVOPath() {
+        return AbilityVOPath;
+    }
     public static String getIVOPath() {
         return IVOPath;
     }

@@ -1,11 +1,7 @@
 package com.wrathOfLoD.Views.ContentDisplayStructure;
 
-import com.wrathOfLoD.Models.Items.Item;
 import com.wrathOfLoD.Views.ItemDisplayView.Slot.Slot;
-import com.wrathOfLoD.Views.Selectable;
-import com.wrathOfLoD.Views.ViewObjects.InventoryItemViewObject;
-import com.wrathOfLoD.Views.ViewObjects.ItemViewObject;
-import com.wrathOfLoD.Views.ViewObjects.StaticViewObject;
+
 
 import javax.swing.*;
 import java.awt.*;
