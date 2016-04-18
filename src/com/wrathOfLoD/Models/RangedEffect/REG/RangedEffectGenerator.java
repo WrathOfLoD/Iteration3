@@ -50,7 +50,8 @@ public abstract class RangedEffectGenerator implements Fuseable{
                 //System.out.println("HB POS: " + p.getQ() + " " + p.getR() + " " + p.getH());
                 if(Map.getInstance().hasTileAt(p)){
                     HitBox hb = hitBoxFactory.createHitBox(damage, accuracy, p);
-                    ViewObjectFactory.getInstance().createHitBoxViewObject(p, hb);
+                    ViewObjectFactory.getInstance().createHitBoxViewObject(p, hb, Map.getInstance().getActiveMapArea());
+                    //System.out.println("HB AT POS: " + p.getQ() + " " + p.getR() + " " + p.getH());
 
                     effectiveHB.add(hb);
                     hb.apply();
@@ -65,14 +66,14 @@ public abstract class RangedEffectGenerator implements Fuseable{
 
     @Override
     public void explode() {
-        doRangedEffect();
-
         Iterator<HitBox> hitBoxIterator = effectiveHB.iterator();
         while (hitBoxIterator.hasNext()){
             HitBox hb = hitBoxIterator.next();
             hb.destroyHitbox();
             hitBoxIterator.remove();
         }
+
+        doRangedEffect();
     }
 
     private int calculatePower(int unmodifiedPower, int currentDistance){

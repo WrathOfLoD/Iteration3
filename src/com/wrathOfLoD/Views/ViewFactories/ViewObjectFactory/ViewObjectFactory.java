@@ -4,6 +4,8 @@ import com.wrathOfLoD.Models.Entity.Character.Avatar;
 import com.wrathOfLoD.Models.Entity.Entity;
 import com.wrathOfLoD.Models.Items.Item;
 import com.wrathOfLoD.Models.Map.AreaEffect.AreaEffect;
+import com.wrathOfLoD.Models.Map.Map;
+import com.wrathOfLoD.Models.Map.MapArea;
 import com.wrathOfLoD.Models.Map.Tile;
 import com.wrathOfLoD.Models.RangedEffect.HitBox.HitBox;
 import com.wrathOfLoD.Utility.Position;
@@ -53,50 +55,73 @@ public class ViewObjectFactory {
         return new TileViewObject(pos, new ImageAnimation(img));
     }
 
-    public AreaEffectViewObject createAEViewObject(Position pos, AreaEffect ae){
+    public AreaEffectViewObject createAEViewObject(Position pos, AreaEffect ae, MapArea mapArea){
         HashMap<String, ImageAnimation> aoeSprites = spriteMap.getAoeMap();
         ImageAnimation img = aoeSprites.get(ae.getName());
 
 
         AreaEffectViewObject aevo = new AreaEffectViewObject(ae, img);
-        areaView.addViewObjectToActiveCV(pos, aevo);
+        //areaView.addViewObjectToActiveCV(pos, aevo);
+        areaView.addVOToCV(pos, aevo, mapArea);
         return aevo;
     }
 
-    public EntityViewObject createEntityViewObject(Position pos, Entity entity){
+    public EntityViewObject createEntityViewObject(Position pos, Entity entity, MapArea mapArea){
         List<Image> img = new ArrayList<>();
         img.add(ImageFactory.generateImage("resources/Entity/Avatar/Smasher/Walk/slice19_19.png"));
 
         EntityViewObject evo = new EntityViewObject(entity, new ImageAnimation(img));
-        areaView.addViewObjectToActiveCV(pos, evo);
+        //areaView.addViewObjectToActiveCV(pos, evo);
+        areaView.addVOToCV(pos, evo, mapArea);
         entity.registerObserver(evo);
-        evo.registerObserver(areaView.getActiveCameraView()); //TODO: gonna cause problem because all map areas are populated at once
+        //evo.registerObserver(areaView.getActiveCameraView()); //TODO: gonna cause problem because all map areas are populated at once
+        evo.registerObserver(areaView.getCV(mapArea));
         return evo;
     }
 
-    public DestroyableModelViewObject createMapItemViewObject(Position pos, Item item){
+    public EntityViewObject createAvatarViewObject(Position pos, Avatar avatar){ //has to be added to the active one
+        List<Image> img = new ArrayList<>();
+//        img.add(ImageFactory.generateImage("resources/Entity/Avatar/Smasher/Walk/slice19_19.png"));
+        img.add(ImageFactory.generateImage("resources/Abilities/DetectTrapAbility.png"));
+
+        EntityViewObject evo = new EntityViewObject(avatar, new ImageAnimation(img));
+        //areaView.addViewObjectToActiveCV(pos, evo);
+        areaView.addVOToCV(pos, evo, Map.getInstance().getActiveMapArea());
+        avatar.registerObserver(evo);
+        evo.registerObserver(areaView.getActiveCameraView());
+        evo.registerObserver(areaView.getActiveCameraView().getCameraCenter());
+        return evo;
+    }
+
+
+
+    public MapItemViewObject createMapItemViewObject(Position pos, Item item, MapArea mapArea){
         HashMap<String, ImageAnimation> mapItemSprites = spriteMap.getItemMap();
         ImageAnimation img = mapItemSprites.get(item.getName());
 
-        DestroyableModelViewObject mivo = new DestroyableModelViewObject(item, img);
+        MapItemViewObject mivo = new MapItemViewObject(item, img);
 
         item.registerObserver(mivo);
-        mivo.registerObserver(areaView.getTileVOFromActiveCV(pos));
+        //mivo.registerObserver(areaView.getTileVOFromActiveCV(pos));
+        mivo.registerObserver(areaView.getTileVOFromCV(pos, mapArea));
 
-        areaView.addViewObjectToActiveCV(pos, mivo);
+        //areaView.addViewObjectToActiveCV(pos, mivo);
+        areaView.addVOToCV(pos, mivo, mapArea);
         return mivo;
     }
 
-    public HitBoxViewObject createHitBoxViewObject(Position position, HitBox hitBox){
+    public HitBoxViewObject createHitBoxViewObject(Position position, HitBox hitBox, MapArea mapArea){
         HashMap<String, ImageAnimation> effectSprites = spriteMap.getEffectsMap();
         ImageAnimation img = effectSprites.get(hitBox.getName());
 
         HitBoxViewObject hitBoxViewObject = new HitBoxViewObject(hitBox, img);
 
         hitBox.registerObserver(hitBoxViewObject);
-        hitBoxViewObject.registerObserver(areaView.getTileVOFromActiveCV(position));
+        //hitBoxViewObject.registerObserver(areaView.getTileVOFromActiveCV(position));
+        hitBoxViewObject.registerObserver(areaView.getTileVOFromCV(position, mapArea));
 
-        areaView.addViewObjectToActiveCV(position, hitBoxViewObject);
+        //areaView.addViewObjectToActiveCV(position, hitBoxViewObject);
+        areaView.addVOToCV(position, hitBoxViewObject, mapArea);
         return hitBoxViewObject;
     }
 }

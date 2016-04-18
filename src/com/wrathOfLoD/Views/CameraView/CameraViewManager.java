@@ -28,4 +28,9 @@ public class CameraViewManager {
     public CameraView getActiveCV(){
         return activeCV;
     }
+
+    public CameraView getCV(MapArea mapArea){
+        return cameraViewList.get(mapArea);
+    }
+
 }

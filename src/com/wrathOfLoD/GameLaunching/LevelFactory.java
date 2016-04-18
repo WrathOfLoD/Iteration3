@@ -51,8 +51,15 @@ public class LevelFactory {
     public CameraViewManager getCameraViewManager(){
         return this.cvm;
     }
+
+
     public AreaView getAreaView(){
         return this.areaView;
+    }
+
+    public void setActiveCV(MapArea mapArea){
+        cvm.setActiveCV(mapArea);
+        areaView.setActiveCameraView(cvm.getActiveCV());
     }
 
     public void generateMap(){
@@ -85,18 +92,14 @@ public class LevelFactory {
         MapArea mapAreaOne =  Map.getInstance().getMapAreas()[0];
 
 
-//        EntityVendor.createNewSummonerPlayer("Dave",new Position(0,0,8), mapAreaOne);
 
-        //TODO: test can remove
-        //Avatar.getInstance().getAbilityManager().addAbilities(new FireballAbility(Avatar.getInstance(),5,10,3,5));
-//        Avatar.getInstance().equipAbility1(new FireballAbility(Avatar.getInstance(),5,10,3,5));
+        //ItemVendor.createHammer(mapAreaOne, new Position(1,2,9));
+        //EntityVendor.createNewSummonerPlayer("Dave",new Position(0,0,8), mapAreaOne);
+
 
 //        ItemVendor.createHammer(mapAreaOne, new Position(1,2,9));
 //        EntityVendor.createEnemy(new Position(1,2,9), mapAreaOne);
         EntityVendor.createEnemy(new Position(1,0,9), mapAreaOne);
-
-//        EntityVendor.createNewSmasherPlayer("Dave",new Position(0,0,8), mapAreaOne);
-        EntityVendor.createNewSmasherPlayer("Dave",new Position(0,0,8), mapAreaOne);
 
 
 //        NPC myNPC = new NPC("Hehe",new Position(1,1,8), new Smasher(), new TerrestrialCanMoveVisitor());
@@ -109,11 +112,13 @@ public class LevelFactory {
         mapAreaOne.addAE(new Flow(Direction.SOUTH_EAST, 10), new Position(2,3,9));
 
         CameraView cameraView1 = new CameraView(mapAreaOne);
+        cameraView1.setCameraCenter(mapAreaOne.getSpawnPoint());
         cvm.addCameraView(mapAreaOne, cameraView1);
-        areaView.setActiveCameraView(cameraView1);
+        //areaView.setActiveCameraView(cameraView1); //TODO: set active cv when avatar gets added
         cameraView1.populateCV();
-    }
 
+        //TODO: Can store spawn point in map area
+    }
 
 
     private void createTestMap() {
@@ -122,7 +127,7 @@ public class LevelFactory {
     }
 
     public void createTestMapAreaOne(){
-        MapArea mapArea1 = new MapArea();
+        MapArea mapArea1 = new MapArea(new Position(0,0,8));
 
         for(int i = 0; i < 7; i++){ //q
             for(int j = 0; j < 5; j++){ //r

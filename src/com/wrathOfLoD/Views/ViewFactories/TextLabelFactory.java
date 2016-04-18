@@ -15,9 +15,10 @@ public class TextLabelFactory {
     //public JLabel generateItemNameLabel(InventoryItem item, int fontSize, Color color) {
     public static JLabel generateTextLabel(String name, int fontSize, Color color) {
         JLabel textLabel = new JLabel(name);
-        Font font = new Font(textLabel.getFont().getName(), Font.BOLD, fontSize);
+        Font font = new Font("Bauhaus 93", Font.BOLD, fontSize);
         textLabel.setForeground(color);
         textLabel.setFont(font);
+        textLabel.setHorizontalAlignment(SwingConstants.CENTER);
         return textLabel;
     }
 }

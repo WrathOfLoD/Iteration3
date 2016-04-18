@@ -20,6 +20,12 @@ public class AbilityManager {
     public Ability[] getActiveAbilities() {
         return activeAbilities;
     }
+    public ArrayList<Ability> getUnlockedAbilities() {
+        return unlockedAbilities;
+    }
+    public ArrayList<Ability> getLockedAbilities() {
+        return lockedAbilities;
+    }
 
     public AbilityManager(Character character) {
         this.character = character;
