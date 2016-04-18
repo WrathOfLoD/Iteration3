@@ -44,7 +44,8 @@ public class MovementCommand extends ActionCommand implements Fuseable {
         Position belowPos = new Position(adjacentPos.getQ(), adjacentPos.getR(), adjacentPos.getH()-1);
         //TODO: handle if H=0 already
 
-        if(entity.getPosition().getH()+1 < Map.getInstance().getTilePillar(adjacentPos).getGroundLevel()){
+
+        if(Map.getInstance().hasTileAt(adjacentPos) && entity.getPosition().getH()+1 < Map.getInstance().getTilePillar(adjacentPos).getGroundLevel()){
             entity.setInactive();
             return;
         }
@@ -54,6 +55,11 @@ public class MovementCommand extends ActionCommand implements Fuseable {
 
 
         int entityGroundLevel = entity.getPosition().getH();
+
+        // Does the tile even exist?
+        if (!Map.getInstance().hasTileAt(adjacentPos))
+            return;
+
         int adjacentGroundLevel = Map.getInstance().getTilePillar(adjacentPos).getGroundLevel();
 
         if (adjacentGroundLevel == (entityGroundLevel + 1) && !(entityGroundLevel + 1 > 10)) {

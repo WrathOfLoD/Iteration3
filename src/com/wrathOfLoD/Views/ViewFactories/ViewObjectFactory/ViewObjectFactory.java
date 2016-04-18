@@ -57,6 +57,7 @@ public class ViewObjectFactory {
         HashMap<String, ImageAnimation> aoeSprites = spriteMap.getAoeMap();
         ImageAnimation img = aoeSprites.get(ae.getName());
 
+
         AreaEffectViewObject aevo = new AreaEffectViewObject(ae, img);
         areaView.addViewObjectToActiveCV(pos, aevo);
         return aevo;
