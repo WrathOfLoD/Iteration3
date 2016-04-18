@@ -5,6 +5,8 @@ import com.wrathOfLoD.Controllers.InputStates.EquipmentState;
 import com.wrathOfLoD.Controllers.InputStates.InputState;
 import com.wrathOfLoD.Controllers.InputStates.InventoryState;
 import com.wrathOfLoD.Controllers.MainController;
+import com.wrathOfLoD.Models.Ability.Abilities.PickPocketAbility;
+import com.wrathOfLoD.Models.Ability.AbilityManager;
 import com.wrathOfLoD.Models.Entity.Character.Avatar;
 import com.wrathOfLoD.Models.Inventory.Equipment;
 import com.wrathOfLoD.Models.Inventory.Inventory;
@@ -13,8 +15,12 @@ import com.wrathOfLoD.Models.Items.EquippableItems.Weapons.SmasherWeapons.FistWe
 import com.wrathOfLoD.Models.Items.EquippableItems.Weapons.SmasherWeapons.TwoHandWeapon;
 import com.wrathOfLoD.Models.Items.TakeableItem;
 import com.wrathOfLoD.Models.ModelEngine;
+import com.wrathOfLoD.Models.Occupation.Occupation;
+import com.wrathOfLoD.Models.Occupation.Sneak;
+import com.wrathOfLoD.Models.Skill.SneakSkillManager;
 import com.wrathOfLoD.Models.Stats.Stats;
 import com.wrathOfLoD.Models.Stats.StatsModifiable;
+import com.wrathOfLoD.Utility.Position;
 import com.wrathOfLoD.Views.AbilityView.AbilityView;
 import com.wrathOfLoD.Views.AreaView.AreaView;
 import com.wrathOfLoD.Views.AvatarIESView.AvatarIESView;
@@ -89,10 +95,11 @@ public class ViewTest {
         vm.addView(areaView);
         vm.addView(avatarIESView);
 
-        AbilityView abilityView= new AbilityView(avatar.getAbilityManager(), new GridStructure(6,4));
+        //AbilityView abilityView= new AbilityView(new AbilityManager(avatar), new GridStructure(6,4));
         //vm.addView(abilityView);
 
         viewEngine.registerView(vm);
+        //viewEngine.registerView(abilityView);
 
         ModelEngine.getInstance().start();
 

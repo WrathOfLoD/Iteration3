@@ -8,4 +8,5 @@ import com.wrathOfLoD.Utility.Position;
  */
 public interface EntityObserver {
     public void notifyMove(Position src, Position dest, Direction dir, int ticks);
+    public void notifyDirectionChange(Direction dir);
 }

@@ -3,7 +3,6 @@ package com.wrathOfLoD.Views.ItemDisplayView;
 import com.wrathOfLoD.Models.Inventory.Inventory;
 import com.wrathOfLoD.Models.Items.TakeableItem;
 import com.wrathOfLoD.Views.ContentDisplayStructure.ContentDisplayStructure;
-import com.wrathOfLoD.Views.ItemDisplayView.Slot.InventorySlot;
 import com.wrathOfLoD.Views.ItemDisplayView.Slot.ItemSlot;
 import com.wrathOfLoD.Views.ItemDisplayView.Slot.Slot;
 import com.wrathOfLoD.Views.ViewObjects.ItemViewObject;

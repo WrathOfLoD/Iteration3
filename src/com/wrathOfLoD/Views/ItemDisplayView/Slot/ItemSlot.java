@@ -17,6 +17,8 @@ public class ItemSlot extends Slot {
         setStaticViewObject(itemViewObject);
     }
 
+    public ItemSlot() {
+    }
 
     @Override
     public void paintComponent(Graphics g, int x, int y, int width, int height) {

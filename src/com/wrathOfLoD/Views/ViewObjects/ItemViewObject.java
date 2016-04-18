@@ -21,18 +21,8 @@ public class ItemViewObject extends GraphicViewObject {
         setObject(item);
         if(item!=null) {
             setImageFilePath(Config.instance().getInventoryIVOPath()+item.getName()+Config.instance().getImageExtension());
-            initializeImage(item);
+            initializeImage();
         }
-    }
-
-    public void initializeImage(Item item) {
-        setImage(ImageFactory.generateImage(getImageFilePath())); //edit: testing. shouldn't be using this path
-    }
-
-    @Override
-    public void paintComponent(Graphics g, int x, int y, int width, int height) {
-        super.paintComponent(g);
-        g.drawImage(this.getImage(),x,y,width,height,this);
     }
 
 }

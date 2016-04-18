@@ -27,9 +27,13 @@ public abstract class Slot extends StaticViewObject {
         isSelected = selected;
     }
 
+    public void select(){
+        setSelected(true);
+    }
 
     public void addToSlot(StaticViewObject staticViewObject) {
         setStaticViewObject(staticViewObject);
+
     }
 
     public void removeFromSlot() {

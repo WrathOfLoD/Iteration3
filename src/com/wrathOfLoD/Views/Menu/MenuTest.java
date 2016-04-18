@@ -30,7 +30,7 @@ public class MenuTest {
 
             InputState avatarState = new AvatarState();
 
-            InputState menuState = new MenuState(mainMenu);
+            InputState menuState = new MenuState(characterCreationMenu);
             mainController.setActiveState(menuState);
 
             /*
@@ -45,9 +45,9 @@ public class MenuTest {
 */
 
             ViewEngine window = ViewEngine.getInstance();
-            //window.registerView(mainMenu);
-            window.registerView(pauseMenu);
-//            window.registerView(characterCreationMenu);
+//            window.registerView(mainMenu);
+//            window.registerView(pauseMenu);
+            window.registerView(characterCreationMenu);
 //
 
             //ScrollableMenu menu = new MainScrollableMenu(120);

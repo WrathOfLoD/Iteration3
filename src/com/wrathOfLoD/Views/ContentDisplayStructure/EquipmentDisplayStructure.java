@@ -206,6 +206,7 @@ public class EquipmentDisplayStructure extends ContentDisplayStructure {
     @Override
     public void paintComponent(Graphics g, int initialX, int initialY, int displayWidth, int displayHeight) {
         calculateCoords(displayWidth, displayHeight);
+        g.drawRect(getShieldX() - 15, getShieldY() - 15, getSlotWidth() + 30, getslotHeight() + 30);
         super.paintComponent(g, initialX, initialY, displayWidth, displayHeight);
 
 

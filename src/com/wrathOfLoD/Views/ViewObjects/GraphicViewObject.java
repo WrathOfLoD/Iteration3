@@ -5,6 +5,7 @@ import com.wrathOfLoD.Utility.Config;
 import com.wrathOfLoD.Views.ImageFactory.ImageFactory;
 
 import java.awt.*;
+import java.util.Objects;
 
 /**
  * Created by echristiansen on 4/17/2016.
@@ -27,7 +28,7 @@ public class GraphicViewObject extends StaticViewObject  {
         this.image = image;
     }
 
-    public void initializeImage(Item item) {
+    public void initializeImage() {
         setImage(ImageFactory.generateImage(getImageFilePath())); //edit: testing. shouldn't be using this path
     }
 

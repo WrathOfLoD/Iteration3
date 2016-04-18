@@ -22,7 +22,6 @@ public abstract class Action implements KeyListener{
     @Override
     public void keyPressed(KeyEvent keyEvent){
         if(keyEvent.getKeyCode() == currKeyCode && isListening){
-            System.out.println("ATTEMTPIG KEYPRESS");
             myAction.execute();
         }
     }

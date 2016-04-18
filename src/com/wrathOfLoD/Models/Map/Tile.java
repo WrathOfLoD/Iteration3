@@ -92,6 +92,10 @@ public class Tile {
         return entities.iterator();
     }
 
+    public List<Entity> getEntitiesList(){
+        return entities;
+    }
+
     public void accept(TileVisitor tileVisitor){
         tileVisitor.visitTile(this);
     }

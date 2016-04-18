@@ -58,6 +58,7 @@ public class AreaView extends StaticView implements MapObserver{ //need to chang
 	public void paintComponent(Graphics g){
 		super.paintComponent(g);
 		//activeCameraView.paintComponent(g);
+		activeCameraView.paintComponent(g);
 	}
 
 	/*
