@@ -278,7 +278,7 @@ public class XMLSaver implements Saver,EntityPropertyVisitor,EntityVisitor,HeldI
     }
 
     @Override
-    public void visitTileColumn(TilePillar tilePillar) {
+    public void visitTilePillar(TilePillar tilePillar) {
         /**
          * write something to the doc to identify tile pillar
          * probably just gonna be its position
