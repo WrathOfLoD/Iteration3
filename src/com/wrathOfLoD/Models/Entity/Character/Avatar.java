@@ -85,6 +85,7 @@ public class Avatar extends Character implements ActionsHolder {
         this.addToActionSet(ActionVendor.createMoveSouthWestAction());
         // open inventory
         this.addToActionSet(ActionVendor.createOpenInventoryAction(this));
+        this.addToActionSet(ActionVendor.createMountAction(this));
     }
 
     @Override
