@@ -51,6 +51,11 @@ public class SpriteMap {
             this.action = action;
             this.direction = direction;
         }
+
+        @Override
+        public String toString(){
+            return occupation + " " + state + " " + action + " " + direction;
+        }
     }
 
     public SpriteMap() throws IOException{

@@ -51,6 +51,9 @@ public class Sneak extends Occupation {
     }
 
     @Override
+    public String getName(){ return "Sneak"; }
+
+    @Override
     public Weapon createWeapon(){
         return new BackStabWeapon();
     }

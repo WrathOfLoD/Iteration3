@@ -40,6 +40,9 @@ public class Smasher extends Occupation {
     }
 
     @Override
+    public String getName(){ return "Smasher"; }
+
+    @Override
     public SkillManager createSkillManager() {
         return new SmasherSkillManager();
     }

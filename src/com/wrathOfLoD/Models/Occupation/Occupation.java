@@ -32,6 +32,8 @@ public abstract class Occupation {
 
     public abstract Weapon createWeapon();
 
+    public abstract String getName();
+
     public void levelUp(Stats stats) {
 
     }
