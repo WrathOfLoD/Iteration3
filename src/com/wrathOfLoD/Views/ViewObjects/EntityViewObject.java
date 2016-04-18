@@ -2,6 +2,7 @@ package com.wrathOfLoD.Views.ViewObjects;
 
 import com.wrathOfLoD.Models.Entity.Character.Avatar;
 import com.wrathOfLoD.Models.Entity.Entity;
+import com.wrathOfLoD.Models.Entity.Mount;
 import com.wrathOfLoD.Models.Map.MapArea;
 import com.wrathOfLoD.Observers.ModelObservers.EntityObserver;
 import com.wrathOfLoD.Observers.ViewObjectObservers.*;
@@ -63,6 +64,8 @@ public class EntityViewObject extends ModelViewObject implements EntityObserver,
         this.facingDirection = dir;
     }
 
+    public void notifyMounted(Mount m) {
+    }
 
     @Override
     public void registerObserver(VOObserver voo) {
@@ -73,5 +76,4 @@ public class EntityViewObject extends ModelViewObject implements EntityObserver,
     public void deregisterObserver(VOObserver voo) {
         voObservers.remove(voo);
     }
-
 }

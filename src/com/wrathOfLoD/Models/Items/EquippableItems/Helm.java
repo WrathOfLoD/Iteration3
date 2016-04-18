@@ -23,7 +23,6 @@ public class Helm extends EquippableItem{
     @Override
     protected void equip(Character character){
         EquipItemCommand equipHelmCommand = new EquipHelmCommand(character, this);
-        System.out.println("EQUIPPING FUCKING HELMET COMMAND");
         equipHelmCommand.execute();
     }
 
