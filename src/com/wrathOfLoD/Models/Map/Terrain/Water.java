@@ -10,6 +10,7 @@ public class Water extends Terrain {
 
     public Water() {
         super();
+        this.setName("WaterTile");
     }
 
 
