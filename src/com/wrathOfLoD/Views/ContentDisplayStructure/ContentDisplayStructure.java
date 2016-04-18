@@ -1,8 +1,6 @@
 package com.wrathOfLoD.Views.ContentDisplayStructure;
 
-import com.wrathOfLoD.Views.ItemDisplayView.Slot.ItemSlot;
 import com.wrathOfLoD.Views.ItemDisplayView.Slot.Slot;
-import com.wrathOfLoD.Views.ViewObjects.StaticViewObject;
 
 
 import javax.swing.*;

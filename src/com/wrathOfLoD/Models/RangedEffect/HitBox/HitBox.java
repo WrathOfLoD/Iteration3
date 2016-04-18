@@ -63,7 +63,7 @@ public class HitBox implements DestroyableModelObservable{
     public void destroyHitbox(){
         Iterator<DestroyableModelObserver> observerIterator = destroyableModelObservers.iterator();
         while(observerIterator.hasNext()){
-            observerIterator.next().notifyDestroy();
+            observerIterator.next().notifyDestroy(location);
             observerIterator.remove();
         }
     }

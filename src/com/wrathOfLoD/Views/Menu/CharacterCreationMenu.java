@@ -21,9 +21,9 @@ public class CharacterCreationMenu extends Menu {
     }
 
     public void initMenuItems() {
-        this.addMenuItem(new MenuItem("Smasher"));
-        this.addMenuItem(new MenuItem("Sneak"));
-        this.addMenuItem(new MenuItem("Summoner"));
+        this.addMenuItem(new CharacterCreationMenuItem("Smasher"));
+        this.addMenuItem(new CharacterCreationMenuItem("Sneak"));
+        this.addMenuItem(new CharacterCreationMenuItem("Summoner"));
     }
 
     public void initDefaultUI() {

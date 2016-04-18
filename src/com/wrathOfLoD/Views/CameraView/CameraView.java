@@ -9,6 +9,8 @@ import com.wrathOfLoD.Models.Map.Tile;
 import com.wrathOfLoD.Models.Map.TilePillar;
 import com.wrathOfLoD.Observers.ViewObjectObservers.MovableVOObservable;
 import com.wrathOfLoD.Observers.ViewObjectObservers.MovableVOObserver;
+import com.wrathOfLoD.Observers.ViewObjectObservers.VOObservable;
+import com.wrathOfLoD.Observers.ViewObjectObservers.VOObserver;
 import com.wrathOfLoD.Utility.Config;
 import com.wrathOfLoD.Utility.Direction;
 import com.wrathOfLoD.Utility.Position;
@@ -27,7 +29,7 @@ import java.util.List;
 /**
  * Created by luluding on 4/16/16.
  */
-public class CameraView implements MovableVOObserver {
+public class CameraView implements VOObserver {
 
     private HashMap<Position, TilePillarViewObject> tilePillarViewObjects;
     private MapArea mapArea;
@@ -90,7 +92,6 @@ public class CameraView implements MovableVOObserver {
         for (Entity e : t.getEntitiesArray()){
             vof.createEntityViewObject(tvo.getPosition(), e, mapArea);
         }
-
     }
 
 
@@ -114,6 +115,15 @@ public class CameraView implements MovableVOObserver {
 
     public void setCameraCenter(Position position){
         cameraCenter.setCameraCenter(position);
+    }
+
+    public void setInitialCameraCenter(Position position){
+        cameraCenter.setInitialCenter(position);
+    }
+
+    @Override
+    public void notifyDestroy(ModelViewObject vo, Position position) {
+        tilePillarViewObjects.get(position.get2DProjection()).removeVOFromTile(position, vo);
     }
 
     @Override

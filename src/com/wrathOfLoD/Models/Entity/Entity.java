@@ -9,6 +9,7 @@ import com.wrathOfLoD.Models.Entity.EntityCanMoveVisitor.TerrestrialCanMoveVisit
 import com.wrathOfLoD.Models.Entity.EntityCanMoveVisitor.CanMoveVisitor;
 import com.wrathOfLoD.Models.Inventory.Inventory;
 import com.wrathOfLoD.Models.Items.TakeableItem;
+import com.wrathOfLoD.Models.Map.MapArea;
 import com.wrathOfLoD.Models.Stats.Stats;
 import com.wrathOfLoD.Models.Stats.StatsModifiable;
 import com.wrathOfLoD.Models.Target.NPCTargetManager;
@@ -207,6 +208,7 @@ public abstract class Entity implements EntityObservable{
         for (EntityObserver eo: entityObservers)
             eo.notifyDirectionChange(dir);
     }
+
 
     public void setAggroLevel(int aggro){
         this.aggroLevel = aggro;

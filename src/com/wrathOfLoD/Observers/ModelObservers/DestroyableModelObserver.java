@@ -7,5 +7,5 @@ import com.wrathOfLoD.Utility.Position;
  * Created by luluding on 4/17/16.
  */
 public interface DestroyableModelObserver {
-    public void notifyDestroy();
+    public void notifyDestroy(Position position);
 }

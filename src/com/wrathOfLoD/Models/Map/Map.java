@@ -46,10 +46,12 @@ public class Map implements MapObservable{
 
 	public void setActiveMapArea(MapArea mArea){
 		if(mapAreas.contains(mArea)){
+			System.out.println("MAP SET ACTIVE MA???");
 			this.activeMapArea = mArea;
 			LocationTrackerManager.getInstance().updateActiveMapArea(this.activeMapArea);
-			for(MapObserver mo : mapObservers)
+			for(MapObserver mo : mapObservers) {
 				mo.notifyMapAreaChange(mArea);
+			}
 		}
 		else{
 			throw new IllegalArgumentException("Selected MapArea is not contained in the collection of MapAreas.");

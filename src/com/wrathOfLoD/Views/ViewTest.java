@@ -91,7 +91,8 @@ public class ViewTest {
         //ViewManager vm = new ViewManager(areaView, avatarIESView);
         CameraViewManager cvm = new CameraViewManager();
         AreaView areaView = new AreaView(cvm);
-        ViewManager vm = new ViewManager(areaView, avatarIESView);
+        ViewManager vm = ViewManager.getInstance();
+        vm.init(areaView, avatarIESView);
         vm.addView(areaView);
         vm.addView(avatarIESView);
 

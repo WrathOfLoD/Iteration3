@@ -50,6 +50,7 @@ public abstract class Weapon extends EquippableItem{
         Occupation occupation = character.getOccupation();
         if(occupationCheckHook(occupation) ){
             EquipItemCommand equipWeaponCommand = new EquipWeaponCommand(character, this);
+            System.out.println("EQUIP WEAPN COMMAND");
             equipWeaponCommand.execute();
         }
     }

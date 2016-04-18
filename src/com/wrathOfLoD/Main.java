@@ -1,6 +1,6 @@
 package com.wrathOfLoD;
 
-import com.wrathOfLoD.Controllers.InputStates.InventoryState;
+import com.wrathOfLoD.Controllers.InputStates.*;
 import com.wrathOfLoD.GameLaunching.GameLauncher;
 import com.wrathOfLoD.GameLaunching.NewGameHelper;
 import com.wrathOfLoD.GameLaunching.Vendors.ItemVendor;
@@ -23,9 +23,6 @@ import com.wrathOfLoD.Models.Map.Terrain.Sky;
 import com.wrathOfLoD.Models.Map.Tile;
 import com.wrathOfLoD.Models.Map.TilePillar;
 import com.wrathOfLoD.Models.ModelEngine;
-import com.wrathOfLoD.Controllers.InputStates.ActionVendor;
-import com.wrathOfLoD.Controllers.InputStates.AvatarState;
-import com.wrathOfLoD.Controllers.InputStates.InputState;
 import com.wrathOfLoD.Controllers.MainController;
 import com.wrathOfLoD.Models.Entity.Character.Avatar;
 import com.wrathOfLoD.Models.Occupation.Smasher;
@@ -41,6 +38,7 @@ import com.wrathOfLoD.Views.ContentDisplayStructure.GridStructure;
 import com.wrathOfLoD.Views.ContentDisplayStructure.ListStructure;
 import com.wrathOfLoD.Views.ItemDisplayView.EquipmentView;
 import com.wrathOfLoD.Views.ItemDisplayView.InventoryView;
+import com.wrathOfLoD.Views.Menu.MainMenu;
 import com.wrathOfLoD.Views.Selectable;
 import com.wrathOfLoD.Views.StatsView.StatsView;
 import com.wrathOfLoD.Views.ViewEngine;
@@ -53,6 +51,14 @@ import java.io.IOException;
 public class Main {
 
     public static void main(String[] args) throws InterruptedException, IOException {
+
+        MainMenu mainMenu = new MainMenu();
+        ModelEngine.getInstance().start();
+        MainController mainController = MainController.getInstance();
+        InputState menuState = new MenuState(mainMenu);
+        mainController.setActiveState(menuState);
+        ViewEngine window = ViewEngine.getInstance();
+        window.registerView(mainMenu);
 
 //        /*** Create Map *****/
 //        ItemVendor itemVendor = new ItemVendor();
@@ -199,8 +205,8 @@ public class Main {
 //        Helm helm2 = new Helm("helm2");
 //        equipment.equip(helm2);
 
-        GameLauncher gameLauncher = new GameLauncher(new NewGameHelper());
-        gameLauncher.launchGame();
+//        GameLauncher gameLauncher = new GameLauncher(new NewGameHelper());
+//        gameLauncher.launchGame();
 
     }
 }
