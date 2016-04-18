@@ -38,6 +38,7 @@ public abstract class Entity implements EntityObservable{
     private boolean isActive = false;
     private ArrayList<EntityObserver> entityObservers;
     private CanMoveVisitor canMoveVisitor;
+    private boolean isDead;
 
     /**
      * aggroLevel is 0 for non aggressive entities
@@ -250,6 +251,16 @@ public abstract class Entity implements EntityObservable{
 
         System.out.println("GESTS CLLLAFED??");
     }
+
+    public boolean isDead() {
+        return isDead;
+    }
+
+    public void setDead(boolean dead) {
+        isDead = dead;
+    }
+
+
 
 }
 

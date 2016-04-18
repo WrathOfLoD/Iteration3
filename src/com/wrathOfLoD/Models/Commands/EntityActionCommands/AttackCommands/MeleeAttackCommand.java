@@ -21,10 +21,10 @@ public class MeleeAttackCommand extends AttackCommand {
 
     @Override
     protected void windUpHook(Position characterPosition, Direction characterFacingDirection, int attackDamage) {
-        if(getCharacter().isActive())
-            return;
-
-        getCharacter().setActive();
+//        if(getCharacter().isActive())
+//            return;
+//
+//        getCharacter().setActive();
         Position attackedPosition = characterPosition.getPosInDir(characterFacingDirection);
         Tile attackedTile = Map.getInstance().getTile(attackedPosition);
         System.out.println("ATT");

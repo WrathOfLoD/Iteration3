@@ -21,6 +21,7 @@ public class DieCommand  extends ActionCommand {
         Map.getInstance().removeEntity(entity,entity.getPosition());
         //LocationTrackerManager.getInstance().deregisterEntity(entity);
 
+        entity.setDead(true);
         entity.setInactive();
 
     }

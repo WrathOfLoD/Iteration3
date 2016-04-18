@@ -43,6 +43,7 @@ public abstract class AttackCommand extends ActionCommand implements Tickable{
 
     @Override
     public void execute() {
+
         TimeModel.getInstance().registerTickable(this);
     }
 
@@ -54,8 +55,8 @@ public abstract class AttackCommand extends ActionCommand implements Tickable{
             int attackDamage = offensiveRating + (skillLevel * 2);
             windUpHook(this.character.getPosition(), this.character.getDirection(), attackDamage);
         }else if(currentTick == coolDown){
-            TimeModel.getInstance().deregisterTickable(this);
             getCharacter().setInactive();
+            TimeModel.getInstance().deregisterTickable(this);
         }
     }
 }
