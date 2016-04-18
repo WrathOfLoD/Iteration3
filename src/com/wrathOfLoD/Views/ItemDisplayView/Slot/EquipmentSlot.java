@@ -16,7 +16,7 @@ public class EquipmentSlot extends Slot{
     * Does PTC apply to constructors? (Can only pass in type as weaker or weaker than that passed into superclass oonstructor? */
 
     public EquipmentSlot(ItemViewObject item) {
-        super(item);
+        setStaticViewObject(item);
     }
 
     /*

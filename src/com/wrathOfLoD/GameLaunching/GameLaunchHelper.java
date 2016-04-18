@@ -21,9 +21,7 @@ public abstract class GameLaunchHelper {
     public LevelFactory getLevelFactory(){
         return levelFactory;
     }
-    public Position getInitialSpawnPoint() {
-        return getLevelFactory().getInitialSpawnPoint();
-    }
+
 
     public void setLevelFactory(LevelFactory lv){
         levelFactory = lv;

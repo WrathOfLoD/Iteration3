@@ -16,7 +16,7 @@ public class InvisibleTilesCommand extends ActionCommand{
 	List<Position> positions;
 
 	public InvisibleTilesCommand(Position origin){
-		List<Position> positions = Position.drawCircle(origin, ModelConfig.getAvatarVisibleRadius(), true);
+		//List<Position> positions = Position.drawCircle(origin, ModelConfig.getAvatarVisibleRadius(), true);
 	}
 
 	@Override

@@ -27,6 +27,7 @@ public class PauseMenu extends Menu {
 
     public void initDefaultUI() {
         this.setBackground(new Color(0f,0f,0.7f,0.2f));
+        //setBackgroundImageFileName("resources/Backgrounds/spaceSloth.png");
     }
 
 

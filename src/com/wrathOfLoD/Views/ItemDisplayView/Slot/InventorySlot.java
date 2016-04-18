@@ -7,8 +7,14 @@ import com.wrathOfLoD.Views.ViewObjects.ItemViewObject;
  */
 public class InventorySlot extends Slot {
 
-    public InventorySlot(ItemViewObject item) {
-        super(item);
+
+    public ItemViewObject getItemViewObject() {
+        return (ItemViewObject)getStaticViewObject();
     }
+
+    public InventorySlot(ItemViewObject itemViewObject) { //// TODO: 4/17/2016 which is better? cast needed?
+        setStaticViewObject(itemViewObject);
+    }
+
 
 }
