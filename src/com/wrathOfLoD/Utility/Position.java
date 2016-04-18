@@ -364,6 +364,64 @@ public class Position{
 	}
 
 //	TODO: (hemi-)conical effects (e.g., shotgun blast) approximates an expanding 60° cone centered on the direction the unit is targeting
+
+	public static List<Position> drawCone(Position origin, Direction dir, int range, boolean includeOrigin){
+		List<Position> fan = new ArrayList<Position>();
+
+		if(includeOrigin){
+			fan.add(origin);
+		}
+
+		for(int i = 1; i < range; i++){
+			List<Position> arc  = drawWave(origin, dir, i);
+			fan.addAll(arc);
+		}
+
+		return fan;
+	}
+
+	public static List<Position> drawWave(Position origin, Direction dir, int range){
+		List<Position> wave = new ArrayList<Position>();
+
+		dir = dir.planar(); //REVIEW, do I need this?
+		Position rightVector = dir.clockwise().clockwise().getPosVector();
+		Position leftVector  = dir.counterClockwise().counterClockwise().getPosVector();
+		Position upVector = dir.above().getPosVector();
+		Position downVector = dir.below().getPosVector();
+
+		Position waveCenter = vectorAdd(origin, scalarMultiply(dir.getPosVector(), range));
+		wave.add(waveCenter);
+
+		for(int i = 1; i <= range/2; i++){
+			Position arcRight = vectorAdd(waveCenter, scalarMultiply(rightVector, i));
+			wave.add(arcRight);
+
+			Position arcLeft = vectorAdd(waveCenter, scalarMultiply(leftVector, i));
+			wave.add(arcLeft);
+
+			Position arcUp = vectorAdd(waveCenter, scalarMultiply(upVector, i));
+			wave.add(arcUp);
+
+			Position arcDown = vectorAdd(waveCenter, scalarMultiply(downVector, i));
+			wave.add(arcDown);
+
+			for(int j = 1; j <= range/2 - i; j++){
+				Position arcUpR = vectorAdd(arcRight, scalarMultiply(upVector, j));
+				wave.add(arcUpR);
+				Position arcUpL = vectorAdd(arcLeft, scalarMultiply(upVector, j));
+				wave.add(arcUpL);
+
+				Position arcDownR = vectorAdd(arcRight, scalarMultiply(downVector, j));
+				wave.add(arcDownR);
+				Position arcDownL = vectorAdd(arcLeft, scalarMultiply(downVector, j));
+				wave.add(arcDownL);
+			}
+
+		}
+
+		return wave;
+	}
+
 //	TODO: (hemi)spherical (e.g., bomb blast) 360° expanding effect (targeting independent)
 
 }
