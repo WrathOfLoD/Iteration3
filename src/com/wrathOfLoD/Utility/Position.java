@@ -335,6 +335,19 @@ public class Position{
 	}
 
 //	TODO: prism effects one or more concentric vertical columns of hextiles.
+
+	public static List<Position> drawCylinder(Position origin, int radius, int height, boolean includeOrigin){
+		List<Position> cylinder = new ArrayList<Position>();
+		Position pos = origin.get2DProjection();
+		for(int i = 0; i < height; i++){
+			Position sliceOrigin = vectorAdd(pos, scalarMultiply(Direction.UP.getPosVector(), i));
+			List<Position> ring  = drawCircle(sliceOrigin, i, true);
+			cylinder.addAll(ring);
+		}
+
+		return cylinder;
+	}
+
 //	TODO: (hemi-)conical effects (e.g., shotgun blast) approximates an expanding 60° cone centered on the direction the unit is targeting
 //	TODO: (hemi)spherical (e.g., bomb blast) 360° expanding effect (targeting independent)
 
