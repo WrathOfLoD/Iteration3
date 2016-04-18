@@ -63,7 +63,7 @@ public class FlyingCommand extends MovementCommand implements Fuseable {
 
             int adjacentGroundLevel = Map.getInstance().getTilePillar(adjacentPos).getGroundLevel();
 
-            if (adjacentGroundLevel == (entityGroundLevel + 1) && !(entityGroundLevel + 1 > 10)) {
+            if (adjacentGroundLevel == (entityGroundLevel + 1) && !(entityGroundLevel + 1 >= 10) && abovePos.getH() < 10) {
                 Map.getInstance().getTile(abovePos).accept(getCanMoveVisitor());
                 canMoveAbove = getCanMoveVisitor().canMove();
                 System.out.println("CANT MOVE UP!");
