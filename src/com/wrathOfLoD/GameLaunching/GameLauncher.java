@@ -47,27 +47,19 @@ public class GameLauncher {
         this.gameLaunchHelper = gameLaunchHelper;
     }
 
-
     public void launchGame(Occupation occupation) throws InterruptedException, IOException{
-    //public void launchGame() {
 
         gameLaunchHelper.createMap();
         gameLaunchHelper.populateMap();
 
         EntityVendor.createNewPlayer("Slothman", occupation, Map.getInstance().getMapAreas()[0].getSpawnPoint(), Map.getInstance().getMapAreas()[0]);
-        //EntityVendor.createNewSummonerPlayer("Dave",Map.getInstance().getMapAreas()[0].getSpawnPoint(), Map.getInstance().getMapAreas()[0]);
-        //TODO: test can remove
-        //Avatar.getInstance().getAbilityManager().addAbilities(new FireballAbility(Avatar.getInstance(),5,10,3,5));
-//        Avatar.getInstance().equipAbility1(new FireballAbility(Avatar.getInstance(),5,10,3,20));
-//        Avatar.getInstance().equipAbility2(new FanBlastAbility(Avatar.getInstance(),5,10,3,5));
+
         gameLaunchHelper.setActiveCameraView(Map.getInstance().getActiveMapArea());
 
         ViewObjectFactory.getInstance().initVOFactory(gameLaunchHelper.getAreaView());
         ViewObjectFactory.getInstance().createAvatarViewObject(Map.getInstance().getActiveMapArea().getSpawnPoint(), Avatar.getInstance());
 
-
         Map.getInstance().registerObserver(gameLaunchHelper.getAreaView());
-
 
         ViewEngine viewEngine = ViewEngine.getInstance();
         viewEngine.registerView(gameLaunchHelper.getAreaView());
