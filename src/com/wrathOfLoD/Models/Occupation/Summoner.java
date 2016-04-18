@@ -3,7 +3,9 @@ package com.wrathOfLoD.Models.Occupation;
 import com.wrathOfLoD.Models.Ability.Abilities.BlastAbilities.FanBlastAbility;
 import com.wrathOfLoD.Models.Ability.Abilities.BlastAbilities.FireballAbility;
 import com.wrathOfLoD.Models.Ability.Abilities.BlastAbilities.RadialBombBlastAbility;
-import com.wrathOfLoD.Models.Ability.Abilities.PickPocketAbility;
+import com.wrathOfLoD.Models.Ability.Abilities.BoonAbilites.BoonBoostDefenseAbility;
+import com.wrathOfLoD.Models.Ability.Abilities.BoonAbilites.BoonBoostSpeedAbility;
+import com.wrathOfLoD.Models.Ability.Abilities.BoonAbilites.BoonStrengthenAbility;
 import com.wrathOfLoD.Models.Ability.AbilityManager;
 import com.wrathOfLoD.Models.Entity.Character.Character;
 import com.wrathOfLoD.Models.Items.EquippableItems.Weapons.SmasherWeapons.SmasherWeapon;
@@ -44,7 +46,6 @@ public class Summoner extends Occupation {
         return true;
     }
 
-
     @Override
     public SkillManager createSkillManager() {
         return new SummonerSkillManager();
@@ -62,5 +63,8 @@ public class Summoner extends Occupation {
         abilityManager.addAbilities(new FireballAbility(character, 5, 10, 5, 10));
         abilityManager.addAbilities(new FanBlastAbility(3, character, 5, 10, 5, 10));
         abilityManager.addAbilities(new RadialBombBlastAbility(5, character, 5, 10,5, 10));
+        abilityManager.addAbilities(new BoonStrengthenAbility(character, 10, 100));
+        abilityManager.addAbilities(new BoonBoostSpeedAbility(3, character, 10, 100));
+        abilityManager.addAbilities(new BoonBoostDefenseAbility(5, character, 10, 100));
     }
 }
