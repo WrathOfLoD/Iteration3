@@ -63,5 +63,7 @@ public class ActionCommandVendor {
         return new MountCommand(c);
     }
 
-    public static void createAttackCommand(Character c) { c.attack(); }
+    public static ActionCommand createAttackCommand(Character c) {
+        return  new PerformAttackCommand(c);
+    }
 }

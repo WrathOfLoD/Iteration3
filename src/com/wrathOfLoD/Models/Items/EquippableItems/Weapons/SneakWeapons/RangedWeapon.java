@@ -18,8 +18,8 @@ public class RangedWeapon extends Weapon implements SneakWeapon {
 
     public RangedWeapon(String name, StatsModifiable stats, int coolDown, int windUp) {
         super(name, stats, coolDown, windUp);
-        this.shootingRange = 10;
-        this.travelTimeOfBeam = 2;
+        this.shootingRange = 4;
+        this.travelTimeOfBeam = 10;
     }
 
     public RangedWeapon(String name, StatsModifiable stats, int coolDown, int windUp, int shootingRange, int travelTimeOfBeam) {

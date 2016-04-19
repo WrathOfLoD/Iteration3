@@ -1,7 +1,7 @@
 package com.wrathOfLoD.Models.Commands.EntityActionCommands.AttackCommands;
 
 import com.wrathOfLoD.Models.Entity.Character.Character;
-import com.wrathOfLoD.Models.RangedEffect.HitBox.HitBoxFactories.RangedAttackHitBoxFactory;
+import com.wrathOfLoD.Models.RangedEffect.HitBox.HitBoxFactories.FireBallHitBoxFactory;
 import com.wrathOfLoD.Models.RangedEffect.REG.LineREG;
 import com.wrathOfLoD.Models.RangedEffect.REG.RangedEffectGenerator;
 import com.wrathOfLoD.Utility.Direction;
@@ -35,7 +35,7 @@ public class RangedAttackCommand extends AttackCommand {
                 getCharacter().getPosition(),
                 attackDamage,
                 getTravelTime(),
-                new RangedAttackHitBoxFactory(),
+                new FireBallHitBoxFactory(),
                 characterFacingDirection);
 
         reg.doRangedEffect();

@@ -93,8 +93,6 @@ public class ActionVendor {
         return new CastAbilityAction(KeyEvent.VK_6, sixthAbilityCommand);
     }
 
-
-
     /* Actions related to menu/inventory selection */
     public static Action createSelectUpAction(Selectable selectable) {
         ActionCommand selectUpCommand = ActionCommandVendor.createSelectUpCommand(selectable);
@@ -133,6 +131,11 @@ public class ActionVendor {
     public static Action createSwitchToEquipmentStateAction(Character c) {
         ActionCommand switchToEquipmentStateAction = ActionCommandVendor.createSwitchToEquipmentStateAction(c);
         return new Action(KeyEvent.VK_SPACE, switchToEquipmentStateAction);
+    }
+
+    public static Action createAttackAction(Character c){
+        ActionCommand attackAction = ActionCommandVendor.createAttackCommand(c);
+        return new Action(KeyEvent.VK_F, attackAction);
     }
 
     public static Action createMountAction(Character c) {

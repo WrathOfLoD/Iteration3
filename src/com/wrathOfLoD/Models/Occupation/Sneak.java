@@ -9,6 +9,7 @@ import com.wrathOfLoD.Models.Entity.Character.Avatar;
 import com.wrathOfLoD.Models.Entity.Character.Character;
 import com.wrathOfLoD.Models.Items.EquippableItems.Weapons.SmasherWeapons.SmasherWeapon;
 import com.wrathOfLoD.Models.Items.EquippableItems.Weapons.SneakWeapons.BackStabWeapon;
+import com.wrathOfLoD.Models.Items.EquippableItems.Weapons.SneakWeapons.RangedWeapon;
 import com.wrathOfLoD.Models.Items.EquippableItems.Weapons.SneakWeapons.SneakWeapon;
 import com.wrathOfLoD.Models.Items.EquippableItems.Weapons.SummonerWeapons.SummonerWeapon;
 import com.wrathOfLoD.Models.Items.EquippableItems.Weapons.Weapon;
@@ -55,7 +56,7 @@ public class Sneak extends Occupation {
 
     @Override
     public Weapon createWeapon(){
-        return new BackStabWeapon();
+        return new RangedWeapon("Blaster", StatsModifiable.createWeaponBonusStatsModifiable(10), 20, 10);
     }
 
     public void addAbilities(AbilityManager abilityManager, Character character){
