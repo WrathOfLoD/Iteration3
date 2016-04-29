@@ -6,6 +6,7 @@ Choose between Smasher, Sneak, and Summoner Avatar to save the universe.
 This project was the third iteration for Object Oriented Programming Course, Spring 2016 @ the University of Florida.
 The students first had to design the project using UML diagrams at a specification level. Once the UML design was 
 finalized the students were able to implement the project in Java. The primary goal of this iteration was to write code that follows good object oriented principles. That includes but is not limited to: 
+
 1. The Law of Demeter
 2. Tell, Don't Ask 
 3. Principle of Type Conformance
@@ -19,10 +20,15 @@ finalized the students were able to implement the project in Java. The primary g
 
 ## Created by  
 
-Mitchell Burgunder
-Ian Cavitt
-Erik Christiansen
-Matthew Diaz
-Qianwen Ding
-Zach Schultz
+Mitchell Burgunder @mburgunder
+
+Ian Cavitt @Icavitt
+
+Erik Christiansen @mistiansen
+
+Matthew Diaz @matthewddiaz
+
+Qianwen Ding @QianwenDing
+
+Zach Schultz @zachschultz
 
