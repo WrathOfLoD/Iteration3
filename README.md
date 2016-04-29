@@ -17,6 +17,9 @@ finalized the students were able to implement the project in Java. The primary g
 **Note:** No frameworks were allowed in this course except for Java2D.
 
 ## Game Screenshots
+![](https://github.com/WrathOfLoD/Iteration3/blob/master/gameScreenShots/smasher_&_orc.png)
+
+![](https://github.com/WrathOfLoD/Iteration3/blob/master/gameScreenShots/summoner_attack.png)
 
 ## Created by  
 
